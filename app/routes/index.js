@@ -12,7 +12,10 @@ module.exports = function(app) {
 		})
 		.get('/render/view', indexCtrl.view)
 		.get('/view/:id', indexCtrl.test)
-		.get('/kitten', indexCtrl.kitten);
+		.get('/kitten', indexCtrl.kitten)
+		.get('/bookstore', indexCtrl.bookstore);
 
 	app.use(router.middleware());
 };
+
+

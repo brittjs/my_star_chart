@@ -1,4 +1,5 @@
 module.exports = {
+
 	index: function *index(next) {
 		this.body = "Welcome to koajs-starter";
 	},
@@ -10,9 +11,16 @@ module.exports = {
 		yield next;
 	},
 
-	kitten: function *index() {
-		// this.body = "kittens";
-	this.render('user.ejs');
+	kitten: function *index(next) {
+		yield this.render('kitten.ect');
+		yield next;
+	},
+
+	bookstore: function *index(next) {
+		    var result = yield this.pg.db.client.query_("SELECT * FROM books");
+		    this.body = result.rows;
+		    // this.body = "dbtest route works";
+		    yield next;
 
 	},
 	
@@ -21,13 +29,3 @@ module.exports = {
 	}
 };
 
-
-// var render = require('koa-ejs');
-
-// render(app, {
-//   root: path.join(__dirname, 'view'),
-//   layout: 'template',
-//   viewExt: 'html',
-//   cache: false,
-//   debug: true
-// });

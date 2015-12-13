@@ -12,13 +12,11 @@ module.exports = {
             map: { ect: 'ect' }
         }
     },
-
-    publicfiles: {
-        path: 'public',
+    publicfiles : {
+        path: 'app/public',
         options: {}
-    }
+    },
     session: {
         secretKey: 'myKoajsSecretKey'
     }
 };
-
