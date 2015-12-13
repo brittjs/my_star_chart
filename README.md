@@ -12,7 +12,7 @@ quick start
 $ npm install
 ```
 
-**Run koa-starter:**
+**run:**
 
 ```sh
 $ npm start
@@ -31,7 +31,3 @@ Uses following npm package :
 * `koa-views` for template switching.
 * `ect` for default templatin engine due to fast performance.
 * `koa-pg` to connect to PostgreSQL.
-
-
-
-* [https://justmyfreak.com/koa-starter-a-koa-starting-template/](https://justmyfreak.com/koa-starter-a-koa-starting-template/)
