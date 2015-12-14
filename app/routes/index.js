@@ -10,8 +10,7 @@ module.exports = function(app) {
 			console.log('/link/'+this.params.id);
 			this.body = "Get value from params : "+ this.params.id;
 		})
-		.get('/render/view', indexCtrl.view)
-		.get('/view/:id', indexCtrl.test)
+		.get('/view', indexCtrl.view)
 		.get('/bookstore', indexCtrl.bookstore);
 
 	app.use(router.middleware());

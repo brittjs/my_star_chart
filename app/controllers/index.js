@@ -5,9 +5,7 @@ module.exports = {
 	},
 	
 	view: function *index(next) {
-		yield this.render('index.ect', {
-			title: 'Render view template'
-		});
+		yield this.render('template');
 		yield next;
 	},
 	
