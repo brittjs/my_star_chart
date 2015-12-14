@@ -1,24 +1,22 @@
 var koa = require('koa'),
     path = require('path'),
-    views = require('koa-views'), 
+    // views = require('koa-views'), 
     config = require('config'),
     serve = require('koa-static'),
     koaPg = require('koa-pg');
 
 var app = module.exports = koa();
 
-// initialize koa-views
-// app.use(views(config.template.path, config.template.options));
-
 //intialize koa-static
 app.use(serve('./app/public'));
 
-//intialize database
-app.use(koaPg('postgres://okay:Am9406209b@localhost:5432/bookstore'));
+//intialize database (put your own database and password here)
+app.use(koaPg('postgres://okay:P@ssw0rd@localhost:5432/bookstore'));
 
 //pulls in routers
 require('./app/routes')(app);
 
+//intialize koa-ejs
 var render = require('koa-ejs');
 
 render(app, {
