@@ -26,8 +26,8 @@ module.exports = {
 		yield next;
 	},
 
-	bookstore: function *index(next) {
-    var result = yield this.pg.db.client.query_("SELECT * FROM books");
+	stardata: function *index(next) {
+    var result = yield this.pg.db.client.query_("SELECT * FROM users");
     this.body = result.rows;
     yield next;
 	}

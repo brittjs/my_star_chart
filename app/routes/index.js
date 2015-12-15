@@ -11,7 +11,7 @@ module.exports = function(app) {
 			this.body = "Get value from params : "+ this.params.id;
 		})
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
-		.get('/bookstore', indexCtrl.errorHandler, indexCtrl.bookstore);
+		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata);
 
 	app.use(router.middleware());
 };

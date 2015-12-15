@@ -8,10 +8,10 @@ var koa = require('koa'),
 var app = module.exports = koa();
 
 //intialize koa-static
-app.use(serve('./app/public'));
+app.use(serve(config.publicfiles.path));
 
-//intialize database (put your own database and password here)
-app.use(koaPg('postgres://okay:P@ssw0rd@localhost:5432/bookstore'));
+//intialize database 
+app.use(koaPg(config.database.path));
 
 //pulls in routers
 require('./app/routes')(app);
@@ -20,7 +20,7 @@ require('./app/routes')(app);
 var render = require('koa-ejs');
 
 render(app, {
-  root: path.join('./app/views'),
+  root: path.join(config.template.path),
   layout: 'template',
   viewExt: 'ejs',
   cache: false,
