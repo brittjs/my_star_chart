@@ -27,4 +27,19 @@ render(app, {
   debug: true
 });
 
+//creates and connects to postgres
+var Sequelize = require('sequelize')
+  , sequelize = new Sequelize('starchart', 'okay', 'P@ssw0rd', {
+      dialect: 'postgres',
+      port:    5432
+    });
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  }, function (err) { 
+    console.log('Unable to connect to the database:', err);
+  });
+
 if (!module.parent) app.listen(3000);
