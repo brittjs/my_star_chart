@@ -16,8 +16,8 @@ $ npm install
 create database and load in data
 
 ```sh
-$ createdb star-chart
-$ psql star-chart < star-chart.sql
+$ createdb starchart
+$ sequelize db:migrate
 ```
 
 change this line in `config/default.js`    
