@@ -13,18 +13,16 @@ $ npm install
 ```
 
 **Create your own db:**
-create bookstore database and load in data using this script
-
-`https://gist.githubusercontent.com/kvirani/7742279/raw/bf24ac9bb25f2bfeb5200856a3c22f7733ef8e08/bookstore.sql`
+create database and load in data
 
 ```sh
-$ createdb bookstore
-$ psql bookstore < bookstore.sql
+$ createdb star-chart
+$ psql star-chart < star-chart.sql
 ```
 
-change this line in `index.js`    
+change this line in `config/default.js`    
 
-`app.use(koaPg('postgres://username:password@localhost:5432/bookstore'));`
+`app.use(koaPg('postgres://username:password@localhost:5432/star-chart'));`
 
 (use the username and password for your local machine)
 
