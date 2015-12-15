@@ -32,19 +32,6 @@ change this line in `config/default.js`
 $ npm start
 ```
 
-
-
-
-
-
-
-
-
-
-npm install
-
-node index.js
-
 Open [http://localhost:3000](http://localhost:3000)
 
 Components
