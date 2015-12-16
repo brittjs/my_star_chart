@@ -12,10 +12,13 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Task.belongsTo(User); // Will add a UserId attribute to Task to hold the primary key value for User
-        Task.hasMany(Stars, { foreignKey: 'TaskId' });
+        Task.belongsTo(models.User); // Will add a UserId attribute to Task to hold the primary key value for User
+        Task.hasMany(models.Stars, { foreignKey: 'TaskId' });
       }
     }
   });
   return Task;
 };
+// User.hasMany(Picture)
+// User.belongsTo(Picture, { as: 'ProfilePicture', constraints: false })
+
