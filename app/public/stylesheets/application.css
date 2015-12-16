@@ -29,7 +29,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .container{
   width:200vh;
-  /*flex-direction: row;*/
 }
 
 .skyContainer {
@@ -125,11 +124,11 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   float: right;
 }
 
-.difficulty {
+/*.difficulty {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
+*/
 
   
