@@ -31,10 +31,9 @@ module.exports = {
 	},
 
 	stardata: function *index(next) {
-    // var result = yield db.sequelize("SELECT * FROM \"Users\"");
-    // console.log(db.sequelize.models);
+    this.body = yield db.sequelize.models.User.findAll();
     console.log(this.state);
-    this.body = this.state.user;
+    // this.body = this.state.user;
     yield next;
 	},
 
