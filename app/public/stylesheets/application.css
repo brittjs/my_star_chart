@@ -1,6 +1,6 @@
-h1 {
+/*h1 {
   color: red;
-}
+}*/
 
 .alert-success {
   color: #3c763d;
@@ -111,5 +111,25 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   float: right;
   margin-right: 50px;
 }  
+
+#recurring {
+  margin-left: 70px;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+}
+
+#taskComplete {
+  float: right;
+}
+
+.difficulty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
   
