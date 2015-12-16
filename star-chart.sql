@@ -44,6 +44,13 @@ INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) 
 INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
 INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
 
+<<<<<<< HEAD
+=======
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 2);
+>>>>>>> d73a36040264fc1840752517e7fd7718cf75cdd2
 
 --
 -- Name: friends Type: TABLE Owner: postgres

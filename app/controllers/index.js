@@ -3,7 +3,6 @@ var db = require('../models/index.js');
 module.exports = {
 
 
-
   errorHandler: function* (next) {
     // we catch all downstream errors here
     try {
@@ -36,7 +35,6 @@ module.exports = {
     // this.body = this.state.user;
     yield next;
 	},
-
 };
 
 
