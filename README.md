@@ -18,7 +18,7 @@ $ sequelize db:create
 change this line in `config/config.json` to use the username for your local machine
 
 ```sh
-   "username": "okay",
+ 3:  "username": "okay",
 ```
 
 **Run:**
