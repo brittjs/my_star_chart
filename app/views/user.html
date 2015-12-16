@@ -4,12 +4,12 @@
 <head>
 <title>Star Chart</title>
 
-<script type="text/javascript" src="../public/javascripts/jquery-2.1.4.min.js"></script>
+<!-- <script type="text/javascript" src="../public/javascripts/jquery-2.1.4.min.js"></script>
 <link rel ="stylesheet" type="text/css" href="../public/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script type="text/javascript" src="../public/bootstrap/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="../public/stylesheets/application.css">
+<link rel="stylesheet" href="../public/stylesheets/application.css"> -->
 
 </head>
 <body>
@@ -123,9 +123,6 @@
     </div>
   </div>
 </div>
-
-<!-- clicking each task should pop up modal of task details, where there will also be an edit button, delete button, etc.
- -->
 </div>
 
 
@@ -147,8 +144,6 @@
       <div class="modal-body">
         
         <form>
-          Task Name:<br>
-          <input type="text" id="taskName">
           <br>
           <br>
           Due Date:<br>
@@ -156,12 +151,20 @@
           <br>
           <br>
           Recurring: 
-          <input type="checkbox" id="recurring">
+          <input type="checkbox" id="recurring" name="recurring">
           <br>
           <br>
+          Due Date:
+           <input type="date" id="dueDate" name="due_date">
           Description:<br>
-          <input type="text" id="description">
+          <input type="text" id="description" name="description">
           <br>
+          Completed:<br>
+          <input type="checkbox" id="completed" name="completed">
+          Priority:<br>
+          <input type="text" id="priority" name="priority">
+          Postponed:<br>
+          <input type="checkbox" id="postponed" name="postponed">
         </form>
 
       </div>
