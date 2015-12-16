@@ -17,9 +17,11 @@ module.exports = {
         references: { model: "Users", key: "id" }
       },
       x_cord: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       y_cord: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
