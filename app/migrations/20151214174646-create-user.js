@@ -18,11 +18,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       createdAt: {
-        // allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
+        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        // allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
+        allowNull: false,
         type: Sequelize.DATE
       }
     });

@@ -13,11 +13,11 @@ CREATE TABLE "users" (
   "email" text
 );
 
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Stephanie', '12345', 'stefanybeaton@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Ashley', '12345', 'ashleyfisher@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Lakshmi', '12345', 'lakshmikotteda@hotmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Tanner', '12345', 'tanner@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Brittany', '12345', 'brittanyjsee@gmail.com');
+INSERT INTO "Users" (USERNAME,PWD,EMAIL) VALUES ('Stephanie', '12345', 'stefanybeaton@gmail.com');
+INSERT INTO "Users" (USERNAME,PWD,EMAIL) VALUES ('Ashley', '12345', 'ashleyfisher@gmail.com');
+INSERT INTO "Users" (USERNAME,PWD,EMAIL) VALUES ('Lakshmi', '12345', 'lakshmikotteda@hotmail.com');
+INSERT INTO "Users" (USERNAME,PWD,EMAIL) VALUES ('Tanner', '12345', 'tanner@gmail.com');
+INSERT INTO "Users" (USERNAME,PWD,EMAIL) VALUES ('Brittany', '12345', 'brittanyjsee@gmail.com');
 
 --
 -- Name: tasks Type: TABLE Owner: postgres
@@ -39,10 +39,10 @@ CREATE TABLE "tasks" (
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
 
 
 --

@@ -13,12 +13,13 @@ $ npm install
 ```
 
 **Create your own local db:**
-create database and load in data
 
 ```sh
 $ createdb starchart
 $ sequelize db:migrate
+$ sequelize db:create
 ```
+
 
 change this line in `config/config.json` to use the username and password for your local machine
 

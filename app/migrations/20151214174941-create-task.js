@@ -15,7 +15,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       due_date: {
-        type: Sequelize.STRING
+        defaultValue: Sequelize.fn('NOW'),
+        allowNull: false,
+        type: Sequelize.DATE
       },
       recurring: {
         type: Sequelize.BOOLEAN
@@ -30,11 +32,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdAt: {
-        // allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
+        allowNull: false,        
         type: Sequelize.DATE
       },
       updatedAt: {
-        // allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
+        allowNull: false,
         type: Sequelize.DATE
       }
     });
