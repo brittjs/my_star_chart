@@ -11,10 +11,8 @@ module.exports = function(app) {
 			this.body = "Get value from params : "+ this.params.id;
 		})
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
-		// .get('/stardata/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
+		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
 		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
-
-		.get('/createdtestuser', indexCtrl.sqlcmdstardata);
 
 	router
 		.param("userId", function*(userId, next)

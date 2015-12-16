@@ -25,24 +25,17 @@ module.exports = {
     // console.log(db);
 	},
 
-	view: function *index(next) {
+	view: function *view(next) {
 		yield this.render('template');
 		yield next;
 	},
 
-	stardata: function *index(next) {
+	stardata: function *stardata(next) {
     this.body = yield db.sequelize.models.User.findAll();
     console.log(this.state);
     // this.body = this.state.user;
     yield next;
 	},
-
-  sqlcmdstardata: function *index(next) {
-    this.users = yield user.all();
-    console.log('something happened');
-    yield next;
-  }
-
 
 };
 

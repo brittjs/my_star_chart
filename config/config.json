@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "stephaniebeaton",
-    "password": null,
+    "username": "okay",
+    "password": null, 
     "database": "starchart",
     "host": "127.0.0.1",
     "dialect": "postgres"
