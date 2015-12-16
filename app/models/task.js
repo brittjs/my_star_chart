@@ -1,13 +1,37 @@
 'use strict';
+var Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define('Task', {
-    // UserId: DataTypes.INTEGER,
-    description: DataTypes.STRING,
-    due_date: DataTypes.STRING,
-    recurring: DataTypes.BOOLEAN,
-    completed: DataTypes.BOOLEAN,
-    postponed: DataTypes.BOOLEAN,
-    priority: DataTypes.INTEGER
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [5, 50],
+          msg: "Your description must be between 5 and 50 characters in length."
+        }
+      }
+    },
+    due_date: {
+      type: Sequelize.DATE,
+      allowNull: false
+    },
+    recurring: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
+    },
+    completed: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
+    },
+    postponed: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
+    },
+    priority: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
+    }
   }, {
     classMethods: {
       associate: function(models) {
