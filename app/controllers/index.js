@@ -30,7 +30,7 @@ module.exports = {
 	},
 
 	stardata: function *stardata(next) {
-    this.body = yield db.sequelize.models.User.findAll();
+    this.body = yield db.sequelize.models.Task.findById(1);
     console.log(this.state);
     // this.body = this.state.user;
     yield next;
