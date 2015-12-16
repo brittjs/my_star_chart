@@ -2,7 +2,7 @@ var db = require('../models/index.js');
 
 module.exports = {
 
-  
+
 
   errorHandler: function* (next) {
     // we catch all downstream errors here
@@ -22,7 +22,7 @@ module.exports = {
 
 	index: function* (next) {
 		this.body = "Hello World";
-    console.log(db);
+    // console.log(db);
 	},
 
 	view: function *index(next) {
