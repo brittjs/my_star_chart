@@ -23,11 +23,36 @@ module.exports = {
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
     console.log('GET    /users/2/tasks');
     console.log('this.state.user');
-    console.log(this.state.user);
+    //console.log(this.state.user."$modelOptions".classMethods.associate);
 
     //  need to fix associations before this can be uncommented
 
     //this.body = yield this.state.user.tasks.findAll();
+
+    user = this.state.user;
+    var tasks = yield user.getTasks(); // gets you all tasks
+    //console.log('tasks');
+    //console.log(tasks);
+
+    // iterate through tasks extract keyvalue "dataValues"
+    var mappedTasks = [];
+
+    tasks.forEach(function (task) {
+      mappedTasks.push( task["dataValues"]);
+    });
+
+    console.log(mappedTasks);
+
+    this.body = mappedTasks;
+
+    // User.findAll({
+    //   where: ...,
+    //   include: [
+    //     { model: Picture }, // load all pictures
+    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+    //   ]
+    // });
+
     yield next;
   },
 

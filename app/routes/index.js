@@ -43,21 +43,31 @@ module.exports = function(app) {
 			// this.state.user = { foo: userId }
 			if (userId) {
 				console.log('routes/index.js get userId = ' + userId);
-			  this.state.user = yield db.sequelize.models.User.findById(userId);
-			  this.state.userId = userId;
-			  console.log('');
-		  }
-			yield next;
+        this.state.user = yield db.sequelize.models.User.findById(userId);
+        // this.state.user = yield db.sequelize.models.User.findAll({where: {id: userId},
+        //                                                           include: [{ model: db.sequelize.models.Task }]});
+        this.state.userId = userId;
+        console.log('');
+
+				// User.findAll({
+        //   where: ...,
+        //   include: [
+        //     { model: Picture }, // load all pictures
+        //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+        //   ]
+        // });
+      }
+      yield next;
 		})
 		.param("taskId", function*(taskId, next)
 		{
 			if (taskId) {
 				console.log('routes/index.js get taskId = ' + taskId);
 
-			  this.state.task = yield db.sequelize.models.Task.findById(taskId);
-			  this.state.taskId = taskId;
-			  console.log('');
-		  }
+        this.state.task = yield db.sequelize.models.Task.findById(taskId);
+        this.state.taskId = taskId;
+        console.log('');
+      }
 			yield next;
 		})
 		.param("taskDesc", function*(taskDesc, next)
@@ -65,9 +75,9 @@ module.exports = function(app) {
 			if (taskDesc) {
 				console.log('routes/index.js get taskDesc = ' + taskDesc);
 
-			  this.state.taskDesc = taskDesc;
-			  console.log('');
-		  }
+        this.state.taskDesc = taskDesc;
+        console.log('');
+      }
 			yield next;
 		})
 

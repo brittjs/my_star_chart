@@ -34,20 +34,20 @@ CREATE TABLE "tasks" (
     "completed" boolean,
     "priority"  integer,
     "user_id"   integer NOT NULL,
-    CONSTRAINT fk1_tasks FOREIGN KEY (user_id)
+    CONSTRAINT fk1_tasks FOREIGN KEY (UserId)
       REFERENCES users (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 1);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 1);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A non recurring task', now(), false, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A recurring task', now(), true, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A completed non recurring task', now(), false, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A completed recurring task', now(), true, true, 1, 1);
 
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 2);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 2);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 2);
-INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A non recurring task', now(), false, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A recurring task', now(), true, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A completed non recurring task', now(), false, true, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,"UserId") VALUES ('A completed recurring task', now(), true, true, 1, 2);
 
 --
 -- Name: friends Type: TABLE Owner: postgres
