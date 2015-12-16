@@ -12,7 +12,7 @@ quick start
 $ npm install
 ```
 
-**Create your own db:**
+**Create your own local db:**
 create database and load in data
 
 ```sh
@@ -20,13 +20,14 @@ $ createdb starchart
 $ sequelize db:migrate
 ```
 
-change this line in `config/default.js`    
+change this line in `config/config.json` to use the username and password for your local machine
 
-`app.use(koaPg('postgres://username:password@localhost:5432/star-chart'));`
+```sh
+   "username": "okay",
+   "password": "P@ssw0rd",
+```
 
-(use the username and password for your local machine)
-
-**run:**
+**Run:**
 
 ```sh
 $ npm start

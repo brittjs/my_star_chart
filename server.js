@@ -7,11 +7,10 @@ var koa = require('koa'),
 
 var app = module.exports = koa();
 
+//configs are coming from config/default.js
+
 //intialize koa-static
 app.use(serve(config.publicfiles.path));
-
-//intialize database 
-app.use(koaPg(config.database.path));
 
 //pulls in routers
 require('./app/routes')(app);
@@ -26,20 +25,5 @@ render(app, {
   cache: false,
   debug: true
 });
-
-//creates sequelize connection
-// var Sequelize = require('sequelize')
-//   , sequelize = new Sequelize('starchart', 'okay', 'P@ssw0rd', {
-//       dialect: 'postgres',
-//       port:    5432
-//     });
-
-// sequelize
-//   .authenticate()
-//   .then(function(err) {
-//     console.log('Connection has been established successfully.');
-//   }, function (err) { 
-//     console.log('Unable to connect to the database:', err);
-//   });
 
 if (!module.parent) app.listen(3000);

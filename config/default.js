@@ -16,10 +16,10 @@ module.exports = {
         path: './app/public',
         options: {}
     },
-    database: {
-        path: 'postgres://okay:P@ssw0rd@localhost:5432/star-chart', //put your own username and password here
-        options: {}
-    },
+    // database: {
+    //     path: 'postgres://okay:P@ssw0rd@localhost:5432/star-chart', //put your own username and password here
+    //     options: {}
+    // },
     session: {
         secretKey: 'myKoajsSecretKey'
     }
