@@ -12,16 +12,16 @@ var randomY = getRandomInt(1, 100);
 
 return [
     queryInterface.bulkInsert('Stars', [
-      { task_id: 3, x_cord: randomX, y_cord: randomY},
-      { task_id: 4, x_cord: randomX, y_cord: randomY},
-      { task_id: 7, x_cord: randomX, y_cord: randomY},
-      { task_id: 8, x_cord: randomX, y_cord: randomY},
-      { task_id: 11, x_cord: randomX, y_cord: randomY},
-      { task_id: 12, x_cord: randomX, y_cord: randomY},
-      { task_id: 15, x_cord: randomX, y_cord: randomY},
-      { task_id: 16, x_cord: randomX, y_cord: randomY},
-      { task_id: 19, x_cord: randomX, y_cord: randomY},
-      { task_id: 20, x_cord: randomX, y_cord: randomY}
+      { TaskId: 3, UserId: 1, x_cord: randomX, y_cord: randomY},
+      { TaskId: 4, UserId: 1, x_cord: randomX, y_cord: randomY},
+      { TaskId: 7, UserId: 2, x_cord: randomX, y_cord: randomY},
+      { TaskId: 8, UserId: 2, x_cord: randomX, y_cord: randomY},
+      { TaskId: 11, UserId: 3, x_cord: randomX, y_cord: randomY},
+      { TaskId: 12, UserId: 3, x_cord: randomX, y_cord: randomY},
+      { TaskId: 15, UserId: 4, x_cord: randomX, y_cord: randomY},
+      { TaskId: 16, UserId: 4, x_cord: randomX, y_cord: randomY},
+      { TaskId: 19, UserId: 5, x_cord: randomX, y_cord: randomY},
+      { TaskId: 20, UserId: 5, x_cord: randomX, y_cord: randomY}
     ])
   ];
   },
