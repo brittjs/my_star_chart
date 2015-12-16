@@ -1,21 +1,31 @@
 $(document).ready(function(){
   $(".submit").on("click", function(){
-
+    var randomNum = function(min, max) { return min + Math.floor(Math.random() * max); };
     var positionX;
     var positionY;
 
     var stars = [
-      { positionX: 100, positionY: 150 },
-      { positionX: 250, positionY: 270 },
-      { positionX: 345, positionY: 500 }
+      { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) },
+      { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) },
+      { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) }
     ];
 
-    $("#box1").css({"left": stars[0].positionX + "px", "top": stars[0].positionY + "px"});
+    $('body').append(stars.map(function(star){
+      return $("<div/>").addClass("box").addClass("changes").css({"left": star.positionX, "top": star.positionY});
+    }));
 
-    $("#box2").css({"left": stars[1].positionX + "px", "top": stars[1].positionY + "px"});
+    var eachBox = $(".box").each(function(index, box){
+      $(box).css({left: randomNum(10, 1254), top: randomNum(10, 490)})
+    });
 
-    $("#box3").css({"left": stars[2].positionX + "px", "top": stars[2].positionY + "px"});
+    eachBox.addClass("changes");
 
-    $(".box").addClass("changes");
+    // $("#box1").css({"left": stars[0].positionX + "px", "top": stars[0].positionY + "px"});
+
+    // $("#box2").css({"left": stars[1].positionX + "px", "top": stars[1].positionY + "px"});
+
+    // $("#box3").css({"left": stars[2].positionX + "px", "top": stars[2].positionY + "px"});
+
+    // $(".box").addClass("changes");
   });
 });
