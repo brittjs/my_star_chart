@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define('Task', {
-    // user_id: DataTypes.INTEGER,
+    // UserId: DataTypes.INTEGER,
     description: DataTypes.STRING,
     due_date: DataTypes.STRING,
     recurring: DataTypes.BOOLEAN,
@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Task.belongsTo(models.User); // Will add a userId attribute to Task to hold the primary key value for User
+        Task.belongsTo(User); // Will add a UserId attribute to Task to hold the primary key value for User
+        Task.hasMany(Stars, { foreignKey: 'TaskId' });
       }
     }
   });
