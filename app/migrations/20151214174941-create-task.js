@@ -13,6 +13,7 @@ module.exports = {
         references: { model: "Users", key: "id" }
       },
       description: {
+        defaultValue: "set goals",
         type: Sequelize.STRING
       },
       due_date: {
@@ -21,15 +22,19 @@ module.exports = {
         type: Sequelize.DATE
       },
       recurring: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       completed: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       postponed: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       priority: {
+        defaultValue: 1,
         type: Sequelize.INTEGER
       },
       createdAt: {
