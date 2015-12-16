@@ -39,11 +39,15 @@ CREATE TABLE "tasks" (
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
-INSERT INTO TASKS (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 1);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 1);
 
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A non recurring task', now(), false, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A recurring task', now(), true, false, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed non recurring task', now(), false, true, 1, 2);
+INSERT INTO "Tasks" (DESCRIPTION,DUE_DATE,RECURRING,COMPLETED,PRIORITY,USER_ID) VALUES ('A completed recurring task', now(), true, true, 1, 2);
 
 --
 -- Name: friends Type: TABLE Owner: postgres

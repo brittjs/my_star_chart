@@ -3,7 +3,6 @@ var db = require('../models/index.js');
 module.exports = {
 
 
-
   errorHandler: function* (next) {
     // we catch all downstream errors here
     try {
@@ -25,23 +24,25 @@ module.exports = {
     // console.log(db);
 	},
 
-	view: function *index(next) {
+	view: function *view(next) {
 		yield this.render('template');
 		yield next;
 	},
 
-	stardata: function *index(next) {
+	stardata: function *stardata(next) {
     this.body = yield db.sequelize.models.User.findAll();
     console.log(this.state);
     // this.body = this.state.user;
     yield next;
 	},
 
-  sqlcmdstardata: function *index(next) {
+  sqlcmdstardata: function *sqlcmdstardata(next) {
     this.users = yield user.all();
     console.log('something happened');
     yield next;
   }
+
+  // user/:id/
 
 
 };
