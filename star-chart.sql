@@ -13,11 +13,11 @@ CREATE TABLE "users" (
   "email" text
 );
 
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Stephanie', '12345', 'stefanybeaton@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Ashley', '12345', 'ashleyfisher@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Lakshmi', '12345', 'lakshmikotteda@hotmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Tanner', '12345', 'tanner@gmail.com');
-INSERT INTO USERS (USERNAME,PWD,EMAIL) VALUES ('Brittany', '12345', 'brittanyjsee@gmail.com');
+INSERT INTO USERS (USERNAME,PWRD,EMAIL) VALUES ('Stephanie', '12345', 'stefanybeaton@gmail.com');
+INSERT INTO USERS (USERNAME,PWRD,EMAIL) VALUES ('Ashley', '12345', 'ashleyfisher@gmail.com');
+INSERT INTO USERS (USERNAME,PWRD,EMAIL) VALUES ('Lakshmi', '12345', 'lakshmikotteda@hotmail.com');
+INSERT INTO USERS (USERNAME,PWRD,EMAIL) VALUES ('Tanner', '12345', 'tanner@gmail.com');
+INSERT INTO USERS (USERNAME,PWRD,EMAIL) VALUES ('Brittany', '12345', 'brittanyjsee@gmail.com');
 
 --
 -- Name: tasks Type: TABLE Owner: postgres

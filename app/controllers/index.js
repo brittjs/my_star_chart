@@ -1,4 +1,8 @@
+var db = require('../models/index.js');
+
 module.exports = {
+
+  
 
   errorHandler: function* (next) {
     // we catch all downstream errors here
@@ -17,8 +21,8 @@ module.exports = {
   },
 
 	index: function* (next) {
-
 		this.body = "Hello World";
+    console.log(db);
 	},
 
 	view: function *index(next) {
@@ -27,10 +31,18 @@ module.exports = {
 	},
 
 	stardata: function *index(next) {
-    var result = yield this.pg.db.client.query_("SELECT * FROM users");
-    this.body = result.rows;
+    // var result = yield db.sequelize("SELECT * FROM \"Users\"");
+    // console.log(db.sequelize.models);
+    console.log(this.state);
+    this.body = this.state.user;
     yield next;
-	}
+	},
+
+  sqlcmdstardata: function *index(next) {
+    this.users = yield user.all();
+    console.log('something happened');
+    yield next;
+  }
 
 
 };
