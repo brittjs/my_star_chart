@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER
       },
       description: {
@@ -47,3 +47,6 @@ module.exports = {
     return queryInterface.dropTable('Tasks');
   }
 };
+
+
+//  Player.belongsTo(Team); // Will add a TeamId attribute to Player to hold the primary key value for Team
