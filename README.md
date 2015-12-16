@@ -12,7 +12,7 @@ $ npm install
 ```sh
 $ createdb starchart
 $ sequelize db:migrate
-$ sequelize db:create
+$ sequelize db:seed
 ```
 
 change this line in `config/config.json` to use the username for your local machine
