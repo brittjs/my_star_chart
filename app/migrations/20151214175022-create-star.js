@@ -8,8 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      task_id: {
-        type: Sequelize.INTEGER
+      TaskId: {
+        type: Sequelize.INTEGER,
+        references: { model: "Tasks", key: "id" }
+      },
+      UserId: {
+        type: Sequelize.INTEGER,
+        references: { model: "Users", key: "id" }
       },
       x_cord: {
         type: Sequelize.INTEGER
