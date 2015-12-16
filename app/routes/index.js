@@ -1,8 +1,12 @@
+var db = require('../models/index.js');
+
 module.exports = function(app) {
 	var Router 		= require('koa-router'),
-		indexCtrl 	= require('../controllers/index');
+		indexCtrl 	= require('../controllers/index'),
+		tasksCtrl   = require('../controllers/tasks');
 
 	var router = new Router();
+
 
 	router
 		.get('/', indexCtrl.errorHandler, indexCtrl.index)
@@ -11,8 +15,62 @@ module.exports = function(app) {
 			this.body = "Get value from params : "+ this.params.id;
 		})
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
-		.get('/bookstore', indexCtrl.errorHandler, indexCtrl.bookstore);
+		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
+		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
 
+	//   Examples
+	//
+
+	// GET    /users/12/tasks   - Retrieves list of tasks for user #12
+	// GET    /users/12/tasks/5 - Retrieves task #5 for user #12
+	// POST   /users/12/tasks   - Creates a new task in user #12
+	// PUT    /users/12/tasks/5 - Updates task #5 for user #12
+	// DELETE /users/12/tasks/5 - Deletes task #5 for user #12
+
+  router
+    .get('/users/:userId/tasks',         tasksCtrl.getListOfTasksForUser)
+    .get('/users/:userId/tasks/:taskId', tasksCtrl.getTaskforUser)
+    .post('/users/:userId/tasks',        tasksCtrl.createTask)
+    .put('/users/:userId/tasks/:taskId', tasksCtrl.updateTask)
+    .del('/users/:userId/tasks/:taskId', tasksCtrl.removeTask);
+
+
+
+	router
+		.param("userId", function*(userId, next)
+		{
+			// this.state.user = { foo: userId }
+			if (userId) {
+				console.log('routes/index.js get userId = ' + userId);
+			  this.state.user = yield db.sequelize.models.User.findById(userId);
+			  this.state.userId = userId;
+			  console.log('');
+		  }
+			yield next;
+		})
+		.param("taskId", function*(taskId, next)
+		{
+			if (taskId) {
+				console.log('routes/index.js get taskId = ' + taskId);
+
+			  this.state.task = yield db.sequelize.models.Task.findById(taskId);
+			  this.state.taskId = taskId;
+			  console.log('');
+		  }
+			yield next;
+		})
+		.param("taskDesc", function*(taskDesc, next)
+		{
+			if (taskDesc) {
+				console.log('routes/index.js get taskDesc = ' + taskDesc);
+
+			  this.state.taskDesc = taskDesc;
+			  console.log('');
+		  }
+			yield next;
+		})
+
+	// app.use(indexCtrl.errorHandler);
 	app.use(router.middleware());
 };
 

@@ -6,6 +6,16 @@ module.exports = {
     server: {
         port: 3000
     },
+    template: {
+        path: './app/views',
+        options: {
+            map: { ect: 'ect' }
+        }
+    },
+    publicfiles: {
+        path: './app/public',
+        options: {}
+    },
     session: {
         secretKey: 'myKoajsSecretKey'
     }
