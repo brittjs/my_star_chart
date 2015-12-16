@@ -3,7 +3,7 @@ var db = require('../models/index.js');
 module.exports = function(app) {
 	var Router 		= require('koa-router'),
 		indexCtrl 	= require('../controllers/index'),
-		tasksCtrl   = require('../controllers/tasks');
+		tasksCtrl   = require('../controllers/userTasks');
 
 	var router = new Router();
 
