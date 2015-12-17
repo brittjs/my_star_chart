@@ -59,7 +59,9 @@ $(function() {
 
     // $('#myModalLabel').text("This is a test");
 
-    $('div.details').text( $( this ).text() );
+    $('div.details').text( $( this ).text() ).attr({
+                                                  'id':   $(this).attr("id")
+                                                  });
 
 
   });
