@@ -2,11 +2,24 @@ var db = require('../models/index.js');
 
 module.exports = function(app) {
 	var Router 		= require('koa-router'),
+      //koaBody   = require('koa-body')(),
+      // bodyParser = require('koa-body-parser'),
+      bodyParser = require('koa-bodyparser'),
 		indexCtrl 	= require('../controllers/index'),
-		tasksCtrl   = require('../controllers/tasks');
+		tasksCtrl   = require('../controllers/userTasks');
+
 
 	var router = new Router();
 
+
+// ==========================
+
+
+
+// ==========================
+
+  app.use(bodyParser());
+  app.use(router.middleware());
 
 	router
 		.get('/', indexCtrl.errorHandler, indexCtrl.index)
@@ -28,11 +41,11 @@ module.exports = function(app) {
 	// DELETE /users/12/tasks/5 - Deletes task #5 for user #12
 
   router
-    .get('/users/:userId/tasks',         tasksCtrl.getListOfTasksForUser)
-    .get('/users/:userId/tasks/:taskId', tasksCtrl.getTaskforUser)
-    .post('/users/:userId/tasks',        tasksCtrl.createTask)
-    .put('/users/:userId/tasks/:taskId', tasksCtrl.updateTask)
-    .del('/users/:userId/tasks/:taskId', tasksCtrl.removeTask);
+    .get('/users/:userId/tasks',                  tasksCtrl.getListOfTasksForUser)
+    .get('/users/:userId/tasks/:taskId',          tasksCtrl.getTaskforUser)
+    .post('/users/:userId/tasks',                 tasksCtrl.createTask)
+    .put('/users/:userId/tasks/:taskId',          tasksCtrl.updateTask)
+    .del('/users/:userId/tasks/:taskId',          tasksCtrl.removeTask);
 
 
 
@@ -68,20 +81,22 @@ module.exports = function(app) {
         console.log('');
       }
 			yield next;
-		})
-		.param("taskDesc", function*(taskDesc, next)
-		{
-			if (taskDesc) {
-				console.log('routes/index.js get taskDesc = ' + taskDesc);
+		});
+		// .param("task", function*(task, next)
+		// {
+		// 	if (task) {
+		// 		console.log('routes/index.js get task = ' + task.description);
 
-        this.state.taskDesc = taskDesc;
-        console.log('');
-      }
-			yield next;
-		})
+  //       this.state.taskDesc = task.description;
+  //       this.state.taskId = task.id;
+  //       console.log('');
+  //     }
+		// 	yield next;
+		// });
 
-	// app.use(indexCtrl.errorHandler);
-	app.use(router.middleware());
+
+
+
 };
 
 
