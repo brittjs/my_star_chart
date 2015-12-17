@@ -46,12 +46,18 @@ $(function() {
 
   $("#createTaskForm").on('submit', function(e) { 
     e.preventDefault();
-    var task = $("#createTaskForm").serialize();
+    // var task = $(this).serialize();
+    var taskDescription = $("#description").val();
+    var dueDate = $("#due_date").val();
+    var taskPriority = $("#priority").val();
+    var recurringCheckbox = $("#recurring").val();
+    // console.log(taskDescription + " "+ dueDate);
+    var task = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox};
+    console.log(task);
     alert("hello");
-    $.post("/users/2/tasks", task, function(data) {
-      // $("form").html(data);
-      alert("success");
+    $.post('/users/' + userId + '/tasks', function(task) { 
+      console.log(task);
     });
-  });
 
-});  
+  });
+}); 

@@ -29,8 +29,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     priority: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5
+      }
     }
   }, {
     classMethods: {
