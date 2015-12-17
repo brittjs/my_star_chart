@@ -44,4 +44,14 @@ $(function() {
 
   });
 
-});
+  $("#createTaskForm").on('submit', function(e) { 
+    e.preventDefault();
+    var task = $("#createTaskForm").serialize();
+    alert("hello");
+    $.post("/users/2/tasks", task, function(data) {
+      // $("form").html(data);
+      alert("success");
+    });
+  });
+
+});  
