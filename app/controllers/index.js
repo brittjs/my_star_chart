@@ -21,6 +21,9 @@ module.exports = {
 
 	index: function* (next) {
 		this.body = "Hello World";
+
+    // if user is not logged in, display login page
+
     // console.log(db);
 	},
 
@@ -35,6 +38,15 @@ module.exports = {
     // this.body = this.state.user;
     yield next;
 	},
+
+  login:  function *login(next) {
+
+    // check users email address is in database
+    // encrypt password and compare to encrypted password in database
+    // pass cookie back to browser
+
+    yield next;
+  }
 };
 
 

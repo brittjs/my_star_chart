@@ -21,15 +21,29 @@ module.exports = function(app) {
   app.use(bodyParser());
   app.use(router.middleware());
 
+  router
+    .get('/login',          indexCtrl.errorHandler, indexCtrl.login);
+
+  // We will need to configure 2 paths in publicRouter:
+  //      /auth/github – for authentication process.
+  //     /auth/github/callback – for callback after authentication process.
+
+  router.get('/auth/github', passport.authenticate('github', {scope: ['user','repo']}));
+
+  router.get('/auth/github/callback',
+    passport.authenticate('github', {successRedirect: '/', failureRedirect: '/'})
+  );
+
+
 	router
-		.get('/', indexCtrl.errorHandler, indexCtrl.index)
-		.get('/link/:id',  indexCtrl.errorHandler, function *(next) {
+		.get('/',               indexCtrl.errorHandler, indexCtrl.index)
+		.get('/link/:id',       indexCtrl.errorHandler, function *(next) {
 			console.log('/link/'+this.params.id);
 			this.body = "Get value from params : "+ this.params.id;
 		})
-		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
+		.get('/view',           indexCtrl.errorHandler, indexCtrl.view)
 		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
-		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
+		.get('/stardata',       indexCtrl.errorHandler, indexCtrl.stardata);
 
 	// a user's tasks paths
 	//

@@ -5,7 +5,7 @@ module.exports = {
   // a user's star paths
   //
 
-  // GET    /users/12/stars   - Retrieves list of stars for user #12
+  // GET    /users/2/stars   - Retrieves list of stars for user #2
 
   // -------------------------------------------------------------
   //
