@@ -4,11 +4,11 @@ $(document).ready(function(){
     var positionX;
     var positionY;
 
-    // var stars = [
-    //   { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) },
-    //   { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) },
-    //   { positionX: randomNum(10, 1254), positionY: randomNum(10, 490) }
-    // ];
+    var stars = [
+      { positionX: 60, positionY: 60 },
+      { positionX: 100, positionY: 100 },
+      { positionX: 200, positionY: 200 }
+    ];
 
     // $('body').append(stars.map(function(star){
     //   return $("<div/>").addClass("box").css({"left": star.positionX, "top": star.positionY}).addClass("changes");
@@ -24,11 +24,12 @@ $(document).ready(function(){
     // console.log(addBox); 
 
 
+
     var eachBox = $(".box").each(function(index, box){
-      $(box).css({left: randomNum(10, 1000), top: randomNum(10, 400)})
+      $(box).css({left: stars[index].positionX , top: stars[index].positionY}).addClass("changes");
     });
 
-    eachBox.addClass("changes");
+    // eachBox.addClass("changes");
 
 
 
