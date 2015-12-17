@@ -28,7 +28,12 @@ module.exports = {
       { UserId: 5, description: 'Get massage', recurring: false, completed: false, postponed: false},
       { UserId: 5, description: 'Bake cookies', recurring: true, completed: false, postponed: false},
       { UserId: 5, description: 'Take a shower', recurring: false, completed: true, postponed: false},
-      { UserId: 5, description: 'Wash the dishes', recurring: true, completed: true, postponed: false}
+      { UserId: 5, description: 'Wash the dishes', recurring: true, completed: true, postponed: false},
+
+      { UserId: 2, description: 'Push to github', recurring: false, completed: true, postponed: false},
+      { UserId: 2, description: 'Wash the dishes', recurring: true, completed: true, postponed: false},
+      { UserId: 2, description: 'See stars', recurring: false, completed: true, postponed: false},
+      { UserId: 2, description: 'Walk outside', recurring: true, completed: true, postponed: false}
     ])
   ];
 
