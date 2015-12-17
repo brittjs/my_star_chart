@@ -35,8 +35,6 @@ module.exports = function(app) {
     .put('/users/:userId/tasks/:taskId', tasksCtrl.updateTask)
     .del('/users/:userId/tasks/:taskId', tasksCtrl.removeTask);
 
-
-
 	router
 		.param("userId", function*(userId, next)
 		{
@@ -80,6 +78,12 @@ module.exports = function(app) {
       }
 			yield next;
 		})
+
+    router
+      .get('/users/:userId/friends', indexCtrl.errorHandler, friendsCtrl.getAllFriendsForUser)
+
+
+
 
 	// app.use(indexCtrl.errorHandler);
 	app.use(router.middleware());
