@@ -30,30 +30,36 @@ module.exports = {
     //this.body = yield this.state.user.tasks.findAll();
 
     user = this.state.user;
-    var tasks = yield user.getTasks(); // gets you all tasks
-    //console.log('tasks');
-    //console.log(tasks);
 
-    // iterate through tasks extract keyvalue "dataValues"
-    var mappedTasks = [];
+    if (!user) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+      var tasks = yield user.getTasks(); // gets you all tasks
+      //console.log('tasks');
+      //console.log(tasks);
 
-    tasks.forEach(function (task) {
-      mappedTasks.push( task["dataValues"]);
-    });
+      // iterate through tasks extract keyvalue "dataValues"
+      var mappedTasks = [];
 
-    console.log(mappedTasks);
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+      });
 
-    this.body = mappedTasks;
+      console.log(mappedTasks);
 
-    // User.findAll({
-    //   where: ...,
-    //   include: [
-    //     { model: Picture }, // load all pictures
-    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-    //   ]
-    // });
+      this.body = mappedTasks;
 
-    yield next;
+      // User.findAll({
+      //   where: ...,
+      //   include: [
+      //     { model: Picture }, // load all pictures
+      //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+      //   ]
+      // });
+
+      yield next;
+    }
   },
 
   // -------------------------------------------------------------
@@ -85,13 +91,14 @@ module.exports = {
     //   priority: DataTypes.INTEGER
     // }, {
 
+
     var newTask = yield db.sequelize.models.Task.create({description: "Test description",
-                                               due_date: Date.now(),
+                                               due_date: "2015-12-16T20:45:47.015Z",
                                                recurring: false,
                                                completed: false,
                                                postponed: false,
                                                priority:  1,
-                                               user_id:   1 });
+                                               UserId:   1 });
 
      console.log('newTask');
      console.log(newTask);
@@ -132,6 +139,8 @@ module.exports = {
                                                              });
     console.log('updatedTask');
     console.log(updatedTask[0]);
+
+    // return the updated task.  This is not necessary but is nice feature
 
     this.body = updatedTask.dataValues;
 
