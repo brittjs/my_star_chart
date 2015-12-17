@@ -14,9 +14,12 @@ module.exports = {
     // } else {
       console.log(userFriends);
 
-      userFriends.forEach(function (task) {
-        mappedUserFriends.push( userFriends["username"]);
+      userFriends.forEach(function (userFriend) {
+        mappedUserFriends.push( userFriend["username"]);
       });
+
+      //mappedUserFriends is now an array of usernames as double-quoted strings
+
 
       this.body = mappedUserFriends;
     // }
