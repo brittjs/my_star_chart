@@ -10,17 +10,30 @@ $(document).ready(function(){
       { x_cord: 200, y_cord: 200 }
     ];
 
-    var div = $("<div>").addClass("box").css({"left": randomNum(10, 1000), "top": randomNum(10, 400)});
+  //   var div = $("<div>").addClass("box").css({"left": randomNum(10, 1000), "top": randomNum(10, 400)});
+  //   var addDiv = $("#basebox").append(div);
+
+  //   setTimeout(function(){
+  //     var eachBox = $(".box").each(function(index, box){
+  //     $(box).css({left: stars[index].x_cord , top: stars[index].y_cord}).addClass("changes");
+  //     });
+  //   },1000)
+  // });
+
+  // $("#star").on("click", function(){
+  //   $("#star-container").addClass("move");
+  // });
+
+    var div = $("<div>").addClass("star-container").css({"left": randomNum(10, 1000), "top": randomNum(10, 400)});
     var addDiv = $("#basebox").append(div);
+    var newStar = $("<div>").addClass("star");
+    var addStar = div.append(newStar);
 
     setTimeout(function(){
-      var eachBox = $(".box").each(function(index, box){
-      $(box).css({left: stars[index].x_cord , top: stars[index].y_cord}).addClass("changes");
+      var eachStar = $(".star-container").each(function(index, star){
+      $(this).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move");
       });
     },1000)
   });
-
-  $("#star").on("click", function(){
-    $("#star-container").addClass("move");
-  });
+   
 });

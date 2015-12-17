@@ -16,7 +16,7 @@ body{
 }
 
 
-#star{
+.star{
   position: relative;
   display: block;
   content: "";
@@ -29,7 +29,7 @@ body{
   transform: rotate(35deg);
 }
 
-#star:before{
+.star:before{
   position: absolute;
   display: block;
   content: "";
@@ -43,7 +43,7 @@ body{
   transform: rotate(-35deg);
 }
 
-#star:after{
+.star:after{
   position: absolute;
   display: block;
   content: "";
@@ -57,14 +57,14 @@ body{
   transform: rotate(-70deg);
 }
 
-#star-container{  
+.star-container{  
   position: absolute;
   left: 100px;
   top: 400px;  
   transition: all 2s linear;
 }
 
-#star-container.move{
+.star-container.move{
   left: 400px;
   top: 200px;
 }
