@@ -1,13 +1,13 @@
 var db = require('../models/index.js');
 
 module.exports = function(app) {
+
 	var Router        = require('koa-router'),
       bodyParser    = require('koa-bodyparser'),
-		indexCtrl       = require('../controllers/index'),
-		userTasksCtrl   = require('../controllers/userTasks'),
-    userStarsCtrl   = require('../controllers/userStars'),
-    userTasksStarsCtrl = require('../controllers/userTasksStars');
-
+  		indexCtrl       = require('../controllers/index'),
+  		userTasksCtrl   = require('../controllers/userTasks'),
+      userStarsCtrl   = require('../controllers/userStars'),
+      userTasksStarsCtrl = require('../controllers/userTasksStars');
 
 	var router = new Router();
 
