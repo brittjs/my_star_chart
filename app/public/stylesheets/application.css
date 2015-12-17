@@ -145,11 +145,5 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .dueDateAndPriority #priority {
   width: 15vw;
 }
-/*.difficulty {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-*/
 
   
