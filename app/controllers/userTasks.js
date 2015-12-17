@@ -21,8 +21,8 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-    console.log('GET    /users/2/tasks');
-    console.log('this.state.user');
+    // console.log('GET    /users/2/tasks');
+    // console.log('this.state.user');
     //console.log(this.state.user."$modelOptions".classMethods.associate);
 
     //  need to fix associations before this can be uncommented
@@ -37,7 +37,7 @@ module.exports = {
     } else {
       var tasks = yield user.getTasks(); // gets you all tasks
       // console.log('tasks');
-      console.log(tasks);
+      // console.log(tasks);
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
