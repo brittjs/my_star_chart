@@ -5,7 +5,7 @@ $(document).ready(function(){
     var positionY;
 
     var stars = [
-      { positionX: 60, positionY: 60 },
+      { positionX: 50, positionY: 50 },
       { positionX: 100, positionY: 100 },
       { positionX: 200, positionY: 200 }
     ];
@@ -24,10 +24,12 @@ $(document).ready(function(){
     // console.log(addBox); 
 
 
-
-    var eachBox = $(".box").each(function(index, box){
+    setTimeout(function(){
+      var eachBox = $(".box").each(function(index, box){
+      // debugger
       $(box).css({left: stars[index].positionX , top: stars[index].positionY}).addClass("changes");
-    });
+      });
+    },1000)
 
     // eachBox.addClass("changes");
 
