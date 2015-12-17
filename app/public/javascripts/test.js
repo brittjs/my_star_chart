@@ -1,4 +1,11 @@
 $(document).ready(function(){
+   var userId = 2;
+
+   $.get('users/' + userId + '/stars', function(stars){
+    console.log(stars);
+   }); 
+
+
   $(".submit").on("click", function(){
     var randomNum = function(min, max) { return min + Math.floor(Math.random() * max); };
     var x_cord;
