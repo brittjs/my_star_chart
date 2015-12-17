@@ -13,7 +13,7 @@ body{
 }
 
 .box.changes{
-  position: absolute;
+/*  position: absolute;*/
   border-radius: 50%;
   background-color: blue;
 }
