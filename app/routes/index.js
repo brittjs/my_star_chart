@@ -3,7 +3,8 @@ var db = require('../models/index.js');
 module.exports = function(app) {
 	var Router 		= require('koa-router'),
 		indexCtrl 	= require('../controllers/index'),
-		tasksCtrl   = require('../controllers/userTasks');
+		tasksCtrl   = require('../controllers/userTasks')
+    friendsCtrl   = require('../controllers/userFriends');
 
 	var router = new Router();
 
@@ -16,7 +17,7 @@ module.exports = function(app) {
 		})
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
 		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
-		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
+		.get('/stardata', indexCtrl.errorHandler, friendsCtrl.getAllFriendsForUser)
 
 	//   Examples
 	//

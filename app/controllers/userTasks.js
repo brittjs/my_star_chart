@@ -36,8 +36,8 @@ module.exports = {
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
       var tasks = yield user.getTasks(); // gets you all tasks
-      //console.log('tasks');
-      //console.log(tasks);
+      // console.log('tasks');
+      console.log(tasks);
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
