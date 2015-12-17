@@ -34,7 +34,6 @@ module.exports = {
       { UserId: 2, description: 'Wash the dishes', recurring: true, completed: true, postponed: false},
       { UserId: 2, description: 'See stars', recurring: false, completed: true, postponed: false},
       { UserId: 2, description: 'Walk outside', recurring: true, completed: true, postponed: false}
-
     ])
   ];
 

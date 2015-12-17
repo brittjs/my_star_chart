@@ -5,11 +5,11 @@ module.exports = {
    
    return [
     queryInterface.bulkInsert('Users', [
-      { username: "Ashley", pwd: '12345', email: 'ashleyfisher@gmail.com'},
+      { username: "Ashley", pwd: '23456', email: 'ashleyfisher@gmail.com'},
       { username: "Stephanie", pwd: '12345', email: 'stephanybeaton@gmail.com' },
-      { username: "Tanner", pwd: '12345', email: 'tanneready@shaw.ca' },
-      { username: "Lakshmi", pwd: '12345', email: 'lakshmikotteda@hotmail.com' },
-      { username: "Brittany", pwd: '12345', email: 'brittanyjsee@gmail.com' }
+      { username: "Tanner", pwd: '34567', email: 'tanneready@shaw.ca' },
+      { username: "Lakshmi", pwd: '45678', email: 'lakshmikotteda@hotmail.com' },
+      { username: "Brittany", pwd: '56789', email: 'brittanyjsee@gmail.com' }
     ])
   ];
   },
