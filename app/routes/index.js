@@ -1,12 +1,12 @@
 var db = require('../models/index.js');
 
 module.exports = function(app) {
-	var Router 		= require('koa-router'),
-      //koaBody   = require('koa-body')(),
-      // bodyParser = require('koa-body-parser'),
-      bodyParser = require('koa-bodyparser'),
-		indexCtrl 	= require('../controllers/index'),
-		tasksCtrl   = require('../controllers/userTasks');
+	var Router        = require('koa-router'),
+      bodyParser    = require('koa-bodyparser'),
+		indexCtrl       = require('../controllers/index'),
+		userTasksCtrl   = require('../controllers/userTasks'),
+    userStarsCtrl   = require('../controllers/userStars'),
+    userTasksStarsCtrl = require('../controllers/userTasksStars');
 
 
 	var router = new Router();
@@ -31,7 +31,7 @@ module.exports = function(app) {
 		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
 		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
 
-	//   Examples
+	// a user's tasks paths
 	//
 
 	// GET    /users/12/tasks   - Retrieves list of tasks for user #12
@@ -41,11 +41,26 @@ module.exports = function(app) {
 	// DELETE /users/12/tasks/5 - Deletes task #5 for user #12
 
   router
-    .get('/users/:userId/tasks',                  tasksCtrl.getListOfTasksForUser)
-    .get('/users/:userId/tasks/:taskId',          tasksCtrl.getTaskforUser)
-    .post('/users/:userId/tasks',                 tasksCtrl.createTask)
-    .put('/users/:userId/tasks/:taskId',          tasksCtrl.updateTask)
-    .del('/users/:userId/tasks/:taskId',          tasksCtrl.removeTask);
+    .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
+    .get('/users/:userId/tasks/:taskId',          userTasksCtrl.getTaskforUser)
+    .post('/users/:userId/tasks',                 userTasksCtrl.createTask)
+    .put('/users/:userId/tasks/:taskId',          userTasksCtrl.updateTask)
+    .del('/users/:userId/tasks/:taskId',          userTasksCtrl.removeTask);
+
+  // a user's star paths
+  //
+
+  // GET    /users/12/stars   - Retrieves list of stars for user #12
+  router
+    .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
+
+
+  // a user's task's star paths
+  //
+
+  // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
+  router
+    .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
 
 
 

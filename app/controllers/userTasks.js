@@ -23,11 +23,6 @@ module.exports = {
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
     console.log('GET    /users/2/tasks');
     console.log('this.state.user');
-    //console.log(this.state.user."$modelOptions".classMethods.associate);
-
-    //  need to fix associations before this can be uncommented
-
-    //this.body = yield this.state.user.tasks.findAll();
 
     user = this.state.user;
     var tasks = yield user.getTasks(); // gets you all tasks
@@ -104,7 +99,7 @@ module.exports = {
                                                completed: false,
                                                postponed: false,
                                                priority:  1,
-                                               user_id:   1 });
+                                               UserId:   1 });
 
      console.log('newTask');
      console.log(newTask);

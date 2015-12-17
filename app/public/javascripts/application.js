@@ -80,9 +80,15 @@ $(function() {
   $('div.taskDetailButtons').on('click', 'button', function(event) {
 
      var task = {};
+     var star = {};
 
      event.preventDefault();
 
+     // ---------------------------------------------------------------
+     //
+     //   trap and process Save of Task
+     //
+     // ---------------------------------------------------------------
      if ($(this).attr("id") === "saveTask") {
 
         // task.description = $('div.details').text();
@@ -105,7 +111,37 @@ $(function() {
 
      }
 
+     // ---------------------------------------------------------------
+     //
+     //   trap and process Completed Task button click
+     //
+     // ---------------------------------------------------------------
+     if ($(this).attr("id") === "taskComplete") {
+
+        star.TaskId = $('div.details').attr("id");
+
+        star.x_cord = 81;
+        star.y_cord = 131;
+
+
+        // AJAX call to  POST star to server
+        $.ajax({
+            type: "POST",
+            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+            contentType: "application/json",
+            data: JSON.stringify(star),
+            success: function(data) {
+                      alert('Star create was successful.');
+                    },
+            failure: function(err) {
+                      alert(err);
+                    }
+        });
+
+     }
+
   });
+
 
 
 });
