@@ -112,7 +112,15 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }  
 
 #recurring {
-  margin-left: 70px;
+  margin-left: 50px;
+}
+
+#postponed {
+  margin-left: 50px;
+}
+
+#completed {
+  margin-left: 50px;
 }
 
 .details {
@@ -124,6 +132,19 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   float: right;
 }
 
+.formCheckboxes{
+  display: flex;
+  justify-content: space-around;
+}
+
+.dueDateAndPriority {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dueDateAndPriority #priority {
+  width: 15vw;
+}
 /*.difficulty {
   display: flex;
   flex-direction: column;

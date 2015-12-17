@@ -144,27 +144,36 @@
       <div class="modal-body">
         
         <form>
+          <fieldset class="form-group">
+            <label for="task_title">Title:</label>
+            <input type="text" class="form-control" id="taskTitle" name="task_title" placeholder="Enter a task title...">
+          <br>
+          <label for="description">Description:</label>
+          <textarea class="form-control" id="description" rows="2" name="description" placeholder="Task description..."></textarea>
+          <br>
+          <div class="dueDateAndPriority">
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="dueDate" name="due_date">
+            <label for="priority">Priority:</label>
+            <select class="form-control" id="priority" name="priority">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>  
+          </div>  
           <br>
           <br>
-          Due Date:<br>
-          <input type="text" id="dueDate">
-          <br>
-          <br>
-          Recurring: 
-          <input type="checkbox" id="recurring" name="recurring">
-          <br>
-          <br>
-          Due Date:
-           <input type="date" id="dueDate" name="due_date">
-          Description:<br>
-          <input type="text" id="description" name="description">
-          <br>
-          Completed:<br>
-          <input type="checkbox" id="completed" name="completed">
-          Priority:<br>
-          <input type="text" id="priority" name="priority">
-          Postponed:<br>
-          <input type="checkbox" id="postponed" name="postponed">
+          <div class="formCheckboxes">
+            <span><label for="recurring">Recurring:</label>
+            <input type="checkbox" id="recurring" name="recurring"></span>
+            <span><label for="postponed">Postponed:</label>
+            <input type="checkbox" id="postponed" name="postponed"></span>
+            <span><label for="completed">Completed:</label>
+            <input type="checkbox" id="completed" name="completed"></span>
+          </div>
+          </fieldset>  
         </form>
 
       </div>
