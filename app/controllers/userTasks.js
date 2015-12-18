@@ -21,28 +21,16 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-<<<<<<< HEAD
-    console.log('GET    /users/2/tasks');
-    console.log('this.state.user');
-=======
-    // console.log('GET    /users/2/tasks');
-    // console.log('this.state.user');
+    //console.log('GET    /users/2/tasks');
+    //console.log('this.state.user');
     //console.log(this.state.user."$modelOptions".classMethods.associate);
 
     //  need to fix associations before this can be uncommented
 
     //this.body = yield this.state.user.tasks.findAll();
->>>>>>> master
 
     user = this.state.user;
-    var tasks = yield user.getTasks(); // gets you all tasks
-    //console.log('tasks');
-    //console.log(tasks);
 
-<<<<<<< HEAD
-    // iterate through tasks extract keyvalue "dataValues"
-    var mappedTasks = [];
-=======
     if (!user) {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
@@ -50,29 +38,28 @@ module.exports = {
       var tasks = yield user.getTasks(); // gets you all tasks
       // console.log('tasks');
       // console.log(tasks);
->>>>>>> master
+    
+      // iterate through tasks extract keyvalue "dataValues"
+      var mappedTasks = [];
+      
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+      });
 
-    tasks.forEach(function (task) {
-      mappedTasks.push( task["dataValues"]);
-    });
-
-    console.log(mappedTasks);
-
-<<<<<<< HEAD
-    this.body = mappedTasks;
-=======
       // console.log(mappedTasks);
->>>>>>> master
 
-    // User.findAll({
-    //   where: ...,
-    //   include: [
-    //     { model: Picture }, // load all pictures
-    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-    //   ]
-    // });
+      this.body = mappedTasks;
 
-    yield next;
+      // User.findAll({
+      //   where: ...,
+      //   include: [
+      //     { model: Picture }, // load all pictures
+      //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+      //   ]
+      // });
+
+      yield next;
+    }
   },
 
   // -------------------------------------------------------------
@@ -104,14 +91,14 @@ module.exports = {
     //   priority: DataTypes.INTEGER
     // }, {
 
-    console.log('this.request.body');
-    console.log(this.request.body);
+    // console.log('this.request.body');
+    // console.log(this.request.body);
 
-    console.log('this.state.userId');
-    console.log(this.state.userId);
+    // console.log('this.state.userId');
+    // console.log(this.state.userId);
 
     var task = this.request.body;
-    console.log("DEC 17");
+    
     var newTask = yield db.sequelize.models.Task.create({description: task.description,
                                                  due_date: task.due_date,
                                                  recurring: task.recurring,
