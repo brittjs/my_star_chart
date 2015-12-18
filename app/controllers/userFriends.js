@@ -13,7 +13,7 @@ module.exports = {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
-      console.log(userFriends);
+      // console.log(userFriends);
 
       userFriends.forEach(function (userFriend) {
         mappedUserFriends.push( userFriend["username"]);

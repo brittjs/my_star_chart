@@ -20,21 +20,15 @@ module.exports = {
   },
 
 	index: function* (next) {
-		this.body = "Hello World";
-    // console.log(db);
+		yield this.render('index');
+    yield next;
 	},
 
-	view: function *view(next) {
-		yield this.render('template');
+	view: function* view(next) {
+		yield this.render('user.html');
 		yield next;
 	},
 
-	stardata: function *stardata(next) {
-    this.body = yield db.sequelize.models.Task.findById(1);
-    console.log(this.state);
-    // this.body = this.state.user;
-    yield next;
-	},
 };
 
 

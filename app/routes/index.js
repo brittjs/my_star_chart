@@ -18,13 +18,11 @@ module.exports = function(app) {
 
 	router
 		.get('/', indexCtrl.errorHandler, indexCtrl.index)
-		.get('/link/:id',  indexCtrl.errorHandler, function *(next) {
-			console.log('/link/'+this.params.id);
-			this.body = "Get value from params : "+ this.params.id;
-		})
+		// .get('/link/:id',  indexCtrl.errorHandler, function *(next) {
+		// 	console.log('/link/'+this.params.id);
+		// 	this.body = "Get value from params : "+ this.params.id;
+		// })
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
-		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
-		.get('/stardata', indexCtrl.errorHandler, friendsCtrl.getAllFriendsForUser)
 
 	// a user's tasks paths
 	//
@@ -102,6 +100,11 @@ module.exports = function(app) {
 		// 	yield next;
 		// });
 
+
+    // a user's star paths
+     //
+
+    // GET    /users/2/friends   - Retrieves list of stars for user #12
 
     router
       .get('/users/:userId/friends', indexCtrl.errorHandler, friendsCtrl.getAllFriendsForUser)

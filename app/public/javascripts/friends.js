@@ -6,11 +6,8 @@ $(function() {
   //   Load user's friend list when page opens
   //
   // ============================================================
-  var server = 'localhost:3000';
 
-  // user = this.state.user;
-
-  var userId = 2;
+  var userId = 2; //change this to be current_user_id
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
