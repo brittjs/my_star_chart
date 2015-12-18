@@ -21,16 +21,36 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
+<<<<<<< HEAD
     console.log('GET    /users/2/tasks');
     console.log('this.state.user');
+=======
+    // console.log('GET    /users/2/tasks');
+    // console.log('this.state.user');
+    //console.log(this.state.user."$modelOptions".classMethods.associate);
+
+    //  need to fix associations before this can be uncommented
+
+    //this.body = yield this.state.user.tasks.findAll();
+>>>>>>> master
 
     user = this.state.user;
     var tasks = yield user.getTasks(); // gets you all tasks
     //console.log('tasks');
     //console.log(tasks);
 
+<<<<<<< HEAD
     // iterate through tasks extract keyvalue "dataValues"
     var mappedTasks = [];
+=======
+    if (!user) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+      var tasks = yield user.getTasks(); // gets you all tasks
+      // console.log('tasks');
+      // console.log(tasks);
+>>>>>>> master
 
     tasks.forEach(function (task) {
       mappedTasks.push( task["dataValues"]);
@@ -38,7 +58,11 @@ module.exports = {
 
     console.log(mappedTasks);
 
+<<<<<<< HEAD
     this.body = mappedTasks;
+=======
+      // console.log(mappedTasks);
+>>>>>>> master
 
     // User.findAll({
     //   where: ...,

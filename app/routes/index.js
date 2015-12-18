@@ -1,20 +1,15 @@
 var db = require('../models/index.js');
 
 module.exports = function(app) {
-
 	var Router        = require('koa-router'),
       bodyParser    = require('koa-bodyparser'),
   		indexCtrl       = require('../controllers/index'),
   		userTasksCtrl   = require('../controllers/userTasks'),
       userStarsCtrl   = require('../controllers/userStars'),
       userTasksStarsCtrl = require('../controllers/userTasksStars');
+      friendsCtrl   = require('../controllers/userFriends');
 
 	var router = new Router();
-
-
-// ==========================
-
-
 
 // ==========================
 
@@ -23,13 +18,11 @@ module.exports = function(app) {
 
 	router
 		.get('/', indexCtrl.errorHandler, indexCtrl.index)
-		.get('/link/:id',  indexCtrl.errorHandler, function *(next) {
-			console.log('/link/'+this.params.id);
-			this.body = "Get value from params : "+ this.params.id;
-		})
+		// .get('/link/:id',  indexCtrl.errorHandler, function *(next) {
+		// 	console.log('/link/'+this.params.id);
+		// 	this.body = "Get value from params : "+ this.params.id;
+		// })
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
-		// .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
-		.get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata)
 
 	// a user's tasks paths
 	//
@@ -61,8 +54,6 @@ module.exports = function(app) {
   // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
   router
     .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
-
-
 
 	router
 		.param("userId", function*(userId, next)
@@ -110,7 +101,19 @@ module.exports = function(app) {
 		// });
 
 
+    // a user's star paths
+     //
 
+    // GET    /users/2/friends   - Retrieves list of stars for user #12
+
+    router
+      .get('/users/:userId/friends', indexCtrl.errorHandler, friendsCtrl.getAllFriendsForUser)
+
+
+
+
+	// app.use(indexCtrl.errorHandler);
+	app.use(router.middleware());
 
 };
 

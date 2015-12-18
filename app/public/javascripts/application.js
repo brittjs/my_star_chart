@@ -1,5 +1,10 @@
 $(function() {
 
+  $(document).ajaxError(function(e)
+  {
+    console.error('Ajax Request Failed: ', e);
+  });
+
   // ===========================================================
   //
   //
