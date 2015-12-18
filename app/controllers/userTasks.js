@@ -83,6 +83,9 @@ module.exports = {
     console.log('this.request.body');
     console.log(this.request.body);
 
+    console.log('this.state.userId');
+    console.log(this.state.userId);
+
     var task = this.request.body;
     console.log("DEC 17");
     var newTask = yield db.sequelize.models.Task.create({description: task.description,
@@ -91,7 +94,7 @@ module.exports = {
                                                  completed: task.completed,
                                                  postponed: task.postponed,
                                                  priority:  task.priority,
-                                                 UserId:   task.UserId});
+                                                 UserId:   this.state.userId});
 
     // var newTask = yield db.sequelize.models.Task.create({description: "Test description",
     //                                            due_date: Date.now(),
