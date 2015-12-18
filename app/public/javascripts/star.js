@@ -1,17 +1,17 @@
 $(document).ready(function(){
-   var userId = 2;
+  var userId = 2;
 
   $.get('users/' + userId + '/stars', function(stars){
     stars.forEach(function(star){
       console.log(star);
-      var x_cord;
-      var y_cord;
+      // var x_cord;
+      // var y_cord;
       var div = $("<div>").addClass("star-container");
       var addDiv = $("#basebox").append(div);
-      var newStar = $("<div>").addClass("star");
-      var addStar = div.append(newStar);
+      // var newStar = $("<div>").addClass("star");
+      // var addStar = div.append(newStar);
       var eachStar = $(".star-container").each(function(index, star){
-        $(this).css({"left": star.x_cord, "top": star.y_cord})
+        $(this).css({"left": star.x_cord, "top": star.y_cord}).addClass("star").appendTo(div);
       });
     });
   }); 
