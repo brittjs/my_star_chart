@@ -17,29 +17,29 @@ $(document).ready(function(){
 
   //test code 1
 
-  // $(".submit").on("click", function(){
-  //   var x_cord;
-  //   var y_cord;
+  $(".submit").on("click", function(){
+    var x_cord;
+    var y_cord;
 
-  //   var stars = [
-  //     { x_cord: 50, y_cord: 50 },
-  //     { x_cord: 100, y_cord: 100 },
-  //     { x_cord: 200, y_cord: 200 },
-  //     { x_cord: 242, y_cord: 350}
-  //   ];
+    var stars = [
+      { x_cord: 150, y_cord: 150 },
+      { x_cord: 200, y_cord: 200 },
+      { x_cord: 300, y_cord: 300 },
+      { x_cord: 242, y_cord: 350}
+    ];
 
-  //   var div = $("<div>").addClass("star-container").css({"left": 500, "top": 500});
-  //   var addDiv = $("#basebox").append(div);
-  //   var newStar = $("<div>").addClass("star");
-  //   var addStar = div.append(newStar);
+    var div = $("<div>").addClass("new-star-container");
+    var addDiv = $("#basebox").append(div);
+    var newStar = $("<div>").addClass("new-star");
+    var addStar = div.append(newStar);
 
-  //   setTimeout(function(){
-  //     var eachStar = $(".star-container").each(function(index, star){
-  //       $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move");
-  //     });  
-  //   }, 1000)
+    setTimeout(function(){
+      var eachStar = $(".new-star-container").each(function(index, star){
+        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move");
+      });  
+    }, 1000)
 
-  // });
+  });
 
   //end test code 1
 

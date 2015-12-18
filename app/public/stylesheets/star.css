@@ -24,6 +24,26 @@ body{
   border-radius: 50%;
 }
 
+.new-star{
+  height: 20px;
+  width: 20px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
+.new-star-container{  
+  position: absolute;
+  left: 500px;
+  top: 500px;  
+  transition: all 2s linear;
+}
+
+.new-star-container{
+  left: 400px;
+  top: 200px;
+}
+
+
 /*.star{
   position: relative;
   display: block;
@@ -64,6 +84,8 @@ body{
   border-left: 100px solid transparent;
   transform: rotate(-70deg);
 }*/
+
+
 
 .star-container{  
   position: absolute;
