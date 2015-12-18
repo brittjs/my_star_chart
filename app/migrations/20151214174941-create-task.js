@@ -27,9 +27,11 @@ module.exports = {
       },
       completed: {
         defaultValue: false,
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       postponed: {
+        defaultValue: false,
         defaultValue: false,
         type: Sequelize.BOOLEAN
       },

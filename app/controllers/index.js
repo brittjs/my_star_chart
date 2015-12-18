@@ -32,6 +32,7 @@ module.exports = {
   },
 
 	index: function* (next) {
+// <<<<<<< HEAD
 		this.body = "Hello World";
 
     // console.log('this.req');
@@ -46,13 +47,16 @@ module.exports = {
     // if user is not logged in, display login page
 
     // console.log(db);
+// =======
+
 	},
 
-	view: function *view(next) {
-		yield this.render('template');
+	view: function* view(next) {
+		yield this.render('user.html');
 		yield next;
 	},
 
+// <<<<<<< HEAD
 	stardata: function *stardata(next) {
     this.body = yield db.sequelize.models.Task.findById(1);
     console.log(this.state);
@@ -68,6 +72,8 @@ module.exports = {
 
     yield next;
   }
+// =======
+
 };
 
 

@@ -1,6 +1,7 @@
 var db     = require('../models/index.js');
 var Router = require('koa-router');
 
+// <<<<<<< HEAD
 module.exports = function(app, passport) {
 
 // 	//var Router        = require('koa-router'),
@@ -10,10 +11,13 @@ module.exports = function(app, passport) {
 
   var indexCtrl       = require('../controllers/index'),
       userTasksCtrl   = require('../controllers/userTasks'),
+// =======
       userStarsCtrl   = require('../controllers/userStars'),
       userTasksStarsCtrl = require('../controllers/userTasksStars');
+      friendsCtrl   = require('../controllers/userFriends');
 
 
+// <<<<<<< HEAD
 // // do this to start
 // // ...Authenticate with PassportJs and GitHub OAuth2 API
 // // Load the auth.js file,
@@ -84,8 +88,11 @@ function *reqlogger(next){
   yield next;
 }
 app.use(reqlogger);
+// =======
 
 
+
+// <<<<<<< HEAD
 
 //   router.get('/custom',         indexCtrl.custom);
 
@@ -122,6 +129,8 @@ app.use(reqlogger);
 //   // POST   /users/12/tasks   - Creates a new task in user #12
 //   // PUT    /users/12/tasks/5 - Updates task #5 for user #12
 //   // DELETE /users/12/tasks/5 - Deletes task #5 for user #12
+// =======
+
 
   router
     .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
@@ -130,6 +139,7 @@ app.use(reqlogger);
     .put('/users/:userId/tasks/:taskId',          userTasksCtrl.updateTask)
     .del('/users/:userId/tasks/:taskId',          userTasksCtrl.removeTask);
 
+// <<<<<<< HEAD
 //   // a user's star paths
 //   //
 
@@ -246,6 +256,8 @@ app.use(reqlogger);
   });
 
   app.use(router.middleware());
+
+// =======
 
 };
 

@@ -1,7 +1,9 @@
 var koa = require('koa'),
     path = require('path'),
+// <<<<<<< HEAD
     // views = require('koa-views'),
-    config = require('config'),
+// =======
+     config = require('config'),
     serve = require('koa-static'),
     koaPg = require('koa-pg'),
     session = require('koa-session'),
@@ -17,9 +19,11 @@ app.use(session(app));
 app.use(bodyParser());
 //configs are coming from config/default.js
 
+// <<<<<<< HEAD
 
 app.use(passport.initialize());
 app.use(passport.session());
+// =======
 
 //intialize koa-static
 app.use(serve(config.publicfiles.path));
@@ -34,7 +38,7 @@ var render = require('koa-ejs');
 
 render(app, {
   root: path.join(config.template.path),
-  layout: 'template',
+  // layout: 'template',
   viewExt: 'ejs',
   cache: false,
   debug: true

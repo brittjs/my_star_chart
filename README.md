@@ -10,6 +10,7 @@ $ npm install
 **Create your own local db:**
 
 ```sh
+$ dropdb   starchart
 $ createdb starchart
 $ sequelize db:migrate
 $ sequelize db:seed
