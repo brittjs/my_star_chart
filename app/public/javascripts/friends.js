@@ -34,29 +34,20 @@ $(function() {
   $('ul.friends').on('click', 'a', function(e) {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
-    $('#friend-details').text(friendId)
-  });
+    $('#friend-details').text($((this).text));
+    $('#friendstars').empty();
 
-  // ===========================================================
-  //
-  //
-  //   Render starfield in open modal Bootstrap window
-  //
-  // ============================================================
-
-  $(document).ready(function(){
-  var userId = 2;
-
-  $.get('users/' + userId + '/stars', function(stars){
-    stars.forEach(function(star){
-      console.log(star);
-      // var x_cord;
-      // var y_cord;
-      var div = $("<div>").addClass("star-container");
-      $("#basebox").append(div);
-      $("<div>").addClass("star").appendTo(div);
-      // var addStar = div.append(newStar);
-      $(div).css({"left": star.x_cord, "top": star.y_cord});
-    });
-  }); 
-})
+     $.get('users/' + friendId + '/stars', function(stars){
+        stars.forEach(function(star){
+          console.log(star);
+          // var x_cord;
+          // var y_cord;
+          var div = $("<div>").addClass("star-container");
+          $("#friendstars").append(div);
+          $("<div>").addClass("star").appendTo(div);
+          // var addStar = div.append(newStar);
+          $(div).css({"left": star.x_cord, "top": star.y_cord});
+        });
+      });
+   });
+});
