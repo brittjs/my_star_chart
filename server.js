@@ -1,6 +1,6 @@
 var koa = require('koa'),
     path = require('path'),
-    // views = require('koa-views'), 
+    views = require('koa-views'), 
     config = require('config'),
     serve = require('koa-static'),
     koaPg = require('koa-pg');
@@ -8,6 +8,9 @@ var koa = require('koa'),
 var app = module.exports = koa();
 
 //configs are coming from config/default.js
+
+//intialize koa-views
+app.use(views(config.template.path));
 
 //intialize koa-static
 app.use(serve(config.publicfiles.path));
@@ -20,7 +23,7 @@ var render = require('koa-ejs');
 
 render(app, {
   root: path.join(config.template.path),
-  layout: 'template',
+  // layout: 'template',
   viewExt: 'ejs',
   cache: false,
   debug: true

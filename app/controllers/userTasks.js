@@ -46,7 +46,7 @@ module.exports = {
         mappedTasks.push( task["dataValues"]);
       });
 
-      console.log(mappedTasks);
+      // console.log(mappedTasks);
 
       this.body = mappedTasks;
 
