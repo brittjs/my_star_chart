@@ -91,6 +91,7 @@ router.get('/logout', function* (next) {
 router.get('/view', indexCtrl.errorHandler, indexCtrl.view);
 
 
+
 //Middleware: request logger
 function *reqlogger(next){
   console.log('%s - %s %s',new Date().toISOString(), this.req.method, this.req.url);
@@ -125,6 +126,7 @@ app.use(reqlogger);
 //   // PUT    /users/12/tasks/5 - Updates task #5 for user #12
 //   // DELETE /users/12/tasks/5 - Deletes task #5 for user #12
 // =======
+
 
 
   router

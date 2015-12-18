@@ -1,0 +1,78 @@
+body{
+  background-color: black;
+}
+
+.box{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  transition: all 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.box.changes{
+  border-radius: 50%;
+  background-color: blue;
+}
+
+
+/*test:*/
+.star{
+  height: 20px;
+  width: 20px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
+/*.star{
+  position: relative;
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  margin: 100px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid yellow;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+}
+
+.star:before{
+  position: absolute;
+  display: block;
+  content: "";
+  height: 0px;
+  width: 0px;
+  border-bottom: 80px solid yellow;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  top: -45px;
+  left: -65px;
+  transform: rotate(-35deg);
+}
+
+.star:after{
+  position: absolute;
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  top: 3px;
+  left: -105px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid yellow;
+  border-left: 100px solid transparent;
+  transform: rotate(-70deg);
+}*/
+
+.star-container{  
+  position: absolute;
+  left: 100px;
+  top: 400px;  
+  transition: all 2s linear;
+}
+
+.star-container.move{
+  left: 400px;
+  top: 200px;
+}

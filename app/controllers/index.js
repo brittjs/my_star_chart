@@ -56,15 +56,10 @@ module.exports = {
 		yield next;
 	},
 
-// <<<<<<< HEAD
-	stardata: function *stardata(next) {
-    this.body = yield db.sequelize.models.Task.findById(1);
-    console.log(this.state);
-    // this.body = this.state.user;
+  star: function* star(next) {
+    yield this.render('star.html');
     yield next;
-	}
-
-// =======
+  },
 
 };
 
