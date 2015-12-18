@@ -46,14 +46,7 @@ module.exports = function(app, passport) {
 
 var router = new Router();
 
-router.get('/', function* getIndex(next)
-{
-  console.log(this.session);
-  // yield this.render('index');
-
-  yield this.render('user.html');
-
-});
+router.get('/', indexCtrl.user);
 
 router.get('/login', function* getLogin(next)
 {
@@ -62,7 +55,7 @@ router.get('/login', function* getLogin(next)
 
 router.post('/login', passport.authenticate('local',
 {
-  successRedirect: '/view',
+  successRedirect: '/user',
   failureRedirect: '/login'
 }));
 
@@ -88,9 +81,8 @@ router.get('/logout', function* (next) {
   yield next;
 });
 
-router.get('/view', indexCtrl.errorHandler, indexCtrl.view);
-
-
+	router
+		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
 
 //Middleware: request logger
 function *reqlogger(next){

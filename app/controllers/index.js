@@ -31,28 +31,8 @@ module.exports = {
     })(ctx, next);
   },
 
-	index: function* (next) {
-// <<<<<<< HEAD
-		this.body = "Hello World";
-
-    // console.log('this.req');
-    // console.log(this.req);
-
-    // console.log('this.req.user()');
-    // console.log(this.req.user());
-
-    // console.log('this.request');
-    // console.log(this.request);
-
-    // if user is not logged in, display login page
-
-    // console.log(db);
-// =======
-
-	},
-
-	view: function* view(next) {
-		yield this.render('user');
+	user: function* user(next) {
+		yield this.render('user.html');
 		yield next;
 	},
 
