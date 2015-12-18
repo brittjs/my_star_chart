@@ -43,7 +43,7 @@ $(document).ready(function(){
   //   $("#star-container").addClass("move");
   // });
 
-    //more good code
+  //more good code
 
   //   var div = $("<div>").addClass("star-container").css({"left": randomNum(10, 1000), "top": randomNum(10, 400)});
   //   var addDiv = $("#basebox").append(div);
