@@ -24,7 +24,7 @@ module.exports = {
     yield next;
 	},
 
-	view: function* view(next) {
+	user: function* user(next) {
 		yield this.render('user.html');
 		yield next;
 	},

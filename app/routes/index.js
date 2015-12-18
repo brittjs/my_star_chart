@@ -22,7 +22,7 @@ module.exports = function(app) {
 		// 	console.log('/link/'+this.params.id);
 		// 	this.body = "Get value from params : "+ this.params.id;
 		// })
-		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
+		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
 
     .get('/star', indexCtrl.errorHandler, indexCtrl.star)
 
