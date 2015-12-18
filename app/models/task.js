@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     priority: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.INTEGER,
       allowNull: false
     }
   }, {

@@ -49,7 +49,10 @@ var router = new Router();
 router.get('/', function* getIndex(next)
 {
   console.log(this.session);
-  yield this.render('index');
+  // yield this.render('index');
+
+  yield this.render('user.html');
+
 });
 
 router.get('/login', function* getLogin(next)
@@ -59,9 +62,13 @@ router.get('/login', function* getLogin(next)
 
 router.post('/login', passport.authenticate('local',
 {
-  successRedirect: '/',
+  successRedirect: '/view',
   failureRedirect: '/login'
 }));
+
+
+//      /auth/github – for authentication process.
+//     /auth/github/callback – for callback after authentication process.
 
 router.get('/auth/github', passport.authenticate('github'));
 
@@ -74,17 +81,20 @@ router.get('/auth/github/callback',
   passport.authenticate('github', {successReturnToOrRedirect: '/', failureRedirect: '/login'})
 );
 
+router.get('/logout', function* (next) {
+  console.log('inside router.get(logout.... )');
+  this.logOut();
+  this.redirect('/login');
+  yield next;
+});
+
+router.get('/view', indexCtrl.errorHandler, indexCtrl.view);
 
 
-// // ==========================
-
-
-
-// // ==========================
-
-// //Middleware: request logger
+//Middleware: request logger
 function *reqlogger(next){
   console.log('%s - %s %s',new Date().toISOString(), this.req.method, this.req.url);
+
   yield next;
 }
 app.use(reqlogger);
@@ -97,29 +107,14 @@ app.use(reqlogger);
 //   router.get('/custom',         indexCtrl.custom);
 
 
-//   router.get('/logout',        function(ctx) {
-//                                           ctx.logout();
-//                                           ctx.redirect('/');
-//                                         });
-
-
-//   // We will need to configure 2 paths in publicRouter:
-//   //      /auth/github – for authentication process.
-//   //     /auth/github/callback – for callback after authentication process.
-
-//   // router.get('/auth/github', passport.authenticate('github', {scope: ['user','repo']}));
-
-
 
 //   router
-//     //.get('/',               indexCtrl.errorHandler, indexCtrl.index)
 //     .get('/link/:id',       indexCtrl.errorHandler, function *(next) {
 //       console.log('/link/'+this.params.id);
 //       this.body = "Get value from params : "+ this.params.id;
 //     })
-//     .get('/view',           indexCtrl.errorHandler, indexCtrl.view)
-//     // .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
-//     .get('/stardata',       indexCtrl.errorHandler, indexCtrl.stardata);
+//     .get('/:userId', indexCtrl.errorHandler, indexCtrl.stardata)
+//     .get('/stardata', indexCtrl.errorHandler, indexCtrl.stardata);
 
 //   // a user's tasks paths
 //   //
@@ -143,64 +138,54 @@ app.use(reqlogger);
 //   // a user's star paths
 //   //
 
-//   // GET    /users/12/stars   - Retrieves list of stars for user #12
-//   router
-//     .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
+  // GET    /users/12/stars   - Retrieves list of stars for user #12
+  router
+    .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
 
 
-//   // a user's task's star paths
-//   //
+  // a user's task's star paths
+  //
 
-//   // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
-//   router
-//     .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
+  // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
+  router
+    .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
 
 
 
-//   router
-//     .param("userId", function*(userId, next)
-//     {
-//       // this.state.user = { foo: userId }
-//       if (userId) {
-//         console.log('routes/index.js get userId = ' + userId);
-//         this.state.user = yield db.sequelize.models.User.findById(userId);
-//         // this.state.user = yield db.sequelize.models.User.findAll({where: {id: userId},
-//         //                                                           include: [{ model: db.sequelize.models.Task }]});
-//         this.state.userId = userId;
-//         console.log('');
+  router
+    .param("userId", function*(userId, next)
+    {
+      // this.state.user = { foo: userId }
+      if (userId) {
+        console.log('routes/index.js get userId = ' + userId);
+        this.state.user = yield db.sequelize.models.User.findById(userId);
+        // this.state.user = yield db.sequelize.models.User.findAll({where: {id: userId},
+        //                                                           include: [{ model: db.sequelize.models.Task }]});
+        this.state.userId = userId;
+        console.log('');
 
-//         // User.findAll({
-//         //   where: ...,
-//         //   include: [
-//         //     { model: Picture }, // load all pictures
-//         //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-//         //   ]
-//         // });
-//       }
-//       yield next;
-//     })
-//     .param("taskId", function*(taskId, next)
-//     {
-//       if (taskId) {
-//         console.log('routes/index.js get taskId = ' + taskId);
+        // User.findAll({
+        //   where: ...,
+        //   include: [
+        //     { model: Picture }, // load all pictures
+        //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+        //   ]
+        // });
+      }
+      yield next;
+    })
+    .param("taskId", function*(taskId, next)
+    {
+      if (taskId) {
+        console.log('routes/index.js get taskId = ' + taskId);
 
-//         this.state.task = yield db.sequelize.models.Task.findById(taskId);
-//         this.state.taskId = taskId;
-//         console.log('');
-//       }
-//       yield next;
-//     });
-//     // .param("task", function*(task, next)
-//     // {
-//     //  if (task) {
-//     //    console.log('routes/index.js get task = ' + task.description);
+        this.state.task = yield db.sequelize.models.Task.findById(taskId);
+        this.state.taskId = taskId;
+        console.log('');
+      }
+      yield next;
+    });
 
-//   //       this.state.taskDesc = task.description;
-//   //       this.state.taskId = task.id;
-//   //       console.log('');
-//   //     }
-//     //  yield next;
-//     // });
 
 //   // =====================================================
 //   //
@@ -238,6 +223,10 @@ app.use(reqlogger);
 //   // Require authentication for now
   app.use(function* (next)
   {
+    console.log('authentication middleware');
+    console.log('this.request.url');
+    console.log(this.request.url);
+
     if(this.request.url === '/login' || this.request.url.match("^/auth/github"))
     {
       return yield next;

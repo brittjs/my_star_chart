@@ -21,45 +21,34 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-    // console.log('GET    /users/2/tasks');
-    // console.log('this.state.user');
-    //console.log(this.state.user."$modelOptions".classMethods.associate);
-
-    //  need to fix associations before this can be uncommented
-
-    //this.body = yield this.state.user.tasks.findAll();
+    console.log('GET    /users/2/tasks');
+    console.log('this.state.user');
 
     user = this.state.user;
+    var tasks = yield user.getTasks(); // gets you all tasks
+    //console.log('tasks');
+    //console.log(tasks);
 
-    if (!user) {
-      console.log("The user with UserId = " + this.state.userId + " does not exist.");
-      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
-    } else {
-      var tasks = yield user.getTasks(); // gets you all tasks
-      // console.log('tasks');
-      // console.log(tasks);
+    // iterate through tasks extract keyvalue "dataValues"
+    var mappedTasks = [];
 
-      // iterate through tasks extract keyvalue "dataValues"
-      var mappedTasks = [];
+    tasks.forEach(function (task) {
+      mappedTasks.push( task["dataValues"]);
+    });
 
-      tasks.forEach(function (task) {
-        mappedTasks.push( task["dataValues"]);
-      });
+    console.log(mappedTasks);
 
-      // console.log(mappedTasks);
+    this.body = mappedTasks;
 
-      this.body = mappedTasks;
+    // User.findAll({
+    //   where: ...,
+    //   include: [
+    //     { model: Picture }, // load all pictures
+    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+    //   ]
+    // });
 
-      // User.findAll({
-      //   where: ...,
-      //   include: [
-      //     { model: Picture }, // load all pictures
-      //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-      //   ]
-      // });
-
-      yield next;
-    }
+    yield next;
   },
 
   // -------------------------------------------------------------
@@ -79,26 +68,29 @@ module.exports = {
   //
   // -------------------------------------------------------------
   createTask: function *createTask(next) {
-    console.log('POST   /users/2/tasks');
-
-    // var Task = sequelize.define('Task', {
-    //   user_id: DataTypes.INTEGER,
-    //   description: DataTypes.STRING,
-    //   due_date: DataTypes.STRING,
-    //   recurring: DataTypes.BOOLEAN,
-    //   completed: DataTypes.BOOLEAN,
-    //   postponed: DataTypes.BOOLEAN,
-    //   priority: DataTypes.INTEGER
-    // }, {
+    console.log('POST   /users/' + this.state.userId + '/tasks');
 
 
-    var newTask = yield db.sequelize.models.Task.create({description: "Test description",
-                                               due_date: "2015-12-16T20:45:47.015Z",
-                                               recurring: false,
-                                               completed: false,
-                                               postponed: false,
-                                               priority:  1,
-                                               UserId:   1 });
+    console.log('this.request.body');
+    console.log(this.request.body);
+
+    var task = this.request.body;
+
+    var newTask = yield db.sequelize.models.Task.create({description: task.description,
+                                                 due_date: task.due_date,
+                                                 recurring: task.recurring,
+                                                 completed: task.completed,
+                                                 postponed: task.postponed,
+                                                 priority:  task.priority,
+                                                 UserId:   this.state.userId});
+
+    // var newTask = yield db.sequelize.models.Task.create({description: "Test description",
+    //                                            due_date: Date.now(),
+    //                                            recurring: false,
+    //                                            completed: false,
+    //                                            postponed: false,
+    //                                            priority:  1,
+    //                                            UserId:   1 });
 
      console.log('newTask');
      console.log(newTask);
@@ -128,19 +120,48 @@ module.exports = {
     //     }
     //   }
     // });
+    // console.log('this.request.body');
+    // console.log(this.request.body);
+
+    // console.log("immediately before this.req.body");
+    // console.log(this.req.body);
+    // console.log('this.req.body');
+    // console.log("immediately after this.req.body");
 
     console.log('this.state.taskId');
     console.log(this.state.taskId);
 
-    var updatedTask = yield db.sequelize.models.Task.update({description: "Test description"},
+    // console.log('this.request');
+    // console.log(this.request);
+
+    console.log('this.request.body');
+    console.log(this.request.body);
+
+    var task = this.request.body;
+
+    task.description = task.description || 'web page update did not pass description to server';
+    task.due_date    = task.due_date || Date.now();
+    console.log('task.priority');
+    console.log(task.priority);
+    if (typeof task.priority == 'undefined') { task.priority =  1;}
+
+    console.log('task.priority');
+    console.log(task.priority);
+
+    task.recurring   = task.recurring || false;
+
+    var updatedTask = yield db.sequelize.models.Task.update({description: task.description,
+                                                             due_date:    task.due_date,
+                                                             priority:    task.priority,
+                                                             recurring:   task.recurring},
                                                              {where: {
-                                                                 id: this.state.taskId
+                                                                 id: task.id
                                                                }
                                                              });
+
+
     console.log('updatedTask');
     console.log(updatedTask[0]);
-
-    // return the updated task.  This is not necessary but is nice feature
 
     this.body = updatedTask.dataValues;
 
@@ -153,14 +174,7 @@ module.exports = {
   //
   // -------------------------------------------------------------
   removeTask: function *removeTask(next) {
-    console.log('DELETE /users/2/tasks/8');
-
-
-    // Post.destroy({
-    //   where: {
-    //     status: 'inactive'
-    //   }
-    // });
+    console.log('DELETE /users/' + this.state.userId + '/tasks/' + this.state.taskId);
 
 
     var deletedTask = yield db.sequelize.models.Task.destroy({where: {

@@ -9,9 +9,11 @@ passport.use(new GithubStrategy({
     clientSecret: '003a6c2bb6ef141dc2fd9497ba12baf04c818f61',
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
-  function(accessToken, refreshToken, profile, done) {
+  function authenticate(accessToken, refreshToken, profile, done) {
     //Based on profile return from Github, find existing user
     let user = profile;
+    console.log('inside app/auth/auth passport.use callback');
+    console.log('profile');
     console.log(profile);
     //Return user model
     return done(null, user);
