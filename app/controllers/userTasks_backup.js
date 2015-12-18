@@ -23,32 +23,43 @@ module.exports = {
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
     console.log('GET    /users/2/tasks');
     console.log('this.state.user');
+    //console.log(this.state.user."$modelOptions".classMethods.associate);
+
+    //  need to fix associations before this can be uncommented
+
+    //this.body = yield this.state.user.tasks.findAll();
 
     user = this.state.user;
-    var tasks = yield user.getTasks(); // gets you all tasks
-    //console.log('tasks');
-    //console.log(tasks);
 
-    // iterate through tasks extract keyvalue "dataValues"
-    var mappedTasks = [];
+    if (!user) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+      var tasks = yield user.getTasks(); // gets you all tasks
+      //console.log('tasks');
+      //console.log(tasks);
 
-    tasks.forEach(function (task) {
-      mappedTasks.push( task["dataValues"]);
-    });
+      // iterate through tasks extract keyvalue "dataValues"
+      var mappedTasks = [];
 
-    console.log(mappedTasks);
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+      });
 
-    this.body = mappedTasks;
+      console.log(mappedTasks);
 
-    // User.findAll({
-    //   where: ...,
-    //   include: [
-    //     { model: Picture }, // load all pictures
-    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-    //   ]
-    // });
+      this.body = mappedTasks;
 
-    yield next;
+      // User.findAll({
+      //   where: ...,
+      //   include: [
+      //     { model: Picture }, // load all pictures
+      //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
+      //   ]
+      // });
+
+      yield next;
+    }
   },
 
   // -------------------------------------------------------------
@@ -80,21 +91,9 @@ module.exports = {
     //   priority: DataTypes.INTEGER
     // }, {
 
-    console.log('this.request.body');
-    console.log(this.request.body);
-
-    var task = this.request.body;
-
-    // var newTask = yield db.sequelize.models.Task.create({description: task.description,
-    //                                              due_date: task.due_date,
-    //                                              recurring: task.recurring,
-    //                                              completed: task.completed,
-    //                                              postponed: task.postponed,
-    //                                              priority:  task.priority,
-    //                                              UserId:   task.UserId});
 
     var newTask = yield db.sequelize.models.Task.create({description: "Test description",
-                                               due_date: Date.now(),
+                                               due_date: "2015-12-16T20:45:47.015Z",
                                                recurring: false,
                                                completed: false,
                                                postponed: false,
@@ -129,32 +128,19 @@ module.exports = {
     //     }
     //   }
     // });
-    // console.log('this.request.body');
-    // console.log(this.request.body);
-
-    // console.log("immediately before this.req.body");
-    // console.log(this.req.body);
-    // console.log('this.req.body');
-    // console.log("immediately after this.req.body");
 
     console.log('this.state.taskId');
     console.log(this.state.taskId);
 
-    // console.log('this.request');
-    // console.log(this.request);
-
-    console.log('this.request.body');
-    console.log(this.request.body);
-
-
-
-    var updatedTask = yield db.sequelize.models.Task.update({description: this.request.body.description},
+    var updatedTask = yield db.sequelize.models.Task.update({description: "Test description"},
                                                              {where: {
-                                                                 id: this.request.body.id
+                                                                 id: this.state.taskId
                                                                }
                                                              });
     console.log('updatedTask');
     console.log(updatedTask[0]);
+
+    // return the updated task.  This is not necessary but is nice feature
 
     this.body = updatedTask.dataValues;
 

@@ -43,21 +43,33 @@ $(function() {
 
   });
 
+
+  // ===========================================================
+  //
+  //
+  //   Submit create new task form
+  //
+  // ============================================================
+
+
   $("#createTaskForm").on('submit', function(e) { 
     e.preventDefault();
-    // var task = $(this).serialize();
+
     var taskDescription = $("#description").val();
     var dueDate = $("#due_date").val();
     var taskPriority = $("#priority").val();
     var recurringCheckbox = $("#recurring").val();
-    // console.log(taskDescription + " "+ dueDate);
-    var task = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox};
-    console.log(task);
+
+    var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
+    
+    // myTask = JSON.stringify(myTask);
+
+    console.log(myTask);
     alert("hello");
-    $.post('/users/' + userId + '/tasks', function(task) { 
+    
+    $.post('/users/' + userId + '/tasks', myTask, function(task) { 
       console.log(task);
     });
-
   });
 
   // ===========================================================
