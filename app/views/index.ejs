@@ -1,6 +1,30 @@
-<html>
-    <% include layout/__header %>
 
-THIS IS THE PAGE YOU SEE WHEN YOU'RE NOT LOGGED IN
+<form class="form-signin">
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <label for="inputUsername" class="sr-only">Username</label>
+  <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
 
-</html>
+<form class="form-signin">
+  <h2 class="form-signin-heading">Or sign up</h2>
+  <label for="inputUsername" class="sr-only">Username</label>
+  <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+</form>
