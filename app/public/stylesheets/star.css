@@ -16,7 +16,7 @@ body{
 }
 
 
-.star-container.star{
+.star{
   position: relative;
   display: block;
   content: "";
@@ -29,7 +29,7 @@ body{
   transform: rotate(35deg);
 }
 
-.star-container.star:before{
+.star:before{
   position: absolute;
   display: block;
   content: "";
@@ -43,7 +43,7 @@ body{
   transform: rotate(-35deg);
 }
 
-.star-container.star:after{
+.star:after{
   position: absolute;
   display: block;
   content: "";

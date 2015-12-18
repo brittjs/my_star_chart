@@ -7,12 +7,10 @@ $(document).ready(function(){
       // var x_cord;
       // var y_cord;
       var div = $("<div>").addClass("star-container");
-      var addDiv = $("#basebox").append(div);
-      // var newStar = $("<div>").addClass("star");
+      $("#basebox").append(div);
+      $("<div>").addClass("star").appendTo(div);
       // var addStar = div.append(newStar);
-      var eachStar = $(".star-container").each(function(index, star){
-        $(this).css({"left": star.x_cord, "top": star.y_cord}).addClass("star").appendTo(div);
-      });
+      $(div).css({"left": star.x_cord, "top": star.y_cord});
     });
   }); 
 
