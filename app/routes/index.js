@@ -24,6 +24,8 @@ module.exports = function(app) {
 		// })
 		.get('/view', indexCtrl.errorHandler, indexCtrl.view)
 
+    .get('/star', indexCtrl.errorHandler, indexCtrl.star)
+
 	// a user's tasks paths
 	//
 
