@@ -35,7 +35,7 @@ $(document).ready(function(){
 
     setTimeout(function(){
       var eachStar = $(".new-star-container").each(function(index, star){
-        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move");
+        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move").addClass("animated rotateIn");
       });  
     }, 1000)
 
