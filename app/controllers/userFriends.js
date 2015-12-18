@@ -13,15 +13,17 @@ module.exports = {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
-      // console.log(userFriends);
+      console.log(userFriends);
 
-      userFriends.forEach(function (userFriend) {
-        mappedUserFriends.push( userFriend["username"]);
-      });
+      // userFriends is an array of javascript objects
+
+      // userFriends.forEach(function (userFriend) {
+      //   mappedUserFriends.push( userFriend["username"]);
+      // });
 
       //mappedUserFriends is now an array of usernames as double-quoted strings
 
-      this.body = mappedUserFriends;
+      this.body = userFriends;
     }
   }
 }
