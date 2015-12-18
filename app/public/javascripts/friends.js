@@ -10,14 +10,16 @@ $(function() {
 
   // user = this.state.user;
 
-  var userId = 1;
+  var userId = 2;
 
-  $.get('users/' + userId + '/friends', function(friends){
-    var friendslist = $('ul.friends') 
-    friends.each(friend, function (){
-      var li = $('<li>').appendTo(friendslist);
-      li.text(friend);
-    })
- 
+  $.get('/users/' + userId + '/friends').then(function(friends)
+  {
+    var friendslist = $('ul.friends');
+    var friendsLi = friends.map(function (friend)
+    {
+      return $('<li>').text(friend);
+    });
+
+    friendslist.append(friendsLi);
   })
 })
