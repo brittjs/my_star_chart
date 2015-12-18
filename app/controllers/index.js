@@ -19,8 +19,29 @@ module.exports = {
     }
   },
 
+  custom: function(ctx, next) {
+    return passport.authenticate('local', function(user, info, status) {
+      if (user === false) {
+        ctx.status = 401;
+        ctx.body = { success: false };
+      } else {
+        ctx.body = { success: true };
+        return ctx.login(user);
+      }
+    })(ctx, next);
+  },
+
 	index: function* (next) {
 		this.body = "Hello World";
+
+    // console.log('this.req');
+    // console.log(this.req);
+
+    // console.log('this.req.user()');
+    // console.log(this.req.user());
+
+    // console.log('this.request');
+    // console.log(this.request);
 
     // if user is not logged in, display login page
 
@@ -48,5 +69,7 @@ module.exports = {
     yield next;
   }
 };
+
+
 
 

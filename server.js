@@ -3,27 +3,31 @@ var koa = require('koa'),
     // views = require('koa-views'),
     config = require('config'),
     serve = require('koa-static'),
-    koaPg = require('koa-pg');
+    koaPg = require('koa-pg'),
+    session = require('koa-session'),
+    bodyParser = require('koa-body-parser')
+    ;
+var passport = require('./app/auth/auth.js');
 
 var app = module.exports = koa();
 
+app.keys = ['ZeJSnGjgmDpJKzue5t3xSrWA','y5CZ4NrKbVP6ARgdmYNsFxKV'];
+app.use(session(app));
+
+app.use(bodyParser());
 //configs are coming from config/default.js
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //intialize koa-static
 app.use(serve(config.publicfiles.path));
 
-// do this to start
-// ...Authenticate with PassportJs and GitHub OAuth2 API
-// Load the auth.js file,
-// ...which itself is extended from koa-passport.
-passport = require('./auth');
-
-// Initialize passport.
-app.use(passport.initialize());
 
 
 //pulls in routers
-require('./app/routes')(app);
+require('./app/routes')(app, passport);
 
 //intialize koa-ejs
 var render = require('koa-ejs');
