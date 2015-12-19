@@ -21,34 +21,31 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-    console.log('GET    /users/2/tasks');
-    console.log('this.state.user');
+
 
     user = this.state.user;
-    var tasks = yield user.getTasks(); // gets you all tasks
+    // var tasks = yield user.getTasks(); // gets you all tasks
     //console.log('tasks');
     //console.log(tasks);
 
-    // iterate through tasks extract keyvalue "dataValues"
-    var mappedTasks = [];
 
-    tasks.forEach(function (task) {
-      mappedTasks.push( task["dataValues"]);
-    });
-
-    console.log(mappedTasks);
-
-    this.body = mappedTasks;
-
-    // User.findAll({
-    //   where: ...,
-    //   include: [
-    //     { model: Picture }, // load all pictures
-    //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-    //   ]
-    // });
-
-    yield next;
+    if (!user) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+      var tasks = yield user.getTasks(); // gets you all tasks
+      // console.log('tasks');
+      // console.log(tasks);
+    
+      // iterate through tasks extract keyvalue "dataValues"
+      var mappedTasks = [];
+      
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+        });
+      this.body = mappedTasks;
+      yield next;
+    }
   },
 
   // -------------------------------------------------------------
@@ -71,10 +68,12 @@ module.exports = {
     console.log('POST   /users/' + this.state.userId + '/tasks');
 
 
+
     console.log('this.request.body');
     console.log(this.request.body);
 
     var task = this.request.body;
+
 
     var newTask = yield db.sequelize.models.Task.create({description: task.description,
                                                  due_date: task.due_date,
@@ -92,8 +91,6 @@ module.exports = {
     //                                            priority:  1,
     //                                            UserId:   1 });
 
-     console.log('newTask');
-     console.log(newTask);
 
      this.body = newTask.dataValues;
 
@@ -128,14 +125,15 @@ module.exports = {
     // console.log('this.req.body');
     // console.log("immediately after this.req.body");
 
-    console.log('this.state.taskId');
-    console.log(this.state.taskId);
+    // console.log('this.state.taskId');
+    // console.log(this.state.taskId);
 
-    // console.log('this.request');
-    // console.log(this.request);
+    // // console.log('this.request');
+    // // console.log(this.request);
 
-    console.log('this.request.body');
-    console.log(this.request.body);
+    // console.log('this.request.body');
+    // console.log(this.request.body);
+
 
     var task = this.request.body;
 
@@ -155,8 +153,15 @@ module.exports = {
                                                              priority:    task.priority,
                                                              recurring:   task.recurring},
                                                              {where: {
-                                                                 id: task.id
-                                                               }
+                                                                 id: task.id}
+
+
+//Brittany's
+    // var updatedTask = yield db.sequelize.models.Task.update({description: this.request.body.description},
+    //                                                          {where: {
+    //                                                              id: this.request.body.id
+
+    //                                                            }
                                                              });
 
 
