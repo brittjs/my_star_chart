@@ -65,16 +65,92 @@ $(function() {
     var taskPriority = $("#priority").val();
     var recurringCheckbox = $("#recurring").val();
 
+    // .attr({
+    // 'id':   $(this).attr("id")
+    // });
+
     var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
     
     // myTask = JSON.stringify(myTask);
 
-    console.log(myTask);
-    alert("hello");
+    // console.log(myTask);
+    // alert("hello");
     
     $.post('/users/' + userId + '/tasks', myTask, function(task) { 
       console.log(task);
     });
+  });
+
+  // ===========================================================
+  //
+  //
+  //   Retrieve Specific Task for Edit task modal
+  //
+  // ============================================================  
+  // 
+
+  // function prepopulateEditForm(task) {
+
+  //   $("#Edescription").val(task.description);
+  //   $("#Edue_date").val(task.due_date);
+  //   $("#Epriority").val(task.priority);
+  //   $("#Erecurring").val(task.recurring);
+  // }
+
+  $('#editTask').on('click', function() {
+    var taskId = $('div.details').attr("id");
+    console.log("inside prepopulation edit form");
+    console.log(taskId);
+    $(".taskId").attr({
+                      'id':   taskId
+                      });
+  });
+
+  // ===========================================================
+  //
+  //
+  //   Update Task when Submit Task is clicked
+  //
+  // ============================================================
+
+  $("#saveEditButton").on('click', function() {
+    var task = {};
+    task.id = $(".taskId").attr("id");
+    task.description = $("#Edescription").val();
+    task.due_date = $("#Edue_date").val();
+    task.priority = $("#Epriority").val();
+    task.recurring = $("#Erecurring").val(); 
+        // AJAX call to  POST data to server
+        $.ajax({
+            type: "PUT",
+            url:  'users/' + userId + '/tasks/' + task.id,
+            contentType: "application/json",
+            data: JSON.stringify(task),
+            success: function(data) {
+                      alert('Update was successful.');
+                    },
+            failure: function(err) {
+                      alert(err);
+                    }
+        }); 
+  });      
+
+  // ===========================================================
+  //
+  //
+  //   Delete task on click
+  //
+  // ============================================================
+
+  $("#deleteTask").on('click', function() {
+    alert("Button works");
+  //   $.ajax({
+  //     url: '/users/' + userId +,
+  //     type: 'DELETE',
+  //     success: function() {
+  //       console.log("done");
+  //     }
+  //   });
   });
 
   // ===========================================================

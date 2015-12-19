@@ -115,8 +115,8 @@ module.exports = {
     //                                            priority:  1,
     //                                            UserId:   1 });
 
-     console.log('newTask');
-     console.log(newTask);
+     // console.log('newTask');
+     // console.log(newTask);
 
      this.body = newTask.dataValues;
 
