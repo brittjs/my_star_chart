@@ -1,3 +1,12 @@
 node_modules
 npm-debug.log
 config/config.json
+auth/auth.json
+app/controllers/index_backup.js
+app/routes/index_backup.js
+app/views/index_backup.ejs
+server_backup.js
+server2.js
+star-chart.sql
+merge_results.txt
+app/auth/auth.js

@@ -19,12 +19,19 @@ module.exports = {
     }
   },
 
-	index: function* (next) {
-		yield this.render('index');
-    yield next;
-	},
+  custom: function(ctx, next) {
+    return passport.authenticate('local', function(user, info, status) {
+      if (user === false) {
+        ctx.status = 401;
+        ctx.body = { success: false };
+      } else {
+        ctx.body = { success: true };
+        return ctx.login(user);
+      }
+    })(ctx, next);
+  },
 
-	view: function* view(next) {
+	user: function* user(next) {
 		yield this.render('user.html');
 		yield next;
 	},
@@ -35,5 +42,7 @@ module.exports = {
   },
 
 };
+
+
 
 
