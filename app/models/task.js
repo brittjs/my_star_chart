@@ -43,6 +43,3 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Task;
 };
-// User.hasMany(Picture)
-// User.belongsTo(Picture, { as: 'ProfilePicture', constraints: false })
-

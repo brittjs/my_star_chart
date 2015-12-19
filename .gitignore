@@ -9,3 +9,4 @@ server_backup.js
 server2.js
 star-chart.sql
 merge_results.txt
+app/auth/auth.js
