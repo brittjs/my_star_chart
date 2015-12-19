@@ -38,11 +38,11 @@ body{
   transition: all 2s linear;
 }
 
-.new-star-container{
+/*.new-star-container.move{
   left: 400px;
   top: 200px;
 }
-
+*/
 
 /*.star{
   position: relative;
@@ -85,16 +85,14 @@ body{
   transform: rotate(-70deg);
 }*/
 
-
-
 .star-container{  
-  position: absolute;
-  left: 100px;
-  top: 400px;  
-  transition: all 2s linear;
+  position: relative;
+ /* left: 100px;
+  top: 400px;  */
+  /*transition: all 2s linear;*/
 }
 
-.star-container.move{
+/*.star-container.move{
   left: 400px;
   top: 200px;
-}
+}*/
