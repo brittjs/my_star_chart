@@ -43,7 +43,8 @@ $(function() {
   $('ul.friends').on('click', 'a', function(e) {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
-    $('#friend-details').text($((this).text));
+    var friendName = $(this).parents('[data-friend-id]').text();
+    $('#friend-details').text(friendName);
     $('#friendstars').empty();
 
      $.get('users/' + friendId + '/stars', function(stars){
