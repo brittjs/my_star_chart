@@ -20,7 +20,7 @@ $(function() {
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
-    var friendslist = $('ul.friendslist');
+    var friendslist = $('ul.listOfFriends');
     var friendsLi = friends.map(function (friend)
     {
       return $('<li>').attr({
@@ -36,11 +36,11 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap friend list item click and open modal Bootstrap window
+  //   Trap friend list item click and open friend detail modal
   //
   // ============================================================
 
-  $('ul.friendslist').on('click', 'a', function(e) {
+  $('ul.listOfFriends').on('click', 'a', function(e) {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
@@ -60,5 +60,14 @@ $(function() {
         });
       });
    });
+
+  // ===========================================================
+  //
+  //
+  //   Trap add friend click and open add friend modal
+  //
+  // ============================================================
+
+
 }
 });
