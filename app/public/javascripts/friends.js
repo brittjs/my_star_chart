@@ -20,7 +20,7 @@ $(function() {
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
-    var friendslist = $('ul.friends');
+    var friendslist = $('ul.friendslist');
     var friendsLi = friends.map(function (friend)
     {
       return $('<li>').attr({
@@ -40,7 +40,7 @@ $(function() {
   //
   // ============================================================
 
-  $('ul.friends').on('click', 'a', function(e) {
+  $('ul.friendslist').on('click', 'a', function(e) {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
