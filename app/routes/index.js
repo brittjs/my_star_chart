@@ -16,6 +16,9 @@ var router = new Router();
 
 router.get('/', indexCtrl.user);
 
+//following line - temporary route for testing stars
+router.get('/star', indexCtrl.star);
+
 router.get('/login', function* getLogin(next)
 {
   yield this.render('login');
