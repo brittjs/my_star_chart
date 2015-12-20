@@ -150,6 +150,10 @@ module.exports = {
 
     task.recurring   = task.recurring || false;
 
+    // 'postponed' and 'completed' added Sun Dec 20, 2015 by Steph
+    task.postponed   = task.postponed || false;
+    task.completed   = task.completed || false;
+
     var updatedTask = yield db.sequelize.models.Task.update({description: task.description,
                                                              due_date:    task.due_date,
                                                              priority:    task.priority,

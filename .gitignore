@@ -10,3 +10,4 @@ server2.js
 star-chart.sql
 merge_results.txt
 app/auth/auth.js
+regression_test_outcome.txt
