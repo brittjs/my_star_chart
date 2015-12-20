@@ -1,100 +1,20 @@
-
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="menuButton"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button></a>
-  <ul class="dropdown-menu dropdown-menu-right">
-    <li><a href="#">Settings</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Logout</a></li>
-  </ul>
-</li>
-
-<br>
-
+<% include partials/__navbar %>
+<br> 
 <h1 class="greeting">Hello, Tanner! Today's a good day to walk the dog!</h1>
 
-<div class="skyContainer skyImg" id="basebox"></div>
+<div class="skyContainer skyImg" id="basebox">
+  <!--starchart goes here-->
+</div>
 <br>
+
 <div class="contentContainer">
-
-<div class="listOfTasks">
-  <h1>Today's tasks...</h1>
+  <div class="listOfTasks">
+    <h1>Today's tasks...</h1>
     <ul class="tasks">
-          </ul>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Task title here</h4>
-              </div>
-              <div class="modal-body">
-              <br>
-                <div class="details">
-                Task details would be placed in here.<br>
-                Task details would be placed in here.<br>
-                Task details would be placed in here.<br>
-                </div>
-                <br>
-                <br>  
-              </div>
-              <div class="modal-footer">
-                <div class="taskDetailButtons">
-                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editTaskModal" id="editTask" aria-hidden="true">Edit Task</button>
-                  <button type="button" class="btn btn-default" id="deleteTask">Delete Task</button>
-                  <button type="button" class="btn btn-default" id="procrastinate">Procrastinate</button>
-                  <button type="button" class="btn btn-default" id="taskComplete">Mark as complete</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Edit modal -->
-      <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Edit Task</h4>
-            </div>
-            <div class="taskId">
-            </div>
-            <div class="modal-body">
-              <form id="editTaskForm" action="" method="put">
-                <fieldset class="form-group">
-                  <label for="description">Description:</label>
-                  <textarea class="form-control" id="Edescription" rows="2" name="description"></textarea>
-                  <br>
-                  <div class="dueDateAndPriority">
-                    <label for="due_date">Due Date:</label>
-                    <input type="date" id="Edue_date" name="due_date">
-                    <label for="priority">Priority:</label>
-                    <select class="form-control" id="Epriority" name="priority">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>  
-                  </div>
-                  <br>
-                  <div class="formCheckboxes">
-                    <label for="recurring">Recurring:</label>
-                    <input type="checkbox" name="recurring" value="true" id="Erecurring">
-                  </div>
-                </fieldset>   
-                <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">Cancel</button><input type="submit" class="btn btn-primary" id="saveEditButton">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End of edit modal -->
+      <!-- tasklist goes here -->
+    </ul>
+    <% include partials/__taskdetailsmodal %>
+    <% include partials/__taskeditmodal %>
 
     <div class="middleRow">
       <div class="addTask">
@@ -103,64 +23,16 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Task
       </button>
       <br>
-      <!-- Modal -->
-      <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Create Task</h4>
-            </div>
-            <div class="modal-body">
-              <form id="createTaskForm" action="" method="post">
-                <fieldset class="form-group">
-                  <label for="description">Description:</label>
-                  <textarea class="form-control" id="description" rows="2" name="description" placeholder="Task description..."></textarea>
-                  <br>
-                  <div class="dueDateAndPriority">
-                    <label for="due_date">Due Date:</label>
-                    <input type="date" id="due_date" name="due_date">
-                    <label for="priority">Priority:</label>
-                    <select class="form-control" id="priority" name="priority">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>  
-                  </div>
-                  <br>
-                  <div class="formCheckboxes">
-                    <label for="recurring">Recurring:</label>
-                    <input type="checkbox" name="recurring" value="true" id="recurring">
-                  </div>
-                </fieldset>   
-                <input type="submit" class="btn btn-primary" id="createButton">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End of modal -->
+        <% include partials/__taskcreatemodal %>
       <br>
-        <div class="friends"><h1>Friends</h1>
+        <div class="friends">
           <% include partials/__friends %>
         </div>
       </div>
     </div>
 
     <div class="endRow">
-      <div class="shareToTwitter">
-        <button type="button" class="btn btn-default" id="twitterButton">
-          <i class="fa fa-twitter-square fa-2x"></i> Share
-        </button>
-      </div>
-      <br>
-      <div class="shareToFaceBook">
-        <button type="button" class="btn btn-default" id="facebookButton">
-          <i class="fa fa-facebook-square fa-2x"></i> Share
-        </button>
-      </div>
+    <% include partials/__shareto %>
     </div>
   </div>
-  <br>
+</div>
