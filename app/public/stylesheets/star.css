@@ -1,7 +1,7 @@
 body{
   background-color: black;
 }
-
+/* initial test code:
 .box{
   position: absolute;
   width: 30px;
@@ -13,7 +13,7 @@ body{
 .box.changes{
   border-radius: 50%;
   background-color: blue;
-}
+}*/
 
 
 /*test:*/
