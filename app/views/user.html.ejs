@@ -1,169 +1,38 @@
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="menuButton"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button></a>
-  <ul class="dropdown-menu dropdown-menu-right">
-    <li><a href="#">Settings</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Logout</a></li>
-  </ul>
-</li>
-
-<br>
-
+<% include partials/__navbar %>
+<br> 
 <h1 class="greeting">Hello, Tanner! Today's a good day to walk the dog!</h1>
 
-<div class="skyContainer skyImg" id="basebox"></div>
+<div class="skyContainer skyImg" id="basebox">
+  <!--starchart goes here-->
+</div>
 <br>
+
 <div class="contentContainer">
-
-<div class="listOfTasks">
-  <h1>Today's tasks...</h1>
+  <div class="listOfTasks">
+    <h1>Today's tasks...</h1>
     <ul class="tasks">
+      <!-- tasklist goes here -->
     </ul>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Task title here</h4>
-      </div>
-      <div class="modal-body">
+    <% include partials/__taskdetailsmodal %>
+    <% include partials/__taskeditmodal %>
+
+    <div class="middleRow">
+      <div class="addTask">
+      <!-- Add task button and add task modal-->
+      <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Task
+      </button>
       <br>
-        <div class="details">
-        Task details would be placed in here.<br>
-        Task details would be placed in here.<br>
-        Task details would be placed in here.<br>
+        <% include partials/__taskcreatemodal %>
+      <br>
+        <div class="friends">
+          <% include partials/__friends %>
         </div>
-          <!-- if press procrastinate then want to have the following label and user input option to pop up -->
-
-          <!-- <label>Date: <input type="date"></label> -->
-
-          <!-- <h3> Priority between 1(most important) to 10(least important): </h3>
-          <select name = "select">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select> -->
-
-          <br>
-         <!--  <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i>
-          <i class="fa fa-star-o"></i> -->
-          <!-- <h3> Break down task into components </h3>
-          <ul>
-            <li>Part 1</li>
-            <li>Part 2</li>
-            <li>Part 3</li>
-          </ul> -->
-
-
-
       </div>
-      <div class="modal-footer">
-        <div class="taskDetailButtons">
-          <button type="button" class="btn btn-default" id="saveTask">Edit Task</button>
-          <button type="button" class="btn btn-default" id="deleteTask">Delete Task</button>
-          <button type="button" class="btn btn-default" id="procrastinate">Procrastinate</button>
-          <button type="button" class="btn btn-default" id="taskComplete">Mark as complete</button>
-          </div>
-      </div>
+    </div>
+
+    <div class="endRow">
+    <% include partials/__shareto %>
     </div>
   </div>
 </div>
-</div>
-
-
-<div class="middleRow">
-<div class="addTask">
-<!-- Add task button and add task modal-->
-<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Task
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create Task</h4>
-      </div>
-      <div class="modal-body">
-
-        <form>
-          <br>
-          <br>
-          Due Date:<br>
-          <input type="text" id="dueDate">
-          <br>
-          <br>
-          Recurring:
-          <input type="checkbox" id="recurring" name="recurring">
-          <br>
-          <br>
-          Due Date:
-           <input type="date" id="dueDate" name="due_date">
-          Description:<br>
-          <input type="text" id="description" name="description">
-          <br>
-          Completed:<br>
-          <input type="checkbox" id="completed" name="completed">
-          Priority:<br>
-          <input type="text" id="priority" name="priority">
-          Postponed:<br>
-          <input type="checkbox" id="postponed" name="postponed">
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="createButton" data-dismiss="modal">Create</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End of modal -->
-
-</div>
-<br>
-<div class="friends"><h1>Friends</h1>
-<% include partials/__friends %>
-</div>
-</div>
-
-
-<div class="endRow">
-  <div class="shareToTwitter">
-    <button type="button" class="btn btn-default" id="twitterButton">
-      <i class="fa fa-twitter-square fa-2x"></i> Share
-    </button>
-  </div>
-  <br>
-  <div class="shareToFaceBook">
-    <button type="button" class="btn btn-default" id="facebookButton">
-      <i class="fa fa-facebook-square fa-2x"></i> Share
-    </button>
-  </div>
-</div>
-
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
