@@ -28,7 +28,10 @@ body{
   height: 20px;
   width: 20px;
   background-color: blue;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
+  animation: spin 4s linear infinite;
+/*  -webkit-animation-duration: 10 s;*/
+  /*-webkit-animation-iteration-count: infinite;*/
 }
 
 .new-star-container{  
