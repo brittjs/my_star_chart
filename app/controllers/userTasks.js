@@ -21,14 +21,16 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
+<<<<<<< HEAD
     console.log("");
     console.log("inside controllers/userTasks getListOfTasksForUser()");
     console.log("");
     console.log('GET    /users/' + this.state.userId + '/tasks');
 
-    user = this.state.user;
+    console.log('this.state.user');
+    console.log(this.state.user);
 
-    if (!user) {
+    if (!this.state.userId) {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
@@ -47,6 +49,7 @@ module.exports = {
 
       yield next;
     }
+
   },
 
   // -------------------------------------------------------------
@@ -69,18 +72,20 @@ module.exports = {
   //
   // -------------------------------------------------------------
   createTask: function *createTask(next) {
+
     console.log("");
     console.log("inside controllers/userTasks createTask()");
     console.log("");
     console.log('POST   /users/' + this.state.userId +  '/tasks');
 
-    // console.log('this.request.body');
-    // console.log(this.request.body);
 
-    // console.log('this.state.userId');
-    // console.log(this.state.userId);
+    console.log('this.request.body');
+    console.log(this.request.body);
 
     var task = this.request.body;
+
+    //  should be able to replace the statement below with this ....
+    // var newTask = yield db.sequelize.models.Task.create(task);
 
     var newTask = yield db.sequelize.models.Task.create({description: task.description,
                                                  due_date: task.due_date,
@@ -98,8 +103,8 @@ module.exports = {
     //                                            priority:  1,
     //                                            UserId:   1 });
 
-     // console.log('newTask');
-     // console.log(newTask);
+     console.log('newTask');
+     console.log(newTask);
 
      this.body = newTask.dataValues;
 
@@ -126,7 +131,15 @@ module.exports = {
     console.log('this.request.body');
     console.log(this.request.body);
 
+    var task = this.request.body;
 
+    task.description = task.description || 'web page update did not pass description to server';
+    task.due_date    = task.due_date || Date.now();
+    console.log('task.priority');
+    console.log(task.priority);
+    if (typeof task.priority == 'undefined') { task.priority =  1;}
+
+<<<<<<< HEAD
     var task = this.request.body;
 
     if (task == {} ) {
@@ -138,9 +151,10 @@ module.exports = {
         console.log("");
         console.log("The server received these task properties to be updated ---");
 
+
         for (var prop in task) {
           console.log("task." + prop + '= ' + task[prop]);
-        };
+        }
 
         // task.description = task.description || 'web page update did not pass description to server';
         // task.due_date    = task.due_date || Date.now();
@@ -179,6 +193,7 @@ module.exports = {
   //
   // -------------------------------------------------------------
   removeTask: function *removeTask(next) {
+
     console.log("");
     console.log("inside controllers/userTasks  removeTask()");
     console.log("");
@@ -188,28 +203,36 @@ module.exports = {
     if (!this.state.taskId) {
       console.log("No Task Id was passes to the server to delete the Task with");
       this.body = "No Task Id was passes to the server to delete the Task with";
+    } else {
+
+        // must remove Stars associated with a Task before deleting the Task
+        // ... or there is a Foreign Key error
+        //
+        //  SequelizeForeignKeyConstraintError: update or delete on table "Tasks" violates
+        // ... foreign key constraint "Stars_TaskId_fkey" on table "Stars"
+
+
+        var deletedStars = yield db.sequelize.models.Star.destroy({where: {
+                                                                     id: this.state.taskId
+                                                                   }
+                                                                 });
+
+        var deletedTask = yield db.sequelize.models.Task.destroy({where: {
+                                                                     id: this.state.taskId
+                                                                   }
+                                                                 });
+
+        console.log('deletedTask');
+        console.log(deletedTask);
+
+        //need to return something so that the client knows that the request was successful. Just returning the task and user id for now.
+        this.body = {
+          userId: this.state.userId,
+          taskId: this.state.taskId
+        };
+
+        yield next;
     }
-
-    // must remove Stars associated with a Task before deleting the Task
-    // ... or there is a Foreign Key error
-    //
-    //  SequelizeForeignKeyConstraintError: update or delete on table "Tasks" violates
-    // ... foreign key constraint "Stars_TaskId_fkey" on table "Stars"
-
-    var deletedStars = yield db.sequelize.models.Star.destroy({where: {
-                                                                 id: this.state.taskId
-                                                               }
-                                                             });
-
-    var deletedTask = yield db.sequelize.models.Task.destroy({where: {
-                                                                 id: this.state.taskId
-                                                               }
-                                                             });
-
-    console.log('deletedTask');
-    console.log(deletedTask)
-    yield next;
   }
 
 };
-
