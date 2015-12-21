@@ -154,14 +154,19 @@ $(function() {
   // ============================================================
 
   $("#deleteTask").on('click', function() {
-    alert("Button works");
-  //   $.ajax({
-  //     url: '/users/' + userId +,
-  //     type: 'DELETE',
-  //     success: function() {
-  //       console.log("done");
-  //     }
-  //   });
+    var taskId = $('div.details').attr("id");
+    console.log("trying to delete a task");
+    console.log(taskId);
+    $(".taskId").attr({
+                      'id':   taskId
+                      }); 
+    $.ajax({
+      url: '/users/' + userId + '/tasks/' + taskId,
+      type: 'DELETE',
+      success: function() {
+        console.log("done with delete");
+      }
+    });
   });
 
 
