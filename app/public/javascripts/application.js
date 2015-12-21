@@ -114,7 +114,7 @@ $(function() {
 
     $.post('/users/' + userId + '/tasks', myTask, function(task) { 
       console.log(task);
-
+    $('#createTaskForm').trigger("reset"); 
     $("#addTaskModal").modal('hide');  
     reloadTasks();
     
