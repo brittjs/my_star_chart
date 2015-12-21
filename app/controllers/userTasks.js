@@ -187,7 +187,14 @@ module.exports = {
                                                              });
 
     console.log('deletedTask');
-    console.log(deletedTask)
+    console.log(deletedTask);
+
+    //need to return something so that the client knows that the request was successful. Just returning the task and user id for now.
+    this.body = {
+      userId: this.state.userId,
+      taskId: this.state.taskId
+    };
+
     yield next;
   }
 
