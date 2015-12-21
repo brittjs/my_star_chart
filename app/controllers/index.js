@@ -10,12 +10,27 @@ module.exports = {
     } catch (err) {
       console.log('err');
       console.log(err);
-      // set response status
-      this.status = 500;
-      // set response body
-      this.body = 'internal server error';
-      // can emit on app for log
-      // this.app.emit('error', err, this);
+
+      if (err.name === "SequelizeValidationError") {
+        // 400 Bad Request
+        // "The server cannot or will not process the request due to something
+        //  that is perceived to be a client error (e.g., malformed request syntax,
+        // invalid request message framing, or deceptive request routing)."
+        this.status = 400;
+        this.body = err.message;
+      } else {
+        // 500 Internal Server Error
+        // A generic error message, given when an unexpected condition
+        //  was encountered and no more specific message is suitable.
+
+        // set response status
+        this.status = 500;
+        // set response body
+        this.body = err.message;
+        // can emit on app for log
+        // this.app.emit('error', err, this);
+      }
+      yield next;
     }
   },
 

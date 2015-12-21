@@ -28,7 +28,7 @@ module.exports = {
       mappedStars.push( star["dataValues"]);
     });
 
-    console.log(mappedStars);
+    // console.log(mappedStars);
 
     this.body = mappedStars;
 

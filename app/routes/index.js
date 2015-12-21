@@ -139,6 +139,7 @@ app.use(reqlogger);
     }
   });
 
+  app.use(indexCtrl.errorHandler);
   app.use(router.middleware());
 
 };

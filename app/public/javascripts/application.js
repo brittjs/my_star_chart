@@ -12,10 +12,10 @@ $(function() {
 
   if (usersPage || homePage) {
 
-      $(document).ajaxError(function(e)
-      {
-        console.error('Ajax Request Failed: ', e);
-      });
+      // $(document).ajaxError(function(e)
+      // {
+      //   console.error('Ajax Request Failed: ', e);
+      // });
 
         // ===========================================================
         //
@@ -62,13 +62,14 @@ $(function() {
 
   // ===========================================================
   //
+  //    _taskcreatemodal.ejs    Submit button click
   //
   //   Submit create new task form
   //
   // ============================================================
 
 
-  $("#createTaskForm").on('submit', function(e) { 
+  $("#createTaskForm").on('submit', function(e) {
     e.preventDefault();
 
     var taskDescription = $("#description").val();
@@ -81,24 +82,36 @@ $(function() {
     // });
 
     var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
-    
+
     // myTask = JSON.stringify(myTask);
 
     // console.log(myTask);
     // alert("hello");
-    
-    $.post('/users/' + userId + '/tasks', myTask, function(task) { 
-      console.log(task);
+
+    $.post('/users/' + userId + '/tasks', myTask, function(task) {
+      console.log("Create task submit button successful.");
+      console.log("task = ", task);
+
+    })
+    .fail( function(xhr, textStatus, errorThrown) {
+        alert(xhr.responseText);
+        console.log(xhr.responseText);
     });
+
+
+
+
+
   });
 
   // ===========================================================
   //
+  //   _taskdetailsmodal.ejs    user click on "Edit Task" button
   //
   //   Retrieve Specific Task for Edit task modal
   //
-  // ============================================================  
-  // 
+  // ============================================================
+  //
 
   // function prepopulateEditForm(task) {
 
@@ -119,18 +132,25 @@ $(function() {
 
   // ===========================================================
   //
+  //   _taskeditmodal.ejs
   //
-  //   Update Task when Submit Task is clicked
+  //   Update Task when Submit Task button is clicked on the Edit Task window
   //
   // ============================================================
 
-  $("#saveEditButton").on('click', function() {
+  $("#saveEditButton").on('click', function(event) {
+    event.preventDefault();
     var task = {};
     task.id = $(".taskId").attr("id");
     task.description = $("#Edescription").val();
     task.due_date = $("#Edue_date").val();
     task.priority = $("#Epriority").val();
-    task.recurring = $("#Erecurring").val(); 
+    task.recurring = $("#Erecurring").val();
+
+    console.log("property values on task object being sent to server");
+    for (var prop in task) {
+      console.log("task." + prop + "= " + task[prop]);
+    }
         // AJAX call to  POST data to server
         $.ajax({
             type: "PUT",
@@ -139,17 +159,21 @@ $(function() {
             data: JSON.stringify(task),
             success: function(data) {
                       alert('Update was successful.');
+                      console.log("#saveEditButton click ajax PUT was suceessful.")
+                      console.log("data returned ", data);
                     },
-            failure: function(err) {
-                      alert(err);
+            error: function (xhr, ajaxOptions, thrownError) {
+                      console.log("#saveEditButton click ajax PUT failed.")
+                      console.log("status = " + xhr.status);
+                      console.log("xhr.responseText = " + xhr.responseText);
                     }
-        }); 
-  });      
+        });
+  });
 
   // ===========================================================
   //
   //
-  //   Delete task on click
+  //   Delete task on click    -  user cannot delete Task from web pages
   //
   // ============================================================
 
@@ -189,8 +213,9 @@ $(function() {
 
         // ===========================================================
         //
+        //   _taskdetailsmodal.ejs
         //
-        //   Trap button clicks at bottom of  modal Bootstrap window
+        //   Trap button clicks at bottom of View Details modal Bootstrap window
         //
         // ============================================================
 
@@ -213,27 +238,27 @@ $(function() {
            //   trap and process Save of Task
            //
            // ---------------------------------------------------------------
-           if ($(this).attr("id") === "saveTask") {
+           // if ($(this).attr("id") === "saveTask") {
 
-              // task.description = $('div.details').text();
-              task.description = 'supercalifragalisticexpeaalidoshus';
-              task.id = $('div.details').attr("id");
+           //    // task.description = $('div.details').text();
+           //    task.description = 'supercalifragalisticexpeaalidoshus';
+           //    task.id = $('div.details').attr("id");
 
-              // AJAX call to  POST data to server
-              $.ajax({
-                  type: "PUT",
-                  url:  'users/' + userId + '/tasks/' + task.id,
-                  contentType: "application/json",
-                  data: JSON.stringify(task),
-                  success: function(data) {
-                            alert('Update was successful.');
-                          },
-                  failure: function(err) {
-                            alert(err);
-                          }
-              });
+           //    // AJAX call to  POST data to server
+           //    $.ajax({
+           //        type: "PUT",
+           //        url:  'users/' + userId + '/tasks/' + task.id,
+           //        contentType: "application/json",
+           //        data: JSON.stringify(task),
+           //        success: function(data) {
+           //                  alert('Update was successful.');
+           //                },
+           //        failure: function(err) {
+           //                  alert(err);
+           //                }
+           //    });
 
-           }
+           //  }
 
            // ---------------------------------------------------------------
            //

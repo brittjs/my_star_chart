@@ -21,13 +21,10 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-    //console.log('GET    /users/2/tasks');
-    //console.log('this.state.user');
-    //console.log(this.state.user."$modelOptions".classMethods.associate);
-
-    //  need to fix associations before this can be uncommented
-
-    //this.body = yield this.state.user.tasks.findAll();
+    console.log("");
+    console.log("inside controllers/userTasks getListOfTasksForUser()");
+    console.log("");
+    console.log('GET    /users/' + this.state.userId + '/tasks');
 
     user = this.state.user;
 
@@ -36,8 +33,6 @@ module.exports = {
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
       var tasks = yield user.getTasks(); // gets you all tasks
-      // console.log('tasks');
-      // console.log(tasks);
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
@@ -50,14 +45,6 @@ module.exports = {
 
       this.body = mappedTasks;
 
-      // User.findAll({
-      //   where: ...,
-      //   include: [
-      //     { model: Picture }, // load all pictures
-      //     { model: Picture, as: 'ProfilePicture' }, // load the profile picture. Notice that the spelling must be the exact same as the one in the association
-      //   ]
-      // });
-
       yield next;
     }
   },
@@ -68,7 +55,10 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getTaskforUser: function *getTaskforUser(next) {
-    console.log('GET    /users/2/tasks/8');
+    console.log("");
+    console.log("inside controllers/userTasks getTaskforUser()");
+    console.log("");
+    console.log('GET    /users/' + this.state.userId + '/tasks/' + this.state.taskId);
     this.body = this.state.task.dataValues;
     yield next;
   },
@@ -79,17 +69,10 @@ module.exports = {
   //
   // -------------------------------------------------------------
   createTask: function *createTask(next) {
-    console.log('POST   /users/2/tasks');
-
-    // var Task = sequelize.define('Task', {
-    //   user_id: DataTypes.INTEGER,
-    //   description: DataTypes.STRING,
-    //   due_date: DataTypes.STRING,
-    //   recurring: DataTypes.BOOLEAN,
-    //   completed: DataTypes.BOOLEAN,
-    //   postponed: DataTypes.BOOLEAN,
-    //   priority: DataTypes.INTEGER
-    // }, {
+    console.log("");
+    console.log("inside controllers/userTasks createTask()");
+    console.log("");
+    console.log('POST   /users/' + this.state.userId +  '/tasks');
 
     // console.log('this.request.body');
     // console.log(this.request.body);
@@ -131,76 +114,92 @@ module.exports = {
   //
   // -------------------------------------------------------------
   updateTask: function *updateTask(next) {
-    console.log('PUT    /users/2/tasks/8');
-
-
-    // Post.update({
-    //   updatedAt: null,
-    // }, {
-    //   where: {
-    //     deletedAt: {
-    //       $ne: null
-    //     }
-    //   }
-    // });
-    // console.log('this.request.body');
-    // console.log(this.request.body);
-
-    // console.log("immediately before this.req.body");
-    // console.log(this.req.body);
-    // console.log('this.req.body');
-    // console.log("immediately after this.req.body");
+    console.log("");
+    console.log("inside controllers/userTasks updateTask()");
+    console.log("");
+    console.log('PUT    /users/' + this.state.userId + '/tasks/' + this.state.taskId);
 
     console.log('this.state.taskId');
     console.log(this.state.taskId);
 
-    // console.log('this.request');
-    // console.log(this.request);
 
     console.log('this.request.body');
     console.log(this.request.body);
 
 
-    task.recurring   = task.recurring || false;
+    var task = this.request.body;
 
-    // 'postponed' and 'completed' added Sun Dec 20, 2015 by Steph
-    task.postponed   = task.postponed || false;
-    task.completed   = task.completed || false;
+    if (task == {} ) {
+      console.log("No Task properties were passes to the server to update the Task with");
+      this.body = "No Task properties were passes to the server to update the Task with";
 
-    var updatedTask = yield db.sequelize.models.Task.update({description: task.description,
-                                                             due_date:    task.due_date,
-                                                             priority:    task.priority,
-                                                             recurring:   task.recurring,
-                                                             recurring:   task.postponed,
-                                                             recurring:   task.completed
-                                                             },
-                                                             {where: {
-                                                                 id: this.request.body.id
-                                                               }
-                                                             });
-    console.log('updatedTask');
-    console.log(updatedTask[0]);
+    } else {
 
-    this.body = updatedTask.dataValues;
+        console.log("");
+        console.log("The server received these task properties to be updated ---");
 
-    yield next;
-  },
+        for (var prop in task) {
+          console.log("task." + prop + '= ' + task[prop]);
+        };
+
+        // task.description = task.description || 'web page update did not pass description to server';
+        // task.due_date    = task.due_date || Date.now();
+        // console.log('task.priority');
+        // console.log(task.priority);
+        // if (typeof task.priority == 'undefined') { task.priority =  1;}
+
+        // console.log('task.priority');
+        // console.log(task.priority);
+
+        // task.recurring   = task.recurring || false;
+
+        // // 'postponed' and 'completed' added Sun Dec 20, 2015 by Steph
+        // task.postponed   = task.postponed || false;
+        // task.completed   = task.completed || false;
+
+        var updatedTask = yield db.sequelize.models.Task.update(task,
+                                                                 {where: {
+                                                                     id: this.request.body.id
+                                                                   }
+                                                                 });
+        console.log('updatedTask');
+        console.log(updatedTask);
+        console.log(updatedTask[0]);
+
+        this.body = updatedTask[0];
+
+        yield next;
+
+      }
+                                                                                                                                              },
 
   // -------------------------------------------------------------
   //
-  //     remove task for user
+  //     remove task for user -  Brittany also has code for this
   //
   // -------------------------------------------------------------
   removeTask: function *removeTask(next) {
-    console.log('DELETE /users/2/tasks/8');
+    console.log("");
+    console.log("inside controllers/userTasks  removeTask()");
+    console.log("");
+    console.log('DELETE /users/' + this.state.userId + '/tasks/' + this.state.taskId);
 
 
-    // Post.destroy({
-    //   where: {
-    //     status: 'inactive'
-    //   }
-    // });
+    if (!this.state.taskId) {
+      console.log("No Task Id was passes to the server to delete the Task with");
+      this.body = "No Task Id was passes to the server to delete the Task with";
+    }
 
+    // must remove Stars associated with a Task before deleting the Task
+    // ... or there is a Foreign Key error
+    //
+    //  SequelizeForeignKeyConstraintError: update or delete on table "Tasks" violates
+    // ... foreign key constraint "Stars_TaskId_fkey" on table "Stars"
+
+    var deletedStars = yield db.sequelize.models.Star.destroy({where: {
+                                                                 id: this.state.taskId
+                                                               }
+                                                             });
 
     var deletedTask = yield db.sequelize.models.Task.destroy({where: {
                                                                  id: this.state.taskId
