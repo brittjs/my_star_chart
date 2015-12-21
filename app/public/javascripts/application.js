@@ -210,8 +210,20 @@ $(function() {
 
   });
 
+  // ===========================================================
+  //
+  //
+  //   Set procrastinate flag to true if it is selected
+  //
+  // ============================================================
 
+    // $("#procrastinate").on("click", function() {
 
+    //   var taskId = $('div.details').attr("id");
+    //   $("#myModal").modal('hide');  
+    //   alert("arr matey");
+
+    // });
 
 
         // ===========================================================
