@@ -60,13 +60,47 @@ $(function() {
 
         });
 
+  function reloadTasks() {
+        $(".tasks").empty();
+    
+    $.get('users/' + userId + '/tasks', function(tasks){
+
+      // find the <ul>
+      var $taskUl = $('ul.tasks');
+
+      var $taskLi;
+
+      // iterate thru returned array and load <li>s
+      tasks.forEach(function(task) {
+
+        $taskLi = $('<li>');
+
+       // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
+
+        $taskAnchor = $('<a>').text(task.description)
+                             .attr({
+                                    'id':   task.id.toString(),
+                                    'href': '',
+                                    'data-toggle': "modal",
+                                    'data-target': "#myModal"
+                                  });
+
+        $taskLi.append($taskAnchor);
+
+        $taskUl.append($taskLi);
+      });
+
+      var temp = 1;
+
+    });
+  };       
+
   // ===========================================================
   //
   //
   //   Submit create new task form
   //
   // ============================================================
-
 
   $("#createTaskForm").on('submit', function(e) { 
     e.preventDefault();
@@ -76,19 +110,14 @@ $(function() {
     var taskPriority = $("#priority").val();
     var recurringCheckbox = $("#recurring").val();
 
-    // .attr({
-    // 'id':   $(this).attr("id")
-    // });
-
     var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
-    
-    // myTask = JSON.stringify(myTask);
 
-    // console.log(myTask);
-    // alert("hello");
-    
     $.post('/users/' + userId + '/tasks', myTask, function(task) { 
       console.log(task);
+
+    $("#addTaskModal").modal('hide');  
+    reloadTasks();
+    
     });
   });
 
@@ -167,6 +196,12 @@ $(function() {
         console.log("done with delete");
       }
     });
+    //trying to reload tasks after delete is clicked
+    $("#myModal").modal('hide');  
+    reloadTasks();
+
+    console.log('boo');
+
   });
 
 
