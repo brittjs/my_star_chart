@@ -60,6 +60,14 @@ $(function() {
 
         });
 
+  // ===========================================================
+  //
+  //
+  //   Function to reload task list after creating new 
+  //   task and deleting a task 
+  //
+  // ============================================================  
+
   function reloadTasks() {
         $(".tasks").empty();
     
@@ -89,8 +97,6 @@ $(function() {
 
         $taskUl.append($taskLi);
       });
-
-      var temp = 1;
 
     });
   };       
