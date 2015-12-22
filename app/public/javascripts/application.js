@@ -191,7 +191,6 @@ $(function() {
     var taskId = $('div.details').attr("id");
     console.log("trying to delete a task");
     console.log(taskId);
-    console.log(task);
     $(".taskId").attr({
                       'id':   taskId
                       }); 
