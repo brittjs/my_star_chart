@@ -69,7 +69,7 @@ $(function() {
   // ============================================================  
 
   function reloadTasks() {
-        $(".tasks").empty();
+    $(".tasks").empty();
     
     $.get('users/' + userId + '/tasks', function(tasks){
 
@@ -119,7 +119,6 @@ $(function() {
     var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
 
     $.post('/users/' + userId + '/tasks', myTask, function(task) { 
-      console.log(task);
     $('#createTaskForm').trigger("reset"); 
     $("#addTaskModal").modal('hide');  
     reloadTasks();
@@ -192,6 +191,7 @@ $(function() {
     var taskId = $('div.details').attr("id");
     console.log("trying to delete a task");
     console.log(taskId);
+    console.log(task);
     $(".taskId").attr({
                       'id':   taskId
                       }); 
@@ -206,8 +206,6 @@ $(function() {
     $("#myModal").modal('hide');  
     reloadTasks();
 
-    console.log('boo');
-
   });
 
   // ===========================================================
@@ -217,13 +215,33 @@ $(function() {
   //
   // ============================================================
 
-    // $("#procrastinate").on("click", function() {
+    $("#procrastinate").on("click", function() {
 
-    //   var taskId = $('div.details').attr("id");
-    //   $("#myModal").modal('hide');  
-    //   alert("arr matey");
+      var taskId = $('div.details').attr("id");
+      console.log(taskId);
+      var task = {};
+      $(".taskId").attr({
+                      'id':   taskId
+                      });
+      task.id = $(".taskId").attr("id");
+      task.postponed = true;
+      console.log(task);
+      $.ajax({
+            type: "PUT",
+            url:  'users/' + userId + '/tasks/' + taskId,
+            contentType: "application/json",
+            data: JSON.stringify(task),
+            success: function(data) {
+                      alert('Postpone was successful.');
+                    },
+            failure: function(err) {
+                      alert(err);
+                    }
+        }); 
+      $("#myModal").modal('hide');  
+      alert("arr matey");
 
-    // });
+    });
 
 
         // ===========================================================

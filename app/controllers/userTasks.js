@@ -157,7 +157,8 @@ module.exports = {
     var updatedTask = yield db.sequelize.models.Task.update({description: task.description,
                                                              due_date:    task.due_date,
                                                              priority:    task.priority,
-                                                             recurring:   task.recurring},
+                                                             recurring:   task.recurring,
+                                                             postponed:   task.postponed},
                                                              {where: {
                                                                  id: task.id
                                                                }
