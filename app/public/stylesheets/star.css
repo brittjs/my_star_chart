@@ -1,5 +1,5 @@
 body{
-  /*background-color: black;*/
+  background-color: black;
 }
 /* initial test code:
 .box{
@@ -127,5 +127,6 @@ body{
 
 .new-star.star-changes{
   background-color: red;
-  /*border-radius: 50%;*/
+  border: 2px solid white;
+  border-radius: 50%;
 }

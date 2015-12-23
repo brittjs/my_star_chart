@@ -46,15 +46,13 @@ $(document).ready(function(){
         $(astar).addClass("star-changes");
       });  
     }, 1500)
-
-
   });
 
   //end test code 1
 
   //test code 2 - changes into a red circle and expands 
 
-  $("#test-two").on("click", function(){
+  // $("#test-two").on("click", function(){
     // var div = $("<div>").addClass("test-star-container");
     // var addDiv = $("#basebox").append(div);
     // var testStar = $("<div>").addClass("test-star");
@@ -66,14 +64,14 @@ $(document).ready(function(){
     //   });  
     // }, 1000)
 
-    var testStar = $("<div>").addClass("test-star");
-    var addTestStar = $("#basebox").append(testStar);
+  //   var testStar = $("<div>").addClass("test-star");
+  //   var addTestStar = $("#basebox").append(testStar);
 
-    setTimeout(function(){
-      testStar.addClass("expand")
-    }, 1000); 
+  //   setTimeout(function(){
+  //     testStar.addClass("expand")
+  //   }, 1000); 
 
-  });
+  // });
 
   //end test code 2
 
