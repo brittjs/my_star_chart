@@ -118,27 +118,31 @@ $(function() {
   // ===========================================================
   //
   //
+  //   Function to format a date object for a date input
+  //   
+  //
+  // ============================================================  
+
+  Date.prototype.toDateInputValue = (function () {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+  });
+
+  // ===========================================================
+  //
+  //
   //   Retrieve Specific Task for Edit task modal
   //
   // ============================================================  
-  // 
-
-  // function prepopulateEditForm(task) {
-
-  //   $("#Edescription").val(task.description);
-  //   $("#Edue_date").val(task.due_date);
-  //   $("#Epriority").val(task.priority);
-  //   $("#Erecurring").val(task.recurring);
-  // }
-
-  $('#editTask').on('click', function() {
+  
+  $("#editTask").on('click', function() {
     var taskId = $('div.details').attr("id");
-    console.log("inside prepopulation edit form");
-    console.log(taskId);
-    // var currentTask = findByTaskId(parseInt(taskId));
-    $(".taskId").attr({
-                      'id':   taskId
-                      });
+    var task = findByTaskId(taskId);
+    $("#Edescription").val(task.description);
+    $("#Edue_date").val(new Date(task.due_date).toDateInputValue());
+    $("#Epriority").val(task.priority);
+    $("#ERecurring").prop('checked', task.recurring); 
   });
 
   // ===========================================================
@@ -149,25 +153,28 @@ $(function() {
   // ============================================================
 
   $("#saveEditButton").on('click', function() {
-    var task = {};
-    task.id = $(".taskId").attr("id");
+    var taskId = $('div.details').attr("id");
+    var task = findByTaskId(taskId);
     task.description = $("#Edescription").val();
     task.due_date = $("#Edue_date").val();
     task.priority = $("#Epriority").val();
-    task.recurring = $("#Erecurring").val(); 
-        // AJAX call to  POST data to server
-        $.ajax({
-            type: "PUT",
-            url:  'users/' + userId + '/tasks/' + task.id,
-            contentType: "application/json",
-            data: JSON.stringify(task),
-            success: function(data) {
-                      alert('Update was successful.');
-                    },
-            failure: function(err) {
-                      alert(err);
-                    }
-        }); 
+    task.recurring = $("#ERecurring").is(":checked");
+
+    console.log(task.recurring);
+
+      // AJAX call to  POST data to server
+      $.ajax({
+          type: "PUT",
+          url:  'users/' + userId + '/tasks/' + task.id,
+          contentType: "application/json",
+          data: JSON.stringify(task),
+          success: function(data) {
+                    alert('Update was successful.');
+                  },
+          failure: function(err) {
+                    alert(err);
+                  }
+      }); 
   });      
 
   // ===========================================================
@@ -181,9 +188,9 @@ $(function() {
     var taskId = $('div.details').attr("id");
     console.log("trying to delete a task");
     console.log(taskId);
-    $(".taskId").attr({
-                      'id':   taskId
-                      }); 
+    // $(".taskId").attr({
+    //                   'id':   taskId
+    //                   }); 
     $.ajax({
       url: '/users/' + userId + '/tasks/' + taskId,
       type: 'DELETE',
