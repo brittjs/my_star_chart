@@ -119,7 +119,7 @@ $(function() {
   //
   //
   //   Function to format a date object for a date input
-  //   
+  //   from http://stackoverflow.com/a/13052187/2141998
   //
   // ============================================================  
 
@@ -132,7 +132,7 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Retrieve Specific Task for Edit task modal
+  //   Retrieve Specific Task and Prepopulate Edit task modal
   //
   // ============================================================  
   
@@ -148,7 +148,7 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Update Task when Submit Task is clicked
+  //   Update Task when Submit is clicked
   //
   // ============================================================
 
@@ -159,8 +159,6 @@ $(function() {
     task.due_date = $("#Edue_date").val();
     task.priority = $("#Epriority").val();
     task.recurring = $("#ERecurring").is(":checked");
-
-    console.log(task.recurring);
 
       // AJAX call to  POST data to server
       $.ajax({
@@ -188,9 +186,7 @@ $(function() {
     var taskId = $('div.details').attr("id");
     console.log("trying to delete a task");
     console.log(taskId);
-    // $(".taskId").attr({
-    //                   'id':   taskId
-    //                   }); 
+
     $.ajax({
       url: '/users/' + userId + '/tasks/' + taskId,
       type: 'DELETE',
