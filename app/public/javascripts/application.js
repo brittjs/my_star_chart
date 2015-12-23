@@ -3,6 +3,8 @@ $(function() {
   console.log("in applications.js file");
   console.log(window.location.path);
 
+  var _tasks;
+
   var str = window.location.pathname;
 
   var usersPage = str.match(/^\/view$/);
@@ -30,6 +32,8 @@ $(function() {
         var userId = 2;
 
         $.get('users/' + userId + '/tasks', function(tasks){
+
+          _tasks = tasks;
 
           // find the <ul>
           var $taskUl = $('ul.tasks');
@@ -99,7 +103,20 @@ $(function() {
       });
 
     });
-  };       
+  }; 
+
+  // ===========================================================
+  //
+  //
+  //   Function to find task by id
+  //
+  // ============================================================
+
+  function findByTaskId(task_id) {
+    return $.grep(_tasks, function( n ) {
+      return n.id === task_id;
+    }); 
+  };
 
   // ===========================================================
   //
@@ -146,6 +163,7 @@ $(function() {
     var taskId = $('div.details').attr("id");
     console.log("inside prepopulation edit form");
     console.log(taskId);
+    // var currentTask = findByTaskId(parseInt(taskId));
     $(".taskId").attr({
                       'id':   taskId
                       });
@@ -224,21 +242,20 @@ $(function() {
                       });
       task.id = $(".taskId").attr("id");
       task.postponed = true;
-      console.log(task);
+      
       $.ajax({
             type: "PUT",
             url:  'users/' + userId + '/tasks/' + taskId,
             contentType: "application/json",
             data: JSON.stringify(task),
             success: function(data) {
-                      alert('Postpone was successful.');
+                      alert('Task has been postponed.');
                     },
             failure: function(err) {
                       alert(err);
                     }
         }); 
       $("#myModal").modal('hide');  
-      alert("arr matey");
 
     });
 
@@ -255,10 +272,14 @@ $(function() {
           // load user's task data into modal
 
           event.preventDefault();
+          var selectedTask = findByTaskId(parseInt(this.id));
+          var thisTask = selectedTask[0];
+          console.log(thisTask);
+          console.log(thisTask.due_date);
 
-          $('div.details').text( $( this ).text() ).attr({
-                                                        'id':   $(this).attr("id")
-                                                        });
+          $('div.details').text(
+            thisTask.description
+            );
         });
 
 
