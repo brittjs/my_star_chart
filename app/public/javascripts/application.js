@@ -1,5 +1,7 @@
 $(function() {
 
+  var userId = 2;
+
   console.log("in applications.js file");
   console.log(window.location.path);
 
@@ -29,40 +31,8 @@ $(function() {
 
         // var userId = $('.something_to_get_userid').text();
 
-        var userId = 2;
-
-        $.get('users/' + userId + '/tasks', function(tasks){
-
-          _tasks = tasks;
-
-          // find the <ul>
-          var $taskUl = $('ul.tasks');
-
-          var $taskLi;
-
-          // iterate thru returned array and load <li>s
-          tasks.forEach(function(task) {
-
-             $taskLi = $('<li>');
-
-             // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
-             $taskAnchor = $('<a>').text(task.description)
-                                   .attr({
-                                          'id':   task.id.toString(),
-                                          'href': '',
-                                          'data-toggle': "modal",
-                                          'data-target': "#myModal"
-                                        });
-
-             $taskLi.append($taskAnchor);
-
-             $taskUl.append($taskLi);
-          });
-
-          var temp = 1;
-
-        });
+        // load user tasks
+        reloadTasks();
 
   // ===========================================================
   //
@@ -74,10 +44,10 @@ $(function() {
 
   function reloadTasks() {
     $(".tasks").empty();
-    
-    var userId = 2;
 
     $.get('users/' + userId + '/tasks', function(tasks){
+
+      _tasks = tasks;
 
       // find the <ul>
       var $taskUl = $('ul.tasks');
@@ -87,21 +57,21 @@ $(function() {
       // iterate thru returned array and load <li>s
       tasks.forEach(function(task) {
 
-        $taskLi = $('<li>');
+         $taskLi = $('<li>');
 
-       // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
+         // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
-        $taskAnchor = $('<a>').text(task.description)
-                             .attr({
-                                    'id':   task.id.toString(),
-                                    'href': '',
-                                    'data-toggle': "modal",
-                                    'data-target': "#myModal"
-                                  });
+         $taskAnchor = $('<a>').text(task.description)
+                               .attr({
+                                      'id':   task.id.toString(),
+                                      'href': '',
+                                      'data-toggle': "modal",
+                                      'data-target': "#myModal"
+                                    });
 
-        $taskLi.append($taskAnchor);
+         $taskLi.append($taskAnchor);
 
-        $taskUl.append($taskLi);
+         $taskUl.append($taskLi);
       });
 
     });
