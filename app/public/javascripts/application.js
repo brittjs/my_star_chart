@@ -276,10 +276,18 @@ $(function() {
           var thisTask = selectedTask[0];
           console.log(thisTask);
           console.log(thisTask.due_date);
-
-          $('div.details').text(
-            thisTask.description
+          var desc = thisTask.description.toString;
+          $('.taskDetails').html(
+            "Task: " + thisTask.description + "<br/>" + 
+            "Due date: " + thisTask.due_date  + "<br/>" +
+            "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
+            "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
+            "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
+            "Priority: " + thisTask.priority  + "<br/>"
             );
+
+            // $('<li>')thisTask.due_date;
+          // $('div.details').text((desc));
         });
 
 
