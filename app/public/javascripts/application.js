@@ -75,6 +75,8 @@ $(function() {
   function reloadTasks() {
     $(".tasks").empty();
     
+    var userId = 2;
+
     $.get('users/' + userId + '/tasks', function(tasks){
 
       // find the <ul>
@@ -216,13 +218,12 @@ $(function() {
       url: '/users/' + userId + '/tasks/' + taskId,
       type: 'DELETE',
       success: function() {
+        reloadTasks();
         console.log("done with delete");
       }
     });
     //trying to reload tasks after delete is clicked
     $("#myModal").modal('hide');  
-    reloadTasks();
-
   });
 
   // ===========================================================
@@ -285,9 +286,10 @@ $(function() {
             "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
             "Priority: " + thisTask.priority  + "<br/>"
             );
+          $('div.details').attr({
+            'id': $(this).attr("id")
+          });  
 
-            // $('<li>')thisTask.due_date;
-          // $('div.details').text((desc));
         });
 
 
