@@ -279,7 +279,7 @@ $(function() {
           var desc = thisTask.description.toString;
           $('.taskDetails').html(
             "Task: " + thisTask.description + "<br/>" + 
-            "Due date: " + thisTask.due_date  + "<br/>" +
+            "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
             "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
             "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
             "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
