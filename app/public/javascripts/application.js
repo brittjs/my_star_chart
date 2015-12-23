@@ -207,11 +207,8 @@ $(function() {
 
       var taskId = $('div.details').attr("id");
       console.log(taskId);
-      var task = {};
-      $(".taskId").attr({
-                      'id':   taskId
-                      });
-      task.id = $(".taskId").attr("id");
+      var task = findByTaskId(parseInt(taskId))[0];
+      console.log(task);
       task.postponed = true;
       
       $.ajax({
@@ -220,7 +217,7 @@ $(function() {
             contentType: "application/json",
             data: JSON.stringify(task),
             success: function(data) {
-                      alert('Task has been postponed.');
+                      reloadTasks();
                     },
             failure: function(err) {
                       alert(err);

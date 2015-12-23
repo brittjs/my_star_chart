@@ -158,7 +158,8 @@ module.exports = {
                                                              due_date:    task.due_date,
                                                              priority:    task.priority,
                                                              recurring:   task.recurring,
-                                                             postponed:   task.postponed},
+                                                             postponed:   task.postponed,
+                                                             completed:   task.completed},
                                                              {where: {
                                                                  id: task.id
                                                                }
