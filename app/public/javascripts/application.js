@@ -86,8 +86,8 @@ $(function() {
 
   function findByTaskId(task_id) {
     return $.grep(_tasks, function( n ) {
-      return n.id === task_id;
-    }); 
+      return n.id === parseInt(task_id);
+    })[0]; 
   };
 
   // ===========================================================
@@ -207,7 +207,7 @@ $(function() {
 
       var taskId = $('div.details').attr("id");
       console.log(taskId);
-      var task = findByTaskId(parseInt(taskId))[0];
+      var task = findByTaskId(taskId);
       console.log(task);
       task.postponed = true;
       
@@ -240,8 +240,7 @@ $(function() {
           // load user's task data into modal
 
           event.preventDefault();
-          var selectedTask = findByTaskId(parseInt(this.id));
-          var thisTask = selectedTask[0];
+          var thisTask = findByTaskId(this.id);
           console.log(thisTask);
           console.log(thisTask.due_date);
           var desc = thisTask.description.toString;
