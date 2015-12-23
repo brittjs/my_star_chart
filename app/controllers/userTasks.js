@@ -21,19 +21,21 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
-<<<<<<< HEAD
+
     console.log("");
     console.log("inside controllers/userTasks getListOfTasksForUser()");
     console.log("");
     console.log('GET    /users/' + this.state.userId + '/tasks');
 
-    console.log('this.state.user');
-    console.log(this.state.user);
+    console.log('this.state.userId');
+    console.log(this.state.userId);
 
     if (!this.state.userId) {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
+
+      var user = this.state.user;
       var tasks = yield user.getTasks(); // gets you all tasks
 
       // iterate through tasks extract keyvalue "dataValues"
@@ -85,15 +87,15 @@ module.exports = {
     var task = this.request.body;
 
     //  should be able to replace the statement below with this ....
-    // var newTask = yield db.sequelize.models.Task.create(task);
+    var newTask = yield db.sequelize.models.Task.create(task);
 
-    var newTask = yield db.sequelize.models.Task.create({description: task.description,
-                                                 due_date: task.due_date,
-                                                 recurring: task.recurring,
-                                                 completed: task.completed,
-                                                 postponed: task.postponed,
-                                                 priority:  task.priority,
-                                                 UserId:   this.state.userId});
+    // var newTask = yield db.sequelize.models.Task.create({description: task.description,
+    //                                              due_date: task.due_date,
+    //                                              recurring: task.recurring,
+    //                                              completed: task.completed,
+    //                                              postponed: task.postponed,
+    //                                              priority:  task.priority,
+    //                                              UserId:   this.state.userId});
 
     // var newTask = yield db.sequelize.models.Task.create({description: "Test description",
     //                                            due_date: Date.now(),
@@ -103,8 +105,8 @@ module.exports = {
     //                                            priority:  1,
     //                                            UserId:   1 });
 
-     console.log('newTask');
-     console.log(newTask);
+     // console.log('newTask');
+     // console.log(newTask);
 
      this.body = newTask.dataValues;
 
@@ -133,14 +135,6 @@ module.exports = {
 
     var task = this.request.body;
 
-    task.description = task.description || 'web page update did not pass description to server';
-    task.due_date    = task.due_date || Date.now();
-    console.log('task.priority');
-    console.log(task.priority);
-    if (typeof task.priority == 'undefined') { task.priority =  1;}
-
-<<<<<<< HEAD
-    var task = this.request.body;
 
     if (task == {} ) {
       console.log("No Task properties were passes to the server to update the Task with");
@@ -149,27 +143,18 @@ module.exports = {
     } else {
 
         console.log("");
-        console.log("The server received these task properties to be updated ---");
+        // console.log("The server received these task properties to be updated ---");
 
 
-        for (var prop in task) {
-          console.log("task." + prop + '= ' + task[prop]);
-        }
+        // for (var prop in task) {
+        //   console.log("task." + prop + '= ' + task[prop]);
+        // }
 
-        // task.description = task.description || 'web page update did not pass description to server';
-        // task.due_date    = task.due_date || Date.now();
-        // console.log('task.priority');
-        // console.log(task.priority);
-        // if (typeof task.priority == 'undefined') { task.priority =  1;}
-
-        // console.log('task.priority');
-        // console.log(task.priority);
-
-        // task.recurring   = task.recurring || false;
-
-        // // 'postponed' and 'completed' added Sun Dec 20, 2015 by Steph
-        // task.postponed   = task.postponed || false;
-        // task.completed   = task.completed || false;
+        //   Inserting a star.
+        //
+        //   There should be a Rule on the Task model that when
+        //   ... complete is set to 'true' a star is inserted
+        //   For now this is being done from the  taskdetailsmodal.js  file
 
         var updatedTask = yield db.sequelize.models.Task.update(task,
                                                                  {where: {
@@ -213,7 +198,7 @@ module.exports = {
 
 
         var deletedStars = yield db.sequelize.models.Star.destroy({where: {
-                                                                     id: this.state.taskId
+                                                                     TaskId: this.state.taskId
                                                                    }
                                                                  });
 

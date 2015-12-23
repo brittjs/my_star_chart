@@ -20,6 +20,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      githubId: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       createdAt: {
         defaultValue: Sequelize.fn('NOW'),
         allowNull: false,

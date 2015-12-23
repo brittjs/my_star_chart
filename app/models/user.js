@@ -34,7 +34,14 @@ module.exports = function(sequelize, DataTypes) {
       isEmail: {
         msg: "Must be a valid email address."
       }
-    }
+    },
+    githubId: {
+      type: Sequelize.STRING,
+      field: 'githubId',
+      allowNull: true,
+      unique: true
+    },
+
   }, {
     classMethods: {
       associate: function(models) {

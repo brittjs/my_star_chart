@@ -13,6 +13,10 @@ passport.use(new GithubStrategy({
     //Based on profile return from Github, find existing user
     let user = profile;
 
+    console.log('function in auth/auth.js');
+    console.log('user');
+    console.log(user);
+
     //Return user model
     return done(null, user);
   })

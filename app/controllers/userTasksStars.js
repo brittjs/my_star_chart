@@ -13,7 +13,7 @@ module.exports = {
   //
   // -------------------------------------------------------------
   createStar: function *createStar(next) {
-    console.log('POST   /users/2/tasks/7/stars');
+    console.log('POST   /users/' + this.state.userId + '/tasks/' + this.state.taskId + '/stars');
 
 
     // console.log('this.request');
@@ -60,18 +60,7 @@ module.exports = {
     // }
 
 
-    // var newTask = yield db.sequelize.models.Star.create({description: task.description,
-    //                                              due_date: task.due_date,
-    //                                              recurring: task.recurring,
-    //                                              completed: task.completed,
-    //                                              postponed: task.postponed,
-    //                                              priority:  task.priority,
-    //                                              UserId:   task.UserId});
-
-    var newStar = yield db.sequelize.models.Star.create({TaskId: this.state.taskId,
-                                               UserId: this.state.userId,
-                                               x_cord: star.x_cord,
-                                               y_cord: star.y_cord});
+    var newStar = yield db.sequelize.models.Star.create(star);
 
      console.log('newStar');
      // console.log(newStar);
@@ -79,7 +68,7 @@ module.exports = {
      this.body = newStar.dataValues;
 
     yield next;
-  },
+  }
 
 };
 
