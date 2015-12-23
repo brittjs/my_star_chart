@@ -1,5 +1,8 @@
 $(document).ready(function(){
-  var userId = 2;
+
+  var userId = $('div#userId').attr('data-id');
+  console.log("$('div#userId').attr('data-id')");
+  console.log(userId);
 
   $.get('users/' + userId + '/stars', function(stars){
     stars.forEach(function(star){
@@ -12,7 +15,7 @@ $(document).ready(function(){
       // var addStar = div.append(newStar);
       $(div).css({"left": star.x_cord, "top": star.y_cord});
     });
-  }); 
+  });
 
 
   //test code 1
@@ -36,7 +39,7 @@ $(document).ready(function(){
   //   setTimeout(function(){
   //     var eachStar = $(".star-container").each(function(index, star){
   //       $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("move");
-  //     });  
+  //     });
   //   }, 1000)
 
   // });
@@ -51,7 +54,7 @@ $(document).ready(function(){
   //   var x_cord;
   //   var y_cord;
 
-   //end of good code 
+   //end of good code
 
     // var stars = [
     //   { x_cord: 50, y_cord: 50 },
@@ -88,5 +91,5 @@ $(document).ready(function(){
   // });
 
   //end good code
-   
+
 });

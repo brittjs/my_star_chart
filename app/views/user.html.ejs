@@ -1,6 +1,6 @@
 <% include partials/__navbar %>
 <div id="userId" data-id="<%= id %>"></div>
-<h1 class="greeting">Hello, Tanner! Today's a good day to walk the dog!</h1>
+<h1 class="greeting">Hello, <%= username %> ! Today's a good day to walk the dog!</h1>
 
 <div class="skyContainer skyImg" id="basebox">
   <!--starchart goes here-->
@@ -10,9 +10,11 @@
 <div class="contentContainer">
   <div class="listOfTasks">
     <h1>Today's tasks...</h1>
+
     <ul class="tasks">
       <!-- tasklist goes here -->
     </ul>
+
     <% include partials/__taskdetailsmodal %>
     <% include partials/__taskeditmodal %>
 

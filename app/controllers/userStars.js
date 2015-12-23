@@ -13,7 +13,7 @@ module.exports = {
   //
   // -------------------------------------------------------------
   getListOfStarsForUser: function* getListOfStarsForUser(next) {
-    console.log('GET    /users/2/stars');
+    console.log('GET    /users/' + this.state.user + '/stars');
     console.log('this.state.user');
 
     user = this.state.user;
