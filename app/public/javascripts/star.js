@@ -3,7 +3,7 @@ $(document).ready(function(){
 
   $.get('users/' + userId + '/stars', function(stars){
     stars.forEach(function(star){
-      console.log(star);
+      // console.log(star);
       // var x_cord;
       // var y_cord;
       var div = $("<div>").addClass("star-container");
@@ -35,9 +35,17 @@ $(document).ready(function(){
 
     setTimeout(function(){
       var eachStar = $(".new-star-container").each(function(index, star){
-        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("animated rotateIn").addClass("new-star-expand");
+        // console.log(star);
+        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("animated rotateIn flip");
       });  
     }, 1000)
+
+    setTimeout(function(){
+      $(".new-star").each(function(index, astar){
+        // console.log(astar);
+        $(astar).addClass("star-changes");
+      });  
+    }, 1500)
 
 
   });

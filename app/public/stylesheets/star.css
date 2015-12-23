@@ -124,3 +124,8 @@ body{
   transition: all 2s linear;
 }
 */
+
+.new-star.star-changes{
+  background-color: red;
+  /*border-radius: 50%;*/
+}
