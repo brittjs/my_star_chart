@@ -16,7 +16,10 @@ $(function() {
   //
   // ============================================================
 
-  var userId = 2; //change this to be current_user_id
+  // var userId = 2; //change this to be current_user_id
+  var userId = $('div#userId').attr('data-id');
+  console.log("$('div#userId').attr('data-id')");
+  console.log(userId);
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
@@ -31,7 +34,7 @@ $(function() {
     });
 
     friendslist.append(friendsLi);
-  })
+  });
 
   // ===========================================================
   //

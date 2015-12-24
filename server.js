@@ -23,6 +23,18 @@ app.use(bodyParser());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// app.use(function *(){
+//   // ignore favicon
+//   if (this.path === '/favicon.ico') return;
+
+//   console.log('this.session');
+//   console.log(this.session);
+
+//   // var n = this.session.views || 0;
+//   // this.session.views = ++n;
+// })
+
 // =======
 
 //intialize koa-static

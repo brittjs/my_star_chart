@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     pwd: {
       type: Sequelize.STRING,
       field: 'pwd',
-      allowNull: false,
+      allowNull: true,
       unique: true,
       validate: {
         len: {
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: Sequelize.STRING,
       field: 'email',
-      allowNull: false,
+      allowNull: true,
       unique: true,
       validate: {
         len: {
@@ -34,7 +34,14 @@ module.exports = function(sequelize, DataTypes) {
       isEmail: {
         msg: "Must be a valid email address."
       }
-    }
+    },
+    githubId: {
+      type: Sequelize.STRING,
+      field: 'githubId',
+      allowNull: true,
+      unique: true
+    },
+
   }, {
     classMethods: {
       associate: function(models) {
