@@ -14,8 +14,9 @@ body{
 .star:hover{
   height: 25px;
   width: 25px;
- /* border: 2px solid white;*/
-  /*box-shadow: 2px 2px 2px white;*/
+  animation: full-turn 3s;
+  border: 2px solid white;
+  box-shadow: 2px 2px 2px white;
 }
 
 .star-container{  
@@ -52,9 +53,19 @@ body{
 .new-star:hover{
   height: 25px;
   width: 25px;
-/*  box-shadow: 2px 2px 2px white;*/
+  border: 2px solid white;
+  box-shadow: 2px 2px 2px white;
+  animation: full-turn 3s;
 }
 
+@keyframes full-turn{
+  0%{
+    transform: rotate(45deg);
+  }
+  100%{
+    transform: rotate(315deg);
+  }
+}
 
 /*.star{
   position: relative;
