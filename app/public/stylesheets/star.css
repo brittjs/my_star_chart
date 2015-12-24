@@ -41,6 +41,9 @@ body{
   position: absolute;
   left: 500px;
   top: 500px;  
+  /*position: relative;
+  left: 50%;
+  top: 80%;*/
   transition: all 2s linear;
 }
 
