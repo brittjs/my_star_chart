@@ -129,7 +129,7 @@ app.use(reqlogger);
 
     if (this.isAuthenticated())
     {
-      // console.log('is authenticated');
+
       yield next;
     }
     else
@@ -139,6 +139,7 @@ app.use(reqlogger);
     }
   });
 
+  app.use(indexCtrl.errorHandler);
   app.use(router.middleware());
 
 };
