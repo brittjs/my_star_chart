@@ -129,7 +129,7 @@ app.use(reqlogger);
 
     if (this.isAuthenticated())
     {
-      // console.log('is authenticated');
+
       yield next;
     }
     else

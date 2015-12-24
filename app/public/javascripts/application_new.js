@@ -84,7 +84,29 @@ $(function() {
           // iterate thru returned array and load <li>s
           tasks.forEach(function(task) {
 
-             $taskLi = $('<li>');
+
+            // <tr>
+            //   <td class="listOfTasksDescriptionTD">
+            //     <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
+            //   </td>
+            //   <td class="listOfTasksCheckboxTD"><input type="checkbox" id="cbox3" value="second_checkbox"></td>
+            // </tr>
+
+             $taskTr = $('<tr>');
+             $taskTd1 = $('<td>').attr({
+                                        'class':   'listOfTasksDescriptionTD'
+                                      });
+
+             $taskTd2 = $('<td>').attr({
+                                        'class':   'listOfTasksCheckboxTD'
+                                      });
+
+             $taskCheckbox = $('<input>').attr({
+                                                'type':  'checkbox',
+                                                'id':    'cbox' + task.id.toString(),
+                                                'value': task.id.complete
+                                              });
+
 
              // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 

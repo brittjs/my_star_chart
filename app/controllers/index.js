@@ -1,4 +1,5 @@
 var db = require('../models/index.js');
+var User = require('../models/user.js');
 
 module.exports = {
 
@@ -47,7 +48,25 @@ module.exports = {
   },
 
 	user: function* user(next) {
-		yield this.render('user.html');
+    //  must get userId into user.html here somehow !!
+
+    console.log('controllers/index.js user()');
+    console.log('this.session');
+    console.log(this.session);
+
+    console.log('this.session.passport.user.id');
+    console.log(this.session.passport.user.id);
+
+    //  get userId from User table
+    //
+    var users = yield db.sequelize.models.User.findAll({
+                             where: {
+                                      githubId: this.session.passport.user.id
+                                    }
+                            });
+
+    yield this.render('user.html', users[0].dataValues);
+
 		yield next;
 	},
 
