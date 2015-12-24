@@ -59,7 +59,7 @@ $(function() {
           $("#friendstars").append(div);
           $("<div>").addClass("star").appendTo(div);
           // var addStar = div.append(newStar);
-          $(div).css({"left": star.x_cord, "top": star.y_cord});
+          $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
         });
       });
    });
