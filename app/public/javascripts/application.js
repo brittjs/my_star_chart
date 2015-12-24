@@ -63,10 +63,50 @@ $(function() {
   // ===========================================================
   //
   //
+  //   Function to reload task list after creating new 
+  //   task and deleting a task 
+  //
+  // ============================================================  
+
+  function reloadTasks() {
+        $(".tasks").empty();
+    
+    $.get('users/' + userId + '/tasks', function(tasks){
+
+      // find the <ul>
+      var $taskUl = $('ul.tasks');
+
+      var $taskLi;
+
+      // iterate thru returned array and load <li>s
+      tasks.forEach(function(task) {
+
+        $taskLi = $('<li>');
+
+       // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
+
+        $taskAnchor = $('<a>').text(task.description)
+                             .attr({
+                                    'id':   task.id.toString(),
+                                    'href': '',
+                                    'data-toggle': "modal",
+                                    'data-target': "#myModal"
+                                  });
+
+        $taskLi.append($taskAnchor);
+
+        $taskUl.append($taskLi);
+      });
+
+    });
+  };       
+
+  // ===========================================================
+  //
+  //
   //   Submit create new task form
   //
   // ============================================================
-
 
   $("#createTaskForm").on('submit', function(e) { 
     e.preventDefault();
@@ -76,19 +116,14 @@ $(function() {
     var taskPriority = $("#priority").val();
     var recurringCheckbox = $("#recurring").val();
 
-    // .attr({
-    // 'id':   $(this).attr("id")
-    // });
-
     var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
-    
-    // myTask = JSON.stringify(myTask);
 
-    // console.log(myTask);
-    // alert("hello");
-    
     $.post('/users/' + userId + '/tasks', myTask, function(task) { 
       console.log(task);
+    $('#createTaskForm').trigger("reset"); 
+    $("#addTaskModal").modal('hide');  
+    reloadTasks();
+    
     });
   });
 
@@ -154,18 +189,41 @@ $(function() {
   // ============================================================
 
   $("#deleteTask").on('click', function() {
-    alert("Button works");
-  //   $.ajax({
-  //     url: '/users/' + userId +,
-  //     type: 'DELETE',
-  //     success: function() {
-  //       console.log("done");
-  //     }
-  //   });
+    var taskId = $('div.details').attr("id");
+    console.log("trying to delete a task");
+    console.log(taskId);
+    $(".taskId").attr({
+                      'id':   taskId
+                      }); 
+    $.ajax({
+      url: '/users/' + userId + '/tasks/' + taskId,
+      type: 'DELETE',
+      success: function() {
+        console.log("done with delete");
+      }
+    });
+    //trying to reload tasks after delete is clicked
+    $("#myModal").modal('hide');  
+    reloadTasks();
+
+    console.log('boo');
+
   });
 
+  // ===========================================================
+  //
+  //
+  //   Set procrastinate flag to true if it is selected
+  //
+  // ============================================================
 
+    // $("#procrastinate").on("click", function() {
 
+    //   var taskId = $('div.details').attr("id");
+    //   $("#myModal").modal('hide');  
+    //   alert("arr matey");
+
+    // });
 
 
         // ===========================================================

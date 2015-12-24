@@ -1,14 +1,15 @@
 #friendstars {
-  background-color: black;
+  /*background-image: url(../images/nightsky.jpg);*/
+  /*background-color: black;*/
+  background-image: url(../images/nightsky.jpg);
   min-width: 50%;
   min-height: 50%;
 }
 
-.container {
+/*.container {
   background-image: url(https://i.ytimg.com/vi/T40NSkd7Olc/maxresdefault.jpg);
-  height: 100%;
   width: auto;
-}
+}*/
 
 /* CSS Normalize */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
@@ -23,7 +24,9 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .container{
-  /*width:200vh;*/
+  display: flex-inline;
+  /*max-height: 100vh;*/
+  width: 200vh;
 }
 
 .skyContainer {
@@ -32,6 +35,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .skyImg {
+  background-image: url(../images/nightsky.jpg);
   flex: 1;
   height: 70vh;
 }
@@ -43,7 +47,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .contentContainer {
   display: flex;
-  max-height: 80vh;
+  /*max-height: 50vh;*/
   justify-content: space-between;
 }
 
@@ -57,7 +61,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .listOfTasks .tasks {
-  font-size: 3vh;
+  font-size: 2.25vh;
 }
 
 .middleRow {
@@ -66,7 +70,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .addTask {
-  width: 70vh;
+  min-width: 70vh;
 }
 
 .middleRow .friends {
@@ -75,12 +79,12 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   flex-grow: 2;
   font-size: 2.5vh;
   padding-left: 20px;
+  padding-bottom: 8px;
   flex-direction: column; 
 }
 
 .listOfFriends {
   font-size: 3vh;
-  padding-bottom: 8px;
 }
 
 #createTaskButton {
@@ -98,13 +102,13 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 #twitterButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 3.25vh;
+  font-size: 3vh;
 }
 
 #facebookButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 3.25vh;
+  font-size: 3vh;
 }
 
 #complete {
@@ -144,7 +148,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .dueDateAndPriority #priority {
-  width: 15vw;
+  width: 10vw;
 }
 
   

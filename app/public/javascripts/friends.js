@@ -49,13 +49,9 @@ $(function() {
 
      $.get('users/' + friendId + '/stars', function(stars){
         stars.forEach(function(star){
-          console.log(star);
-          // var x_cord;
-          // var y_cord;
           var div = $("<div>").addClass("star-container");
           $("#friendstars").append(div);
           $("<div>").addClass("star").appendTo(div);
-          // var addStar = div.append(newStar);
           $(div).css({"left": star.x_cord, "top": star.y_cord});
         });
       });
