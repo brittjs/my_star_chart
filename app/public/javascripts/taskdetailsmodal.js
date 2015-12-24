@@ -121,7 +121,10 @@ $(function() {
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
-          task.id = $('div.details').attr("id");
+          var taskId = $('div.details').attr("id");
+          // console.log(taskId);
+          var task = findByTaskId(taskId);
+          console.log(task);
           task.postponed = true;
 
           // AJAX call to  POST data to server
