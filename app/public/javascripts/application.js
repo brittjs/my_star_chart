@@ -46,7 +46,7 @@ function reloadTasks(userId) {
       $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
-      console.log("OOOOOOOO");
+
     });
 
   });

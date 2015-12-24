@@ -106,7 +106,7 @@ $(function() {
           $("#myModal").modal('hide');
           reloadTasks(userId);
 
-          console.log('boo');
+          // console.log('boo');
 
         }
 
