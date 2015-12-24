@@ -7,6 +7,8 @@
 //
 // ============================================================
 
+var allTasks; // This needs to remain in the global scope, please do not move!
+
 function reloadTasks(userId) {
 
   $(".tasks").empty();
@@ -41,6 +43,19 @@ function reloadTasks(userId) {
   });
 }
 
+  // ===========================================================
+  //
+  //
+  //   Function to find task by id
+  //
+  // ============================================================
+
+  function findByTaskId(task_id) {
+    return $.grep(allTasks, function( n ) {
+      return n.id === parseInt(task_id);
+    })[0]; 
+  };
+
 
 
 $(function() {
@@ -69,8 +84,6 @@ $(function() {
         console.log('inside application.js  line 70');
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
-
-        var allTasks;
 
         $.get('users/' + userId + '/tasks', function(tasks){
 
@@ -117,12 +130,22 @@ $(function() {
           // load user's task data into modal
 
           event.preventDefault();
+          var thisTask = findByTaskId(this.id);
+          console.log(thisTask);
+          console.log(thisTask.due_date);
+          $('.taskDetails').html(
+            "Task: " + thisTask.description + "<br/>" + 
+            "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
+            "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
+            "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
+            "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
+            "Priority: " + thisTask.priority  + "<br/>"
+            );
+          $('div.details').attr({
+            'id': $(this).attr("id")
+          });  
 
-          $('div.details').text( $( this ).text() ).attr({
-                                                        'id':   $(this).attr("id")
-                                                        });
         });
-
 
    } // end of user's Page  !!!
 

@@ -24,20 +24,33 @@ $(function() {
 
       // ===========================================================
       //
+      //
+      //   Function to format a date object for a date input
+      //   from http://stackoverflow.com/a/13052187/2141998
+      //
+      // ============================================================  
+
+      Date.prototype.toDateInputValue = (function () {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+      }); 
+
+      // ===========================================================
+      //
       //   _taskeditmodal.ejs
       //
       //   Update Task when Submit Task button is clicked on the Edit Task window
       //
       // ============================================================
 
-      $("#saveEditButton").on('click', function(event) {
-        event.preventDefault();
-        var task = {};
-        task.id = $(".taskId").attr("id");
+      $("#saveEditButton").on('click', function() {
+        var taskId = $('div.details').attr("id");
+        var task = findByTaskId(taskId);
         task.description = $("#Edescription").val();
         task.due_date = $("#Edue_date").val();
         task.priority = $("#Epriority").val();
-        task.recurring = $("#Erecurring").val();
+        task.recurring = $("#ERecurring").is(":checked");
 
         console.log("property values on task object being sent to server");
         for (var prop in task) {

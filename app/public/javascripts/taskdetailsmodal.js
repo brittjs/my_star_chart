@@ -27,25 +27,13 @@ $(function() {
       //
       // ============================================================
 
-      $('#editTask').on('click', function() {
+      $("#editTask").on('click', function() {
         var taskId = $('div.details').attr("id");
-        console.log("inside prepopulation edit form");
-        console.log(taskId);
-        $(".taskId").attr({
-                          'id':   taskId
-                          });
-
-        //  Prepopulate Edit form
-        allTasks.forEach(function(task) {
-          if (task.id === taskId) {
-            $("#Edescription").val(task.description);
-            $("#Edue_date").val(task.due_date);
-            $("#Epriority").val(task.priority);
-            $("#Erecurring").val(task.recurring);
-          }
-
-        });
-
+        var task = findByTaskId(taskId);
+        $("#Edescription").val(task.description);
+        $("#Edue_date").val(new Date(task.due_date).toDateInputValue());
+        $("#Epriority").val(task.priority);
+        $("#ERecurring").prop('checked', task.recurring); 
       });
 
 
