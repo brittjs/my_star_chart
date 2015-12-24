@@ -15,29 +15,38 @@ function reloadTasks(userId) {
 
   $.get('users/' + userId + '/tasks', function(tasks){
 
+    allTasks = tasks;
     // find the <ul>
     var $taskUl = $('ul.tasks');
 
     var $taskLi;
 
     // iterate thru returned array and load <li>s
-    tasks.forEach(function(task) {
+    allTasks.forEach(function(task) {
 
       $taskLi = $('<li>');
 
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
       $taskAnchor = $('<a>').text(task.description)
-                           .attr({
-                                  'id':   task.id.toString(),
-                                  'href': '',
-                                  'data-toggle': "modal",
-                                  'data-target': "#myModal"
-                                });
+                               .attr({
+                                      'id':   task.id.toString(),
+                                      'href': '',
+                                      'data-toggle': "modal",
+                                      'data-target': "#myModal"
+                                    });
+      $checkBox = $('<input type="checkbox" class="complete">').attr({
+        'id':   task.id.toString() 
+        }).prop('checked', task.completed);
 
-      $taskLi.append($taskAnchor);
+      // $("#complete").prop('checked', task.completed); 
+
+      //still need to change flag to complete if checkbox is clicked checked                
+
+      $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
+      console.log("OOOOOOOO");
     });
 
   });
@@ -85,37 +94,7 @@ $(function() {
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
-        $.get('users/' + userId + '/tasks', function(tasks){
-
-          // find the <ul>
-          var $taskUl = $('ul.tasks');
-
-          var $taskLi;
-
-          allTasks = tasks;
-
-          // iterate thru returned array and load <li>s
-          tasks.forEach(function(task) {
-
-             $taskLi = $('<li>');
-
-             // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
-             $taskAnchor = $('<a>').text(task.description)
-                                   .attr({
-                                          'id':   task.id.toString(),
-                                          'href': '',
-                                          'data-toggle': "modal",
-                                          'data-target': "#myModal"
-                                        });
-
-             $taskLi.append($taskAnchor);
-
-             $taskUl.append($taskLi);
-          });
-
-
-        });
+        reloadTasks(userId);
 
 
         // ===========================================================
