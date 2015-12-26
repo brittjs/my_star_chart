@@ -6,7 +6,7 @@ body{
 .star{
   height: 20px;
   width: 20px;
-  background-color: blue;
+  background-color: white;
   /*border-radius: 50%;*/
   transform: scaleX(0.5) rotate(45deg);
  /* transform:scaleX(1.0);*/
@@ -31,26 +31,30 @@ body{
 .new-star{
   height: 20px;
   width: 20px;
-  background-color: blue;
-  transform: scaleX(0.5) rotate(45deg);
+  background-color: white;
+  transform: scaleX(0.5) rotate(315deg);
   /*border-radius: 50%;*/
   animation: spin 4s linear;
 /*  -webkit-animation-duration: 10 s;*/
   /*-webkit-animation-iteration-count: infinite;*/
+  transition: all 1s linear;
 }
 
 .new-star-container{  
   position: absolute;
   left: 500px;
   top: 500px;  
-  /*position: relative;
-  left: 50%;
-  top: 80%;*/
+ /* position: relative;*/
+  /*left: 0%;
+  top: 0%;*/
   transition: all 2s linear;
 }
 
 .new-star.star-changes{
-  background-color: red;
+  /*background-color: red;*/
+  transform: scaleX(0.5) rotate(45deg);
+  -webkit-filter: drop-shadow(20px 6px 10px white);
+  /*box-shadow: 2px 2px red;*/
   /*border: 2px solid white;*/
   /*border-radius: 50%;*/
 }
@@ -66,10 +70,10 @@ body{
 
 @keyframes full-turn{
   0%{
-    transform: scaleX(0.5) rotate(45deg);
+    transform: scaleX(0.5) rotate(315deg);
   }
   100%{
-    transform: scaleX(0.5) rotate(315deg);
+    transform: scaleX(0.5) rotate(45deg);
   }
 }
 

@@ -39,7 +39,7 @@ $(document).ready(function(){
     setTimeout(function(){
       var eachStar = $(".new-star-container").each(function(index, star){
         // console.log(star);
-        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord}).addClass("animated rotateIn flip");
+        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord});
       });  
     }, 1000)
 
