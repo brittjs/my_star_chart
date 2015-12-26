@@ -16,7 +16,10 @@ $(function() {
   //
   // ============================================================
 
-  var userId = 2; //change this to be current_user_id
+  // var userId = 2; //change this to be current_user_id
+  var userId = $('div#userId').attr('data-id');
+  console.log("$('div#userId').attr('data-id')");
+  console.log(userId);
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
@@ -31,7 +34,7 @@ $(function() {
     });
 
     friendslist.append(friendsLi);
-  })
+  });
 
   // ===========================================================
   //
@@ -56,7 +59,7 @@ $(function() {
           $("#friendstars").append(div);
           $("<div>").addClass("star").appendTo(div);
           // var addStar = div.append(newStar);
-          $(div).css({"left": star.x_cord, "top": star.y_cord});
+          $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
         });
       });
    });

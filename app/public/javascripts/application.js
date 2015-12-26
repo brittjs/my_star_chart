@@ -1,7 +1,76 @@
+// ===========================================================
+//
+//    Global function
+//
+//    reloadTasks() is called in _taskcreatemodal.ejs when Submit button clicked
+//    reloadTasks() is called in user.html.ejs when delete checkbox is clicked
+//
+// ============================================================
+
+var allTasks; // This needs to remain in the global scope, please do not move!
+
+function reloadTasks(userId) {
+
+  $(".tasks").empty();
+
+  $.get('users/' + userId + '/tasks', function(tasks){
+
+    allTasks = tasks;
+    // find the <ul>
+    var $taskUl = $('ul.tasks');
+
+    var $taskLi;
+
+    // iterate thru returned array and load <li>s
+    allTasks.forEach(function(task) {
+
+      $taskLi = $('<li>');
+
+     // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
+
+      $taskAnchor = $('<a>').text(task.description)
+                               .attr({
+                                      'id':   task.id.toString(),
+                                      'href': '',
+                                      'data-toggle': "modal",
+                                      'data-target': "#myModal"
+                                    });
+      $checkBox = $('<input type="checkbox" class="complete">').attr({
+        'id':   task.id.toString() 
+        }).prop('checked', task.completed);
+
+      // $("#complete").prop('checked', task.completed); 
+
+      //still need to change flag to complete if checkbox is clicked checked                
+
+      $taskLi.append($taskAnchor, $checkBox);
+
+      $taskUl.append($taskLi);
+
+    });
+
+  });
+}
+
+  // ===========================================================
+  //
+  //
+  //   Function to find task by id
+  //
+  // ============================================================
+
+  function findByTaskId(task_id) {
+    return $.grep(allTasks, function( n ) {
+      return n.id === parseInt(task_id);
+    })[0]; 
+  };
+
+
+
 $(function() {
 
   console.log("in applications.js file");
-  console.log(window.location.path);
+  console.log(window.location.pathname);
 
   var str = window.location.pathname;
 
@@ -12,10 +81,6 @@ $(function() {
 
   if (usersPage || homePage) {
 
-      $(document).ajaxError(function(e)
-      {
-        console.error('Ajax Request Failed: ', e);
-      });
 
         // ===========================================================
         //
@@ -23,213 +88,19 @@ $(function() {
         //   Load user's task list when page opens
         //
         // ============================================================
-        var server = 'localhost:3000';
 
-        // var userId = $('.something_to_get_userid').text();
+        var userId = $('div#userId').attr('data-id');
+        console.log('inside application.js  line 70');
+        console.log("$('div#userId').attr('data-id')");
+        console.log(userId);
 
-        var userId = 2;
-
-        $.get('users/' + userId + '/tasks', function(tasks){
-
-          // find the <ul>
-          var $taskUl = $('ul.tasks');
-
-          var $taskLi;
-
-          // iterate thru returned array and load <li>s
-          tasks.forEach(function(task) {
-
-             $taskLi = $('<li>');
-
-             // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
-             $taskAnchor = $('<a>').text(task.description)
-                                   .attr({
-                                          'id':   task.id.toString(),
-                                          'href': '',
-                                          'data-toggle': "modal",
-                                          'data-target': "#myModal"
-                                        });
-
-             $taskLi.append($taskAnchor);
-
-             $taskUl.append($taskLi);
-          });
-
-          var temp = 1;
-
-        });
-
-  // ===========================================================
-  //
-  //
-  //   Function to reload task list after creating new 
-  //   task and deleting a task 
-  //
-  // ============================================================  
-
-  function reloadTasks() {
-        $(".tasks").empty();
-    
-    $.get('users/' + userId + '/tasks', function(tasks){
-
-      // find the <ul>
-      var $taskUl = $('ul.tasks');
-
-      var $taskLi;
-
-      // iterate thru returned array and load <li>s
-      tasks.forEach(function(task) {
-
-        $taskLi = $('<li>');
-
-       // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
-        $taskAnchor = $('<a>').text(task.description)
-                             .attr({
-                                    'id':   task.id.toString(),
-                                    'href': '',
-                                    'data-toggle': "modal",
-                                    'data-target': "#myModal"
-                                  });
-
-        $taskLi.append($taskAnchor);
-
-        $taskUl.append($taskLi);
-      });
-
-    });
-  };       
-
-  // ===========================================================
-  //
-  //
-  //   Submit create new task form
-  //
-  // ============================================================
-
-  $("#createTaskForm").on('submit', function(e) { 
-    e.preventDefault();
-
-    var taskDescription = $("#description").val();
-    var dueDate = $("#due_date").val();
-    var taskPriority = $("#priority").val();
-    var recurringCheckbox = $("#recurring").val();
-
-    var myTask = {description: taskDescription, due_date: dueDate, priority: taskPriority, recurring: recurringCheckbox, postponed: false, completed: false};
-
-    $.post('/users/' + userId + '/tasks', myTask, function(task) { 
-      console.log(task);
-    $('#createTaskForm').trigger("reset"); 
-    $("#addTaskModal").modal('hide');  
-    reloadTasks();
-    
-    });
-  });
-
-  // ===========================================================
-  //
-  //
-  //   Retrieve Specific Task for Edit task modal
-  //
-  // ============================================================  
-  // 
-
-  // function prepopulateEditForm(task) {
-
-  //   $("#Edescription").val(task.description);
-  //   $("#Edue_date").val(task.due_date);
-  //   $("#Epriority").val(task.priority);
-  //   $("#Erecurring").val(task.recurring);
-  // }
-
-  $('#editTask').on('click', function() {
-    var taskId = $('div.details').attr("id");
-    console.log("inside prepopulation edit form");
-    console.log(taskId);
-    $(".taskId").attr({
-                      'id':   taskId
-                      });
-  });
-
-  // ===========================================================
-  //
-  //
-  //   Update Task when Submit Task is clicked
-  //
-  // ============================================================
-
-  $("#saveEditButton").on('click', function() {
-    var task = {};
-    task.id = $(".taskId").attr("id");
-    task.description = $("#Edescription").val();
-    task.due_date = $("#Edue_date").val();
-    task.priority = $("#Epriority").val();
-    task.recurring = $("#Erecurring").val(); 
-        // AJAX call to  POST data to server
-        $.ajax({
-            type: "PUT",
-            url:  'users/' + userId + '/tasks/' + task.id,
-            contentType: "application/json",
-            data: JSON.stringify(task),
-            success: function(data) {
-                      alert('Update was successful.');
-                    },
-            failure: function(err) {
-                      alert(err);
-                    }
-        }); 
-  });      
-
-  // ===========================================================
-  //
-  //
-  //   Delete task on click
-  //
-  // ============================================================
-
-  $("#deleteTask").on('click', function() {
-    var taskId = $('div.details').attr("id");
-    console.log("trying to delete a task");
-    console.log(taskId);
-    $(".taskId").attr({
-                      'id':   taskId
-                      }); 
-    $.ajax({
-      url: '/users/' + userId + '/tasks/' + taskId,
-      type: 'DELETE',
-      success: function() {
-        console.log("done with delete");
-      }
-    });
-    //trying to reload tasks after delete is clicked
-    $("#myModal").modal('hide');  
-    reloadTasks();
-
-    console.log('boo');
-
-  });
-
-  // ===========================================================
-  //
-  //
-  //   Set procrastinate flag to true if it is selected
-  //
-  // ============================================================
-
-    // $("#procrastinate").on("click", function() {
-
-    //   var taskId = $('div.details').attr("id");
-    //   $("#myModal").modal('hide');  
-    //   alert("arr matey");
-
-    // });
+        reloadTasks(userId);
 
 
         // ===========================================================
         //
         //
-        //   Trap task list item click and open modal Bootstrap window
+        //   Trap task list item click and open modal Bootstrap "task detail" window
         //
         // ============================================================
         // Attach a delegated event handler
@@ -238,111 +109,23 @@ $(function() {
           // load user's task data into modal
 
           event.preventDefault();
-
-          $('div.details').text( $( this ).text() ).attr({
-                                                        'id':   $(this).attr("id")
-                                                        });
-        });
-
-
-        // ===========================================================
-        //
-        //
-        //   Trap button clicks at bottom of  modal Bootstrap window
-        //
-        // ============================================================
-
-        // <div class="taskDetailButtons">
-        // <button type="button" class="btn btn-default" id="editTask">Edit Task</button>
-        // <button type="button" class="btn btn-default" id="deleteTask">Delete Task</button>
-        // <button type="button" class="btn btn-default" id="procrastinate">Procrastinate</button>
-        // <button type="button" class="btn btn-default" id="taskComplete">Mark as complete</button>
-        // </div>
-
-        $('div.taskDetailButtons').on('click', 'button', function(event) {
-
-           var task = {};
-           var star = {};
-
-           event.preventDefault();
-
-           // ---------------------------------------------------------------
-           //
-           //   trap and process Save of Task
-           //
-           // ---------------------------------------------------------------
-           if ($(this).attr("id") === "saveTask") {
-
-              // task.description = $('div.details').text();
-              task.description = 'supercalifragalisticexpeaalidoshus';
-              task.id = $('div.details').attr("id");
-
-              // AJAX call to  POST data to server
-              $.ajax({
-                  type: "PUT",
-                  url:  'users/' + userId + '/tasks/' + task.id,
-                  contentType: "application/json",
-                  data: JSON.stringify(task),
-                  success: function(data) {
-                            alert('Update was successful.');
-                          },
-                  failure: function(err) {
-                            alert(err);
-                          }
-              });
-
-           }
-
-           // ---------------------------------------------------------------
-           //
-           //   trap and process Completed Task button click
-           //
-           // ---------------------------------------------------------------
-           if ($(this).attr("id") === "taskComplete") {
-
-              // star.TaskId = $('div.details').attr("id");
-
-              // star.x_cord = 81;
-              // star.y_cord = 131;
-
-
-              // // AJAX call to  POST star to server
-              // $.ajax({
-              //     type: "POST",
-              //     url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-              //     contentType: "application/json",
-              //     data: JSON.stringify(star),
-              //     success: function(data) {
-              //               alert('Star create was successful.');
-              //             },
-              //     failure: function(err) {
-              //               alert(err);
-              //             }
-              // });
-
-              task.id = $('div.details').attr("id");
-              task.completed = true;
-
-              // AJAX call to  POST data to server
-              $.ajax({
-                  type: "PUT",
-                  url:  'users/' + userId + '/tasks/' + task.id,
-                  contentType: "application/json",
-                  data: JSON.stringify(task),
-                  success: function(data) {
-                            alert('Update was successful.');
-                          },
-                  failure: function(err) {
-                            alert(err);
-                          }
-              });
-
-
-           }
+          var thisTask = findByTaskId(this.id);
+          console.log(thisTask);
+          console.log(thisTask.due_date);
+          $('.taskDetails').html(
+            "Task: " + thisTask.description + "<br/>" + 
+            "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
+            "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
+            "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
+            "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
+            "Priority: " + thisTask.priority  + "<br/>"
+            );
+          $('div.details').attr({
+            'id': $(this).attr("id")
+          });  
 
         });
 
    } // end of user's Page  !!!
 
 });
-
