@@ -34,7 +34,7 @@ body{
   background-color: white;
   transform: scaleX(0.5) rotate(315deg);
   /*border-radius: 50%;*/
-  animation: spin 4s linear;
+  /*animation: spin 4s linear;*/
 /*  -webkit-animation-duration: 10 s;*/
   /*-webkit-animation-iteration-count: infinite;*/
   transition: all 1s linear;
@@ -44,9 +44,9 @@ body{
   position: absolute;
   left: 500px;
   top: 500px;  
- /* position: relative;*/
-  /*left: 0%;
-  top: 0%;*/
+  /*position: relative;
+  left: 10%;
+  top: 10%;*/
   transition: all 2s linear;
 }
 
@@ -72,6 +72,9 @@ body{
   0%{
     transform: scaleX(0.5) rotate(315deg);
   }
+ /* 50%{
+    transform: scaleX(0.5) rotate(45deg);
+  }*/
   100%{
     transform: scaleX(0.5) rotate(45deg);
   }
