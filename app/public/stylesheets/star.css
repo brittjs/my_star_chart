@@ -50,10 +50,14 @@ body{
   transition: all 2s linear;
 }
 
+/*added vendor prefixes below since css filter wouldn't work without it*/
+
 .new-star.star-changes{
   /*background-color: red;*/
   transform: scaleX(0.5) rotate(45deg);
   -webkit-filter: drop-shadow(20px 6px 10px white);
+  -moz-filter: drop-shadow(20px 6px 10px white);
+  filter: drop-shadow(20px 6px 10px white);
   /*box-shadow: 2px 2px red;*/
   /*border: 2px solid white;*/
   /*border-radius: 50%;*/
