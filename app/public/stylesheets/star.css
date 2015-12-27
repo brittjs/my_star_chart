@@ -33,6 +33,7 @@ body{
   width: 20px;
   background-color: white;
   transform: scaleX(0.5) rotate(315deg);
+  animation: 2s linear 3 expand-shrink;
   /*border-radius: 50%;*/
   /*animation: spin 4s linear;*/
 /*  -webkit-animation-duration: 10 s;*/
@@ -60,7 +61,7 @@ body{
   -moz-filter: drop-shadow(20px 6px 10px white);
   filter: drop-shadow(20px 6px 10px white);
 
-  animation: flying-star 1s;
+/*  animation: flying-star 1s;*/
 
   /*box-shadow: 5px 0px 5px 10px red;*/
   /*border: 2px solid white;*/
@@ -88,6 +89,21 @@ body{
   }
 }
 
+@keyframes expand-shrink{
+  0%{
+    width: 20px;
+    height: 20px;
+  }
+  50%{
+    width: 25px;
+    height: 25px;
+  }
+  100%{
+    width: 20px;
+    height: 20px;
+  }
+}
+
 
 /* math for degree intervals
   deg_between = 315 - 45 = 270
@@ -96,12 +112,12 @@ body{
   at_fifty_perc/2 = 67.5
 */
 
-@keyframes flying-star{
+/*@keyframes flying-star{
   0%{
     transform: scaleX(0.5) rotate(315deg);
   }
- /* 20%{
-    transform: scaleX(0.5) rotate(300deg);
+  20%{
+    transform: scaleX(0.5) rotate(200deg);
   }*/
 
   /*25%{
@@ -128,10 +144,10 @@ body{
     transform: scaleX(0.5) rotate(300deg);
   }*/
 
-  100%{
+ /* 100%{
     transform: scaleX(0.5) rotate(45deg);
   }
-}
+}*/
 
 /*.star{
   position: relative;
