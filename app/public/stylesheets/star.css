@@ -54,11 +54,15 @@ body{
 
 .new-star.star-changes{
   /*background-color: red;*/
+
   transform: scaleX(0.5) rotate(45deg);
   -webkit-filter: drop-shadow(20px 6px 10px white);
   -moz-filter: drop-shadow(20px 6px 10px white);
   filter: drop-shadow(20px 6px 10px white);
-  /*box-shadow: 2px 2px red;*/
+
+  animation: flying-star 1s;
+
+  /*box-shadow: 5px 0px 5px 10px red;*/
   /*border: 2px solid white;*/
   /*border-radius: 50%;*/
 }
@@ -66,8 +70,8 @@ body{
 .new-star:hover{
   height: 25px;
   width: 25px;
-  border: 2px solid white;
-  box-shadow: 2px 2px 2px white;
+ /* border: 2px solid red;*/
+/*  box-shadow: 0px 0px 0px 2px white;*/
   transform: scaleX(0.5) rotate(45deg);
   animation: full-turn 3s;
 }
@@ -79,6 +83,51 @@ body{
  /* 50%{
     transform: scaleX(0.5) rotate(45deg);
   }*/
+  100%{
+    transform: scaleX(0.5) rotate(45deg);
+  }
+}
+
+
+/* math for degree intervals
+  deg_between = 315 - 45 = 270
+  deg_between/2 = 135
+  at_fifty_perc = 315-135
+  at_fifty_perc/2 = 67.5
+*/
+
+@keyframes flying-star{
+  0%{
+    transform: scaleX(0.5) rotate(315deg);
+  }
+ /* 20%{
+    transform: scaleX(0.5) rotate(300deg);
+  }*/
+
+  /*25%{
+    transform: scaleX(0.5) rotate(247deg);
+  }*/
+
+  /*40%{
+    transform: scaleX(0.5) rotate(300deg);
+  }*/
+
+ /* 50%{
+    transform: scaleX(0.5) rotate(200deg);
+  }*/
+
+ /* 60%{
+    transform: scaleX(0.5) rotate(300deg);
+  }*/
+  
+  /*75%{
+    transform: scaleX(0.5) rotate(112deg);
+  }*/
+
+ /* 80%{
+    transform: scaleX(0.5) rotate(300deg);
+  }*/
+
   100%{
     transform: scaleX(0.5) rotate(45deg);
   }
