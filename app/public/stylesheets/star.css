@@ -44,13 +44,14 @@ body{
 
 .new-star-container{  
   position: absolute;
-  left: 500px;
-  top: 500px;  
-  /*position: relative;
-  left: 10%;
-  top: 10%;*/
+  /*left: 500px;
+  top: 500px; */ 
+  /*position: relative;*/
+  left: 50%;
+  top: 50%;
   transition: all 2s linear;
 }
+
 
 /*added vendor prefixes below since css filter wouldn't work without it*/
 
@@ -58,11 +59,11 @@ body{
   /*background-color: red;*/
 
   transform: scaleX(0.5) rotate(45deg);
-  -webkit-filter: drop-shadow(20px 6px 10px white);
-  -moz-filter: drop-shadow(20px 6px 10px white);
-  filter: drop-shadow(20px 6px 10px white);
+  -webkit-filter: drop-shadow(0px 0px 10px white);
+  -moz-filter: drop-shadow(0px 0px 10px white);
+  filter: drop-shadow(0px 0px 10px white);
 
-/*  animation: shooting-star 1s;*/
+ /* animation: shooting-star 1s;*/
 
   /*box-shadow: 5px 0px 5px 10px red;*/
   /*border: 2px solid white;*/
@@ -115,36 +116,41 @@ body{
 
 /*@keyframes shooting-star{
   0%{
-    transform: scaleX(0.5) rotate(315deg);
+    transform: scaleX(0.5) rotate(95deg);
   }*/
- /* 20%{
-    transform: scaleX(0.5) rotate(200deg);
-  }*/
+  /*10%{
+    transform: scaleX(0.5) rotate(90deg);
+  }
+  20%{
+    transform: scaleX(0.5) rotate(85deg);
+  }
 
-  /*25%{
-    transform: scaleX(0.5) rotate(247deg);
-  }*/
+  30%{
+    transform: scaleX(0.5) rotate(80deg);
+  }
 
-  /*40%{
-    transform: scaleX(0.5) rotate(300deg);
-  }*/
+  40%{
+    transform: scaleX(0.5) rotate(75deg);
+  }
 
- /* 50%{
-    transform: scaleX(0.5) rotate(200deg);
-  }*/
+  50%{
+    transform: scaleX(0.5) rotate(70deg);
+  }
 
- /* 60%{
-    transform: scaleX(0.5) rotate(300deg);
-  }*/
+  60%{
+    transform: scaleX(0.5) rotate(65deg);
+  }
   
-  /*75%{
-    transform: scaleX(0.5) rotate(112deg);
-  }*/
+  70%{
+    transform: scaleX(0.5) rotate(60deg);
+  }
 
- /* 80%{
-    transform: scaleX(0.5) rotate(300deg);
+  80%{
+    transform: scaleX(0.5) rotate(55deg);
+  }
+  90%{
+    transform: scaleX(0.5) rotate(50deg);
   }*/
-
 /*  100%{
     transform: scaleX(0.5) rotate(45deg);
   }
