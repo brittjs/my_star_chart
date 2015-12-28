@@ -267,7 +267,7 @@ body{
 
 .test-star.changes{
  /* background-color: red;*/
-  animation: flying-star 2s;
+  animation: 2s linear flying-star;
   /*transform: scaleX(0.5) rotate(45deg);*/
   -webkit-filter: drop-shadow(0px 0px 10px red);
   -moz-filter: drop-shadow(0px 0px 10px red);
@@ -283,25 +283,39 @@ body{
     filter: drop-shadow(20px 6px 10px red);
   }
 
+  80%{
+    transform: scaleX(0.5) rotate(30deg);
+    -webkit-filter: drop-shadow(20px 6px 10px red);
+    -moz-filter: drop-shadow(20px 6px 10px red);
+    filter: drop-shadow(20px 6px 10px red);
+  }
+
+  85%{
+    transform: scaleX(0.5) rotate(35deg);
+    -webkit-filter: drop-shadow(15px 4px 10px red);
+    -moz-filter: drop-shadow(15px 4px 10px red);
+    filter: drop-shadow(15px 4px 10px red);
+  }
+
   90%{
-    transform: scaleX(0.5) rotate(20deg);
+    transform: scaleX(0.5) rotate(40deg);
     -webkit-filter: drop-shadow(10px 2px 10px red);
     -moz-filter: drop-shadow(10px 2px 10px red);
     filter: drop-shadow(10px 2px 10px red);
   }
 
   95%{
-    transform: scaleX(0.5) rotate(20deg);
-    -webkit-filter: drop-shadow(5px 2px 10px red);
-    -moz-filter: drop-shadow(5px 2px 10px red);
-    filter: drop-shadow(5px 2px 10px red);
+    transform: scaleX(0.5) rotate(42deg);
+    -webkit-filter: drop-shadow(2px 2px 10px red);
+    -moz-filter: drop-shadow(2px 2px 10px red);
+    filter: drop-shadow(2px 2px 10px red);
   }
 
   100%{
-    transform: scaleX(0.5) rotate(20deg);
-    -webkit-filter: drop-shadow(2px 0px 10px red);
-    -moz-filter: drop-shadow(2px 0px 10px red);
-    filter: drop-shadow(2px 0px 10px red);
+    transform: scaleX(0.5) rotate(45deg);
+    -webkit-filter: drop-shadow(0px 0px 10px red);
+    -moz-filter: drop-shadow(0px 0px 10px red);
+    filter: drop-shadow(0px 0px 10px red);
   }
 }
 
