@@ -129,34 +129,34 @@ $(document).ready(function(){
   //end good code
 
   //test code 3 - rotations, keyframe animations
-  $("#test-three").on("click", function(){
-    var x_cord;
-    var y_cord;
+  // $("#test-three").on("click", function(){
+  //   var x_cord;
+  //   var y_cord;
 
-    var stars = [
-      { x_cord: 150, y_cord: 150 },
-      { x_cord: 200, y_cord: 200 },
-      { x_cord: 300, y_cord: 300 },
-      { x_cord: 242, y_cord: 350}
-    ];
+  //   var stars = [
+  //     { x_cord: 150, y_cord: 150 },
+  //     { x_cord: 200, y_cord: 200 },
+  //     { x_cord: 300, y_cord: 300 },
+  //     { x_cord: 242, y_cord: 350}
+  //   ];
     
-    var div = $("<div>").addClass("test-star-container");
-    var addDiv = $("#basebox").append(div);
-    var testStar = $("<div>").addClass("test-star");
-    var addStar = div.append(testStar); 
+  //   var div = $("<div>").addClass("test-star-container");
+  //   var addDiv = $("#basebox").append(div);
+  //   var testStar = $("<div>").addClass("test-star");
+  //   var addStar = div.append(testStar); 
 
-    setTimeout(function(){
-      var eachStar = $(".test-star-container").each(function(index, star){
-        // console.log(star);
-        $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord});
-      });  
-    }, 1000)
+  //   setTimeout(function(){
+  //     var eachStar = $(".test-star-container").each(function(index, star){
+  //       // console.log(star);
+  //       $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord});
+  //     });  
+  //   }, 1000)
     
-    setTimeout(function(){
-      var eachStar = $(".test-star").each(function(index, star){
-        $(star).addClass("changes");
-      });  
-    }, 1000)
-  }); 
+  //   setTimeout(function(){
+  //     var eachStar = $(".test-star").each(function(index, star){
+  //       $(star).addClass("changes");
+  //     });  
+  //   }, 1000)
+  // }); 
 
 });
