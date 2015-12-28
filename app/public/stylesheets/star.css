@@ -2,7 +2,6 @@ body{
   background-color: black;
 }
 
-/*test:*/
 .star{
   height: 20px;
   width: 20px;
@@ -18,7 +17,7 @@ body{
   animation: 3s full-turn;
   border: 2px solid white;
   box-shadow: 2px 2px 2px white;
- /* transform: scaleX(0.5) rotate(315deg);*/
+  /*transform: scaleX(0.5) rotate(315deg);*/
 }
 
 .star-container{  
@@ -32,9 +31,9 @@ body{
   height: 20px;
   width: 20px;
   background-color: white;
-  transform: scaleX(0.5) rotate(315deg);
+  transform: scaleX(0.5) rotate(20deg);
   /* order for animation: duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name*/
-  animation: 2s linear 2s 3 expand-shrink;
+  animation: 2s linear 2s 3 expand-shrink, 2s linear 0.5s shooting-star;
   /*border-radius: 50%;*/
   /*animation: spin 4s linear;*/
 /*  -webkit-animation-duration: 10 s;*/
@@ -106,15 +105,7 @@ body{
   }
 }
 
-
-/* math for degree intervals
-  deg_between = 315 - 45 = 270
-  deg_between/2 = 135
-  at_fifty_perc = 315-135
-  at_fifty_perc/2 = 67.5
-*/
-
-/*@keyframes shooting-star{
+@keyframes shooting-star{
   0%{
     transform: scaleX(0.5) rotate(20deg);
     -webkit-filter: drop-shadow(20px 6px 10px white);
@@ -156,7 +147,7 @@ body{
     -moz-filter: drop-shadow(0px 0px 10px white);
     filter: drop-shadow(0px 0px 10px white);
   }
-}*/
+}
 
 /*.star{
   position: relative;
