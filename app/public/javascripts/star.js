@@ -18,7 +18,7 @@ $(document).ready(function(){
   });
 
 
-  //test code 1
+  //test code 1 - on click star animation starts -> animation working
 
   $(".submit").on("click", function(){
     var x_cord;
@@ -52,6 +52,16 @@ $(document).ready(function(){
   });
 
   //end test code 1
+
+  //test code 4 - when checkbox clicked want to generate star and move it to position in database;
+
+  // $(".complete").on("change", function(){
+  //   if($(this).is(':checked')){
+  //     console.log("Hello");
+  //   }
+  // });
+
+  //end test code 4
 
   //test code 2 - changes into a red circle and expands 
 
