@@ -53,13 +53,17 @@ $(document).ready(function(){
 
   //end test code 1
 
-  //test code 4 - when checkbox clicked want to generate star and move it to position in database;
+  //test code 4 - when checkbox clicked want to generate star and move it to x and y positions specified in database;
 
-  // $(".complete").on("change", function(){
-  //   if($(this).is(':checked')){
-  //     console.log("Hello");
-  //   }
-  // });
+
+  // testing for "hello" below - works if have form on page but not yet with newly created task
+
+  $(".complete").change(function(){
+    if($(this).prop('checked')){
+      console.log("Hello");
+    }
+  });
+
 
   //end test code 4
 
