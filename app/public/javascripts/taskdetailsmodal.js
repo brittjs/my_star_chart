@@ -180,7 +180,7 @@ $(function() {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        // alert('Task was updated successfully.');
+                        alert('Task was updated successfully.');
 
                         $("#myModal").modal('hide');
                         reloadTasks(userId);
@@ -209,7 +209,7 @@ $(function() {
               success: function(data) {
                         console.log('Star was inserted successfully');
                         console.log(data);
-                        // alert('Task was inserted successfully.');
+                        alert('Task was inserted successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
