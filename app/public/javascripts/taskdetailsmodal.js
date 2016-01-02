@@ -14,8 +14,8 @@ $(function() {
 
       //  var userId = 2;
       var userId = $('div#userId').attr('data-id');
-      console.log("$('div#userId').attr('data-id')");
-      console.log(userId);
+      // console.log("$('div#userId').attr('data-id')");
+      // console.log(userId);
 
 
       // ===========================================================
@@ -157,11 +157,40 @@ $(function() {
        //   ... NOT TRIGGERED BY "Complete" Button on Task Details modal
        //
        // ---------------------------------------------------------------
+
        if ($(this).attr("id") === "taskComplete") {
 
           userId = $('div#userId').attr('data-id');
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
+
+          var taskId = $('div.details').attr("id");
+          var task = findByTaskId(taskId);
+          console.log(task);
+          task.completed = true;
+          $(".complete").prop('checked', task.completed);
+
+          // AJAX call to  POST data to server
+          
+          $.ajax({
+              type: "PUT",
+              url:  'users/' + userId + '/tasks/' + task.id,
+              contentType: "application/json",
+              data: JSON.stringify(task),
+              success: function(data) {
+                        console.log('Task was updated successfully');
+                        console.log(data);
+                        // alert('Task was updated successfully.');
+
+                        $("#myModal").modal('hide');
+                        reloadTasks(userId);
+
+                      },
+              failure: function ( jqXHR, textStatus, errorThrown ) {
+                       console.log(jqXHR.responseText);
+                       alert(jqXHR.responseText);
+              }
+          });
 
           star.TaskId = $('div.details').attr("id");
 
@@ -180,40 +209,15 @@ $(function() {
               success: function(data) {
                         console.log('Star was inserted successfully');
                         console.log(data);
-                        alert('Task was inserted successfully.');
+                        // alert('Task was inserted successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
                        alert(jqXHR.responseText);
                      }
            });
-
-          task.id = $('div.details').attr("id");
-          task.completed = true;
-
-          // AJAX call to  POST data to server
-          $.ajax({
-              type: "PUT",
-              url:  'users/' + userId + '/tasks/' + task.id,
-              contentType: "application/json",
-              data: JSON.stringify(task),
-              success: function(data) {
-                        console.log('Task was updated successfully');
-                        console.log(data);
-                        alert('Task was updated successfully.');
-
-                        $("#myModal").modal('hide');
-                        reloadTasks(userId);
-
-                      },
-              failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
-                       alert(jqXHR.responseText);
-              }
-          });
-
-       }
-
+       } 
+    
     });
 
   }

@@ -14,8 +14,8 @@ $(function() {
 
       // var userId = 2;     // FIX THIS !!
       var userId = $('div#userId').attr('data-id');
-      console.log("$('div#userId').attr('data-id')");
-      console.log(userId);
+      // console.log("$('div#userId').attr('data-id')");
+      // console.log(userId);
 
 
       // ===========================================================
