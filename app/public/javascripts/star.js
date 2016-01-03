@@ -58,11 +58,52 @@ $(document).ready(function(){
 
   // testing for "hello" below - works if have form on page but not yet with newly created task
 
-  $(".complete").change(function(){
-    if($(this).prop('checked')){
-      console.log("Hello");
-    }
-  });
+  // $(".complete").on("change",function(){
+  //   if($(this).prop('checked')){
+  //     console.log("Hello");
+  //   }
+  // });
+
+  //animation for user having task id 25 with test x and y cords
+  
+  // $(".tasks li #25.complete").on("change",function(){
+  //   if($(".tasks li #25.complete").prop('checked')){
+  //     //want to perform a get request for star with that specific task id
+  //     //users/userId/tasks/taskId/stars
+  //     //eg. users/6/tasks/25/stars
+  //     //still have to find out how to get taskId
+  //     $.get('users/' + userId + '/tasks' + taskId + '/stars', function(stars){
+  //       var x_cord;
+  //       var y_cord;
+
+  //       var stars = [
+  //         { x_cord: 150, y_cord: 150 },
+  //         { x_cord: 200, y_cord: 200 },
+  //         { x_cord: 300, y_cord: 300 },
+  //         { x_cord: 242, y_cord: 350}
+  //       ];
+
+  //       var div = $("<div>").addClass("new-star-container");
+  //       var addDiv = $("#basebox").append(div);
+  //       var newStar = $("<div>").addClass("new-star");
+  //       var addStar = div.append(newStar);
+
+  //       setTimeout(function(){
+  //         var eachStar = $(".new-star-container").each(function(index, star){
+  //           // console.log(star);
+  //           $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord});
+  //         });  
+  //       }, 1000)
+
+  //       setTimeout(function(){
+  //         $(".new-star").each(function(index, astar){
+  //           // console.log(astar);
+  //           $(astar).addClass("star-changes");
+  //         });  
+  //       }, 1500)
+  //     });
+  //   }
+  // });
 
 
   //end test code 4
