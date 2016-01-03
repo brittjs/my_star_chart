@@ -130,7 +130,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   width: 50px;
 }
 
-.middleRow {
+.middleColumn {
   display: flex;
   flex-direction: column;
 }
@@ -139,7 +139,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   min-width: 70vh;
 }
 
-.middleRow .friends {
+.middleColumn .friends {
   border:5px solid goldenrod;
   display: flex;
   font-size: 2.5vh;
@@ -159,7 +159,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   font-size: 3.5vh;
 }
 
-.endRow{
+.endColumn{
   display: flex;
   flex-direction: column;
 }
