@@ -39,38 +39,30 @@ function reloadTasks(userId) {
         'id':   task.id.toString() 
         }).prop('checked', task.completed);
 
+      //changes completed flag to true if checkbox is checked
       $checkBox.change(function () {
-          var taskId = $(this).attr("id");
-          var task = findByTaskId(taskId);
-          console.log(task);
-          task.completed = true;
-          $(".complete").prop('checked', task.completed);
+        var taskId = $(this).attr("id");
+        var task = findByTaskId(taskId);
+        task.completed = true;
 
-          // AJAX call to  POST data to server
-          
-          $.ajax({
-              type: "PUT",
-              url:  'users/' + userId + '/tasks/' + task.id,
-              contentType: "application/json",
-              data: JSON.stringify(task),
-              success: function(data) {
-                        console.log('Task was updated successfully');
-                        console.log(data);
-                        alert('Task was updated successfully.');
-
-                        $("#myModal").modal('hide');
-                        reloadTasks(userId);
-
-                      },
-              failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
-                       alert(jqXHR.responseText);
-              }
-          });
-        console.log("task " + task.id + " updated");
-      })
-
-      //still need to change flag to complete if checkbox is clicked checked                
+        // AJAX call to  POST data to server
+        
+        $.ajax({
+            type: "PUT",
+            url:  'users/' + userId + '/tasks/' + task.id,
+            contentType: "application/json",
+            data: JSON.stringify(task),
+            success: function(data) {
+                      console.log('Task was updated successfully');
+                      console.log(data);
+                      alert('Task was updated successfully.');
+                    },
+            failure: function ( jqXHR, textStatus, errorThrown ) {
+                     console.log(jqXHR.responseText);
+                     alert(jqXHR.responseText);
+            }
+        });
+      })                
 
       $taskLi.append($taskAnchor, $checkBox);
 
