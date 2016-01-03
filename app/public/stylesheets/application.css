@@ -96,7 +96,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   padding-right: 40px;
   padding-left: 20px;
   border:5px solid goldenrod;
-  max-width: 95vh;
+  max-width: 80vh;
   font-size: 2.5vh;
   flex: 1;
 }
@@ -133,10 +133,12 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .middleColumn {
   display: flex;
   flex-direction: column;
+  min-width: 70vh;
 }
 
 .addTask {
-  min-width: 70vh;
+  display: flex;
+  justify-content: space-between;
 }
 
 .middleColumn .friends {
@@ -146,17 +148,28 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   padding-left: 20px;
   padding-bottom: 8px;
   flex-direction: column;
+  min-width: 85vh;
 }
 
 .listOfFriends {
   font-size: 3vh;
 }
 
+.btn-circle {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  padding-left: 10px;
+  padding-top: 4px;
+  /*line-height: 1.428571429;*/
+  border-radius: 17px;
+  font-size: 2.5vh;
+}
+
 #createTaskButton {
-  background-color: goldenrod;
-  border-color: goldenrod;
-  width: 100%;
-  font-size: 3.5vh;
+  margin-top: 18px;
+  margin-right: -10px;
+  font-size: 2.5vh;
 }
 
 .endColumn{

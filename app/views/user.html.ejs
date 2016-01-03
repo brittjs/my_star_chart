@@ -9,7 +9,14 @@
 
 <div class="contentContainer">
   <div class="listOfTasks">
+    
+    <div class="addTask">
     <h1>Today's tasks...</h1>
+    <!-- Add task button and add task modal-->
+      <button type="button" class="btn btn-default btn-circle" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
+        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+      </button>
+    </div> 
 
     <ul class="tasks">
       <!-- tasklist goes here -->
@@ -19,17 +26,9 @@
     <% include partials/__taskeditmodal %>
 
     <div class="middleColumn">
-      <div class="addTask">
-      <!-- Add task button and add task modal-->
-      <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Task
-      </button>
-      <br>
-        <% include partials/__taskcreatemodal %>
-      <br>
-        <div class="friends">
-          <% include partials/__friends %>
-        </div>
+      <% include partials/__taskcreatemodal %>
+      <div class="friends">
+        <% include partials/__friends %>
       </div>
     </div>
 
