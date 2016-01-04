@@ -28,13 +28,13 @@ $(function() {
       //   Function to format a date object for a date input
       //   from http://stackoverflow.com/a/13052187/2141998
       //
-      // ============================================================  
+      // ============================================================
 
       Date.prototype.toDateInputValue = (function () {
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
         return local.toJSON().slice(0,10);
-      }); 
+      });
 
       // ===========================================================
       //
