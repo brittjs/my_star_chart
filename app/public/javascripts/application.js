@@ -89,7 +89,7 @@ $(function() {
         //
         // ============================================================
 
-        var userId = $('div#userId').attr('data-id');
+        var userId = $('div#userId').data('id');
         console.log('inside application.js  line 70');
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
