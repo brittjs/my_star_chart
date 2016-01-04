@@ -66,6 +66,17 @@ $(function() {
   //   Trap add friend click and open add friend modal
   //
   // ============================================================
+  // TODO: find where I put this code because it does seem to be working, haha
+
+
+
+  // ===========================================================
+  //
+  //
+  //   Trap add button click and search users table for that email address and create a new friendship between user and found user
+  //
+  // ============================================================
+
 
 
 }
