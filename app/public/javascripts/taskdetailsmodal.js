@@ -167,9 +167,8 @@ $(function() {
 
           star.userId = userId;   /// &&&
 
-          star.x_cord = 81; //this should be a random number betw
-          star.y_cord = 131;
-
+          star.x_cord = getRandomInt(1, 100);
+          star.y_cord = getRandomInt(1, 100);
 
           // AJAX call to  POST star to server
           $.ajax({
