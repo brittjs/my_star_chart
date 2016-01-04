@@ -62,7 +62,9 @@ function reloadTasks(userId) {
                      alert(jqXHR.responseText);
             }
         });
-      })                
+      });
+
+                      
 
       $taskLi.append($taskAnchor, $checkBox);
 
