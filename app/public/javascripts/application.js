@@ -7,39 +7,63 @@
 //
 // ============================================================
 
+var allTasks; // This needs to remain in the global scope, please do not move!
+
 function reloadTasks(userId) {
 
   $(".tasks").empty();
 
   $.get('users/' + userId + '/tasks', function(tasks){
 
+    allTasks = tasks;
     // find the <ul>
     var $taskUl = $('ul.tasks');
 
     var $taskLi;
 
     // iterate thru returned array and load <li>s
-    tasks.forEach(function(task) {
+    allTasks.forEach(function(task) {
 
       $taskLi = $('<li>');
 
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
       $taskAnchor = $('<a>').text(task.description)
-                           .attr({
-                                  'id':   task.id.toString(),
-                                  'href': '',
-                                  'data-toggle': "modal",
-                                  'data-target': "#myModal"
-                                });
+                               .attr({
+                                      'id':   task.id.toString(),
+                                      'href': '',
+                                      'data-toggle': "modal",
+                                      'data-target': "#myModal"
+                                    });
+      $checkBox = $('<input type="checkbox" class="complete">').attr({
+        'id':   task.id.toString() 
+        }).prop('checked', task.completed);
 
-      $taskLi.append($taskAnchor);
+      // $("#complete").prop('checked', task.completed); 
+
+      //still need to change flag to complete if checkbox is clicked checked                
+
+      $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
+
     });
 
   });
 }
+
+  // ===========================================================
+  //
+  //
+  //   Function to find task by id
+  //
+  // ============================================================
+
+  function findByTaskId(task_id) {
+    return $.grep(allTasks, function( n ) {
+      return n.id === parseInt(task_id);
+    })[0]; 
+  };
 
 
 
@@ -70,39 +94,7 @@ $(function() {
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
-        var allTasks;
-
-        $.get('users/' + userId + '/tasks', function(tasks){
-
-          // find the <ul>
-          var $taskUl = $('ul.tasks');
-
-          var $taskLi;
-
-          allTasks = tasks;
-
-          // iterate thru returned array and load <li>s
-          tasks.forEach(function(task) {
-
-             $taskLi = $('<li>');
-
-             // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
-             $taskAnchor = $('<a>').text(task.description)
-                                   .attr({
-                                          'id':   task.id.toString(),
-                                          'href': '',
-                                          'data-toggle': "modal",
-                                          'data-target': "#myModal"
-                                        });
-
-             $taskLi.append($taskAnchor);
-
-             $taskUl.append($taskLi);
-          });
-
-
-        });
+        reloadTasks(userId);
 
 
         // ===========================================================
@@ -117,12 +109,22 @@ $(function() {
           // load user's task data into modal
 
           event.preventDefault();
+          var thisTask = findByTaskId(this.id);
+          console.log(thisTask);
+          console.log(thisTask.due_date);
+          $('.taskDetails').html(
+            "Task: " + thisTask.description + "<br/>" + 
+            "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
+            "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
+            "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
+            "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
+            "Priority: " + thisTask.priority  + "<br/>"
+            );
+          $('div.details').attr({
+            'id': $(this).attr("id")
+          });  
 
-          $('div.details').text( $( this ).text() ).attr({
-                                                        'id':   $(this).attr("id")
-                                                        });
         });
-
 
    } // end of user's Page  !!!
 

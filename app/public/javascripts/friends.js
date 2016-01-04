@@ -55,7 +55,7 @@ $(function() {
           var div = $("<div>").addClass("star-container");
           $("#friendstars").append(div);
           $("<div>").addClass("star").appendTo(div);
-          $(div).css({"left": star.x_cord, "top": star.y_cord});
+          $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
         });
       });
    });

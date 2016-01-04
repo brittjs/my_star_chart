@@ -27,25 +27,13 @@ $(function() {
       //
       // ============================================================
 
-      $('#editTask').on('click', function() {
+      $("#editTask").on('click', function() {
         var taskId = $('div.details').attr("id");
-        console.log("inside prepopulation edit form");
-        console.log(taskId);
-        $(".taskId").attr({
-                          'id':   taskId
-                          });
-
-        //  Prepopulate Edit form
-        allTasks.forEach(function(task) {
-          if (task.id === taskId) {
-            $("#Edescription").val(task.description);
-            $("#Edue_date").val(task.due_date);
-            $("#Epriority").val(task.priority);
-            $("#Erecurring").val(task.recurring);
-          }
-
-        });
-
+        var task = findByTaskId(taskId);
+        $("#Edescription").val(task.description);
+        $("#Edue_date").val(new Date(task.due_date).toDateInputValue());
+        $("#Epriority").val(task.priority);
+        $("#ERecurring").prop('checked', task.recurring); 
       });
 
 
@@ -118,7 +106,7 @@ $(function() {
           $("#myModal").modal('hide');
           reloadTasks(userId);
 
-          console.log('boo');
+          // console.log('boo');
 
         }
 
@@ -133,7 +121,10 @@ $(function() {
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
-          task.id = $('div.details').attr("id");
+          var taskId = $('div.details').attr("id");
+          // console.log(taskId);
+          var task = findByTaskId(taskId);
+          console.log(task);
           task.postponed = true;
 
           // AJAX call to  POST data to server
