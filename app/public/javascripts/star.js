@@ -1,14 +1,11 @@
 $(document).ready(function(){
 
-  var userId = $('div#userId').attr('data-id');
-  console.log("$('div#userId').attr('data-id')");
+  var userId = $('div#userId').data('id');
+  console.log("$('div#userId').data('id')");
   console.log(userId);
 
   $.get('users/' + userId + '/stars', function(stars){
     stars.forEach(function(star){
-      // console.log(star);
-      // var x_cord;
-      // var y_cord;
       var div = $("<div>").addClass("star-container");
       $("#basebox").append(div);
       $("<div>").addClass("star").appendTo(div);

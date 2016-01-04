@@ -44,10 +44,11 @@ $(function() {
       //
       // ============================================================
 
-      $("#saveEditButton").on('click', function(e) {
 
-        e.preventDefault();
+      $("#saveEditButton").on('click', function(event) {
 
+
+        event.preventDefault();
         var taskId = $('div.details').attr("id");
         var task = findByTaskId(taskId);
         task.description = $("#Edescription").val();
@@ -68,11 +69,15 @@ $(function() {
                 success: function(data) {
                           console.log("#saveEditButton click ajax PUT was suceessful.");
                           console.log("data returned ", data);
-                          $("#editTaskModal").modal('hide');
+
                           $("#myModal").modal('hide');
+                          $('#editTaskForm').trigger("reset");
+                          $("#editTaskModal").modal('hide');
                           reloadTasks(userId);
+
                         },
                 error: function (xhr, ajaxOptions, thrownError) {
+
                           console.log("#saveEditButton click ajax PUT failed.");
                           console.log("status = " + xhr.status);
                           console.log("xhr.responseText = " + xhr.responseText);

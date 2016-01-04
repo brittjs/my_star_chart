@@ -13,8 +13,8 @@ $(function() {
   if (usersPage || homePage) {
 
       //  var userId = 2;
-      var userId = $('div#userId').attr('data-id');
-      console.log("$('div#userId').attr('data-id')");
+      var userId = $('div#userId').data('id');
+      console.log("$('div#userId').data('id')");
       console.log(userId);
 
 
@@ -73,7 +73,7 @@ $(function() {
        // $("#deleteTask").on('click', function() {
 
           taskId = $('div.details').attr("id");
-          userId = $('#userId').attr("data-id");
+          userId = $('#userId').data("id");
           console.log("userId");
           console.log(userId);
           console.log("trying to delete a task");
@@ -117,7 +117,7 @@ $(function() {
        // ---------------------------------------------------------------
        if ($(this).attr("id") === "procrastinate") {
 
-          userId = $('div#userId').attr('data-id');
+          userId = $('div#userId').data('id');
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
@@ -159,7 +159,7 @@ $(function() {
        // ---------------------------------------------------------------
        if ($(this).attr("id") === "taskComplete") {
 
-          userId = $('div#userId').attr('data-id');
+          userId = $('div#userId').data('id');
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
@@ -167,9 +167,8 @@ $(function() {
 
           star.userId = userId;   /// &&&
 
-          star.x_cord = 81;
-          star.y_cord = 131;
-
+          star.x_cord = getRandomInt(1, 100);
+          star.y_cord = getRandomInt(1, 100);
 
           // AJAX call to  POST star to server
           $.ajax({
