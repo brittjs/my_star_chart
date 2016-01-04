@@ -1,23 +1,69 @@
-<h1>Friends</h1>
-<ul class ="friendslist"> 
+<h1>Friends</h1> 
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFriendModal" id="addFriendButton">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
+
+<ul class ="listOfFriends"> 
 </ul>
 
-
-<!-- Start of modal -->
+<!-- Start of friend detail modal -->
 <div class="modal fade" id="showFriendModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel"><span id="friend-details"></span>'s Starchart</h4>
+      </div>
+
+      <div class="modal-body">
+        <div id="friendstars"></div>
+      </div>
       
+    </div>
+  </div>
+</div>
+<!-- End of modal -->
+
+<!-- Start of add friend modal -->
+<div class="modal fade" id="addFriendModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Friend</h4>
+      </div>
+
       <div class="modal-body">
 
-        <span id="friend-details"></span>'s Starchart
-        <div id="friendstars"></div>
+        <form id="addFriendForm" action="" method="post">
+        
+          <fieldset class="form-group">
+            <label for="addByEmail">Add by email address:</label>
+            <input type="text" class="form-control" id="addByEmail" name="addByEmail" />
+            <br>
+          </fieldset>   
+
+          <input type="submit" class="btn btn-primary" id="createButton" value ="Add">
+        </form>
 
       </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="taskComplete">
+          Add
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Cancel
+        </button>
+      </div> -->
+
     </div>
   </div>
 </div>

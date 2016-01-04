@@ -23,7 +23,7 @@ $(function() {
 
   $.get('/users/' + userId + '/friends').then(function(friends)
   {
-    var friendslist = $('ul.friendslist');
+    var friendslist = $('ul.listOfFriends');
     var friendsLi = friends.map(function (friend)
     {
       return $('<li>').attr({
@@ -39,11 +39,11 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap friend list item click and open modal Bootstrap window
+  //   Trap friend list item click and open friend detail modal
   //
   // ============================================================
 
-  $('ul.friendslist').on('click', 'a', function(e) {
+  $('ul.listOfFriends').on('click', 'a', function(e) {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
@@ -52,16 +52,32 @@ $(function() {
 
      $.get('users/' + friendId + '/stars', function(stars){
         stars.forEach(function(star){
-          console.log(star);
-          // var x_cord;
-          // var y_cord;
           var div = $("<div>").addClass("star-container");
           $("#friendstars").append(div);
           $("<div>").addClass("star").appendTo(div);
-          // var addStar = div.append(newStar);
           $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
         });
       });
    });
+
+  // ===========================================================
+  //
+  //
+  //   Trap add friend click and open add friend modal
+  //
+  // ============================================================
+  // TODO: find where I put this code because it does seem to be working, haha
+
+
+
+  // ===========================================================
+  //
+  //
+  //   Trap add button click and search users table for that email address and create a new friendship between user and found user
+  //
+  // ============================================================
+
+
+
 }
 });
