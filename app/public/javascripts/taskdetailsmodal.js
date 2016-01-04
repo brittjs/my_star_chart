@@ -134,9 +134,9 @@ $(function() {
               contentType: "application/json",
               data: JSON.stringify(task),
               success: function(data) {
-                        console.log('Task was updated successfully');
+                        console.log('Task was postponed');
                         console.log(data);
-                        alert('Task was updated successfully.');
+                        alert('Task was postponed');
 
                         $("#myModal").modal('hide');
                         reloadTasks(userId);
