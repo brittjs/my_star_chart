@@ -134,8 +134,7 @@ ul {
   max-width: 20%;
   font-size: 3vh;
   float: right;
-  margin: .67em;
-  margin-right: -20px;
+}
 
 #addFriendButton {
   background-color: goldenrod;
@@ -217,17 +216,10 @@ ul {
   width: 8vw;
 }
 
-
-.postponed{
-  color: goldenrod;
-  font-style: italic;
-
 #Epriority {
   width: 8vw;
 }
 
 #saveEditButton {
   margin-left: 8px;
-
 }
-
