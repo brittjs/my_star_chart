@@ -183,11 +183,11 @@ ul {
 }
 
 #recurring {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 #Erecurring {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 #postponed {
@@ -207,22 +207,17 @@ ul {
   float: right;
 }
 
-.formCheckboxes{
-  display: flex;
-  justify-content: flex-start;
-}
-
 .dueDateAndPriority {
   display: flex;
   justify-content: space-between;
 }
 
 .dueDateAndPriority #priority {
-  width: 8vw;
+  width: 16vw;
 }
 
 #Epriority {
-  width: 8vw;
+  width: 16vw;
 }
 
 #saveEditButton {
