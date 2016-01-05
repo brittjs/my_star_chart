@@ -135,12 +135,11 @@ app.use(reqlogger);
 
     if (this.isAuthenticated())
     {
-
       yield next;
     }
     else
     {
-      // console.log('is not authenticated');
+      //console.log('is not authenticated');
       this.redirect('/login');
     }
   });
