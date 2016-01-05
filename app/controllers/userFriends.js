@@ -18,7 +18,6 @@ module.exports = {
       console.log("The user with UserId = " + this.state.userId + " does not exist.");
       this.body = "The user with UserId = " + this.state.userId + " does not exist.";
     } else {
-      console.log(userFriends);
 
       // userFriends is an array of javascript objects
 
@@ -30,25 +29,35 @@ module.exports = {
 
       this.body = userFriends;
     }
-  // },  
+  },  
 
-  //   createFriendship: function *createFriendship(next) {
+  findUserByEmail: function * findUserByEmail(next) {  
+    foundUser = yield db.sequelize.models.User.findOne ({
+        where: {
+          email: "ashleyfisher@gmail.com"
+        }
+      });
+    console.log(foundUser);
+    yield next;
+  },  
 
-  //   var friendship = this.request.body;
+    createFriendship: function *createFriendship(next) {
 
-  //   //  should be able to replace the statement below with this ....
-  //   var newFriendship = yield db.sequelize.models.Friend.create(friendship);
+    // var friendship = this.request.body;
 
-  //   var newTask = yield db.sequelize.models.Friend.create({description: task.description,
-  //                                                due_date: task.due_date,
-  //                                                recurring: task.recurring,
-  //                                                completed: task.completed,
-  //                                                postponed: task.postponed,
-  //                                                priority:  task.priority,
-  //                                                FriendId:   this.state.userId});
+    // //  should be able to replace the statement below with this ....
+    // var newFriendship = yield db.sequelize.models.Friend.create(friendship);
+
+    // var newTask = yield db.sequelize.models.Friend.create({description: task.description,
+    //                                              due_date: task.due_date,
+    //                                              recurring: task.recurring,
+    //                                              completed: task.completed,
+    //                                              postponed: task.postponed,
+    //                                              priority:  task.priority,
+    //                                              FriendId:   this.state.userId});
      
-  //   this.body = newFriendship.dataValues;
+    // this.body = newFriendship.dataValues;
 
-  //   yield next;
+    yield next;
   }
 }

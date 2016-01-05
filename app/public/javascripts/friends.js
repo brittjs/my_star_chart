@@ -75,7 +75,16 @@ $(function() {
   //   Trap add button click and search users table for that email address and create a new friendship between user and found user
   //
   // ============================================================
+  $('#addFriendForm').on('submit', function(e) {
+    e.preventDefault();
 
+    var emailAddress = $("#addByEmail").val();
+
+    $.get('/users/search/'+emailAddress+'/'), function(user) {
+      var div = $("<div>").text(userName)
+
+    }
+  })
 
 
 }

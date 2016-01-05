@@ -1,9 +1,6 @@
 var koa = require('koa'),
     path = require('path'),
-// <<<<<<< HEAD
-    // views = require('koa-views'),
-// =======
-     config = require('config'),
+    config = require('config'),
     serve = require('koa-static'),
     koaPg = require('koa-pg'),
     session = require('koa-session'),
@@ -19,28 +16,11 @@ app.use(session(app));
 app.use(bodyParser());
 //configs are coming from config/default.js
 
-// <<<<<<< HEAD
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(function *(){
-//   // ignore favicon
-//   if (this.path === '/favicon.ico') return;
-
-//   console.log('this.session');
-//   console.log(this.session);
-
-//   // var n = this.session.views || 0;
-//   // this.session.views = ++n;
-// })
-
-// =======
-
 //intialize koa-static
 app.use(serve(config.publicfiles.path));
-
-
 
 //pulls in routers
 require('./app/routes')(app, passport);

@@ -94,7 +94,8 @@ app.use(reqlogger);
   // a user's friend(ship) paths
   router
     .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
-    // .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
+    .get('/users/search/:emailAddress/',          userFriendsCtrl.findUserByEmail)
+    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship);
     // .del('/users/:userId/friends/:friendshipId',  userFriendsCtrl.removeFriendship);
 
 
@@ -119,6 +120,15 @@ app.use(reqlogger);
         console.log('');
       }
       yield next;
+    // })
+    // .param("emailAddress", function*(emailAddress, next)
+    // {
+    //   if (emailAddress) { 
+    //     console.log('your search term is' + emailAddress)
+    //     // this.state.user = yield db.sequelize.models.User.findByEmail(emailAddress);
+    //     // this.state.email = emailAddress;
+    //   }
+    //   yield next;
     });
 
 //   // Require authentication for now
