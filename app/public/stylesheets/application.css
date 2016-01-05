@@ -117,6 +117,7 @@ ul {
   font-size: 3.5vh;
   float: right;
   margin: .67em;
+  margin-right: -20px;
 }
 
 #addFriendButton {
