@@ -21,6 +21,8 @@ function reloadTasks(userId) {
 
     var $taskLi;
 
+    // var $procrastinateSelector;
+
     // iterate thru returned array and load <li>s
     allTasks.forEach(function(task) {
 
@@ -46,6 +48,11 @@ function reloadTasks(userId) {
       $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
+
+      //for color change procrastinate:
+      if (task.postponed){
+        $taskAnchor.addClass("postponed");
+      }
 
     });
 
