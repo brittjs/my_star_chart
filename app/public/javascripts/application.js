@@ -39,7 +39,7 @@ function reloadTasks(userId) {
         'id':   task.id.toString() 
         }).prop('checked', task.completed);
 
-              // ===========================================================
+        // ===========================================================
         //
         //
         //   Use checklist to mark task as complete and create star
