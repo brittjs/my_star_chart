@@ -136,6 +136,21 @@ ul {
   margin: 1.1em;
 }
 
+#addFriendshipButton {
+  background-color: goldenrod;
+  border-color: goldenrod;
+  max-width: 20%;
+  font-size: 2.5vh;
+  float: right;
+  margin: 1.1em;
+  /*display: none;*/
+}
+
+.shown#addFriendshipButton {
+  display: inline-block;
+  margin-top: -7.5vh;
+}
+
 .left-title {
   float: left;
   color: white;

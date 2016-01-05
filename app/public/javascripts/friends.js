@@ -74,7 +74,10 @@ $(function() {
     $.get('/users/search/'+emailAddress+'/', function(user) {
       var div = $("<div>");
       $("#show-results").append(div);
-      $(div).html("Name: " + user.username + "<br>Email: " + user.email);
+      $(div).html("username: " + user.username + "<br>email: " + user.email);
+      $('#addFriendshipButton').addClass('shown');
+
+
     })
   })
 
