@@ -102,6 +102,7 @@ function reloadTasks(userId) {
                       console.log('Star was inserted successfully');
                       console.log(data);
                       alert('Task was inserted successfully.');
+                      location.reload();
                     },
             failure: function ( jqXHR, textStatus, errorThrown ) {
                      console.log(jqXHR.responseText);
