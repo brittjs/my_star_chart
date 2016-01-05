@@ -162,7 +162,7 @@ $(function() {
 
           userId = $('div#userId').attr('data-id');
           console.log("$('div#userId').attr('data-id')");
-          // console.log(userId);
+          console.log(userId);
 
           var taskId = $('div.details').attr("id");
           var task = findByTaskId(taskId);
@@ -194,7 +194,7 @@ $(function() {
 
           star.TaskId = $('div.details').attr("id");
 
-          star.userId = userId;   /// &&&
+          star.UserId = userId;   /// &&&
 
           star.x_cord = 81;
           star.y_cord = 131;

@@ -39,8 +39,17 @@ function reloadTasks(userId) {
         'id':   task.id.toString() 
         }).prop('checked', task.completed);
 
-      //changes completed flag to true if checkbox is checked
-      $checkBox.change(function () {
+              // ===========================================================
+        //
+        //
+        //   Use checklist to mark task as complete and create star
+        //
+        // ============================================================
+
+        $checkBox.change(function () {
+        console.log("LOOK HERE.");
+        var userId = $('div#userId').attr('data-id');
+        console.log(userId);
         var taskId = $(this).attr("id");
         var task = findByTaskId(taskId);
         task.completed = true;
@@ -62,9 +71,35 @@ function reloadTasks(userId) {
                      alert(jqXHR.responseText);
             }
         });
-      });
+      
 
-                      
+        var star = {};
+        star.TaskId = taskId;
+
+        star.UserId = userId;   /// &&&
+
+        star.x_cord = 81;
+        star.y_cord = 131;
+
+
+        // AJAX call to  POST star to server
+        $.ajax({
+            type: "POST",
+            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+            contentType: "application/json",
+            data: JSON.stringify(star),
+            success: function(data) {
+                      console.log('Star was inserted successfully');
+                      console.log(data);
+                      alert('Task was inserted successfully.');
+                    },
+            failure: function ( jqXHR, textStatus, errorThrown ) {
+                     console.log(jqXHR.responseText);
+                     alert(jqXHR.responseText);
+                   }
+         });
+      });
+                
 
       $taskLi.append($taskAnchor, $checkBox);
 
@@ -148,6 +183,8 @@ $(function() {
           });  
 
         });
+
+            
 
    } // end of user's Page  !!!
 
