@@ -6,7 +6,7 @@ module.exports = {
    return [
     queryInterface.bulkInsert('Users', [
       { username: "Ashley", pwd: '23456', email: 'ashleyfisher@gmail.com', githubId: '13425640' },
-      { username: "Stephanie", pwd: '12345', email: 'stephanybeaton@gmail.com', githubId: '8796670' },
+      { username: "StevenBeaton", pwd: '12345', email: 'stephanybeaton@gmail.com' },
       { username: "Tanner", pwd: '34567', email: 'tanneready@shaw.ca' },
       { username: "Lakshmi", pwd: '45678', email: 'lakshmikotteda@hotmail.com' },
       { username: "Brittany", pwd: '56789', email: 'brittanyjsee@gmail.com' }
