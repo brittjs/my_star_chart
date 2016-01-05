@@ -21,7 +21,9 @@ function reloadTasks(userId) {
 
     var $taskLi;
 
-    // var $procrastinateSelector;
+    var $checkBox;
+
+    var $taskAnchor;
 
     // iterate thru returned array and load <li>s
     allTasks.forEach(function(task) {
@@ -30,20 +32,37 @@ function reloadTasks(userId) {
 
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
-      $taskAnchor = $('<a>').text(task.description)
-                               .attr({
-                                      'id':   task.id.toString(),
-                                      'href': '',
-                                      'data-toggle': "modal",
-                                      'data-target': "#myModal"
-                                    });
-      $checkBox = $('<input type="checkbox" class="complete">').attr({
-        'id':   task.id.toString() 
-        }).prop('checked', task.completed);
+      if (!task.completed) {
+        $taskAnchor = $('<a>').text(task.description)
+                                 .attr({
+                                        'id':   task.id.toString(),
+                                        'href': '',
+                                        'data-toggle': "modal",
+                                        'data-target': "#myModal"
+                                      });
 
-      // $("#complete").prop('checked', task.completed); 
+        $checkBox = $('<input type="checkbox" class="complete">').attr({
+          'id':   task.id.toString()
+          }).prop('checked', task.completed);
+      } else {
+        $taskAnchor = $('<span>').text(task.description)
+                                 .attr({
+                                        'id':   task.id.toString(),
+                                      //  'data-toggle': "modal",
+                                      //  'data-target': "#myModal",
+                                        'disabled': "disabled"
+                                      });
 
-      //still need to change flag to complete if checkbox is clicked checked                
+        $checkBox = $('<input type="checkbox" class="complete" disabled>').attr({
+          'id':   task.id.toString()
+          }).prop('checked', task.completed);
+
+
+      }
+
+      // $("#complete").prop('checked', task.completed);
+
+      //still need to change flag to complete if checkbox is clicked checked
 
       $taskLi.append($taskAnchor, $checkBox);
 
@@ -69,7 +88,7 @@ function reloadTasks(userId) {
   function findByTaskId(task_id) {
     return $.grep(allTasks, function( n ) {
       return n.id === parseInt(task_id);
-    })[0]; 
+    })[0];
   };
 
 
@@ -120,7 +139,7 @@ $(function() {
           console.log(thisTask);
           console.log(thisTask.due_date);
           $('.taskDetails').html(
-            "Task: " + thisTask.description + "<br/>" + 
+            "Task: " + thisTask.description + "<br/>" +
             "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
             "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
             "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
@@ -129,7 +148,7 @@ $(function() {
             );
           $('div.details').attr({
             'id': $(this).attr("id")
-          });  
+          });
 
         });
 

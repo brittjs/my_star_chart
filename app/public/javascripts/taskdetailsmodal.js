@@ -33,7 +33,7 @@ $(function() {
         $("#Edescription").val(task.description);
         $("#Edue_date").val(new Date(task.due_date).toDateInputValue());
         $("#Epriority").val(task.priority);
-        $("#ERecurring").prop('checked', task.recurring); 
+        $("#ERecurring").prop('checked', task.recurring);
       });
 
 
@@ -103,8 +103,8 @@ $(function() {
 
           });
           //trying to reload tasks after delete is clicked
-          $("#myModal").modal('hide');
-          reloadTasks(userId);
+          // $("#myModal").modal('hide');
+          // reloadTasks(userId);
 
           // console.log('boo');
 
