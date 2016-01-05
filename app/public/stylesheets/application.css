@@ -23,7 +23,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .container{
   display: flex-inline;
   /*max-height: 100vh;*/
-  width: 200vh;
+  width: 170vh;
 }
 
 .skyContainer {
@@ -34,7 +34,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .skyImg {
   background-image: url(../images/nightsky.jpg);
   flex: 1;
-  height: 70vh;
+  height: 55vh;
 }
 
 .greeting {
@@ -88,7 +88,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .middleColumn {
   display: flex;
   flex-direction: column;
-  min-width: 90vh;
+  min-width: 70vh;
 }
 
 .addTask {
@@ -117,8 +117,7 @@ ul {
 }
 
 #createTaskButton {
-/*  margin-top: 25px;
-*/margin-right: 10px;
+  margin-right: 10px;
   font-size: 2.5vh;
   background-color: goldenrod;
   border-color: goldenrod;
@@ -149,13 +148,13 @@ ul {
 #twitterButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
 #facebookButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
 .complete {
