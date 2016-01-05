@@ -16,6 +16,9 @@ var router = new Router();
 
 router.get('/', indexCtrl.user);
 
+//following line - temporary route for testing stars
+router.get('/star', indexCtrl.star);
+
 router.get('/login', function* getLogin(next)
 {
   yield this.render('login');
@@ -82,14 +85,17 @@ app.use(reqlogger);
   router
     .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
 
- router
-    .get('/users/:userId/friends',                  userFriendsCtrl.getAllFriendsForUser);
-
   // a user's task's star paths
 
   // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
   router
     .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
+
+  // a user's friend(ship) paths
+  router
+    .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
+    // .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
+    // .del('/users/:userId/friends/:friendshipId',  userFriendsCtrl.removeFriendship);
 
 
   router

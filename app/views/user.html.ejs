@@ -11,8 +11,7 @@
   <div class="listOfTasks">
     
     <div class="addTask">
-    <h1>Today's tasks...</h1>
-    <!-- Add task button and add task modal-->
+    <h1 class="left-title">Today's tasks...</h1>
       <button type="button" class="btn btn-default btn-circle" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
         <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
       </button>
@@ -24,9 +23,9 @@
 
     <% include partials/__taskdetailsmodal %>
     <% include partials/__taskeditmodal %>
+    <% include partials/__taskcreatemodal %>
 
     <div class="middleColumn">
-      <% include partials/__taskcreatemodal %>
       <div class="friends">
         <% include partials/__friends %>
       </div>

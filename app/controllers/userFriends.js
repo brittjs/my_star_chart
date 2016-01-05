@@ -2,6 +2,11 @@ var db = require('../models/index.js');
 
 module.exports = {
 
+  // -------------------------------------------------------------
+  //
+  //     get list of friends for user
+  //
+  // -------------------------------------------------------------
   getAllFriendsForUser: function* getAllFriendsForUser(next) {
 
     user = this.state.user;
@@ -25,5 +30,25 @@ module.exports = {
 
       this.body = userFriends;
     }
+  // },  
+
+  //   createFriendship: function *createFriendship(next) {
+
+  //   var friendship = this.request.body;
+
+  //   //  should be able to replace the statement below with this ....
+  //   var newFriendship = yield db.sequelize.models.Friend.create(friendship);
+
+  //   var newTask = yield db.sequelize.models.Friend.create({description: task.description,
+  //                                                due_date: task.due_date,
+  //                                                recurring: task.recurring,
+  //                                                completed: task.completed,
+  //                                                postponed: task.postponed,
+  //                                                priority:  task.priority,
+  //                                                FriendId:   this.state.userId});
+     
+  //   this.body = newFriendship.dataValues;
+
+  //   yield next;
   }
 }

@@ -13,9 +13,9 @@ $(function() {
   if (usersPage || homePage) {
 
       //  var userId = 2;
-      var userId = $('div#userId').attr('data-id');
-      // console.log("$('div#userId').attr('data-id')");
-      // console.log(userId);
+      var userId = $('div#userId').data('id');
+      console.log("$('div#userId').data('id')");
+      console.log(userId);
 
 
       // ===========================================================
@@ -33,7 +33,7 @@ $(function() {
         $("#Edescription").val(task.description);
         $("#Edue_date").val(new Date(task.due_date).toDateInputValue());
         $("#Epriority").val(task.priority);
-        $("#ERecurring").prop('checked', task.recurring); 
+        $("#ERecurring").prop('checked', task.recurring);
       });
 
 
@@ -73,7 +73,7 @@ $(function() {
        // $("#deleteTask").on('click', function() {
 
           taskId = $('div.details').attr("id");
-          userId = $('#userId').attr("data-id");
+          userId = $('#userId').data("id");
           console.log("userId");
           console.log(userId);
           console.log("trying to delete a task");
@@ -103,8 +103,8 @@ $(function() {
 
           });
           //trying to reload tasks after delete is clicked
-          $("#myModal").modal('hide');
-          reloadTasks(userId);
+          // $("#myModal").modal('hide');
+          // reloadTasks(userId);
 
           // console.log('boo');
 
@@ -117,7 +117,7 @@ $(function() {
        // ---------------------------------------------------------------
        if ($(this).attr("id") === "procrastinate") {
 
-          userId = $('div#userId').attr('data-id');
+          userId = $('div#userId').data('id');
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
@@ -160,15 +160,38 @@ $(function() {
 
        if ($(this).attr("id") === "taskComplete") {
 
-          userId = $('div#userId').attr('data-id');
+          userId = $('div#userId').data('id');
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
-          var taskId = $('div.details').attr("id");
-          var task = findByTaskId(taskId);
-          console.log(task);
+
+          star.TaskId = $('div.details').attr("id");
+
+          star.UserId = userId;   /// &&&
+
+          star.x_cord = getRandomInt(1, 100);
+          star.y_cord = getRandomInt(1, 100);
+
+          // AJAX call to  POST star to server
+          $.ajax({
+              type: "POST",
+              url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+              contentType: "application/json",
+              data: JSON.stringify(star),
+              success: function(data) {
+                        console.log('Star was inserted successfully');
+                        console.log(data);
+                        alert('Task was inserted successfully.');
+                      },
+              failure: function ( jqXHR, textStatus, errorThrown ) {
+                       console.log(jqXHR.responseText);
+                       alert(jqXHR.responseText);
+                     }
+           });
+
+          task.id = $('div.details').attr("id");
           task.completed = true;
-          $(".complete").prop('checked', task.completed);
+          // $(".complete").prop('checked', task.completed);
 
           // AJAX call to  POST data to server
           

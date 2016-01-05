@@ -12,10 +12,9 @@ $(function() {
 
   if (usersPage || homePage) {
 
-      // var userId = 2;     // FIX THIS !!
-      var userId = $('div#userId').attr('data-id');
-      // console.log("$('div#userId').attr('data-id')");
-      // console.log(userId);
+      var userId = $('div#userId').data('id');
+      console.log("$('div#userId').data('id')");
+      console.log(userId);
 
 
       // ===========================================================
@@ -29,10 +28,11 @@ $(function() {
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
 
+
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
         var taskPriority = $("#priority").val();
-        var recurringCheckbox = $("#recurring").val();
+        var recurringCheckbox = $("#recurring").is(":checked");
 
         var myTask = {description: taskDescription,
          due_date: dueDate,
