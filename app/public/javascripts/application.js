@@ -125,6 +125,30 @@ $(function() {
 
         reloadTasks(userId);
 
+        // ===========================================================
+        //
+        //
+        //   Trap create Task button click ( cross icon)
+        //   ... and default due date to current date
+        //
+        // ============================================================
+        $('#createTaskButton').on('click', function(event) {
+          // populate the date field in the _taskcreatemodal.ejs template
+
+          var objToday = new Date();
+
+          var curYear = objToday.getFullYear();
+          var curDay  = objToday.getDate();
+          var curMonth = objToday.getMonth() + 1;
+
+          if (curMonth < 10) { curMonth = "0" + curMonth;}
+
+          if (curDay < 10) { curDay = "0" + curDay;}
+
+          var finalDate = curYear + "-" + curMonth + "-" + curDay;
+
+          $("#due_date").val(finalDate);
+        });
 
         // ===========================================================
         //
