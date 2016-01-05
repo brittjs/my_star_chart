@@ -45,7 +45,7 @@ function reloadTasks(userId) {
           'id':   task.id.toString()
           }).prop('checked', task.completed);
 
-                // ===========================================================
+        // ===========================================================
         //
         //
         //   Use checklist to mark task as complete and create star
@@ -61,7 +61,7 @@ function reloadTasks(userId) {
         task.completed = true;
 
         // AJAX call to  POST data to server
-        
+
         $.ajax({
             type: "PUT",
             url:  'users/' + userId + '/tasks/' + task.id,
@@ -77,7 +77,7 @@ function reloadTasks(userId) {
                      alert(jqXHR.responseText);
             }
         });
-      
+
 
         var star = {};
         star.TaskId = taskId;
@@ -135,7 +135,7 @@ function reloadTasks(userId) {
 
       $taskUl.append($taskLi);
 
-    
+
 
     });
 
@@ -240,7 +240,7 @@ $(function() {
 
         });
 
-            
+
 
    } // end of user's Page  !!!
 
