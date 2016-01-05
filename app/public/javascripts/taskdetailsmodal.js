@@ -121,7 +121,7 @@ $(function() {
           console.log("$('div#userId').attr('data-id')");
           console.log(userId);
 
-          var taskId = $('div.details').attr("id");
+          taskId = $('div.details').attr("id");
           // console.log(taskId);
           var task = findByTaskId(taskId);
           console.log(task);
@@ -167,8 +167,12 @@ $(function() {
 
           star.userId = userId;   /// &&&
 
-          star.x_cord = getRandomInt(1, 100);
-          star.y_cord = getRandomInt(1, 100);
+          var min = 1;
+          var max = 100;
+          star.x_cord = Math.floor(Math.random() * (max - min + 1)) + min;
+          star.y_cord = Math.floor(Math.random() * (max - min + 1)) + min;
+          // star.x_cord = getRandomInt(1, 100);
+          // star.y_cord = getRandomInt(1, 100);
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -188,7 +192,11 @@ $(function() {
            });
 
           task.id = $('div.details').attr("id");
+          task = findByTaskId(task.id);
           task.completed = true;
+
+          // all task fields must be passed to the server
+          // ... regardless of whether they were changed or not
 
           // AJAX call to  POST data to server
           $.ajax({
