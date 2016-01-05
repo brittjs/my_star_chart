@@ -217,5 +217,9 @@ ul {
 
 .postponed{
   color: goldenrod;
-  font-style: italic;
+  margin-left: 25px;
+}
+
+.complete_span_disabled.postponed{
+  color: #A8A8A8;
 }
