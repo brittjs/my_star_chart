@@ -154,6 +154,16 @@ ul {
   margin-right: 50px;
 }
 
+.complete_span_disabled {
+  /* color: #E8E8EE;*/
+  color: #D3D3D3;
+}
+
+.complete_checkbox_disabled {
+  color: white;
+  disabled: "disabled";
+}
+
 #recurring {
   margin-left: 50px;
 }
