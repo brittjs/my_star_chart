@@ -65,6 +65,9 @@ module.exports = {
                                     }
                             });
 
+    console.log("users");
+    console.log(users);
+
     yield this.render('user.html', users[0].dataValues);
 
 		yield next;
