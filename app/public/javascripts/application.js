@@ -112,7 +112,7 @@ function reloadTasks(userId) {
         });
 
         } else {
-        $taskAnchor = $('<span>').text(task.description)
+        $taskAnchor = $('<span class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
                                       //  'data-toggle': "modal",

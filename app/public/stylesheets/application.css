@@ -1,3 +1,7 @@
+body{
+  background-color: black;
+}
+
 #friendstars {
   background-image: url(../images/nightsky.jpg);
   min-width: 50%;
@@ -36,6 +40,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .greeting {
   font-size: 7vh;
   text-align: center;
+  color: white;
 }
 
 .contentContainer {
@@ -60,8 +65,8 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   padding: 0px;
 }
 
-.listOfTasks .tasks li {
-  /*margin-left: 30px;*/
+.taskAnchor {
+  margin-left: 25px;
 }
 
 .listOfTasksTable {
@@ -133,6 +138,7 @@ ul {
 
 .left-title {
   float: left;
+  color: white;
 }
 
 .endColumn{
