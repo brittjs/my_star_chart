@@ -28,6 +28,7 @@ $(function() {
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
 
+
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
         var taskPriority = $("#priority").val();
