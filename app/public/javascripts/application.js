@@ -33,7 +33,7 @@ function reloadTasks(userId) {
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
       if (!task.completed) {
-        $taskAnchor = $('<a>').text(task.description)
+        $taskAnchor = $('<a class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
                                         'href': '',
