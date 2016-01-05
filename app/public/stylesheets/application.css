@@ -46,7 +46,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .listOfTasks {
   padding: 8px;
-  padding-right: 40px;
+  /*padding-right: 10px;*/
   padding-left: 20px;
   border:5px solid goldenrod;
   max-width: 75vh;
@@ -56,16 +56,9 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .listOfTasks .tasks {
   font-size: 2.25vh;
-  /* list-style-type:none; */
+   list-style-type:none; 
   margin-left: 15px;
   padding: 0px;
-}
-
-.listOfTasks .tasks li{
-  font-size: 2.5vh;
-  margin: 0px;
-  /*remove bullets*/
-  list-style-type: none;
 }
 
 .listOfTasksTable {
@@ -93,6 +86,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .addTask {
   display: flex;
   justify-content: space-between;
+  /*padding-top: 10px;*/
 }
 
 ul {
@@ -114,33 +108,22 @@ ul {
   padding: 0px;
 }
 
-.btn-circle {
-  width: 34px;
-  height: 34px;
-  text-align: center;
-  padding-left: 8.5px;
-  padding-top: 4px;
-  /*line-height: 1.428571429;*/
-  border-radius: 17px;
-  font-size: 2.5vh;
-}
-
 #createTaskButton {
-  margin-top: 18px;
-  margin-right: -10px;
+/*  margin-top: 25px;
+*/margin-right: 10px;
   font-size: 2.5vh;
   background-color: goldenrod;
   border-color: goldenrod;
   max-width: 20%;
-  font-size: 3vh;
   float: right;
+  margin: 1.1em;
 }
 
 #addFriendButton {
   background-color: goldenrod;
   border-color: goldenrod;
   max-width: 20%;
-  font-size: 3vh;
+  font-size: 2.5vh;
   float: right;
   margin: 1.1em;
 }
