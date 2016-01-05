@@ -16,8 +16,8 @@ $(function() {
 
       // var userId = 2;
       var userId = $('div#userId').attr('data-id');
-      console.log("$('div#userId').attr('data-id')");
-      console.log(userId);
+      // console.log("$('div#userId').attr('data-id')");
+      // console.log(userId);
 
 
        /* taskeditmodal.js */
@@ -28,13 +28,13 @@ $(function() {
       //   Function to format a date object for a date input
       //   from http://stackoverflow.com/a/13052187/2141998
       //
-      // ============================================================  
+      // ============================================================
 
       Date.prototype.toDateInputValue = (function () {
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
         return local.toJSON().slice(0,10);
-      }); 
+      });
 
       // ===========================================================
       //
@@ -44,7 +44,11 @@ $(function() {
       //
       // ============================================================
 
-      $("#saveEditButton").on('click', function() {
+
+      $("#saveEditButton").on('click', function(event) {
+
+
+        event.preventDefault();
         var taskId = $('div.details').attr("id");
         var task = findByTaskId(taskId);
         task.description = $("#Edescription").val();
@@ -65,11 +69,19 @@ $(function() {
                 success: function(data) {
                           console.log("#saveEditButton click ajax PUT was suceessful.");
                           console.log("data returned ", data);
+
+                          $("#myModal").modal('hide');
+                          $('#editTaskForm').trigger("reset");
+                          $("#editTaskModal").modal('hide');
+                          reloadTasks(userId);
+
                         },
                 error: function (xhr, ajaxOptions, thrownError) {
+
                           console.log("#saveEditButton click ajax PUT failed.");
                           console.log("status = " + xhr.status);
                           console.log("xhr.responseText = " + xhr.responseText);
+                          alert(xhr.responseText);
                         }
             });
       });

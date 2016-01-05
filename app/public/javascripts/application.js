@@ -21,6 +21,10 @@ function reloadTasks(userId) {
 
     var $taskLi;
 
+    var $checkBox;
+
+    var $taskAnchor;
+
     // iterate thru returned array and load <li>s
     allTasks.forEach(function(task) {
 
@@ -28,24 +32,119 @@ function reloadTasks(userId) {
 
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
-      $taskAnchor = $('<a>').text(task.description)
-                               .attr({
-                                      'id':   task.id.toString(),
-                                      'href': '',
-                                      'data-toggle': "modal",
-                                      'data-target': "#myModal"
-                                    });
-      $checkBox = $('<input type="checkbox" class="complete">').attr({
-        'id':   task.id.toString() 
-        }).prop('checked', task.completed);
+      if (!task.completed) {
+        $taskAnchor = $('<a class="taskAnchor">').text(task.description)
+                                 .attr({
+                                        'id':   task.id.toString(),
+                                        'href': '',
+                                        'data-toggle': "modal",
+                                        'data-target': "#myModal"
+                                      });
 
-      // $("#complete").prop('checked', task.completed); 
+        $checkBox = $('<input type="checkbox" class="complete">').attr({
+          'id':   task.id.toString()
+          }).prop('checked', task.completed);
 
-      //still need to change flag to complete if checkbox is clicked checked                
+        // ===========================================================
+        //
+        //
+        //   Use checklist to mark task as complete and create star
+        //
+        // ============================================================
+
+        $checkBox.change(function () {
+        console.log("LOOK HERE.");
+        var userId = $('div#userId').attr('data-id');
+        console.log(userId);
+        var taskId = $(this).attr("id");
+        var task = findByTaskId(taskId);
+        task.completed = true;
+
+        // AJAX call to  POST data to server
+
+        $.ajax({
+            type: "PUT",
+            url:  'users/' + userId + '/tasks/' + task.id,
+            contentType: "application/json",
+            data: JSON.stringify(task),
+            success: function(data) {
+                      console.log('Task was updated successfully');
+                      console.log(data);
+                      alert('Task was updated successfully.');
+                    },
+            failure: function ( jqXHR, textStatus, errorThrown ) {
+                     console.log(jqXHR.responseText);
+                     alert(jqXHR.responseText);
+            }
+        });
+
+
+        var star = {};
+        star.TaskId = taskId;
+
+        star.UserId = userId;   /// &&&
+
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        star.x_cord = getRandomInt(1, 100);;
+        star.y_cord = getRandomInt(1, 100);;
+
+
+        // AJAX call to  POST star to server
+        $.ajax({
+            type: "POST",
+            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+            contentType: "application/json",
+            data: JSON.stringify(star),
+            success: function(data) {
+                      console.log('Star was inserted successfully');
+                      console.log(data);
+                      alert('Task was inserted successfully.');
+                      location.reload();
+                    },
+            failure: function ( jqXHR, textStatus, errorThrown ) {
+                     console.log(jqXHR.responseText);
+                     alert(jqXHR.responseText);
+                   }
+         });
+        });
+
+        } else {
+        $taskAnchor = $('<span class="taskAnchor">').text(task.description)
+                                 .attr({
+                                        'id':   task.id.toString(),
+                                      //  'data-toggle': "modal",
+                                      //  'data-target': "#myModal",
+                                      //  'disabled': "disabled"
+                                      });
+
+        $taskAnchor.addClass("complete_span_disabled");
+
+        $checkBox = $('<input type="checkbox" class="complete complete_checkbox_disabled" disabled>').attr({
+          'id':   task.id.toString()
+          }).prop('checked', task.completed);
+
+
+      }
+
+
+      //for color change upon clicking procrastinate button:
+      if (task.postponed){
+        $taskAnchor.addClass("postponed");
+      }
+
+
+      // $("#complete").prop('checked', task.completed);
+
+
 
       $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
+
+
 
     });
 
@@ -62,7 +161,7 @@ function reloadTasks(userId) {
   function findByTaskId(task_id) {
     return $.grep(allTasks, function( n ) {
       return n.id === parseInt(task_id);
-    })[0]; 
+    })[0];
   };
 
 
@@ -89,13 +188,37 @@ $(function() {
         //
         // ============================================================
 
-        var userId = $('div#userId').attr('data-id');
+        var userId = $('div#userId').data('id');
         console.log('inside application.js  line 70');
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
         reloadTasks(userId);
 
+        // ===========================================================
+        //
+        //
+        //   Trap create Task button click ( cross icon)
+        //   ... and default due date to current date
+        //
+        // ============================================================
+        $('#createTaskButton').on('click', function(event) {
+          // populate the date field in the _taskcreatemodal.ejs template
+
+          var objToday = new Date();
+
+          var curYear = objToday.getFullYear();
+          var curDay  = objToday.getDate();
+          var curMonth = objToday.getMonth() + 1;
+
+          if (curMonth < 10) { curMonth = "0" + curMonth;}
+
+          if (curDay < 10) { curDay = "0" + curDay;}
+
+          var finalDate = curYear + "-" + curMonth + "-" + curDay;
+
+          $("#due_date").val(finalDate);
+        });
 
         // ===========================================================
         //
@@ -113,7 +236,7 @@ $(function() {
           console.log(thisTask);
           console.log(thisTask.due_date);
           $('.taskDetails').html(
-            "Task: " + thisTask.description + "<br/>" + 
+            "Task: " + thisTask.description + "<br/>" +
             "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
             "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
             "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
@@ -122,9 +245,11 @@ $(function() {
             );
           $('div.details').attr({
             'id': $(this).attr("id")
-          });  
+          });
 
         });
+
+
 
    } // end of user's Page  !!!
 

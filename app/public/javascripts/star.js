@@ -214,4 +214,67 @@ $(document).ready(function(){
   //   }, 1000)
   // }); 
 
+
+//after merge conflicts - from master:
+
+  var str = window.location.pathname;
+
+  var usersPage = str.match(/^\/view$/);
+
+  var homePage = str.match(/^\/$/);
+
+
+  if (usersPage || homePage) {
+
+
+
+      var userId = $('div#userId').data('id');
+      console.log("$('div#userId').data('id')");
+      console.log(userId);
+
+      $.get('users/' + userId + '/stars', function(stars){
+        stars.forEach(function(star){
+          var div = $("<div>").addClass("star-container");
+          $("#basebox").append(div);
+          $("<div>").addClass("star").appendTo(div);
+          // var addStar = div.append(newStar);
+          $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+        });
+      });
+
+
+      //test code 1
+
+      $(".submit").on("click", function(){
+        var x_cord;
+        var y_cord;
+
+        var stars = [
+          { x_cord: 150, y_cord: 150 },
+          { x_cord: 200, y_cord: 200 },
+          { x_cord: 300, y_cord: 300 },
+          { x_cord: 242, y_cord: 350}
+        ];
+
+        var div = $("<div>").addClass("new-star-container");
+        var addDiv = $("#basebox").append(div);
+        var newStar = $("<div>").addClass("new-star");
+        var addStar = div.append(newStar);
+
+        setTimeout(function(){
+          var eachStar = $(".new-star-container").each(function(index, star){
+            // console.log(star);
+            $(star).css({"left": stars[index].x_cord, "top": stars[index].y_cord});
+          });
+        }, 1000)
+
+        setTimeout(function(){
+          $(".new-star").each(function(index, astar){
+            // console.log(astar);
+            $(astar).addClass("star-changes");
+          });
+        }, 1500)
+      });
+
+   }
 });

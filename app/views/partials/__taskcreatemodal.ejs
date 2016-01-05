@@ -14,7 +14,7 @@
         
           <fieldset class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" id="description" rows="2" name="description" placeholder="Task description..."></textarea>
+            <input type ="text" minlength="5" maxlength="50" class="form-control" id="description" rows="2" name="description" placeholder="Task description..."></input>
             <br>
             <div class="dueDateAndPriority">
               <label for="due_date">Due Date:</label>
@@ -26,13 +26,12 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-              </select>  
-            </div>
-            <br>
-            <div class="formCheckboxes">
+              </select>
               <label for="recurring">Recurring:</label>
-              <input type="checkbox" name="recurring" id="recurring">
+              <input type="checkbox" name="recurring" id="recurring">  
             </div>
+            
+            
           </fieldset>   
 
           <input type="submit" class="btn btn-primary" id="createButton">
