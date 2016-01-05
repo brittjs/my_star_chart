@@ -127,9 +127,6 @@ $(function() {
           console.log(task);
           task.postponed = true;
 
-          //ask for date prompt
-
-
           // AJAX call to  POST data to server
           $.ajax({
               type: "PUT",
@@ -138,11 +135,10 @@ $(function() {
               data: JSON.stringify(task),
               success: function(data) {
                         console.log('Task was postponed');
-                        console.log(data);
+                        // console.log(data);
                         alert('Task was postponed');
-                        console.log(taskId);
+                        // console.log(taskId);
                         $("#myModal").modal('hide');
-                        // $("a#"+ taskId).css("color", "red");
                         reloadTasks(userId);
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
