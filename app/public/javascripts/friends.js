@@ -62,7 +62,8 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap add button click and search users table for that email address and create a new friendship between user and found user
+  //   Trap add button click, search users table for that email address, and show results
+  //   NOTE: will always return the same, hardcoded result
   //
   // ============================================================
   $('#addFriendForm').on('submit', function(e) {
@@ -75,12 +76,22 @@ $(function() {
       var div = $("<div>");
       $("#show-results").append(div);
       $(div).html("username: " + user.username + "<br>email: " + user.email);
+      $(div).attr({'data-usernum': user.id});
       $('#addFriendshipButton').addClass('shown');
+    });
+  });
+  // ===========================================================
+  //
+  //
+  //   Trap add button click, create friendship
+  //
+  // ============================================================
+  $('#addFriendshipButton').on('click', function (e) {
+    e.preventDefault();
 
+    console.log("well, the button clicked");
 
-    })
   })
-
 
 }
 });
