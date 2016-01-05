@@ -45,7 +45,7 @@ function reloadTasks(userId) {
           'id':   task.id.toString()
           }).prop('checked', task.completed);
 
-        // ===========================================================
+                // ===========================================================
         //
         //
         //   Use checklist to mark task as complete and create star
@@ -84,6 +84,10 @@ function reloadTasks(userId) {
 
         star.UserId = userId;   /// &&&
 
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
+        }
+
         star.x_cord = getRandomInt(1, 100);;
         star.y_cord = getRandomInt(1, 100);;
 
@@ -104,13 +108,9 @@ function reloadTasks(userId) {
                      alert(jqXHR.responseText);
                    }
          });
-      });
+        });
 
-      $taskLi.append($taskAnchor, $checkBox);
-
-      $taskUl.append($taskLi);
-
-      } else {
+        } else {
         $taskAnchor = $('<span>').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
@@ -127,6 +127,14 @@ function reloadTasks(userId) {
 
 
       }
+
+
+
+      $taskLi.append($taskAnchor, $checkBox);
+
+      $taskUl.append($taskLi);
+
+    
 
     });
 
