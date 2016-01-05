@@ -223,3 +223,8 @@ ul {
 #saveEditButton {
   margin-left: 8px;
 }
+
+.postponed{
+  color: goldenrod;
+  font-style: italic;
+}
