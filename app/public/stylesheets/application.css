@@ -216,7 +216,7 @@ ul {
 
 .postponed{
   color: goldenrod;
-  margin-left: 25px;
+ /* margin-left: 25px;*/
 }
 
 .complete_span_disabled.postponed{
