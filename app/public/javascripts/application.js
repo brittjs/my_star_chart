@@ -60,6 +60,12 @@ function reloadTasks(userId) {
 
       }
 
+      //for color change upon clicking procrastinate button:
+      if (task.postponed){
+        $taskAnchor.addClass("postponed");
+      }
+
+
       // $("#complete").prop('checked', task.completed);
 
       //still need to change flag to complete if checkbox is clicked checked
@@ -67,11 +73,6 @@ function reloadTasks(userId) {
       $taskLi.append($taskAnchor, $checkBox);
 
       $taskUl.append($taskLi);
-
-      //for color change procrastinate:
-      if (task.postponed){
-        $taskAnchor.addClass("postponed");
-      }
 
     });
 
