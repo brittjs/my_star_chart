@@ -44,6 +44,7 @@ $(function() {
       //
       // ============================================================
 
+
       $("#saveEditButton").on('click', function(event) {
 
 
@@ -69,6 +70,7 @@ $(function() {
                           console.log("#saveEditButton click ajax PUT was suceessful.");
                           console.log("data returned ", data);
 
+                          $("#myModal").modal('hide');
                           $('#editTaskForm').trigger("reset");
                           $("#editTaskModal").modal('hide');
                           reloadTasks(userId);
@@ -79,7 +81,6 @@ $(function() {
                           console.log("#saveEditButton click ajax PUT failed.");
                           console.log("status = " + xhr.status);
                           console.log("xhr.responseText = " + xhr.responseText);
-
                           alert(xhr.responseText);
                         }
             });

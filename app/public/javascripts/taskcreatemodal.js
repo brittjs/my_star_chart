@@ -28,10 +28,11 @@ $(function() {
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
 
+
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
         var taskPriority = $("#priority").val();
-        var recurringCheckbox = $("#recurring").val();
+        var recurringCheckbox = $("#recurring").is(":checked");
 
         var myTask = {description: taskDescription,
          due_date: dueDate,

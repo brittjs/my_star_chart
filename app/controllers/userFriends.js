@@ -32,12 +32,12 @@ module.exports = {
   },  
 
   findUserByEmail: function * findUserByEmail(next) {  
-    foundUser = yield db.sequelize.models.User.findOne ({
+    foundUser = db.sequelize.models.User.findOne ({
         where: {
           email: "ashleyfisher@gmail.com"
         }
       });
-    console.log(foundUser);
+    this.body = yield foundUser;
     yield next;
   },  
 
