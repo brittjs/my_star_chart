@@ -136,7 +136,6 @@ $(function() {
               success: function(data) {
                         console.log('Task was postponed');
                         // console.log(data);
-                        alert('Task was postponed');
                         // console.log(taskId);
                         $("#myModal").modal('hide');
                         reloadTasks(userId);
