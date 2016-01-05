@@ -42,8 +42,36 @@ router.get('/auth/github/callback',
   //  successReturnToOrRedirect allow us to use url in this.session.returnTo so it is more dynamic
   //  and enable to redirect back where we came from instead of just '/'.
 
-  passport.authenticate('github', {successReturnToOrRedirect: '/', failureRedirect: '/login'})
+  // passport.authenticate('github', {successReturnToOrRedirect: '/', failureRedirect: '/login'})
+  passport.authenticate('github', {successReturnToOrRedirect: '/custom_auth_callback', failureRedirect: '/login'})
 );
+
+router.get('/custom_auth_callback', function* (next) {
+
+  //create user (formerly in auth/auth.js)
+
+     console.log('inside routes/index.js  router.get(custom_auth_callback...)');
+
+     console.log(this.session.passport.user.id);
+
+     yield db.sequelize.models.User
+      .findOrCreate({where: { username: this.session.passport.user.username, githubId: this.session.passport.user.id } })
+      .then(function(logginginUser) {
+         console.log('in auth/auth.js findOrCreate user succeeded');
+         console.log('logginginUser');
+         console.log(logginginUser);
+         //Return user model
+         //return done(null, logginginUser);
+      });
+      // .catch(function(error) {
+      //                       console.log('in auth/auth.js findOrCreate user failed');
+      //                       console.log('error');
+      //                       console.log(error);
+
+      //                    });
+
+  this.redirect('/');
+});
 
 router.get('/logout', function* (next) {
   console.log('inside router.get(logout.... )');

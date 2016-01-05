@@ -25,7 +25,7 @@ passport.use(new GithubStrategy({
     console.log("in findExistingUserBasedOnOAuthUser");
 
     db.sequelize.models.User
-      .findOrCreate({where: { username: user.username, githubId: user.id } })
+      .findOrCreate({where: { githubId: user.id } })
       .then(function(logginginUser) {
          console.log('in auth/auth.js findOrCreate user succeeded');
          console.log('logginginUser');
