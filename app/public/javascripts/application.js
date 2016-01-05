@@ -50,10 +50,12 @@ function reloadTasks(userId) {
                                         'id':   task.id.toString(),
                                       //  'data-toggle': "modal",
                                       //  'data-target': "#myModal",
-                                        'disabled': "disabled"
+                                      //  'disabled': "disabled"
                                       });
 
-        $checkBox = $('<input type="checkbox" class="complete" disabled>').attr({
+        $taskAnchor.addClass("complete_span_disabled");
+
+        $checkBox = $('<input type="checkbox" class="complete complete_checkbox_disabled" disabled>').attr({
           'id':   task.id.toString()
           }).prop('checked', task.completed);
 
