@@ -23,7 +23,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .container{
   display: flex-inline;
   /*max-height: 100vh;*/
-  width: 200vh;
+  width: 170vh;
 }
 
 .skyContainer {
@@ -33,8 +33,10 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .skyImg {
   background-image: url(../images/nightsky.jpg);
+  background-size: contain;
+  background-size: 100%;
   flex: 1;
-  height: 70vh;
+  height: 55vh;
 }
 
 .greeting {
@@ -59,14 +61,67 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .listOfTasks .tasks {
-  font-size: 2.25vh;
+  /*font-size: 2.25vh;*/
   list-style-type:none; 
   /*margin-left: 20px;*/
   padding: 0px;
+  min-height: 120px;
 }
 
 .taskAnchor {
   margin-left: 25px;
+}
+
+.taskWrapper {
+  height: 30vh;
+}
+
+.taskWrapper:before {
+  content:'';
+  float: left;
+  height: 100%;
+}
+
+#taskScroll {
+  position: relative;
+}
+
+#taskScroll:after {
+  content:'';
+  display: block;
+  clear: both;
+}
+
+.scroll {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.friendsHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.friendsWrapper {
+  height: 31.4vh;
+}
+
+.friendsWrapper:before{
+  content:'';
+  float: left;
+  height: 100%;
+}
+
+#friendsScroll {
+  position: relative;
+}
+
+#friendsScroll:after {
+  content:'';
+  display: block;
+  clear: both;
 }
 
 .listOfTasksTable {
@@ -85,40 +140,42 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   width: 50px;
 }
 
-.middleColumn {
+/*.middleColumn {
   display: flex;
   flex-direction: column;
-  min-width: 90vh;
-}
+  min-width: 70vh;
+}*/
 
 .addTask {
   display: flex;
   justify-content: space-between;
-  /*padding-top: 10px;*/
 }
 
 ul {
   clear: both;
 }
 
-.middleColumn .friends {
+.friends {
+  /*display: flex;*/
+  min-width: 70vh;
   border:5px solid goldenrod;
   font-size: 2.5vh;
+  padding: 8px;
   padding-left: 20px;
-  padding-bottom: 8px;
-  flex-direction: column;
+  min-height: 120px;
+/*  flex-direction: column;*/
 }
 
 .listOfFriends {
-  font-size: 3vh;
+  font-size: 2.5vh;
   /* list-style-type:none; */
-  margin-left: 15px;
+  margin-left: 22px;
   padding: 0px;
+  min-height: 120px;
 }
 
 #createTaskButton {
-/*  margin-top: 25px;
-*/margin-right: 10px;
+  margin-right: 10px;
   font-size: 2.5vh;
   background-color: goldenrod;
   border-color: goldenrod;
@@ -136,6 +193,21 @@ ul {
   margin: 1.1em;
 }
 
+#addFriendshipButton {
+  background-color: goldenrod;
+  border-color: goldenrod;
+  max-width: 20%;
+  font-size: 2.5vh;
+  float: right;
+  margin: 1.1em;
+  display: none;
+}
+
+.shown#addFriendshipButton {
+  display: inline-block;
+  margin-top: -7.5vh;
+}
+
 .left-title {
   float: left;
   color: white;
@@ -149,13 +221,13 @@ ul {
 #twitterButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
 #facebookButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
 .complete {
@@ -192,6 +264,7 @@ ul {
 .details {
   display: flex;
   justify-content: center;
+  font-size: 1.75vh;
 }
 
 #taskComplete {
@@ -204,13 +277,22 @@ ul {
 }
 
 .dueDateAndPriority #priority {
-  width: 8vw;
+  width: 4vw;
 }
 
 #Epriority {
-  width: 8vw;
+  width: 4vw;
 }
 
 #saveEditButton {
   margin-left: 8px;
+}
+
+.postponed{
+  color: goldenrod;
+ /* margin-left: 25px;*/
+}
+
+.complete_span_disabled.postponed{
+  color: #A8A8A8;
 }

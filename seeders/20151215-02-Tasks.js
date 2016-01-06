@@ -33,7 +33,12 @@ module.exports = {
       { UserId: 2, description: 'Push to github', recurring: false, completed: true, postponed: false},
       { UserId: 2, description: 'Wash the dishes', recurring: true, completed: true, postponed: false},
       { UserId: 2, description: 'See stars', recurring: false, completed: true, postponed: false},
-      { UserId: 2, description: 'Walk outside', recurring: true, completed: true, postponed: false}
+      { UserId: 2, description: 'Walk outside', recurring: true, completed: true, postponed: false},
+
+      { UserId: 1, description: 'Awesome thing', recurring: false, completed: true, postponed: false},
+      { UserId: 1, description: 'Make friends', recurring: true, completed: true, postponed: false},
+      { UserId: 1, description: 'Hurray for stars', recurring: true, completed: true, postponed: false},
+      { UserId: 1, description: 'Okay day', recurring: true, completed: true, postponed: false}
     ])
   ];
 
