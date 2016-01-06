@@ -152,15 +152,19 @@ app.use(reqlogger);
         console.log('');
       }
       yield next;
-    // })
-    // .param("emailAddress", function*(emailAddress, next)
-    // {
-    //   if (emailAddress) { 
-    //     console.log('your search term is' + emailAddress)
-    //     // this.state.user = yield db.sequelize.models.User.findByEmail(emailAddress);
-    //     // this.state.email = emailAddress;
-    //   }
-    //   yield next;
+    })
+    .param("emailAddress", function*(emailAddress, next)
+    {
+      if (emailAddress) { 
+        console.log('your search term is' + emailAddress)
+          foundUser = db.sequelize.models.User.findOne ({
+              where: {
+                email: emailAddress
+              }
+            });
+          this.body = yield foundUser;
+      }
+      yield next;
     });
 
 //   // Require authentication for now

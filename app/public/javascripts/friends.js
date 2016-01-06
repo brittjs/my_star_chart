@@ -21,10 +21,11 @@ $(function() {
   console.log(userId);
 
   function reloadFriends(userId) {
-    $('ul.listOfFriends').empty();
+    var friendslist = $('ul.listOfFriends');
+    friendslist.empty();
+
     $.get('/users/' + userId + '/friends').then(function(friends)
-    {
-      var friendslist = $('ul.listOfFriends');
+    { 
       var friendsLi = friends.map(function (friend)
       {
         return $('<li>').attr({
@@ -33,7 +34,6 @@ $(function() {
           'data-target': "#showFriendModal"
         }).append($('<a href="javascript:void(0);">').text(friend.username));
       });
-
       friendslist.append(friendsLi);
     });
     };
@@ -43,7 +43,7 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap friend list item click and open friend detail modal
+  //   Trap friend list item click and open friend detail modal with stars
   //
   // ============================================================
 
@@ -71,10 +71,10 @@ $(function() {
   //   NOTE: will always return the same, hardcoded result
   //
   // ============================================================
-  $('#addFriendForm').on('submit', function(e) {
+  $('#findFriendForm').on('submit', function(e) {
     e.preventDefault();
 
-    var emailAddress = $("#addByEmail").val();
+    var emailAddress = $("#findByEmail").val();
     $("#show-results").empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
@@ -95,8 +95,6 @@ $(function() {
     console.log("well, the button clicked");
 
     var newFriendId = $("#show-results").data('usernum');
-    // var userId = $('div#userId').data('id');
-
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
 
     $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
@@ -110,7 +108,6 @@ $(function() {
 
     // $("#show-results").empty();
     $("#addFriendModal").modal('hide');
-
 
     })
 
