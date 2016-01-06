@@ -180,7 +180,6 @@ app.use(reqlogger);
     {
       if (taskId) {
         console.log('routes/index.js get taskId = ' + taskId);
-
         this.state.task = yield db.sequelize.models.Task.findById(taskId);
         this.state.taskId = taskId;
         console.log('');
@@ -192,13 +191,9 @@ app.use(reqlogger);
     {
       if (emailAddress) {
         console.log('your search term is' + emailAddress)
-          yield foundUser = db.sequelize.models.User.findOne ({
-              where: {
-                email: emailAddress
-              }
-            });
-          this.body = foundUser;
+        this.state.emailaddress = emailAddress;
       }
+      yield next;
     })
 
     .param("friendId", function*(friendId, next)

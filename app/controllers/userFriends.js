@@ -16,12 +16,12 @@ module.exports = {
   },  
 
   findUserByEmail: function * findUserByEmail(next) {  
-    // foundUser = db.sequelize.models.User.findOne ({
-    //     where: {
-    //       email: emailAddress
-    //     }
-    //   });
-    // this.body = yield foundUser;
+    foundUser = db.sequelize.models.User.findOne ({
+        where: {
+          email: this.state.emailaddress
+        }
+      });
+    this.body = yield foundUser;
     yield next;
   },  
 
@@ -33,20 +33,19 @@ module.exports = {
   },
 
   removeFriendship: function *removeFriendship(next) {
-    var deletedFriendship = yield db.sequelize.models.Friendship.destroy({where: {
-                                                    $or: [
-                                                  {
-                                                  Friend1Id: this.state.friendId,
-                                                  Friend2Id: this.state.userId
-                                                  },
-
-                                                  {
-                                                  Friend1Id: this.state.userId,
-                                                  Friend2Id: this.state.friendId
-                                                  }
-                                                ]
-                                              }
-                                                });
+    var deletedFriendship = yield db.sequelize.models.Friendship.destroy({
+      where: {
+        $or: [
+          {
+            Friend1Id: this.state.friendId,
+            Friend2Id: this.state.userId
+          },
+          {
+            Friend1Id: this.state.userId,
+            Friend2Id: this.state.friendId
+          }
+        ]}
+      });
     this.body = deletedFriendship;
     yield next;
   }
