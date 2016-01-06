@@ -28,13 +28,26 @@ module.exports = {
   createFriendship: function *createFriendship(next) {
     var friendship = this.request.body;
     var newFriendship = yield db.sequelize.models.Friendship.create(friendship);
-    this.body = newFriendship
+    this.body = newFriendship;
     yield next;
   },
 
   removeFriendship: function *removeFriendship(next) {
-    var friendship = this.request.body;
-    db.sequelize.models.Friendship.destroy(friendship);
+    var deletedFriendship = yield db.sequelize.models.Friendship.destroy({where: {
+                                                    $or: [
+                                                  {
+                                                  Friend1Id: this.state.friendId,
+                                                  Friend2Id: this.state.userId
+                                                  },
+
+                                                  {
+                                                  Friend1Id: this.state.userId,
+                                                  Friend2Id: this.state.friendId
+                                                  }
+                                                ]
+                                              }
+                                                });
+    this.body = deletedFriendship;
     yield next;
   }
-}
+};

@@ -101,7 +101,6 @@ $(function() {
   // ============================================================
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
-    console.log("well, the button clicked");
 
     var newFriendId = $("#show-results").data('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
@@ -117,8 +116,8 @@ $(function() {
     $("#findByEmail").val("");
     $("#show-results").empty();
     $("#addFriendModal").modal('hide');
-    })
-  })
+    });
+  });
 
   // ===========================================================
   //
@@ -130,16 +129,26 @@ $(function() {
     e.preventDefault();
    
     var friendId = $('#friend-details').data('friend-id');
+    var userId = $('div#userId').data('id'); //does this need to be here?
 
-    $.del('/users/' + userId + '/friends/' + friendId, function(friendship){
-      console.log('deleted!');
-      reloadFriends(userId);
-    $("#showFriendModal").modal('hide');
+    $.ajax({
+        url: '/users/' + userId + '/friends/' + friendId, 
+        type: 'DELETE',
+        success: function () {
+          console.log('deleted!');
+          reloadFriends(userId);
+          $("#showFriendModal").modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          console.log("#deleteFriendshipButton click ajax DELETE failed.");
+          console.log("status = " + xhr.status);
+          console.log("xhr.responseText = " + xhr.responseText);
+      }
 
-    })
+    });
  
 
-  })
+  });
 
 
 }

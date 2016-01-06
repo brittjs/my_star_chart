@@ -204,7 +204,7 @@ app.use(reqlogger);
     .param("friendId", function*(friendId, next)
     {
       if (friendId) { 
-
+        this.state.friendId = friendId;
       }
       yield next;
     });
