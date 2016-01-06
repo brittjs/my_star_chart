@@ -54,12 +54,16 @@ router.get('/custom_auth_callback', function* (next) {
 
      console.log(this.session.passport.user.id);
 
+     // this is doing nothing because the returned data from database is not saved anywhere
      yield db.sequelize.models.User
       .findOrCreate({where: { username: this.session.passport.user.username, githubId: this.session.passport.user.id } })
       .then(function(logginginUser) {
          console.log('in auth/auth.js findOrCreate user succeeded');
          console.log('logginginUser');
          console.log(logginginUser);
+
+         // &&&
+
          //Return user model
          //return done(null, logginginUser);
       });
@@ -80,6 +84,35 @@ router.get('/logout', function* (next) {
   yield next;
 });
 
+
+// ======================================================
+//  code to allow users to register locally on login page
+//
+// ======================================================
+
+// router.post('/custom', function*(next) {
+//   var ctx = this;
+//   yield passport.authenticate('local', function*(err, user, info) {
+//     if (err) throw err;
+//     if (user === false) {
+//       ctx.status = 401;
+//       ctx.body = { success: false };
+//     } else {
+//       yield ctx.login(user);
+//       ctx.body = { success: true };
+//     }
+//   }).call(this, next);
+// });
+
+// POST /login
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/user',
+    failureRedirect: '/login'
+  })
+);
+
+// =======================================================
 	router
 		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
 
@@ -155,14 +188,14 @@ app.use(reqlogger);
     })
     .param("emailAddress", function*(emailAddress, next)
     {
-      if (emailAddress) { 
+      if (emailAddress) {
         console.log('your search term is' + emailAddress)
-          foundUser = db.sequelize.models.User.findOne ({
+          yield foundUser = db.sequelize.models.User.findOne ({
               where: {
                 email: emailAddress
               }
             });
-          this.body = yield foundUser;
+          this.body = foundUser;
       }
       yield next;
     });
