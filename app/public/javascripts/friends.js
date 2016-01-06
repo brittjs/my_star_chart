@@ -20,20 +20,24 @@ $(function() {
   console.log("$('div#userId').data('id')");
   console.log(userId);
 
-  $.get('/users/' + userId + '/friends').then(function(friends)
-  {
-    var friendslist = $('ul.listOfFriends');
-    var friendsLi = friends.map(function (friend)
+  function reloadFriends(userId) {
+    $.get('/users/' + userId + '/friends').then(function(friends)
     {
-      return $('<li>').attr({
-        'data-friend-id': friend.id,
-        'data-toggle': "modal",
-        'data-target': "#showFriendModal"
-      }).append($('<a href="javascript:void(0);">').text(friend.username));
-    });
+      var friendslist = $('ul.listOfFriends');
+      var friendsLi = friends.map(function (friend)
+      {
+        return $('<li>').attr({
+          'data-friend-id': friend.id,
+          'data-toggle': "modal",
+          'data-target': "#showFriendModal"
+        }).append($('<a href="javascript:void(0);">').text(friend.username));
+      });
 
-    friendslist.append(friendsLi);
-  });
+      friendslist.append(friendsLi);
+    });
+    };
+
+  reloadFriends(userId);
 
   // ===========================================================
   //
