@@ -72,7 +72,7 @@ function reloadTasks(userId) {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        alert('Task was updated successfully.');
+                        // alert('Task was updated successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -97,7 +97,7 @@ function reloadTasks(userId) {
 
           //AJAX call to GET star with specific task id
           $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
-            alert("Check get star with certain id");
+            // alert("Check get star with certain id");
             var div = $("<div>").addClass("new-star-container");
             var addDiv = $("#basebox").append(div);
             var newStar = $("<div>").addClass("new-star");
@@ -125,7 +125,7 @@ function reloadTasks(userId) {
             success:function(data) {
                     console.log('Star was inserted successfully');
                     console.log(data);
-                    alert('Task was inserted successfully.');
+                    // alert('Task was inserted successfully.');
                     // location.reload();
                     },
             failure:function ( jqXHR, textStatus, errorThrown ) {
