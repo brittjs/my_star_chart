@@ -53,62 +53,62 @@ function reloadTasks(userId) {
         // ============================================================
 
         $checkBox.change(function () {
-        console.log("LOOK HERE.");
-        var userId = $('div#userId').attr('data-id');
-        console.log(userId);
-        var taskId = $(this).attr("id");
-        var task = findByTaskId(taskId);
-        task.completed = true;
+          console.log("LOOK HERE.");
+          var userId = $('div#userId').attr('data-id');
+          console.log(userId);
+          var taskId = $(this).attr("id");
+          var task = findByTaskId(taskId);
+          task.completed = true;
 
-        // AJAX call to  POST data to server
+          // AJAX call to  POST data to server
 
-        $.ajax({
-            type: "PUT",
-            url:  'users/' + userId + '/tasks/' + task.id,
-            contentType: "application/json",
-            data: JSON.stringify(task),
-            success: function(data) {
-                      console.log('Task was updated successfully');
-                      console.log(data);
-                      alert('Task was updated successfully.');
-                    },
-            failure: function ( jqXHR, textStatus, errorThrown ) {
-                     console.log(jqXHR.responseText);
-                     alert(jqXHR.responseText);
-            }
-        });
-
-
-        var star = {};
-        star.TaskId = taskId;
-
-        star.UserId = userId;   /// &&&
-
-        function getRandomInt(min, max) {
-          return Math.floor(Math.random() * (max - min)) + min;
-        }
-
-        star.x_cord = getRandomInt(1, 100);;
-        star.y_cord = getRandomInt(1, 100);;
+          $.ajax({
+              type: "PUT",
+              url:  'users/' + userId + '/tasks/' + task.id,
+              contentType: "application/json",
+              data: JSON.stringify(task),
+              success: function(data) {
+                        console.log('Task was updated successfully');
+                        console.log(data);
+                        alert('Task was updated successfully.');
+                      },
+              failure: function ( jqXHR, textStatus, errorThrown ) {
+                       console.log(jqXHR.responseText);
+                       alert(jqXHR.responseText);
+              }
+          });
 
 
-        // AJAX call to  POST star to server
-        $.ajax({
-            type: "POST",
-            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-            contentType: "application/json",
-            data: JSON.stringify(star),
-            success: function(data) {
-                      console.log('Star was inserted successfully');
-                      console.log(data);
-                      alert('Task was inserted successfully.');
-                      location.reload();
-                    },
-            failure: function ( jqXHR, textStatus, errorThrown ) {
-                     console.log(jqXHR.responseText);
-                     alert(jqXHR.responseText);
-                   }
-         });
+          var star = {};
+          star.TaskId = taskId;
+
+          star.UserId = userId;   /// &&&
+
+          function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+          }
+
+          star.x_cord = getRandomInt(1, 100);;
+          star.y_cord = getRandomInt(1, 100);;
+
+
+          // AJAX call to  POST star to server
+          $.ajax({
+              type: "POST",
+              url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+              contentType: "application/json",
+              data: JSON.stringify(star),
+              success: function(data) {
+                        console.log('Star was inserted successfully');
+                        console.log(data);
+                        alert('Task was inserted successfully.');
+                        location.reload();
+                      },
+              failure: function ( jqXHR, textStatus, errorThrown ) {
+                       console.log(jqXHR.responseText);
+                       alert(jqXHR.responseText);
+                     }
+          });
         });
 
         } else {

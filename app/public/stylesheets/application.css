@@ -61,14 +61,41 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .listOfTasks .tasks {
-  font-size: 2.25vh;
+  /*font-size: 2.25vh;*/
   list-style-type:none; 
   /*margin-left: 20px;*/
   padding: 0px;
+  min-height: 120px;
 }
 
 .taskAnchor {
   margin-left: 25px;
+}
+
+.taskWrapper {
+  height: 30vh;
+}
+
+.taskWrapper:before {
+    content:'';
+    float: left;
+    height: 100%;
+}
+
+#taskScroll {
+    position: relative;
+}
+#taskScroll:after {
+    content:'';
+    display: block;
+    clear: both;
+}
+
+.scroll {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 .listOfTasksTable {
@@ -112,7 +139,7 @@ ul {
 }
 
 .listOfFriends {
-  font-size: 3vh;
+  font-size: 2.5vh;
   /* list-style-type:none; */
   margin-left: 15px;
   padding: 0px;
