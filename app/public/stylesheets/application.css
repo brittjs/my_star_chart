@@ -99,13 +99,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   overflow: auto;
 }
 
-.scrollTwo {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
 .friendsHeader{
   display: flex;
   justify-content: space-between;
@@ -176,7 +169,7 @@ ul {
 .listOfFriends {
   font-size: 2.5vh;
   /* list-style-type:none; */
-  margin-left: 15px;
+  margin-left: 22px;
   padding: 0px;
   min-height: 120px;
 }
