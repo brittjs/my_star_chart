@@ -77,18 +77,19 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .taskWrapper:before {
-    content:'';
-    float: left;
-    height: 100%;
+  content:'';
+  float: left;
+  height: 100%;
 }
 
 #taskScroll {
-    position: relative;
+  position: relative;
 }
+
 #taskScroll:after {
-    content:'';
-    display: block;
-    clear: both;
+  content:'';
+  display: block;
+  clear: both;
 }
 
 .scroll {
@@ -96,6 +97,38 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+.scrollTwo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.friendsHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.friendsWrapper {
+  height: 31.4vh;
+}
+
+.friendsWrapper:before{
+  content:'';
+  float: left;
+  height: 100%;
+}
+
+#friendsScroll {
+  position: relative;
+}
+
+#friendsScroll:after {
+  content:'';
+  display: block;
+  clear: both;
 }
 
 .listOfTasksTable {
@@ -114,28 +147,30 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   width: 50px;
 }
 
-.middleColumn {
+/*.middleColumn {
   display: flex;
   flex-direction: column;
   min-width: 70vh;
-}
+}*/
 
 .addTask {
   display: flex;
   justify-content: space-between;
-  /*padding-top: 10px;*/
 }
 
 ul {
   clear: both;
 }
 
-.middleColumn .friends {
+.friends {
+  /*display: flex;*/
+  min-width: 70vh;
   border:5px solid goldenrod;
   font-size: 2.5vh;
+  padding: 8px;
   padding-left: 20px;
-  padding-bottom: 8px;
-  flex-direction: column;
+  min-height: 120px;
+/*  flex-direction: column;*/
 }
 
 .listOfFriends {
@@ -143,6 +178,7 @@ ul {
   /* list-style-type:none; */
   margin-left: 15px;
   padding: 0px;
+  min-height: 120px;
 }
 
 #createTaskButton {
