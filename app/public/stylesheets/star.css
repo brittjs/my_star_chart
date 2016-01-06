@@ -45,7 +45,7 @@ body{
 }
 
 .new-star-container{  
-  position: absolute;
+  position: relative;
   /*left: 500px;
   top: 500px; */ 
   /*position: relative;*/

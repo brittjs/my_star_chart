@@ -56,8 +56,10 @@ function reloadTasks(userId) {
           console.log("LOOK HERE.");
           var userId = $('div#userId').attr('data-id');
           console.log(userId);
-          var taskId = $(this).attr("id");
+          var taskId = ($(this).attr("id")).substring(3);
+          // console.log(taskId);
           var task = findByTaskId(taskId);
+          // console.log(taskId);
           task.completed = true;
 
           // AJAX call to  POST data to server
@@ -81,6 +83,8 @@ function reloadTasks(userId) {
 
           var star = {};
           star.TaskId = taskId;
+          console.log(star.TaskId);
+          console.log(taskId);
 
           star.UserId = userId;   /// &&&
 
@@ -92,7 +96,25 @@ function reloadTasks(userId) {
           star.y_cord = getRandomInt(1, 100);;
 
           //AJAX call to GET star with specific task id
-        
+          $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+            alert("Check get star with certain id");
+            var div = $("<div>").addClass("new-star-container");
+            var addDiv = $("#basebox").append(div);
+            var newStar = $("<div>").addClass("new-star");
+            var addStar = div.append(newStar);
+
+            setTimeout(function(){
+              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+            }, 1000)
+
+            setTimeout(function(){
+              $(".new-star").addClass("star-changes");        
+            }, 1500)
+
+            setTimeout(function(){
+              location.reload();
+            },5000)
+          });
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -104,7 +126,7 @@ function reloadTasks(userId) {
                     console.log('Star was inserted successfully');
                     console.log(data);
                     alert('Task was inserted successfully.');
-                    location.reload();
+                    // location.reload();
                     },
             failure:function ( jqXHR, textStatus, errorThrown ) {
                     console.log(jqXHR.responseText);
