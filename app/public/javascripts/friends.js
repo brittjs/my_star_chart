@@ -73,8 +73,7 @@ $(function() {
     $("#show-results").empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
-      var div = $("<div>");
-      $("#show-results").append(div);
+      var div = $("#show-results");
       $(div).html("username: " + user.username + "<br>email: " + user.email);
       $(div).attr({'data-usernum': user.id});
       $('#addFriendshipButton').addClass('shown');
@@ -88,8 +87,26 @@ $(function() {
   // ============================================================
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
-
     console.log("well, the button clicked");
+
+    var newFriendId = $("#show-results").data('usernum');
+    // var userId = $('div#userId').data('id');
+
+    var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
+
+    $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
+      console.log("success?");
+      reloadFriends(userId);
+
+    // .fail( function(xhr, textStatus, errorThrown) {
+    //   alert(xhr.responseText);
+    //   console.log(xhr.responseText);
+    // });
+
+    $("#show-results").empty();
+
+
+    })
 
   })
 

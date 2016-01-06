@@ -34,27 +34,23 @@ module.exports = {
   findUserByEmail: function * findUserByEmail(next) {  
     foundUser = db.sequelize.models.User.findOne ({
         where: {
-          email: "ashleyfisher@gmail.com"
+          email: "dummy@email.com"
         }
       });
     this.body = yield foundUser;
     yield next;
   },  
 
-    createFriendship: function *createFriendship(next) {
+   createFriendship: function *createFriendship(next) {
 
-    // var friendship = this.request.body;
+    var friendship = this.request.body;
 
     // //  should be able to replace the statement below with this ....
-    // var newFriendship = yield db.sequelize.models.Friend.create(friendship);
+    var newFriendship = yield db.sequelize.models.Friendship.create(friendship);
 
-    // var newTask = yield db.sequelize.models.Friend.create({description: task.description,
-    //                                              due_date: task.due_date,
-    //                                              recurring: task.recurring,
-    //                                              completed: task.completed,
-    //                                              postponed: task.postponed,
-    //                                              priority:  task.priority,
-    //                                              FriendId:   this.state.userId});
+    // var newFriend = yield db.sequelize.models.Friendship.create({
+    //                                              Friend2Id: (usernum),
+    //                                              Friend1Id:   this.state.userId});
      
     // this.body = newFriendship.dataValues;
 

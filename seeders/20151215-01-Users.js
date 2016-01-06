@@ -9,7 +9,10 @@ module.exports = {
       { username: "StephanieBeaton", pwd: '12345', email: 'stephanybeaton@gmail.com', githubId: '8796670' },
       { username: "TannerEady", pwd: '34567', email: 'tanneready@shaw.ca' },
       { username: "genephoenix", pwd: '45678', email: 'lakshmikotteda@hotmail.com', githubId: '13411375' },
-      { username: "brittjs", pwd: '56789', email: 'brittanyjsee@gmail.com', githubId: '13922751' }
+      { username: "brittjs", pwd: '56789', email: 'brittanyjsee@gmail.com', githubId: '13922751' },
+      { username: "firstdummy", pwd: '56789', email: 'dummy@email.com'},
+      { username: "secondfool", pwd: '56789', email: 'second@email.com'},
+      { username: "madeupuser", pwd: '56789', email: 'madeupuser@email.com'}
     ])
   ];
   },
