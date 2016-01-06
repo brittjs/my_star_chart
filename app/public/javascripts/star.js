@@ -3,7 +3,7 @@ $(document).ready(function(){
 
   var str = window.location.pathname;
 
-  var usersPage = str.match(/^\/view$/);
+  var usersPage = str.match(/^\/user$/);
 
   var homePage = str.match(/^\/$/);
 

@@ -2,7 +2,7 @@ $(function() {
 
   var str = window.location.pathname;
 
-  var usersPage = str.match(/^\/view$/);
+  var usersPage = str.match(/^\/user$/);
 
   var homePage = str.match(/^\/$/);
 
@@ -25,7 +25,7 @@ $(function() {
     friendslist.empty();
 
     $.get('/users/' + userId + '/friends').then(function(friends)
-    { 
+    {
       var friendsLi = friends.map(function (friend)
       {
         return $('<li>').attr({
