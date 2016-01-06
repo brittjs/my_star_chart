@@ -16,9 +16,6 @@ var router = new Router();
 
 router.get('/', indexCtrl.user);
 
-//following line - temporary route for testing stars
-router.get('/star', indexCtrl.star);
-
 router.get('/login', function* getLogin(next)
 {
   yield this.render('login');
@@ -54,12 +51,16 @@ router.get('/custom_auth_callback', function* (next) {
 
      console.log(this.session.passport.user.id);
 
+     // this is doing nothing because the returned data from database is not saved anywhere
      yield db.sequelize.models.User
       .findOrCreate({where: { username: this.session.passport.user.username, githubId: this.session.passport.user.id } })
       .then(function(logginginUser) {
          console.log('in auth/auth.js findOrCreate user succeeded');
          console.log('logginginUser');
          console.log(logginginUser);
+
+         // &&&
+
          //Return user model
          //return done(null, logginginUser);
       });
@@ -80,6 +81,35 @@ router.get('/logout', function* (next) {
   yield next;
 });
 
+
+// ======================================================
+//  code to allow users to register locally on login page
+//
+// ======================================================
+
+// router.post('/custom', function*(next) {
+//   var ctx = this;
+//   yield passport.authenticate('local', function*(err, user, info) {
+//     if (err) throw err;
+//     if (user === false) {
+//       ctx.status = 401;
+//       ctx.body = { success: false };
+//     } else {
+//       yield ctx.login(user);
+//       ctx.body = { success: true };
+//     }
+//   }).call(this, next);
+// });
+
+// POST /login
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/user',
+    failureRedirect: '/login'
+  })
+);
+
+// =======================================================
 	router
 		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
 
@@ -127,8 +157,8 @@ app.use(reqlogger);
   router
     .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
     .get('/users/search/:emailAddress/',          userFriendsCtrl.findUserByEmail)
-    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship);
-    // .del('/users/:userId/friends/:friendshipId',  userFriendsCtrl.removeFriendship);
+    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
+    .del('/users/:userId/friends/:friendId',      userFriendsCtrl.removeFriendship);
 
 
   router
@@ -142,27 +172,31 @@ app.use(reqlogger);
       }
       yield next;
     })
+
     .param("taskId", function*(taskId, next)
     {
       if (taskId) {
         console.log('routes/index.js get taskId = ' + taskId);
-
         this.state.task = yield db.sequelize.models.Task.findById(taskId);
         this.state.taskId = taskId;
         console.log('');
       }
       yield next;
     })
+
     .param("emailAddress", function*(emailAddress, next)
     {
-      if (emailAddress) { 
+      if (emailAddress) {
         console.log('your search term is' + emailAddress)
-          foundUser = db.sequelize.models.User.findOne ({
-              where: {
-                email: emailAddress
-              }
-            });
-          this.body = yield foundUser;
+        this.state.emailaddress = emailAddress;
+      }
+      yield next;
+    })
+
+    .param("friendId", function*(friendId, next)
+    {
+      if (friendId) { 
+        this.state.friendId = friendId;
       }
       yield next;
     });

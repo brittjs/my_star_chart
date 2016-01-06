@@ -57,13 +57,32 @@ module.exports = {
     console.log('this.session.passport.user.id');
     console.log(this.session.passport.user.id);
 
+    console.log('this');
+    console.log(this);
+
+    console.log('this.state');
+    console.log(this.state);    //   <=  {}
+
+    this.session.passport.user.provider = this.session.passport.user.provider || 'local';
+
+    //  This will not work if user logs with email and password (local)
     //  get userId from User table
     //
-    var users = yield db.sequelize.models.User.findAll({
-                             where: {
-                                      githubId: this.session.passport.user.id
-                                    }
-                            });
+    if (this.session.passport.user.provider === 'github') {
+      var users = yield db.sequelize.models.User.findAll({
+                               where: {
+                                        githubId: this.session.passport.user.id
+                                      }
+                              });
+    } else {
+      // local
+      var users = yield db.sequelize.models.User.findAll({
+                               where: {
+                                        id: this.session.passport.user.id
+                                      }
+                              });
+
+    }
 
     console.log("users");
     console.log(users);
@@ -72,11 +91,6 @@ module.exports = {
 
 		yield next;
 	},
-
-  star: function* star(next) {
-    yield this.render('star.html');
-    yield next;
-  },
 
 };
 

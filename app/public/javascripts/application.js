@@ -43,7 +43,7 @@ function reloadTasks(userId) {
                                       });
 
         $checkBox = $('<input type="checkbox" class="complete">').attr({
-          'id':   task.id.toString()
+          'id':   'chk' + task.id.toString()
           }).prop('checked', task.completed);
 
         // ===========================================================
@@ -57,8 +57,10 @@ function reloadTasks(userId) {
           // console.log("LOOK HERE.");
           var userId = $('div#userId').attr('data-id');
           console.log(userId);
-          var taskId = $(this).attr("id");
+          var taskId = ($(this).attr("id")).substring(3);
+          // console.log(taskId);
           var task = findByTaskId(taskId);
+          // console.log(taskId);
           task.completed = true;
 
           // AJAX call to  POST data to server
@@ -71,7 +73,7 @@ function reloadTasks(userId) {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        alert('Task was updated successfully.');
+                        // alert('Task was updated successfully.');                        
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -82,6 +84,8 @@ function reloadTasks(userId) {
 
           var star = {};
           star.TaskId = taskId;
+          console.log(star.TaskId);
+          console.log(taskId);
 
           star.UserId = userId;   /// &&&
 
@@ -89,26 +93,43 @@ function reloadTasks(userId) {
             return Math.floor(Math.random() * (max - min)) + min;
           }
 
-          star.x_cord = getRandomInt(1, 100);;
-          star.y_cord = getRandomInt(1, 100);;
+          star.x_cord = getRandomInt(0, 98);
+          star.y_cord = getRandomInt(2, 92);
 
+          //AJAX call to GET star with specific task id
+          $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+            // alert("Check get star with certain id");
+            var div = $("<div>").addClass("new-star-container");
+            var addDiv = $("#basebox").append(div);
+            var newStar = $("<div>").addClass("new-star");
+            var addStar = div.append(newStar);
+
+            setTimeout(function(){
+              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+            }, 1000)
+
+            setTimeout(function(){
+              location.reload();
+            },3200)
+          });
 
           // AJAX call to  POST star to server
           $.ajax({
-              type: "POST",
-              url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-              contentType: "application/json",
-              data: JSON.stringify(star),
-              success: function(data) {
-                        console.log('Star was inserted successfully');
-                        console.log(data);
-                        alert('Task was inserted successfully.');
-                        location.reload();
-                      },
-              failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
-                       alert(jqXHR.responseText);
-                     }
+            type: "POST",
+            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+            contentType: "application/json",
+            data: JSON.stringify(star),
+            success:function(data) {
+                    console.log('Star was inserted successfully');
+                    console.log(data);
+                    // alert('Task was inserted successfully.');
+                    // location.reload();
+                    },
+            failure:function ( jqXHR, textStatus, errorThrown ) {
+                    console.log(jqXHR.responseText);
+                    alert(jqXHR.responseText);
+                    }
+
           });
         });
 
@@ -175,9 +196,9 @@ $(function() {
 
   var str = window.location.pathname;
 
-  var usersPage = str.match(/^\/view$/);
+  var usersPage = str.match(/^\/user$/);        //   "/user"
 
-  var homePage = str.match(/^\/$/);
+  var homePage = str.match(/^\/$/);             //   "/"
 
 
   if (usersPage || homePage) {

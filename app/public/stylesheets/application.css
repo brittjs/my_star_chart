@@ -29,6 +29,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .skyContainer {
   display:flex;
   border:10px solid goldenrod;
+  position: relative;
 }
 
 .skyImg {
@@ -62,7 +63,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .listOfTasks .tasks {
   /*font-size: 2.25vh;*/
-  list-style-type:none; 
+  list-style-type:none;
   /*margin-left: 20px;*/
   padding: 0px;
   min-height: 120px;
