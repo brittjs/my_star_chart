@@ -53,7 +53,7 @@ function reloadTasks(userId) {
         // ============================================================
 
         $checkBox.change(function () {
-          console.log("LOOK HERE.");
+          // console.log("LOOK HERE.");
           var userId = $('div#userId').attr('data-id');
           console.log(userId);
           var taskId = ($(this).attr("id")).substring(3);
@@ -72,7 +72,7 @@ function reloadTasks(userId) {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        // alert('Task was updated successfully.');
+                        // alert('Task was updated successfully.');                        
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -132,6 +132,7 @@ function reloadTasks(userId) {
                     console.log(jqXHR.responseText);
                     alert(jqXHR.responseText);
                     }
+
           });
         });
 
