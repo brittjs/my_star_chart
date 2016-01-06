@@ -113,7 +113,7 @@ function reloadTasks(userId) {
 
             setTimeout(function(){
               location.reload();
-            },5000)
+            },3200)
           });
 
           // AJAX call to  POST star to server

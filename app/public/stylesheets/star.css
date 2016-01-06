@@ -58,48 +58,28 @@
   filter: drop-shadow(0px 0px 5px #fc2e5a);
 }
 
-/*above is new code after merge*/
-
-/*start of code with 45 degree angle down below*/
-
-/*.star{
-  height: 20px;
-  width: 20px;
-  background-color: white;*/
-  /*border-radius: 50%;*/
-  /*transform: scaleX(0.5) rotate(315deg);
-  animation: 2s linear 2s 3 expand-shrink;
-
-  -webkit-filter: drop-shadow(0px 0px 10px white);
-  -moz-filter: drop-shadow(0px 0px 10px white);
-  filter: drop-shadow(0px 0px 10px white);
-}*/
-
 .star:hover{
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
-  filter: drop-shadow(0px 0px 10px #fc2e5a);
+  -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
+  filter: drop-shadow(0px 0px 2px #fc2e5a);
 }
 
 .star:before:hover{
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
-  filter: drop-shadow(0px 0px 10px #fc2e5a);
+  -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
+  filter: drop-shadow(0px 0px 2px #fc2e5a);
 }
 
 
 .star:after:hover{
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
-  filter: drop-shadow(0px 0px 10px #fc2e5a);
+  -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
+  filter: drop-shadow(0px 0px 2px #fc2e5a);
 }
 
 
 .star-container{  
   position: absolute;
- /* left: 100px;
-  top: 400px;  */
-  /*transition: all 2s linear;*/
 }
 
 .star-container:hover{
@@ -175,16 +155,14 @@
 
 .new-star-container{  
   position: absolute;
-  /*left: 500px;
-  top: 500px; */ 
-  /*position: relative;*/
   left: 50%;
   top: 50%;
   transition: all 2s linear;
 }
 
-
-/*added vendor prefixes below since css filter wouldn't work without it*/
+.new-star-container:hover{
+  animation: full-turn 3s;
+}
 
 /*.new-star.star-changes{*/
   /*background-color: red;*/
