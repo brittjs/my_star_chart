@@ -160,8 +160,8 @@ app.use(reqlogger);
   router
     .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
     .get('/users/search/:emailAddress/',          userFriendsCtrl.findUserByEmail)
-    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship);
-    // .del('/users/:userId/friends/:friendshipId',  userFriendsCtrl.removeFriendship);
+    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
+    .del('/users/:userId/friends/:friendId',      userFriendsCtrl.removeFriendship);
 
 
   router
@@ -175,27 +175,31 @@ app.use(reqlogger);
       }
       yield next;
     })
+
     .param("taskId", function*(taskId, next)
     {
       if (taskId) {
         console.log('routes/index.js get taskId = ' + taskId);
-
         this.state.task = yield db.sequelize.models.Task.findById(taskId);
         this.state.taskId = taskId;
         console.log('');
       }
       yield next;
     })
+
     .param("emailAddress", function*(emailAddress, next)
     {
       if (emailAddress) {
         console.log('your search term is' + emailAddress)
-          yield foundUser = db.sequelize.models.User.findOne ({
-              where: {
-                email: emailAddress
-              }
-            });
-          this.body = foundUser;
+        this.state.emailaddress = emailAddress;
+      }
+      yield next;
+    })
+
+    .param("friendId", function*(friendId, next)
+    {
+      if (friendId) { 
+        this.state.friendId = friendId;
       }
       yield next;
     });
