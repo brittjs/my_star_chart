@@ -173,9 +173,9 @@ $(function() {
 
   var str = window.location.pathname;
 
-  var usersPage = str.match(/^\/view$/);
+  var usersPage = str.match(/^\/user$/);        //   "/user"
 
-  var homePage = str.match(/^\/$/);
+  var homePage = str.match(/^\/$/);             //   "/"
 
 
   if (usersPage || homePage) {

@@ -13,3 +13,4 @@ app/auth/auth.js
 regression_test_outcome.txt
 .DS_Store
 user.html.ejs.backup
+temp.txt
