@@ -68,7 +68,37 @@ module.exports = {
      this.body = newStar.dataValues;
 
     yield next;
-  }
+  },
+
+  // GET    /users/2/tasks/7/stars   - Gets a star for user #2 and for task #7
+
+  // -------------------------------------------------------------
+  //
+  //     get a star for a task
+  //
+  // -------------------------------------------------------------
+  getOneStar: function *getOneStar(next) {
+    console.log('GET   /users/' + this.state.userId + '/tasks/' + this.state.taskId + '/stars');
+
+
+    // console.log('this.request');
+    // console.log(this.request);
+
+    console.log('this.request.body');
+    console.log(this.request.body);
+
+    var stars = yield db.sequelize.models.Star.findAll({
+                               where: {
+                                        UserId: this.state.userId,
+                                        TaskId: this.state.taskId
+                                      }
+                               });
+
+    this.body = stars[0].dataValues;
+
+    yield next;
+
+  },
 
 };
 

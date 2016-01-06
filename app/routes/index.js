@@ -119,6 +119,10 @@ app.use(reqlogger);
   router
     .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
 
+  // GET     /users/2/tasks/7/stars   - Gets one star for user #2 and for task #7
+  router
+    .get('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.getOneStar);
+
   // a user's friend(ship) paths
   router
     .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
