@@ -259,13 +259,8 @@ $(function() {
         // ============================================================
 
         $("#sortByPriority").on('click', function() {
-          // $('.tasks').sort(function(a, b) {
-          // return parseInt(b.priority) - parseInt(a.priority);
-          // });
-          // console.log($('.tasks'));
           tinysort('ul.tasks>li', {selector: '.taskAnchor', data: 'priority', order: 'desc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
-          
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});   
         });
 
 
