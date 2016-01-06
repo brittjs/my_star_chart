@@ -14,6 +14,10 @@ return [
     queryInterface.bulkInsert('Stars', [
       { TaskId: 3, UserId: 1, x_cord: 10, y_cord: 50},
       { TaskId: 4, UserId: 1, x_cord: 45, y_cord: 76},
+      { TaskId: 25, UserId: 1, x_cord: 67, y_cord: 98},
+      { TaskId: 26, UserId: 1, x_cord: 45, y_cord: 23},
+      { TaskId: 27, UserId: 1, x_cord: 76, y_cord: 35},
+      { TaskId: 28, UserId: 1, x_cord: 53, y_cord: 74},
 
       { TaskId: 7, UserId: 2, x_cord: 23, y_cord: 53},
       { TaskId: 8, UserId: 2, x_cord: 16, y_cord: 25},

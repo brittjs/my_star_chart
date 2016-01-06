@@ -20,25 +20,30 @@ $(function() {
   console.log("$('div#userId').data('id')");
   console.log(userId);
 
-  $.get('/users/' + userId + '/friends').then(function(friends)
-  {
+  function reloadFriends(userId) {
     var friendslist = $('ul.listOfFriends');
-    var friendsLi = friends.map(function (friend)
-    {
-      return $('<li>').attr({
-        'data-friend-id': friend.id,
-        'data-toggle': "modal",
-        'data-target': "#showFriendModal"
-      }).append($('<a href="javascript:void(0);">').text(friend.username));
-    });
+    friendslist.empty();
 
-    friendslist.append(friendsLi);
-  });
+    $.get('/users/' + userId + '/friends').then(function(friends)
+    { 
+      var friendsLi = friends.map(function (friend)
+      {
+        return $('<li>').attr({
+          'data-friend-id': friend.id,
+          'data-toggle': "modal",
+          'data-target': "#showFriendModal"
+        }).append($('<a href="javascript:void(0);">').text(friend.username));
+      });
+      friendslist.append(friendsLi);
+    });
+    };
+
+  reloadFriends(userId);
 
   // ===========================================================
   //
   //
-  //   Trap friend list item click and open friend detail modal
+  //   Trap friend list item click and open friend detail modal with stars
   //
   // ============================================================
 
@@ -62,21 +67,51 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap add friend click and open add friend modal
+  //   Trap add button click, search users table for that email address, and show results
+  //   NOTE: will always return the same, hardcoded result
   //
   // ============================================================
-  // TODO: find where I put this code because it does seem to be working, haha
+  $('#findFriendForm').on('submit', function(e) {
+    e.preventDefault();
 
+    var emailAddress = $("#findByEmail").val();
+    $("#show-results").empty();
 
-
+    $.get('/users/search/'+emailAddress+'/', function(user) {
+      var div = $("#show-results");
+      $(div).html("username: " + user.username + "<br>email: " + user.email);
+      $(div).attr({'data-usernum': user.id});
+      $('#addFriendshipButton').addClass('shown');
+    });
+  });
   // ===========================================================
   //
   //
-  //   Trap add button click and search users table for that email address and create a new friendship between user and found user
+  //   Trap add button click, create friendship
   //
   // ============================================================
+  $('#addFriendshipButton').on('click', function (e) {
+    e.preventDefault();
+    console.log("well, the button clicked");
 
+    var newFriendId = $("#show-results").data('usernum');
+    var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
 
+    $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
+      console.log("success?");
+      reloadFriends(userId);
+
+    // .fail( function(xhr, textStatus, errorThrown) {
+    //   alert(xhr.responseText);
+    //   console.log(xhr.responseText);
+    // });
+
+    // $("#show-results").empty();
+    $("#addFriendModal").modal('hide');
+
+    })
+
+  })
 
 }
 });

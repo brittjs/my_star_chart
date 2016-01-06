@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Friend = sequelize.define('Friend', {
+  var Friendship = sequelize.define('Friendship', {
     Friend1Id: DataTypes.INTEGER,
     Friend2Id: DataTypes.INTEGER
   }, {
@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Friend;
+  return Friendship;
 };
