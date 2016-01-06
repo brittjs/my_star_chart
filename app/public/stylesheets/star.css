@@ -70,9 +70,6 @@ body{
   filter: drop-shadow(0px 0px 10px white);
 }
 
-}
-
-
 .star:hover{
   height: 25px;
   width: 25px;
