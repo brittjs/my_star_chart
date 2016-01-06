@@ -92,8 +92,8 @@ function reloadTasks(userId) {
             return Math.floor(Math.random() * (max - min)) + min;
           }
 
-          star.x_cord = getRandomInt(1, 100);;
-          star.y_cord = getRandomInt(1, 100);;
+          star.x_cord = getRandomInt(0, 98);
+          star.y_cord = getRandomInt(2, 92);
 
           //AJAX call to GET star with specific task id
           $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
