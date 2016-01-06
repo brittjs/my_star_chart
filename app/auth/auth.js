@@ -66,8 +66,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   // retrieve user ...
   var users = db.sequelize.models.User.findAll({
                              where: {
-                                      email: username,
-                                      pwd: password
+                                      email: username
                                     }
                             })
         .then(function(users) {
@@ -77,7 +76,33 @@ passport.use(new LocalStrategy(function(username, password, done) {
            console.log("");
 
            if (users.length === 0) {
-            done(null, false);
+            // this is a new user,  insert user and password in database
+
+            // ==========================================================
+
+            var user1 = {};
+            user1.email = username;
+            user1.pwd = password;
+            user1.username = username;
+
+            var result = db.sequelize.models.User.create(user1)
+                  .then(function(return_value) {
+                     console.log('in auth/auth.js Local create user succeeded');
+                     console.log('return_value');
+                     console.log(return_value);
+                     console.log("");
+
+                     done(null, return_value.dataValues);
+                  })
+                  .catch(function(error) {
+                      console.log('in auth/auth.js Local create user failed');
+                      console.log('error');
+                      console.log(error);
+                      done(null, false);
+                   });
+
+            // ==========================================================
+
            } else {
 
              var user = users[0].dataValues;
@@ -93,6 +118,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
                done(null, user);
              } else {
                console.log("username and password did not match");
+               //  how to return a message to the user ?
                done(null, false);
              }
 
