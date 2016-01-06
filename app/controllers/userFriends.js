@@ -30,5 +30,11 @@ module.exports = {
     var newFriendship = yield db.sequelize.models.Friendship.create(friendship);
     this.body = newFriendship
     yield next;
+  },
+
+  removeFriendship: function *removeFriendship(next) {
+    var friendship = this.request.body;
+    db.sequelize.models.Friendship.destroy(friendship);
+    yield next;
   }
 }

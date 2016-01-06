@@ -127,8 +127,8 @@ app.use(reqlogger);
   router
     .get('/users/:userId/friends',                userFriendsCtrl.getAllFriendsForUser)
     .get('/users/search/:emailAddress/',          userFriendsCtrl.findUserByEmail)
-    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship);
-    // .del('/users/:userId/friends/:friendshipId',  userFriendsCtrl.removeFriendship);
+    .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
+    .del('/users/:userId/friends/:friendId',      userFriendsCtrl.removeFriendship);
 
 
   router
@@ -142,6 +142,7 @@ app.use(reqlogger);
       }
       yield next;
     })
+
     .param("taskId", function*(taskId, next)
     {
       if (taskId) {
@@ -153,6 +154,7 @@ app.use(reqlogger);
       }
       yield next;
     })
+
     .param("emailAddress", function*(emailAddress, next)
     {
       if (emailAddress) { 
@@ -163,6 +165,13 @@ app.use(reqlogger);
               }
             });
           this.body = yield foundUser;
+      }
+    })
+
+    .param("friendId", function*(friendId, next)
+    {
+      if (friendId) { 
+
       }
       yield next;
     });
