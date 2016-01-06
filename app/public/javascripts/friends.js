@@ -21,6 +21,7 @@ $(function() {
   console.log(userId);
 
   function reloadFriends(userId) {
+    $('ul.listOfFriends').empty();
     $.get('/users/' + userId + '/friends').then(function(friends)
     {
       var friendslist = $('ul.listOfFriends');
@@ -107,7 +108,8 @@ $(function() {
     //   console.log(xhr.responseText);
     // });
 
-    $("#show-results").empty();
+    // $("#show-results").empty();
+    $("#addFriendModal").modal('hide');
 
 
     })
