@@ -107,9 +107,9 @@ function reloadTasks(userId) {
               $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
             }, 1000)
 
-            setTimeout(function(){
-              $(".new-star").addClass("star-changes");        
-            }, 1500)
+            // setTimeout(function(){
+            //   $(".new-star").addClass("star-changes");        
+            // }, 1500)
 
             setTimeout(function(){
               location.reload();

@@ -1,83 +1,99 @@
-body{
-  /*background-color: black;*/
-}
-
-/*.star {
-    width: 0;
-    height: 0;
-    margin: 5px 0;
-    color: #fc2e5a;
-    position: relative;
-    display: block;
-    border-right: 10px solid transparent;
-    border-bottom: 7px solid #fc2e5a;
-    border-left: 10px solid transparent;
-    -moz-transform: rotate(35deg);
-    -webkit-transform: rotate(35deg);
-    -ms-transform: rotate(35deg);
-    -o-transform: rotate(35deg);
+.star {
+  width: 0;
+  height: 0;
+  margin: 5px 0;
+  color: #fc2e5a;
+  position: relative;
+  display: block;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #fc2e5a;
+  border-left: 10px solid transparent;
+  -moz-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
 }
 
 .star:before {
-    height: 0;
-    width: 0;
-    position: absolute;
-    display: block;
-    top: -4.5px;
-    left: -6.5px;
-    border-bottom: 8px solid #fc2e5a;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    content: '';
-    -webkit-transform: rotate(-35deg);
-    -moz-transform: rotate(-35deg);
-    -ms-transform: rotate(-35deg);
-    -o-transform: rotate(-35deg);
+  height: 0;
+  width: 0;
+  position: absolute;
+  display: block;
+  top: -4.5px;
+  left: -6.5px;
+  border-bottom: 8px solid #fc2e5a;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  content: '';
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
 }
 
 .star:after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    display: block;
-    top: .3px;
-    left: -10.5px;
-    color: #fc2e5a;
-    border-right: 10px solid transparent;
-    border-bottom: 7px solid #fc2e5a;
-    border-left: 10px solid transparent;
-    -webkit-transform: rotate(-70deg);
-    -moz-transform: rotate(-70deg);
-    -ms-transform: rotate(-70deg);
-    -o-transform: rotate(-70deg);
-}*/
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  display: block;
+  top: .3px;
+  left: -10.5px;
+  color: #fc2e5a;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #fc2e5a;
+  border-left: 10px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
+}
 
 /*above is new code after merge*/
 
 /*start of code with 45 degree angle down below*/
 
-.star{
+/*.star{
   height: 20px;
   width: 20px;
-  background-color: white;
+  background-color: white;*/
   /*border-radius: 50%;*/
-  transform: scaleX(0.5) rotate(315deg);
+  /*transform: scaleX(0.5) rotate(315deg);
   animation: 2s linear 2s 3 expand-shrink;
 
   -webkit-filter: drop-shadow(0px 0px 10px white);
   -moz-filter: drop-shadow(0px 0px 10px white);
   filter: drop-shadow(0px 0px 10px white);
-}
+}*/
 
 .star:hover{
-  height: 25px;
-  width: 25px;
-  animation: 3s full-turn;
-  border: 2px solid white;
-  box-shadow: 2px 2px 2px white;
-  /*transform: scaleX(0.5) rotate(315deg);*/
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
+  filter: drop-shadow(0px 0px 10px #fc2e5a);
 }
+
+.star:before:hover{
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
+  filter: drop-shadow(0px 0px 10px #fc2e5a);
+}
+
+
+.star:after:hover{
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
+  filter: drop-shadow(0px 0px 10px #fc2e5a);
+}
+
 
 .star-container{  
   position: absolute;
@@ -86,19 +102,76 @@ body{
   /*transition: all 2s linear;*/
 }
 
-.new-star{
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  transform: scaleX(0.5) rotate(20deg); /* determines position when first created and before moving*/
-  /* order for animation: duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name*/
-  animation: 2s linear 2s 3 expand-shrink, 3s linear 0.1s shooting-star;
-  /*border-radius: 50%;*/
-  /*animation: spin 4s linear;*/
-/*  -webkit-animation-duration: 10 s;*/
-  /*-webkit-animation-iteration-count: infinite;*/
-  transition: all 1s linear;
+.star-container:hover{
+  animation: full-turn 3s;
 }
+
+.new-star{
+  width: 0;
+  height: 0;
+  margin: 5px 0;
+  color: #fc2e5a;
+  position: relative;
+  display: block;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #fc2e5a;
+  border-left: 10px solid transparent;
+  -moz-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  animation: 3s linear 0.1s shooting-star;
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
+  /*transition: all 1s linear;*/
+}
+
+.new-star:before {
+  height: 0;
+  width: 0;
+  position: absolute;
+  display: block;
+  top: -4.5px;
+  left: -6.5px;
+  border-bottom: 8px solid #fc2e5a;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  content: '';
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+  animation: 3s linear 0.1s shooting-star;
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
+  /*transition: all 1s linear;*/
+}
+
+.new-star:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  display: block;
+  top: .3px;
+  left: -10.5px;
+  color: #fc2e5a;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #fc2e5a;
+  border-left: 10px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  animation: 3s linear 0.1s shooting-star;
+  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);
+  /*transition: all 1s linear;*/
+}
+
 
 .new-star-container{  
   position: absolute;
@@ -113,262 +186,97 @@ body{
 
 /*added vendor prefixes below since css filter wouldn't work without it*/
 
-.new-star.star-changes{
+/*.new-star.star-changes{*/
   /*background-color: red;*/
 
-  transform: scaleX(0.5) rotate(45deg); /* determines position when stationary*/
-  -webkit-filter: drop-shadow(0px 0px 10px white);
-  -moz-filter: drop-shadow(0px 0px 10px white);
-  filter: drop-shadow(0px 0px 10px white);
+  /*transform: rotate(45deg);  determines position when stationary*/
+  /*-webkit-filter: drop-shadow(0px 0px 10px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
+  filter: drop-shadow(0px 0px 10px #fc2e5a);
 
-  /*animation: shooting-star 2s;*/
+  animation: shooting-star 2s;*/
 
   /*box-shadow: 5px 0px 5px 10px red;*/
   /*border: 2px solid white;*/
   /*border-radius: 50%;*/
-}
+/*}*/
 
 .new-star:hover{
-  height: 25px;
-  width: 25px;
+/*  height: 25px;
+  width: 25px;*/
  /* border: 2px solid red;*/
 /*  box-shadow: 0px 0px 0px 2px white;*/
  /* transform: scaleX(0.5) rotate(315deg);*/
-  animation: 3s full-turn;
+  /*animation: 3s full-turn;*/
 }
 
 @keyframes full-turn{
   0%{
-    transform: scaleX(0.5) rotate(315deg);
+    transform: rotate(0deg);
   }
- /* 50%{
-    transform: scaleX(0.5) rotate(45deg);
+  /*50%{
+    transform: rotate(360deg);
   }*/
   100%{
-    transform: scaleX(0.5) rotate(45deg);
+    transform: rotate(360deg);
   }
 }
 
-@keyframes expand-shrink{
+/*@keyframes expand-shrink{
   0%{
-    width: 20px;
-    height: 20px;
+    width: 0px;
+    height: 0px;
   }
   50%{
-    width: 25px;
-    height: 25px;
-  }
-  100%{
     width: 20px;
     height: 20px;
   }
-}
+  100%{
+    width: 0px;
+    height: 0px;
+  }
+}*/
 
 @keyframes shooting-star{
   0%{
-    transform: scaleX(0.5) rotate(20deg);
-    -webkit-filter: drop-shadow(20px 6px 10px white);
-    -moz-filter: drop-shadow(20px 6px 10px white);
-    filter: drop-shadow(20px 6px 10px white);
+    /*transform: rotate(45deg);*/
+    -webkit-filter: drop-shadow(20px 6px 10px #fc2e5a);
+    -moz-filter: drop-shadow(20px 6px 10px #fc2e5a);
+    filter: drop-shadow(20px 6px 10px #fc2e5a);
   }
 
-  80%{
-    transform: scaleX(0.5) rotate(30deg);
-    -webkit-filter: drop-shadow(20px 6px 10px white);
+  /*80%{*/
+    /*transform: rotate(30deg);*/
+   /* -webkit-filter: drop-shadow(20px 6px 10px white);
     -moz-filter: drop-shadow(20px 6px 10px white);
     filter: drop-shadow(20px 6px 10px white);
-  }
+  }*/
 
-  85%{
-    transform: scaleX(0.5) rotate(35deg);
-    -webkit-filter: drop-shadow(15px 4px 10px white);
+  /*85%{*/
+    /*transform: rotate(35deg);*/
+    /*-webkit-filter: drop-shadow(15px 4px 10px white);
     -moz-filter: drop-shadow(15px 4px 10px white);
     filter: drop-shadow(15px 4px 10px white);
-  }
+  }*/
 
-  90%{
-    transform: scaleX(0.5) rotate(40deg);
-    -webkit-filter: drop-shadow(10px 2px 10px white);
+  /*90%{*/
+    /*transform: rotate(40deg);*/
+   /* -webkit-filter: drop-shadow(10px 2px 10px white);
     -moz-filter: drop-shadow(10px 2px 10px white);
     filter: drop-shadow(10px 2px 10px white);
-  }
+  }*/
 
-  95%{
-    transform: scaleX(0.5) rotate(42deg);
-    -webkit-filter: drop-shadow(2px 2px 10px white);
+  /*95%{*/
+    /*transform: rotate(42deg);*/
+    /*-webkit-filter: drop-shadow(2px 2px 10px white);
     -moz-filter: drop-shadow(2px 2px 10px white);
     filter: drop-shadow(2px 2px 10px white);
-  }
+  }*/
 
   100%{
-    transform: scaleX(0.5) rotate(45deg);
-    -webkit-filter: drop-shadow(0px 0px 10px white);
-    -moz-filter: drop-shadow(0px 0px 10px white);
-    filter: drop-shadow(0px 0px 10px white);
+    /*transform: rotate(315deg);*/
+    -webkit-filter: drop-shadow(0px 0px 10px #fc2e5a);
+    -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
+    filter: drop-shadow(0px 0px 10px #fc2e5a);
   }
-}
-
-/*.star{
-  position: relative;
-  display: block;
-  content: "";
-  width: 0px;
-  height: 0px;
-  margin: 100px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid yellow;
-  border-left: 100px solid transparent;
-  transform: rotate(35deg);
-}
-
-.star:before{
-  position: absolute;
-  display: block;
-  content: "";
-  height: 0px;
-  width: 0px;
-  border-bottom: 80px solid yellow;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  top: -45px;
-  left: -65px;
-  transform: rotate(-35deg);
-}
-
-.star:after{
-  position: absolute;
-  display: block;
-  content: "";
-  width: 0px;
-  height: 0px;
-  top: 3px;
-  left: -105px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid yellow;
-  border-left: 100px solid transparent;
-  transform: rotate(-70deg);
-}*/
-
-
-/* initial test code:
-.box{
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  transition: all 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
-
-.box.changes{
-  border-radius: 50%;
-  background-color: blue;
-}*/
-
-/*container move animation tests:
-
-/*.star-container.move{
-  left: 400px;
-  top: 200px;
-
-/*.new-star-container.move{
-  left: 400px;
-  top: 200px;
-}
-*/
-
-/*test 2 css below: turns into circle, changes color to red and expands*/
-
-/*.test-star{
-  height: 20px;
-  width: 20px;
-  background-color: blue;
-  transition: all 2s linear;
-}
-
-.test-star.expand{
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  background-color: red;
-}*/
-
-/*.test-star-container{  
-  position: absolute;
-  left: 500px;
-  top: 500px;  
-  transition: all 2s linear;
-}
-*/
-
-/*test 3 below: movement at an angle, rotation*/
-
-/*.test-star-container{  
-  position: absolute;
-  left: 500px;
-  top: 500px;  
-  transition: all 2s linear;
-}
-
-.test-star{
-  height: 20px;
-  width: 20px;
-  transform: scaleX(0.5) rotate(45deg);
-  background-color: red;
-  transition: all 0.5s linear;
-}
-*/
-/*.test-star.changes{*/
- /* background-color: red;*/
-  /*animation: 2s linear flying-star;*/
-  /*transform: scaleX(0.5) rotate(45deg);*/
- /* -webkit-filter: drop-shadow(0px 0px 10px red);
-  -moz-filter: drop-shadow(0px 0px 10px red);
-  filter: drop-shadow(0px 0px 10px red);
-
-}
-
-@keyframes flying-star{
-  0%{
-    transform: scaleX(0.5) rotate(20deg);
-    -webkit-filter: drop-shadow(20px 6px 10px red);
-    -moz-filter: drop-shadow(20px 6px 10px red);
-    filter: drop-shadow(20px 6px 10px red);
-  }
-
-  80%{
-    transform: scaleX(0.5) rotate(30deg);
-    -webkit-filter: drop-shadow(20px 6px 10px red);
-    -moz-filter: drop-shadow(20px 6px 10px red);
-    filter: drop-shadow(20px 6px 10px red);
-  }
-
-  85%{
-    transform: scaleX(0.5) rotate(35deg);
-    -webkit-filter: drop-shadow(15px 4px 10px red);
-    -moz-filter: drop-shadow(15px 4px 10px red);
-    filter: drop-shadow(15px 4px 10px red);
-  }
-
-  90%{
-    transform: scaleX(0.5) rotate(40deg);
-    -webkit-filter: drop-shadow(10px 2px 10px red);
-    -moz-filter: drop-shadow(10px 2px 10px red);
-    filter: drop-shadow(10px 2px 10px red);
-  }
-
-  95%{
-    transform: scaleX(0.5) rotate(42deg);
-    -webkit-filter: drop-shadow(2px 2px 10px red);
-    -moz-filter: drop-shadow(2px 2px 10px red);
-    filter: drop-shadow(2px 2px 10px red);
-  }
-
-  100%{
-    transform: scaleX(0.5) rotate(45deg);
-    -webkit-filter: drop-shadow(0px 0px 10px red);
-    -moz-filter: drop-shadow(0px 0px 10px red);
-    filter: drop-shadow(0px 0px 10px red);
-  }
-}
-
-*/
+} 
