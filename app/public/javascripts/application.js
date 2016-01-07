@@ -171,7 +171,8 @@ function reloadTasks(userId, changeTaskInHeader) {
           star.y_cord = getRandomInt(2, 92);
 
           //AJAX call to GET star with specific task id
-          $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+          //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+
             // alert("Check get star with certain id");
             var div = $("<div>").addClass("new-star-container");
             var addDiv = $("#basebox").append(div);
@@ -180,12 +181,23 @@ function reloadTasks(userId, changeTaskInHeader) {
 
             setTimeout(function(){
               $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-            }, 1000)
+            }, 1000);
 
             setTimeout(function(){
-              location.reload();
-            },3200)
-          });
+              //location.reload();
+              // logic to determine whether changeHeaderTaskFlag = true or not
+              var headerTaskId = $('#header-task').attr('data-header-task-id');
+
+              var changeHeaderTaskFlag = false;
+              if (taskId === headerTaskId) {
+                changeHeaderTaskFlag = true;
+              }
+
+              reloadTasks(userId, changeHeaderTaskFlag);
+              paintStarsInTheSky();
+            },3200);
+
+          //});
 
           // AJAX call to  POST star to server
           $.ajax({
