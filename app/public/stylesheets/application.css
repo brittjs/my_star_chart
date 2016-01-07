@@ -2,6 +2,10 @@ body{
   background-color: black;
 }
 
+h1.greeting {
+  font-size: 6vh; 
+}
+
 #friendstars {
   background-image: url(../images/nightsky.jpg);
   min-width: 50%;
@@ -210,7 +214,7 @@ ul {
   margin: 1.1em;
 }
 
-#addFriendshipButton {
+#addFriendshipButton, #inviteFriendButton {
   background-color: goldenrod;
   border-color: goldenrod;
   max-width: 20%;
@@ -220,9 +224,13 @@ ul {
   display: none;
 }
 
-.shown#addFriendshipButton {
+.shown#addFriendshipButton, .shown#inviteFriendButton {
   display: inline-block;
   margin-top: -7.5vh;
+}
+
+#deleteFriendshipButton {
+  float: left;
 }
 
 .left-title {

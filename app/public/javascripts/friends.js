@@ -63,20 +63,23 @@ $(function() {
         });
       });
    });
-
-  //  TODO: make this work
-
-  // $('#addFriendModal').on('show', function(e){
-  //   $('#addFriendshipButton').removeClass('shown');
-  //   $("#findByEmail").val("");
-  //   $("#show-results").empty();
-  // });
+  // ===========================================================
+  //
+  //
+  //   Clear modal on closing
+  //
+  // ============================================================
+  $('#addFriendModal').on('hidden.bs.modal', function (e) {
+    $('#inviteFriendButton').removeClass('shown');
+    $('#addFriendshipButton').removeClass('shown');
+    $("#findByEmail").val("");
+    $("#show-results").empty();
+  });
 
   // ===========================================================
   //
   //
   //   Trap add button click, search users table for that email address, and show results
-  //   NOTE: will not work for email addresses not already in db
   //
   // ============================================================
   $('#findFriendForm').on('submit', function(e) {
@@ -84,13 +87,31 @@ $(function() {
 
     var emailAddress = $("#findByEmail").val();
     var div = $("#show-results");
+    $('#inviteFriendButton').removeClass('shown');
     $(div).empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
-      
-      $(div).html("username: " + user.username + "<br>email: " + user.email);
-      $(div).attr({'data-usernum': user.id});
-      $('#addFriendshipButton').addClass('shown');
+      if (!user.username) {
+
+        console.log ("right track");
+        $(div).html(user.email +" was not found");
+        $('#inviteFriendButton').addClass('shown');
+
+        $('#inviteFriendButton').on('click', function (e) {
+          e.preventDefault();
+          console.log("right button");
+          window.open("mailto:"+user.email+"?subject=Let%27s%20Be%20Star%20Chart%20Friends!&body=I%27ve%20found%20this%20great%20motivational%20tool%20that%20I%20think%20you%20would%20like.%0A%0AVisit%20[URL]%20to%20find%20out%20more!", "_blank");
+          $("#addFriendModal").modal('hide');
+        });
+
+        
+      } else {
+
+        $(div).html("username: " + user.username + "<br>email: " + user.email);
+        $(div).attr({'data-usernum': user.id});
+        $('#addFriendshipButton').addClass('shown');
+      }
+
     });
   });
   // ===========================================================
@@ -112,9 +133,6 @@ $(function() {
     //   alert(xhr.responseText);
     //   console.log(xhr.responseText);
     // });
-    $('#addFriendshipButton').removeClass('shown');
-    $("#findByEmail").val("");
-    $("#show-results").empty();
     $("#addFriendModal").modal('hide');
     });
   });
@@ -146,7 +164,12 @@ $(function() {
       }
 
     });
- 
+  // ===========================================================
+  //
+  //
+  //   Close modal on clicking link to generate invite email
+  //
+  // ============================================================
 
   });
 

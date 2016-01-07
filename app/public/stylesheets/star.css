@@ -12,9 +12,9 @@
   -webkit-transform: rotate(35deg);
   -ms-transform: rotate(35deg);
   -o-transform: rotate(35deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
   -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
 }
 
 .star:before {
@@ -32,10 +32,10 @@
   -moz-transform: rotate(-35deg);
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
-}
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+ /* filter: drop-shadow(0px 0px 5px #fc2e5a);
+*/}
 
 .star:after {
   content: '';
@@ -53,9 +53,9 @@
   -moz-transform: rotate(-70deg);
   -ms-transform: rotate(-70deg);
   -o-transform: rotate(-70deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+/*  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
 }
 
 .star:hover{
