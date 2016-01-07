@@ -14,3 +14,10 @@ regression_test_outcome.txt
 .DS_Store
 user.html.ejs.backup
 temp.txt
+app/views/backup_layout.ejs
+app/views/layout_backup2.ejs
+app/views/partials/__facebook_test.ejs
+app/views/partials/__facebook_test2.ejs
+app/views/partials/__facebook_test3.ejs
+facebook_test.html
+facebook_test2.html
