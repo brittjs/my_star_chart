@@ -2,6 +2,59 @@
 //
 //    Global function
 //
+//    getRandomInt()
+//
+// ============================================================
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// ===========================================================
+//
+//    Global function
+//
+//    changeHeaderTask()
+//
+// ============================================================
+function changeHeaderTask() {
+
+  var oneOrMoreIncompleteTasks = false;
+
+  // if one or more tasks are not completed change task in header
+  allTasks.forEach(function(task) {
+    if (!task.completed) {
+      oneOrMoreIncompleteTasks = true;
+    }
+  });
+
+  if (oneOrMoreIncompleteTasks) {
+
+    var foundRandomIncompleteTask = false;
+    var min = 0;
+    var max = allTasks.length;
+    var randomIndex;
+
+    do {
+      randomIndex = getRandomInt(min, max);
+      if (!allTasks[randomIndex].completed) {
+        foundRandomIncompleteTask = true;
+      }
+    } while (!foundRandomIncompleteTask);
+
+    var task2 = allTasks[randomIndex];
+
+    // <span id='header-task' data-header-task-id='header_task'>
+    $('#header-task').text(task2.description).attr('data-header-task-id', task2.id );
+
+  }
+
+}
+
+
+// ===========================================================
+//
+//    Global function
+//
 //    reloadTasks() is called in _taskcreatemodal.ejs when Submit button clicked
 //    reloadTasks() is called in user.html.ejs when delete checkbox is clicked
 //
@@ -9,13 +62,28 @@
 
 var allTasks; // This needs to remain in the global scope, please do not move!
 
-function reloadTasks(userId) {
+function reloadTasks(userId, changeTaskInHeader) {
+
+  // default changeTaskInHeader to false
+  changeTaskInHeader = typeof changeTaskInHeader !== 'undefined' ?  changeTaskInHeader : false;
 
   $(".tasks").empty();
 
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
+
+    // =========================================================
+    //  if parameter "change_task_in_header" == true
+    //  ... then change the task in the header
+    // =========================================================
+
+    if (changeTaskInHeader) {
+      changeHeaderTask();
+    }
+
+    // =========================================================
+
     // find the <ul>
     var $taskUl = $('ul.tasks');
 
@@ -71,6 +139,15 @@ function reloadTasks(userId) {
                         console.log('Task was updated successfully');
                         console.log(data);
                         alert('Task was updated successfully.');
+
+                        // if task just completed was the header task
+                        // ... then need to change header task.
+                        // ...  &&&
+                        var headerTaskId = $('#header-task').attr('data-header-task-id');
+                        if (task.id === parseInt(headerTaskId, 10)) {
+                          changeHeaderTask();
+                        }
+
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -82,14 +159,10 @@ function reloadTasks(userId) {
           var star = {};
           star.TaskId = taskId;
 
-          star.UserId = userId;   /// &&&
+          star.UserId = userId;
 
-          function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
-          }
-
-          star.x_cord = getRandomInt(1, 100);;
-          star.y_cord = getRandomInt(1, 100);;
+          star.x_cord = getRandomInt(1, 100);
+          star.y_cord = getRandomInt(1, 100);
 
 
           // AJAX call to  POST star to server
@@ -193,7 +266,9 @@ $(function() {
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
-        reloadTasks(userId);
+        var changeTaskInHeaderFlag = true;
+
+        reloadTasks(userId, changeTaskInHeaderFlag);
 
         // ===========================================================
         //

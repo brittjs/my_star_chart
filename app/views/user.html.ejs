@@ -1,7 +1,6 @@
 <% include partials/__navbar %>
 <div id="userId" data-id="<%= id %>"></div>
-<h1 class="greeting">Hello, <%= username %>! Today's a good day to walk the dog!</h1>
-
+<h1 class="greeting">Hello, <%= username %>! <span id='header-task' data-header-task-id='header_task'>Today's a good day to walk the dog!</span></h1>
 <div class="skyContainer skyImg" id="basebox">
   <!--starchart goes here-->
 </div>
@@ -9,7 +8,7 @@
 
 <div class="contentContainer">
   <div class="listOfTasks">
-    
+
     <div class="taskWrapper">
       <div class="addTask">
         <h1 class="left-title">Today's tasks...</h1>
@@ -18,7 +17,7 @@
         </button>
       </div>
       <div id="taskScroll">
-        <div class="scroll"> 
+        <div class="scroll">
           <ul class="tasks">
             <!-- tasklist goes here -->
           </ul>
@@ -30,11 +29,11 @@
     <% include partials/__taskeditmodal %>
     <% include partials/__taskcreatemodal %>
 
-    <div class="friendsWrapper">  
+    <div class="friendsWrapper">
         <div class="friends">
           <% include partials/__friends %>
         </div>
-    </div>  
+    </div>
 
     <div class="endColumn">
     <% include partials/__shareto %>

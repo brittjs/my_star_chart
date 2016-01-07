@@ -5,7 +5,7 @@ $(function() {
 
   var str = window.location.pathname;
 
-  var usersPage = str.match(/^\/view$/);
+  var usersPage = str.match(/^\/user$/);
 
   var homePage = str.match(/^\/$/);
 
@@ -92,8 +92,17 @@ $(function() {
               console.log("done with delete");
 
               $("#myModal").modal('hide');
-              reloadTasks(userId);
 
+              // if this task was the header task
+              // ... then need to select another header task
+              // ... &&&
+              var headerTaskId = $('#header-task').attr('data-header-task-id');
+
+              var changeHeaderTaskFlag = false;
+              if (taskId === headerTaskId) {
+                changeHeaderTaskFlag = true;
+              }
+              reloadTasks(userId, changeHeaderTaskFlag);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("#deleteTask button click ajax DELETE failed.");
@@ -102,11 +111,6 @@ $(function() {
             }
 
           });
-          //trying to reload tasks after delete is clicked
-          // $("#myModal").modal('hide');
-          // reloadTasks(userId);
-
-          // console.log('boo');
 
         }
 
@@ -138,7 +142,9 @@ $(function() {
                         // console.log(data);
                         // console.log(taskId);
                         $("#myModal").modal('hide');
+
                         reloadTasks(userId);
+
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -165,11 +171,7 @@ $(function() {
 
           star.TaskId = $('div.details').attr("id");
 
-          star.UserId = userId;   /// &&&
-
-          function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
-          }
+          star.UserId = userId;
 
           var min = 1;
           var max = 100;
@@ -177,6 +179,7 @@ $(function() {
           star.y_cord = Math.floor(Math.random() * (max - min + 1)) + min;
           // star.x_cord = getRandomInt(1, 100);
           // star.y_cord = getRandomInt(1, 100);
+
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -187,7 +190,7 @@ $(function() {
               success: function(data) {
                         console.log('Star was inserted successfully');
                         console.log(data);
-                        alert('Task was inserted successfully.');
+                        alert('Star was inserted successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -204,7 +207,7 @@ $(function() {
           // ... regardless of whether they were changed or not
 
           // AJAX call to  POST data to server
-          
+
           $.ajax({
               type: "PUT",
               url:  'users/' + userId + '/tasks/' + task.id,
@@ -216,8 +219,17 @@ $(function() {
                         alert('Task was updated successfully.');
 
                         $("#myModal").modal('hide');
-                        reloadTasks(userId);
 
+                        // if the task completed was the header task
+                        // ... then need to change the header task
+                        // ... &&&
+                        var headerTaskId = $('#header-task').attr('data-header-task-id');
+
+                        var changeHeaderTaskFlag = false;
+                        if (task.id === parseInt(headerTaskId, 10)) {
+                          changeHeaderTaskFlag = true;
+                        }
+                        reloadTasks(userId, changeHeaderTaskFlag);
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -225,32 +237,32 @@ $(function() {
               }
           });
 
-          star.TaskId = $('div.details').attr("id");
+          // star.TaskId = $('div.details').attr("id");
 
-          star.UserId = userId;   /// &&&
+          // star.UserId = userId;
 
-          star.x_cord = 81;
-          star.y_cord = 131;
+          // star.x_cord = 81;
+          // star.y_cord = 131;
 
 
-          // AJAX call to  POST star to server
-          $.ajax({
-              type: "POST",
-              url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-              contentType: "application/json",
-              data: JSON.stringify(star),
-              success: function(data) {
-                        console.log('Star was inserted successfully');
-                        console.log(data);
-                        alert('Task was inserted successfully.');
-                      },
-              failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
-                       alert(jqXHR.responseText);
-                     }
-           });
+          // // AJAX call to  POST star to server
+          // $.ajax({
+          //     type: "POST",
+          //     url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+          //     contentType: "application/json",
+          //     data: JSON.stringify(star),
+          //     success: function(data) {
+          //               console.log('Star was inserted successfully');
+          //               console.log(data);
+          //               alert('Task was inserted successfully.');
+          //             },
+          //     failure: function ( jqXHR, textStatus, errorThrown ) {
+          //              console.log(jqXHR.responseText);
+          //              alert(jqXHR.responseText);
+          //            }
+          //  });
        }
-    
+
     });
 
   }
