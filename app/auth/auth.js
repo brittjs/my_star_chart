@@ -20,22 +20,23 @@ passport.use(new GithubStrategy({
     //Based on profile return from Github, find existing user
     let user = profile;
 
-    console.log('function in auth/auth.ßjs');
-    console.log('user');
-    console.log(user);
+    // console.log('function in auth/auth.ßjs');
+    // console.log('user');
+    // console.log(user);
 
 
     // see if this user.id is already in the table
     // ... if not insert row into User table
 
-    console.log("in findExistingUserBasedOnOAuthUser");
+    // console.log("in findExistingUserBasedOnOAuthUser");
 
     db.sequelize.models.User
       .findOrCreate({where: { githubId: user.id } })
       .then(function(logginginUser) {
-         console.log('in auth/auth.js findOrCreate user succeeded');
-         console.log('logginginUser');
-         console.log(logginginUser);
+         // console.log('in auth/auth.js findOrCreate user succeeded');
+         // console.log('logginginUser');
+         // console.log(logginginUser);
+
          //Return user model
          //return done(null, logginginUser);
       })
@@ -60,9 +61,10 @@ passport.use(new GithubStrategy({
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(function(username, password, done) {
 
-  console.log("inside auth/auth.js  passport.use(new LocalStrategy .... ");
-  console.log("username = " + username);
-  console.log("password = " + password);
+  // console.log("inside auth/auth.js  passport.use(new LocalStrategy .... ");
+  // console.log("username = " + username);
+  // console.log("password = " + password);
+
   // retrieve user ...
   var users = db.sequelize.models.User.findAll({
                              where: {
@@ -70,10 +72,10 @@ passport.use(new LocalStrategy(function(username, password, done) {
                                     }
                             })
         .then(function(users) {
-           console.log('in auth/auth.js Local findAll user succeeded');
-           console.log('users');
-           console.log(users);
-           console.log("");
+           // console.log('in auth/auth.js Local findAll user succeeded');
+           // console.log('users');
+           // console.log(users);
+           // console.log("");
 
            if (users.length === 0) {
             // this is a new user,  insert user and password in database
@@ -87,10 +89,10 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
             var result = db.sequelize.models.User.create(user1)
                   .then(function(return_value) {
-                     console.log('in auth/auth.js Local create user succeeded');
-                     console.log('return_value');
-                     console.log(return_value);
-                     console.log("");
+                     // console.log('in auth/auth.js Local create user succeeded');
+                     // console.log('return_value');
+                     // console.log(return_value);
+                     // console.log("");
 
                      done(null, return_value.dataValues);
                   })
@@ -109,9 +111,9 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
              user.type = "local";
 
-             console.log("user");
-             console.log(user);
-             console.log("");
+             // console.log("user");
+             // console.log(user);
+             // console.log("");
 
              if (username === user.email && password === user.pwd) {
                console.log("email and password matched");

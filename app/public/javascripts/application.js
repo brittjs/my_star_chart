@@ -2,6 +2,59 @@
 //
 //    Global function
 //
+//    getRandomInt()
+//
+// ============================================================
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// ===========================================================
+//
+//    Global function
+//
+//    changeHeaderTask()
+//
+// ============================================================
+function changeHeaderTask() {
+
+  var oneOrMoreIncompleteTasks = false;
+
+  // if one or more tasks are not completed change task in header
+  allTasks.forEach(function(task) {
+    if (!task.completed) {
+      oneOrMoreIncompleteTasks = true;
+    }
+  });
+
+  if (oneOrMoreIncompleteTasks) {
+
+    var foundRandomIncompleteTask = false;
+    var min = 0;
+    var max = allTasks.length;
+    var randomIndex;
+
+    do {
+      randomIndex = getRandomInt(min, max);
+      if (!allTasks[randomIndex].completed) {
+        foundRandomIncompleteTask = true;
+      }
+    } while (!foundRandomIncompleteTask);
+
+    var task2 = allTasks[randomIndex];
+
+    // <span id='header-task' data-header-task-id='header_task'>
+    $('#header-task').text(task2.description).attr('data-header-task-id', task2.id );
+
+  }
+
+}
+
+
+// ===========================================================
+//
+//    Global function
+//
 //    reloadTasks() is called in _taskcreatemodal.ejs when Submit button clicked
 //    reloadTasks() is called in user.html.ejs when delete checkbox is clicked
 //
@@ -9,13 +62,63 @@
 
 var allTasks; // This needs to remain in the global scope, please do not move!
 
-function reloadTasks(userId) {
+function reloadTasks(userId, changeTaskInHeader) {
+
+  //   ========================================================
+        function paintStarsInTheSky() {
+          var str = window.location.pathname;
+
+          var usersPage = str.match(/^\/user$/);
+
+          var homePage = str.match(/^\/$/);
+
+
+          if (usersPage || homePage) {
+
+              //   <div id="userId" data-id="<%= id %>"></div>
+
+              // var userId = $('div#userId').data('id');
+              // console.log("$('div#userId').data('id')");
+              var userId = $('div#userId').attr('data-id');
+              console.log("$('div#userId').attr('data-id')");
+              console.log(userId);
+
+              $.get('users/' + userId + '/stars', function(stars){
+                stars.forEach(function(star){
+                  var div = $("<div>").addClass("star-container");
+                  $("#basebox").append(div);
+                  $("<div>").addClass("star").appendTo(div);
+                  // var addStar = div.append(newStar);
+                  $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+                });
+              });
+
+           }
+        }
+
+  //   ========================================================
+
+
+  // default changeTaskInHeader to false
+  changeTaskInHeader = typeof changeTaskInHeader !== 'undefined' ?  changeTaskInHeader : false;
 
   $(".tasks").empty();
 
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
+
+    // =========================================================
+    //  if parameter "change_task_in_header" == true
+    //  ... then change the task in the header
+    // =========================================================
+
+    if (changeTaskInHeader) {
+      changeHeaderTask();
+    }
+
+    // =========================================================
+
     // find the <ul>
     var $taskUl = $('ul.tasks');
 
@@ -36,6 +139,7 @@ function reloadTasks(userId) {
         $taskAnchor = $('<a class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'data-priority': task.priority,
                                         'href': '',
                                         'data-toggle': "modal",
                                         'data-target': "#myModal"
@@ -72,7 +176,17 @@ function reloadTasks(userId) {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        // alert('Task was updated successfully.');                        
+
+                        // alert('Task was updated successfully.');
+
+                        // if task just completed was the header task
+                        // ... then need to change header task.
+                        // ...  &&&
+                        var headerTaskId = $('#header-task').attr('data-header-task-id');
+                        if (task.id === parseInt(headerTaskId, 10)) {
+                          changeHeaderTask();
+                        }
+
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -86,31 +200,49 @@ function reloadTasks(userId) {
           console.log(star.TaskId);
           console.log(taskId);
 
-          star.UserId = userId;   /// &&&
-
-          function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
-          }
+          star.UserId = userId;
 
           star.x_cord = getRandomInt(0, 98);
           star.y_cord = getRandomInt(2, 92);
 
           //AJAX call to GET star with specific task id
-          $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+          //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+
             // alert("Check get star with certain id");
+            $(".new-star-container").addClass("star-container");
+            $(".new-star-container.star-container").removeClass("new-star-container");
+            
             var div = $("<div>").addClass("new-star-container");
             var addDiv = $("#basebox").append(div);
             var newStar = $("<div>").addClass("new-star");
             var addStar = div.append(newStar);
 
-            setTimeout(function(){
-              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-            }, 1000)
+            (function(){
+              setTimeout(function(){
+                console.log("Inside setTimeout");
+                // console.log("taskId = " );
+                // console.log(taskId);
+                $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
+                // $(".new-star-container").addClass("star-container");
+                // $(".new-star-container.star-container").removeClass("new-star-container");
+              }, 1000);
+            })();
 
             setTimeout(function(){
-              location.reload();
-            },3200)
-          });
+              //location.reload();
+              // logic to determine whether changeHeaderTaskFlag = true or not
+              var headerTaskId = $('#header-task').attr('data-header-task-id');
+
+              var changeHeaderTaskFlag = false;
+              if (taskId === headerTaskId) {
+                changeHeaderTaskFlag = true;
+              }
+
+              reloadTasks(userId, changeHeaderTaskFlag);
+              // paintStarsInTheSky();
+            },3200);
+
+          //});
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -136,6 +268,7 @@ function reloadTasks(userId) {
         $taskAnchor = $('<span class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'priority': task.priority,
                                       //  'data-toggle': "modal",
                                       //  'data-target': "#myModal",
                                       //  'disabled': "disabled"
@@ -214,7 +347,9 @@ $(function() {
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
-        reloadTasks(userId);
+        var changeTaskInHeaderFlag = true;
+
+        reloadTasks(userId, changeTaskInHeaderFlag);
 
         // ===========================================================
         //
@@ -270,6 +405,17 @@ $(function() {
 
         });
 
+        // ===========================================================
+        //
+        //
+        //   Sort tasks by priority using sortByPriority button
+        //
+        // ============================================================
+
+        $("#sortByPriority").on('click', function() {
+          tinysort('ul.tasks>li', {selector: '.taskAnchor', data: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
+        });
 
 
    } // end of user's Page  !!!

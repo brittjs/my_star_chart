@@ -57,11 +57,11 @@ module.exports = {
     console.log('this.session.passport.user.id');
     console.log(this.session.passport.user.id);
 
-    console.log('this');
-    console.log(this);
+    // console.log('this');
+    // console.log(this);
 
-    console.log('this.state');
-    console.log(this.state);    //   <=  {}
+    // console.log('this.state');
+    // console.log(this.state);    //   <=  {}
 
     this.session.passport.user.provider = this.session.passport.user.provider || 'local';
 
@@ -84,8 +84,8 @@ module.exports = {
 
     }
 
-    console.log("users");
-    console.log(users);
+    // console.log("users");
+    // console.log(users);
 
     yield this.render('user.html', users[0].dataValues);
 

@@ -73,6 +73,7 @@ $(function() {
                           $("#myModal").modal('hide');
                           $('#editTaskForm').trigger("reset");
                           $("#editTaskModal").modal('hide');
+
                           reloadTasks(userId);
 
                         },
