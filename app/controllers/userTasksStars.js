@@ -84,8 +84,8 @@ module.exports = {
     // console.log('this.request');
     // console.log(this.request);
 
-    console.log('this.request.body');
-    console.log(this.request.body);
+    // console.log('this.request.body');
+    // console.log(this.request.body);
 
     var stars = yield db.sequelize.models.Star.findAll({
                                where: {

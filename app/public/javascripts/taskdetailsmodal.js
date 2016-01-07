@@ -230,6 +230,7 @@ $(function() {
                           changeHeaderTaskFlag = true;
                         }
                         reloadTasks(userId, changeHeaderTaskFlag);
+                        paintStarsInTheSky();
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
