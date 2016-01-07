@@ -104,13 +104,14 @@ function reloadTasks(userId, changeTaskInHeader) {
         $taskAnchor = $('<a class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'data-priority': task.priority,
                                         'href': '',
                                         'data-toggle': "modal",
                                         'data-target': "#myModal"
                                       });
 
         $checkBox = $('<input type="checkbox" class="complete">').attr({
-          'id':   task.id.toString()
+          'id':   'chk' + task.id.toString()
           }).prop('checked', task.completed);
 
         // ===========================================================
@@ -124,8 +125,10 @@ function reloadTasks(userId, changeTaskInHeader) {
           // console.log("LOOK HERE.");
           var userId = $('div#userId').attr('data-id');
           console.log(userId);
-          var taskId = $(this).attr("id");
+          var taskId = ($(this).attr("id")).substring(3);
+          // console.log(taskId);
           var task = findByTaskId(taskId);
+          // console.log(taskId);
           task.completed = true;
 
           // AJAX call to  POST data to server
@@ -138,6 +141,7 @@ function reloadTasks(userId, changeTaskInHeader) {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
+
                         alert('Task was updated successfully.');
 
                         // if task just completed was the header task
@@ -158,29 +162,48 @@ function reloadTasks(userId, changeTaskInHeader) {
 
           var star = {};
           star.TaskId = taskId;
+          console.log(star.TaskId);
+          console.log(taskId);
 
           star.UserId = userId;
 
-          star.x_cord = getRandomInt(1, 100);
-          star.y_cord = getRandomInt(1, 100);
+          star.x_cord = getRandomInt(0, 98);
+          star.y_cord = getRandomInt(2, 92);
 
+          //AJAX call to GET star with specific task id
+          $.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+            // alert("Check get star with certain id");
+            var div = $("<div>").addClass("new-star-container");
+            var addDiv = $("#basebox").append(div);
+            var newStar = $("<div>").addClass("new-star");
+            var addStar = div.append(newStar);
+
+            setTimeout(function(){
+              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+            }, 1000)
+
+            setTimeout(function(){
+              location.reload();
+            },3200)
+          });
 
           // AJAX call to  POST star to server
           $.ajax({
-              type: "POST",
-              url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-              contentType: "application/json",
-              data: JSON.stringify(star),
-              success: function(data) {
-                        console.log('Star was inserted successfully');
-                        console.log(data);
-                        alert('Task was inserted successfully.');
-                        location.reload();
-                      },
-              failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
-                       alert(jqXHR.responseText);
-                     }
+            type: "POST",
+            url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
+            contentType: "application/json",
+            data: JSON.stringify(star),
+            success:function(data) {
+                    console.log('Star was inserted successfully');
+                    console.log(data);
+                    // alert('Task was inserted successfully.');
+                    // location.reload();
+                    },
+            failure:function ( jqXHR, textStatus, errorThrown ) {
+                    console.log(jqXHR.responseText);
+                    alert(jqXHR.responseText);
+                    }
+
           });
         });
 
@@ -188,6 +211,7 @@ function reloadTasks(userId, changeTaskInHeader) {
         $taskAnchor = $('<span class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'priority': task.priority,
                                       //  'data-toggle': "modal",
                                       //  'data-target': "#myModal",
                                       //  'disabled': "disabled"
@@ -324,6 +348,17 @@ $(function() {
 
         });
 
+        // ===========================================================
+        //
+        //
+        //   Sort tasks by priority using sortByPriority button
+        //
+        // ============================================================
+
+        $("#sortByPriority").on('click', function() {
+          tinysort('ul.tasks>li', {selector: '.taskAnchor', data: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
+        });
 
 
    } // end of user's Page  !!!

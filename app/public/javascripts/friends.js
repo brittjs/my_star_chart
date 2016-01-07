@@ -51,7 +51,7 @@ $(function() {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
-    $('#friend-details').text(friendName);
+    $('#friend-details').text(friendName).attr({'data-friend-id': friendId})
     $('#friendstars').empty();
 
      $.get('users/' + friendId + '/stars', function(stars){
@@ -64,21 +64,30 @@ $(function() {
       });
    });
 
+  //  TODO: make this work
+
+  // $('#addFriendModal').on('show', function(e){
+  //   $('#addFriendshipButton').removeClass('shown');
+  //   $("#findByEmail").val("");
+  //   $("#show-results").empty();
+  // });
+
   // ===========================================================
   //
   //
   //   Trap add button click, search users table for that email address, and show results
-  //   NOTE: will always return the same, hardcoded result
+  //   NOTE: will not work for email addresses not already in db
   //
   // ============================================================
   $('#findFriendForm').on('submit', function(e) {
     e.preventDefault();
 
     var emailAddress = $("#findByEmail").val();
-    $("#show-results").empty();
+    var div = $("#show-results");
+    $(div).empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
-      var div = $("#show-results");
+      
       $(div).html("username: " + user.username + "<br>email: " + user.email);
       $(div).attr({'data-usernum': user.id});
       $('#addFriendshipButton').addClass('shown');
@@ -92,26 +101,55 @@ $(function() {
   // ============================================================
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
-    console.log("well, the button clicked");
 
     var newFriendId = $("#show-results").data('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
 
     $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
-      console.log("success?");
       reloadFriends(userId);
 
     // .fail( function(xhr, textStatus, errorThrown) {
     //   alert(xhr.responseText);
     //   console.log(xhr.responseText);
     // });
-
-    // $("#show-results").empty();
+    $('#addFriendshipButton').removeClass('shown');
+    $("#findByEmail").val("");
+    $("#show-results").empty();
     $("#addFriendModal").modal('hide');
+    });
+  });
 
-    })
+  // ===========================================================
+  //
+  //
+  //   Trap remove button click, delete friendship
+  //
+  // ============================================================
+   $('#deleteFriendshipButton').on('click', function (e) {
+    e.preventDefault();
+   
+    var friendId = $('#friend-details').data('friend-id');
+    var userId = $('div#userId').data('id'); //does this need to be here?
 
-  })
+    $.ajax({
+        url: '/users/' + userId + '/friends/' + friendId, 
+        type: 'DELETE',
+        success: function () {
+          console.log('deleted!');
+          reloadFriends(userId);
+          $("#showFriendModal").modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          console.log("#deleteFriendshipButton click ajax DELETE failed.");
+          console.log("status = " + xhr.status);
+          console.log("xhr.responseText = " + xhr.responseText);
+      }
+
+    });
+ 
+
+  });
+
 
 }
 });

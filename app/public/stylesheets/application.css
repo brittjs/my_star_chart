@@ -29,10 +29,12 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .skyContainer {
   display:flex;
   border:10px solid goldenrod;
+  position: relative;
 }
 
 .skyImg {
   background-image: url(../images/nightsky.jpg);
+  background-position: center bottom;
   background-size: contain;
   background-size: 100%;
   flex: 1;
@@ -151,6 +153,11 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   justify-content: space-between;
 }
 
+.sortByAndAddTaskButtons{
+  display: flex;
+  justify-content: flex-end;
+}
+
 ul {
   clear: both;
 }
@@ -174,14 +181,24 @@ ul {
   min-height: 120px;
 }
 
+#sortByPriority {
+  margin-left: 20px;
+  font-size: 2.5vh;
+  background-color: goldenrod;
+  border-color: goldenrod;
+  float: right;
+  margin: 1.1em .5em;
+  /*flex: 1;*/
+}
+
 #createTaskButton {
   margin-right: 10px;
   font-size: 2.5vh;
   background-color: goldenrod;
   border-color: goldenrod;
-  max-width: 20%;
   float: right;
   margin: 1.1em;
+  /*flex: 1;*/
 }
 
 #addFriendButton {

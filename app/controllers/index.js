@@ -92,11 +92,6 @@ module.exports = {
 		yield next;
 	},
 
-  star: function* star(next) {
-    yield this.render('star.html');
-    yield next;
-  },
-
 };
 
 

@@ -3,6 +3,7 @@
 <h1 class="greeting">Hello, <%= username %>! <span id='header-task' data-header-task-id='header_task'>Today's a good day to walk the dog!</span></h1>
 <div class="skyContainer skyImg" id="basebox">
   <!--starchart goes here-->
+  <!-- <button class="submit">Submit</button> -->
 </div>
 <br>
 
@@ -12,9 +13,14 @@
     <div class="taskWrapper">
       <div class="addTask">
         <h1 class="left-title">Today's tasks...</h1>
+        <div class="sortByAndAddTaskButtons">
+        <button type="button" class="btn btn-default btn-lg" id="sortByPriority">
+          <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+        </button>
         <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
+        </div>
       </div>
       <div id="taskScroll">
         <div class="scroll">
