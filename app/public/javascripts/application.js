@@ -64,6 +64,41 @@ var allTasks; // This needs to remain in the global scope, please do not move!
 
 function reloadTasks(userId, changeTaskInHeader) {
 
+  //   ========================================================
+        function paintStarsInTheSky() {
+          var str = window.location.pathname;
+
+          var usersPage = str.match(/^\/user$/);
+
+          var homePage = str.match(/^\/$/);
+
+
+          if (usersPage || homePage) {
+
+              //   <div id="userId" data-id="<%= id %>"></div>
+
+              // var userId = $('div#userId').data('id');
+              // console.log("$('div#userId').data('id')");
+              var userId = $('div#userId').attr('data-id');
+              console.log("$('div#userId').attr('data-id')");
+              console.log(userId);
+
+              $.get('users/' + userId + '/stars', function(stars){
+                stars.forEach(function(star){
+                  var div = $("<div>").addClass("star-container");
+                  $("#basebox").append(div);
+                  $("<div>").addClass("star").appendTo(div);
+                  // var addStar = div.append(newStar);
+                  $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+                });
+              });
+
+           }
+        }
+
+  //   ========================================================
+
+
   // default changeTaskInHeader to false
   changeTaskInHeader = typeof changeTaskInHeader !== 'undefined' ?  changeTaskInHeader : false;
 
@@ -142,7 +177,7 @@ function reloadTasks(userId, changeTaskInHeader) {
                         console.log('Task was updated successfully');
                         console.log(data);
 
-                        alert('Task was updated successfully.');
+                        // alert('Task was updated successfully.');
 
                         // if task just completed was the header task
                         // ... then need to change header task.
@@ -174,14 +209,24 @@ function reloadTasks(userId, changeTaskInHeader) {
           //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
 
             // alert("Check get star with certain id");
+            $(".new-star-container").addClass("star-container");
+            $(".new-star-container.star-container").removeClass("new-star-container");
+            
             var div = $("<div>").addClass("new-star-container");
             var addDiv = $("#basebox").append(div);
             var newStar = $("<div>").addClass("new-star");
             var addStar = div.append(newStar);
 
-            setTimeout(function(){
-              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-            }, 1000);
+            (function(){
+              setTimeout(function(){
+                console.log("Inside setTimeout");
+                // console.log("taskId = " );
+                // console.log(taskId);
+                $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
+                // $(".new-star-container").addClass("star-container");
+                // $(".new-star-container.star-container").removeClass("new-star-container");
+              }, 1000);
+            })();
 
             setTimeout(function(){
               //location.reload();
@@ -194,7 +239,7 @@ function reloadTasks(userId, changeTaskInHeader) {
               }
 
               reloadTasks(userId, changeHeaderTaskFlag);
-              paintStarsInTheSky();
+              // paintStarsInTheSky();
             },3200);
 
           //});
