@@ -1,7 +1,7 @@
-<h1>Login Page</h1>
+<h1 class="text-center">Login Page</h1>
 
 
-<form action="/login" method="post">
+<form class="loginform text-center" action="/login" method="post">
   <p>
     <label>Username:
       <input type="text" name="username" value="test" />
@@ -13,9 +13,17 @@
     </label>
   </p>
   <p>
-    <button type="submit">Log In</button>
+    <button class="btn btn-primary btn-sm" type="submit">
+      <i class="fa fa-arrow-circle-o-right fa-lg"> Log In </i>
+    </button>
   </p>
-  <p>
+ <!--  <p>
     <a href="/auth/github">Sign in with GitHub</a>
-  </p>
+  </p> -->
 </form>
+
+<div class="text-center">
+  <a href="/auth/github" class="btn social-button">
+    <i class="fa fa-github fa-2x"></i> Sign in with GitHub 
+  </a>
+</div>
