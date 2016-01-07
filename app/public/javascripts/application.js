@@ -36,6 +36,7 @@ function reloadTasks(userId) {
         $taskAnchor = $('<a class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'data-priority': task.priority,   
                                         'href': '',
                                         'data-toggle': "modal",
                                         'data-target': "#myModal"
@@ -136,6 +137,7 @@ function reloadTasks(userId) {
         $taskAnchor = $('<span class="taskAnchor">').text(task.description)
                                  .attr({
                                         'id':   task.id.toString(),
+                                        'priority': task.priority,
                                       //  'data-toggle': "modal",
                                       //  'data-target': "#myModal",
                                       //  'disabled': "disabled"
@@ -270,6 +272,17 @@ $(function() {
 
         });
 
+        // ===========================================================
+        //
+        //
+        //   Sort tasks by priority using sortByPriority button
+        //
+        // ============================================================
+
+        $("#sortByPriority").on('click', function() {
+          tinysort('ul.tasks>li', {selector: '.taskAnchor', data: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});   
+        });
 
 
    } // end of user's Page  !!!
