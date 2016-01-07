@@ -64,13 +64,12 @@ $(function() {
       });
    });
 
-  //  TODO: make this work
-
-  // $('#addFriendModal').on('show', function(e){
-  //   $('#addFriendshipButton').removeClass('shown');
-  //   $("#findByEmail").val("");
-  //   $("#show-results").empty();
-  // });
+  $('#addFriendModal').on('hidden.bs.modal', function (e) {
+    $('#inviteFriendButton').removeClass('shown');
+    $('#addFriendshipButton').removeClass('shown');
+    $("#findByEmail").val("");
+    $("#show-results").empty();
+  });
 
   // ===========================================================
   //
@@ -84,6 +83,7 @@ $(function() {
 
     var emailAddress = $("#findByEmail").val();
     var div = $("#show-results");
+    $('#inviteFriendButton').removeClass('shown');
     $(div).empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
@@ -158,15 +158,11 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Trap invite button click, generate email
+  //   Empty and close modal on clicking link to generate invite email
   //
   // ============================================================
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
-
-    $('#addFriendshipButton').removeClass('shown');
-    $("#findByEmail").val("");
-    $("#show-results").empty();
     $("#addFriendModal").modal('hide');
     });
   });
