@@ -87,10 +87,19 @@ $(function() {
     $(div).empty();
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
-      
-      $(div).html("username: " + user.username + "<br>email: " + user.email);
-      $(div).attr({'data-usernum': user.id});
-      $('#addFriendshipButton').addClass('shown');
+      if (!user.username) {
+
+        console.log ("right track");
+        $(div).html(user.email +" was not found");
+        $('#inviteFriendButton').addClass('shown').html("<a href = \"mailto:"+user.email+"?subject=Let%27s%20Be%20Star%20Chart%20Friends!&body=I%27ve%20found%20this%20great%20motivational%20tool%20that%20I%20think%20you%20would%20like.%0A%0AVisit%20[URL]%20to%20find%20out%20more!\" target=\"_blank\">Invite</a>");
+        
+      } else {
+
+        $(div).html("username: " + user.username + "<br>email: " + user.email);
+        $(div).attr({'data-usernum': user.id});
+        $('#addFriendshipButton').addClass('shown');
+      }
+
     });
   });
   // ===========================================================
@@ -146,9 +155,24 @@ $(function() {
       }
 
     });
- 
+  // ===========================================================
+  //
+  //
+  //   Trap invite button click, generate email
+  //
+  // ============================================================
+  $('#addFriendshipButton').on('click', function (e) {
+    e.preventDefault();
 
+    $('#addFriendshipButton').removeClass('shown');
+    $("#findByEmail").val("");
+    $("#show-results").empty();
+    $("#addFriendModal").modal('hide');
+    });
   });
+
+
+
 
 
 }

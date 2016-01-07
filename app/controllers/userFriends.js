@@ -16,12 +16,16 @@ module.exports = {
   },  
 
   findUserByEmail: function * findUserByEmail(next) {  
-    foundUser = db.sequelize.models.User.findOne ({
+    var foundUser = yield db.sequelize.models.User.findOne ({
         where: {
           email: this.state.emailaddress
         }
       });
-    this.body = yield foundUser;
+    if (!foundUser) {
+      this.body = {email: this.state.emailaddress}; 
+    } else {
+      this.body = foundUser;
+    }
     yield next;
   },  
 
