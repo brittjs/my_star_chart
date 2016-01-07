@@ -46,10 +46,6 @@ $(function() {
           console.log("Create task submit button successful.");
           console.log("task = ", task);
           reloadTasks(userId);
-
-          var changeTaskInHeader = false;
-          reloadTasks(userId, changeTaskInHeader);
-
         })
         .fail( function(xhr, textStatus, errorThrown) {
             alert(xhr.responseText);
