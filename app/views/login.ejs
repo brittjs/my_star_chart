@@ -1,29 +1,16 @@
 <h1 class="text-center">Login Page</h1>
 
-
 <form class="loginform text-center" action="/login" method="post">
-  <p>
-    <label>Username:
-      <input type="text" name="username" value="test" />
-    </label>
-  </p>
-  <p>
-    <label>Password:
-      <input type="password" name="password" value="test" />
-    </label>
-  </p>
-  <p>
-    <button class="btn btn-primary btn-sm" type="submit">
-      <i class="fa fa-arrow-circle-o-right fa-lg"> Log In </i>
-    </button>
-  </p>
- <!--  <p>
-    <a href="/auth/github">Sign in with GitHub</a>
-  </p> -->
+  <input type="text" placeholder="Username" name="username" />
+  <input type="password" placeholder="Password" name="password" />
+  <button class="btn btn-primary btn-sm" type="submit">
+    <i class="fa fa-arrow-circle-o-right fa-lg"> Log In </i>
+  </button>
 </form>
 
 <div class="text-center">
   <a href="/auth/github" class="btn social-button">
-    <i class="fa fa-github fa-2x"></i> Sign in with GitHub 
+    <i class="fa fa-github fa-lg"></i> 
+    <span>Sign in with GitHub</span> 
   </a>
 </div>
