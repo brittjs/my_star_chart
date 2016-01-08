@@ -106,7 +106,9 @@ $(function() {
 
         
       } else {
-
+        console.log(user.username);
+        console.log(user.email);
+        console.log(userId);
         $(div).html("username: " + user.username + "<br>email: " + user.email);
         $(div).attr({'usernum': user.id});
         $('#addFriendshipButton').addClass('shown');
@@ -125,6 +127,12 @@ $(function() {
 
     var newFriendId = $("#show-results").attr('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
+    console.log(newFriendId);
+    console.log(userId);
+
+    if (parseInt(newFriendId) === parseInt(userId)) {
+      alert("Cannot add self as friend");
+    } else {
 
     $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
       console.log("add friend button successful");
@@ -139,6 +147,7 @@ $(function() {
     $("#addFriendModal").modal('hide');
     });
 
+    } 
 
   });
 
