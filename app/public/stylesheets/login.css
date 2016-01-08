@@ -14,10 +14,25 @@ p{
 	color: goldenrod;
 }
 
-span i{
-  color: white;
+i{
+  color: goldenrod;
 }
 
 .input-in-form{
 	display: inline-block;
+	position: relative;
+}
+
+.input-in-form .glyphicon{
+	position: absolute;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.left-positioning .glyphicon{
+	left: 0px;
+}
+
+.left-positioning input{
+	padding-left: 20px;
 }
