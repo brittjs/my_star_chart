@@ -102,7 +102,7 @@ function reloadTasks(userId, changeTaskInHeader) {
   // default changeTaskInHeader to false
   changeTaskInHeader = typeof changeTaskInHeader !== 'undefined' ?  changeTaskInHeader : false;
 
-  $(".tasks").empty();
+  //$(".tasks").empty();
 
   $.get('users/' + userId + '/tasks', function(tasks){
 
@@ -211,7 +211,7 @@ function reloadTasks(userId, changeTaskInHeader) {
             // alert("Check get star with certain id");
             $(".new-star-container").addClass("star-container");
             $(".new-star-container.star-container").removeClass("new-star-container");
-            
+
             var div = $("<div>").addClass("new-star-container");
             var addDiv = $("#basebox").append(div);
             var newStar = $("<div>").addClass("new-star");

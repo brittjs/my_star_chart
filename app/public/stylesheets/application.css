@@ -3,7 +3,7 @@ body{
 }
 
 h1.greeting {
-  font-size: 6vh; 
+  font-size: 6vh;
 }
 
 #friendstars {
@@ -320,4 +320,17 @@ ul {
 
 .complete_span_disabled.postponed{
   color: #A8A8A8;
+}
+
+.tasklistform{
+  background-color: grey;
+  border: 0;
+  color: dark grey;
+  font-size: 8;
+  padding: 10px;
+}
+
+.tasklistform input[type="text"]{
+  background-color: grey;
+  border: 1px solid black;
 }

@@ -173,13 +173,8 @@ $(function() {
 
           star.UserId = userId;
 
-          var min = 1;
-          var max = 100;
-          star.x_cord = Math.floor(Math.random() * (max - min + 1)) + min;
-          star.y_cord = Math.floor(Math.random() * (max - min + 1)) + min;
-          // star.x_cord = getRandomInt(1, 100);
-          // star.y_cord = getRandomInt(1, 100);
-
+          star.x_cord = getRandomInt(0, 98);
+          star.y_cord = getRandomInt(2, 92);
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -190,7 +185,7 @@ $(function() {
               success: function(data) {
                         console.log('Star was inserted successfully');
                         console.log(data);
-                        alert('Star was inserted successfully.');
+                        // alert('Star was inserted successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -216,7 +211,7 @@ $(function() {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        alert('Task was updated successfully.');
+                        // alert('Task was updated successfully.');
 
                         $("#myModal").modal('hide');
 
@@ -238,30 +233,6 @@ $(function() {
               }
           });
 
-          // star.TaskId = $('div.details').attr("id");
-
-          // star.UserId = userId;
-
-          // star.x_cord = 81;
-          // star.y_cord = 131;
-
-
-          // // AJAX call to  POST star to server
-          // $.ajax({
-          //     type: "POST",
-          //     url:  'users/' + userId + '/tasks/' + star.TaskId + '/stars',
-          //     contentType: "application/json",
-          //     data: JSON.stringify(star),
-          //     success: function(data) {
-          //               console.log('Star was inserted successfully');
-          //               console.log(data);
-          //               alert('Task was inserted successfully.');
-          //             },
-          //     failure: function ( jqXHR, textStatus, errorThrown ) {
-          //              console.log(jqXHR.responseText);
-          //              alert(jqXHR.responseText);
-          //            }
-          //  });
        }
 
     });
