@@ -3,13 +3,6 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
-var randomX = getRandomInt(1, 100);
-var randomY = getRandomInt(1, 100);
-
 return [
     queryInterface.bulkInsert('Stars', [
       { TaskId: 3, UserId: 1, x_cord: 10, y_cord: 50},
@@ -35,10 +28,6 @@ return [
     ])
   ];
   },
-
-  /*TODO:
-    write a loop to make co-ordinates actually random
-    */
 
   down: function (queryInterface, Sequelize) {
     /*
