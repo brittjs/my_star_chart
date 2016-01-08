@@ -151,7 +151,7 @@ $(function() {
    $('#deleteFriendshipButton').on('click', function (e) {
     e.preventDefault();
    
-    var friendId = $('#friend-details').data('friend-id');
+    var friendId = $('#friend-details').attr('data-friend-id');
     var userId = $('div#userId').data('id'); //does this need to be here?
 
     $.ajax({
