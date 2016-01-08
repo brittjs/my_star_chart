@@ -1,9 +1,13 @@
 $(function(){
   $("#login-box-link").on("click", function(){
-    $(".signup-container").addClass("animated fadeOut");
+    $(".login-container").show();
+    $(".signup-container").hide();
+    // $(".signup-container").toggle();
   });
 
   $("#signup-box-link").on("click", function(){
-    $(".login-container").addClass("animated fadeOut");
+    $(".signup-container").show();
+    $(".login-container").hide();
+     // $(".login-container").toggle();
   });
 });
