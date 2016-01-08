@@ -19,13 +19,39 @@
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
+
         $.get('users/' + userId + '/stars', function(stars){
           stars.forEach(function(star){
-            var div = $("<div>").addClass("star-container");
-            $("#basebox").append(div);
-            $("<div>").addClass("star").appendTo(div);
-            // var addStar = div.append(newStar);
-            $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+            var $textDiv;
+            var $div;
+            var $innerDiv;
+            var $hoverControl;
+
+            console.log(star);
+
+            //  get Task description
+            $.get('users/' + userId + '/tasks/' + star.TaskId, function(task){
+
+              $hoverControl = $("<div class='hover-control'>");
+
+              // $textDiv = $("<div class='hidden-task-info'>").text('      ' + star.id + ' ' + task.description + ' x=' + star.x_cord + ' y=' +  star.y_cord);
+              $textDiv = $("<div class='hidden-task-info'>").text('      ' + task.description);
+
+              $hoverControl.append($textDiv);
+
+              $starContainerDiv = $("<div>").addClass("star-container");
+              $starDiv = $("<div>").addClass("star");
+
+              $starContainerDiv.append($starDiv);
+              $hoverControl.append($starContainerDiv);
+
+              $("#basebox").append($hoverControl);
+
+              $hoverControl.css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+
+            });
+
+
           });
         });
 

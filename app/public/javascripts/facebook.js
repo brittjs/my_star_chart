@@ -44,5 +44,22 @@
 
      });
 
+    // var facebook = document.createElement('fb:like');
+    // facebook.setAttribute('id', 'like'+this.id);
+    // facebook.setAttribute('href', 'http://mindcloud.co.uk/idea/?idea=' + this.id);
+    // facebook.setAttribute('layout', 'button_count');
+    // facebook.setAttribute('send', 'false');
+    // facebook.setAttribute('width' , '300');
+    // facebook.setAttribute('font', '');
+    // facebook.setAttribute('show_faces', 'true');
+    // facebook.style.top = '0px';
+    // facebook.style.left = '300px';
+
+    // <div class="fb-share-button"
+    //   data-href="http://localhost:3000/user"
+    //   data-layout="button_count"
+    //   data-size="large">
+    // </div>
+
   });
 
