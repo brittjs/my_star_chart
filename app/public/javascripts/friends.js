@@ -159,6 +159,7 @@ $(function() {
         type: 'DELETE',
         success: function () {
           console.log('deleted!');
+          console.log('deleted = ', friendId);
           reloadFriends(userId);
           $("#showFriendModal").modal('hide');
         },
