@@ -18,40 +18,41 @@ $(function() {
       console.log("$('div#userId').attr('data-id')");
       console.log(userId);
 
-
       $.get('users/' + userId + '/stars', function(stars){
         stars.forEach(function(star){
           var $textDiv;
           var $div;
           var $innerDiv;
           var $hoverControl;
-
+ 
           console.log(star);
-
+ 
           //  get Task description
           $.get('users/' + userId + '/tasks/' + star.TaskId, function(task){
-
-            $hoverControl = $("<div class='hover-control'>");
-
+ 
+            $hoverControl = $("<div>").addClass("hover-control");
+ 
             // $textDiv = $("<div class='hidden-task-info'>").text('      ' + star.id + ' ' + task.description + ' x=' + star.x_cord + ' y=' +  star.y_cord);
-            $textDiv = $("<div class='hidden-task-info'>").text('      ' + task.description);
-
+            $textDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
+ 
             $hoverControl.append($textDiv);
-
+ 
             $starContainerDiv = $("<div>").addClass("star-container");
             $starDiv = $("<div>").addClass("star");
-
+ 
             $starContainerDiv.append($starDiv);
             $hoverControl.append($starContainerDiv);
-
+ 
             $("#basebox").append($hoverControl);
-
+ 
             $hoverControl.css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
-
+ 
           });
+ 
+ 
         });
       });
-
+  
     }
   }
 
