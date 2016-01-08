@@ -9,3 +9,15 @@ h1{
 .social-button:hover{
 	color: #337ab7;
 }
+
+p{
+	color: goldenrod;
+}
+
+span i{
+  color: white;
+}
+
+.input-in-form{
+	display: inline-block;
+}
