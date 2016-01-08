@@ -32,9 +32,10 @@
             //  get Task description
             $.get('users/' + userId + '/tasks/' + star.TaskId, function(task){
 
-              $hoverControl = $("<div class='hover-contol'>");
+              $hoverControl = $("<div class='hover-control'>");
 
-              $textDiv = $("<div class='hidden-task-info'>").text(star.id + ' ' + task.description + ' x=' + star.x_cord + ' y=' +  star.y_cord);
+              // $textDiv = $("<div class='hidden-task-info'>").text('      ' + star.id + ' ' + task.description + ' x=' + star.x_cord + ' y=' +  star.y_cord);
+              $textDiv = $("<div class='hidden-task-info'>").text('      ' + task.description);
 
               $hoverControl.append($textDiv);
 
