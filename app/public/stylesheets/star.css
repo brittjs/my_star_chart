@@ -178,9 +178,9 @@
 
 .new-star-container{  
   position: absolute;
-  left: 50%;
+  /*left: 50%;
   top: 50%;
-  transition: all 2s linear;
+  transition: all 2s linear;*/
 }
 
 .new-star-container:hover{
@@ -240,3 +240,22 @@
     filter: drop-shadow(0px 0px 10px #fc2e5a);
   }
 } 
+
+/*different for new stars*/
+
+.new-hover-control {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transition: all 2s linear;;
+ /* width: 20px;
+  height: 20px;*/
+}
+
+.new-hover-control:hover .new-star-container{
+  animation: full-turn 3s;
+}
+ 
+.new-hover-control:hover .hidden-task-info{
+  opacity: 1;
+}

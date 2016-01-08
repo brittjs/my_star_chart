@@ -21,9 +21,11 @@ $(function() {
       $.get('users/' + userId + '/stars', function(stars){
         stars.forEach(function(star){
           var $textDiv;
-          var $div;
+          // var $div;
           var $innerDiv;
           var $hoverControl;
+          var $starContainerDiv;
+          var $starDiv;
  
           console.log(star);
  
@@ -46,6 +48,8 @@ $(function() {
             $("#basebox").append($hoverControl);
  
             $hoverControl.css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
+
+
  
           });
  
