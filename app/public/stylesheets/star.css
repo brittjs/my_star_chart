@@ -86,6 +86,14 @@
   animation: full-turn 3s;
 }
 
+.hidden-task-info{
+  display: block;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+ }
+
 .new-star{
   width: 0;
   height: 0;

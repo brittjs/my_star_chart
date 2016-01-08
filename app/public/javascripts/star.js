@@ -22,6 +22,7 @@
         $.get('users/' + userId + '/stars', function(stars){
           stars.forEach(function(star){
             var div = $("<div>").addClass("star-container");
+            // var textDiv = $("<div class='hidden-task-info'>").text(star.id + ' ' + task.description + ' x=' + star.x_cord + ' y=' +  star.y_cord);
             $("#basebox").append(div);
             $("<div>").addClass("star").appendTo(div);
             // var addStar = div.append(newStar);
