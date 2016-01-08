@@ -36,3 +36,11 @@ i{
 .left-positioning input{
 	padding-left: 20px;
 }
+
+input{
+	margin-bottom: 10px;
+}
+
+.icon-text-color{
+	color: white;
+}
