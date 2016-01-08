@@ -108,7 +108,7 @@ $(function() {
       } else {
 
         $(div).html("username: " + user.username + "<br>email: " + user.email);
-        $(div).attr({'data-usernum': user.id});
+        $(div).attr({'usernum': user.id});
         $('#addFriendshipButton').addClass('shown');
       }
 
@@ -123,18 +123,23 @@ $(function() {
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
 
-    var newFriendId = $("#show-results").data('usernum');
+    var newFriendId = $("#show-results").attr('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
 
     $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
+      console.log("add friend button successful");
+      console.log("friend = ", friendship);
       reloadFriends(userId);
 
     // .fail( function(xhr, textStatus, errorThrown) {
     //   alert(xhr.responseText);
     //   console.log(xhr.responseText);
     // });
+    $("#findFriendForm").trigger("reset");
     $("#addFriendModal").modal('hide');
     });
+
+
   });
 
   // ===========================================================
@@ -146,7 +151,7 @@ $(function() {
    $('#deleteFriendshipButton').on('click', function (e) {
     e.preventDefault();
    
-    var friendId = $('#friend-details').data('friend-id');
+    var friendId = $('#friend-details').attr('data-friend-id');
     var userId = $('div#userId').data('id'); //does this need to be here?
 
     $.ajax({
@@ -154,6 +159,7 @@ $(function() {
         type: 'DELETE',
         success: function () {
           console.log('deleted!');
+          console.log('deleted = ', friendId);
           reloadFriends(userId);
           $("#showFriendModal").modal('hide');
         },
