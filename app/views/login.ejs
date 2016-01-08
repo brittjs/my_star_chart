@@ -1,61 +1,71 @@
-<h1 class="text-center" id="signin-title">Log In</h1>
-
-<form id="login-form" class="text-center" action="/login" method="post"> 
-  <div class="input-in-form left-positioning">
-    <i class="glyphicon glyphicon-user"></i>
-    <input type="text" placeholder="Username" name="username" required/>
+<div class="login-box">
+  <div class="login-header">
+    <a href="#" class="active" id="login-box-link">Login</a>
+    <a href="#" id="signup-box-link"> Sign Up </a>
   </div>
   <br>
+  <div class=" login-container">
+    <!-- <h1 class="text-center" id="signin-title">Log In</h1> -->
 
-  <div class="input-in-form left-positioning">
-    <i class="glyphicon glyphicon-lock"></i>
-    <input type="password" placeholder="Password" name="password" required/>
+    <form id="login-form" class="text-center" action="/login" method="post"> 
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-user"></i>
+        <input type="text" placeholder="Username" name="username" required/>
+      </div>
+      <br>
+
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input type="password" placeholder="Password" name="password" required/>
+      </div>
+      <br>
+
+      <button class="btn btn-primary btn-sm" type="submit">
+        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Log In </i>
+      </button>
+    </form>
+
+    <div class="text-center">
+      <a href ="/auth/github" class="btn social-button">
+        <span class="fa fa-github fa-lg"></span> Log in with GitHub
+      </a>
+    </div>
+
+    <p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
   </div>
-  <br>
+  <div class="signup-container">
+    <!-- <h1 class="text-center" id="signup-title"> Sign Up </h1> -->
 
-  <button class="btn btn-primary btn-sm" type="submit">
-    <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Log In </i>
-  </button>
-</form>
+    <form id="signup-form" class="text-center" action="/signup" method="post">
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-user"></i>
+        <input type="text" placeholder="Username" name="username" required/>
+      </div>
+      <br>
 
-<div class="text-center">
-  <a href ="/auth/github" class="btn social-button">
-    <span class="fa fa-github fa-lg"></span> Log in with GitHub
-  </a>
-</div>
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <input type="email" placeholder="Email" name="email" required/>
+      </div>
+      <br>
 
-<p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input type="password" placeholder="Password" name="password" required/>
+      </div>
+      <br>
 
-<h1 class="text-center" id="signup-title"> Sign Up </h1>
+      <button class="btn btn-primary btn-sm" type="submit">
+        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
+      </button> 
+    </form>
 
-<form id="signup-form" class="text-center" action="/signup" method="post">
-  <div class="input-in-form left-positioning">
-    <i class="glyphicon glyphicon-user"></i>
-    <input type="text" placeholder="Username" name="username" required/>
+    <p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
+
+    <div class="text-center">
+      <a href ="/auth/github" class="btn social-button">
+        <span class="fa fa-github fa-lg"></span> Sign up with GitHub
+      </a>
+    </div>
   </div>
-  <br>
-
-  <div class="input-in-form left-positioning">
-    <i class="glyphicon glyphicon-envelope"></i>
-    <input type="email" placeholder="Email" name="email" required/>
-  </div>
-  <br>
-
-  <div class="input-in-form left-positioning">
-    <i class="glyphicon glyphicon-lock"></i>
-    <input type="password" placeholder="Password" name="password" required/>
-  </div>
-  <br>
-
-  <button class="btn btn-primary btn-sm" type="submit">
-    <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
-  </button> 
-</form>
-
-<p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
-
-<div class="text-center">
-  <a href ="/auth/github" class="btn social-button">
-    <span class="fa fa-github fa-lg"></span> Sign up with GitHub
-  </a>
 </div>

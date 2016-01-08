@@ -44,3 +44,31 @@ input{
 .icon-text-color{
 	color: white;
 }
+
+/*.login-box{
+	position: relative;
+	background-color: white;
+	width: 500px;
+	height: 250px;
+
+}
+
+.login-header{
+	position: absolute;
+	margin-left: 160px;
+}
+
+.login-container{
+	position: absolute;
+	margin-top: 10px;*/
+/*	animation: fadeOut 2s;*/
+/*}
+
+.signup-container{
+	position: absolute;
+	margin-top: 10px;
+}
+*/
+/*#login-box-link{
+	animation-duration: 2s;
+}*/
