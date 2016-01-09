@@ -16,7 +16,6 @@ $(function() {
       console.log("$('div#userId').data('id')");
       console.log(userId);
 
-
       // ===========================================================
       //
       //    _taskcreatemodal.ejs    handle Submit button clicked on create Task form
@@ -35,7 +34,7 @@ $(function() {
         var recurringCheckbox = $("#recurring").is(":checked");
 
         var myTask = {description: taskDescription,
-         due_date: dueDate,
+         due_date: dueDate+" 00:00:00.000 -08:00",
          priority: taskPriority,
          recurring: recurringCheckbox,
          postponed: false,
