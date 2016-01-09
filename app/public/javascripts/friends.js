@@ -74,6 +74,7 @@ $(function() {
     $('#addFriendshipButton').removeClass('shown');
     $("#findByEmail").val("");
     $("#show-results").empty();
+    $('#hiddenErrorMsg').css("display", "none");
   });
 
   // ===========================================================
