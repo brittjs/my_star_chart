@@ -36,6 +36,12 @@ module.exports = {
     } else {
 
       var user = this.state.user;
+
+      // get tasks in this sorted order
+      //      - most recently updated (but not postponed or completed)
+      //      - postponed
+      //      - completed
+
       var tasks = yield user.getTasks(); // gets you all tasks
 
       // iterate through tasks extract keyvalue "dataValues"

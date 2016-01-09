@@ -8,13 +8,15 @@
   border-right: 10px solid transparent;
   border-bottom: 7px solid #fc2e5a;
   border-left: 10px solid transparent;
+  /*
   -moz-transform: rotate(35deg);
   -webkit-transform: rotate(35deg);
   -ms-transform: rotate(35deg);
   -o-transform: rotate(35deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  */
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
   -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
+  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
 }
 
 .star:before {
@@ -32,10 +34,10 @@
   -moz-transform: rotate(-35deg);
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
-}
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+ /* filter: drop-shadow(0px 0px 5px #fc2e5a);
+*/}
 
 .star:after {
   content: '';
@@ -53,10 +55,25 @@
   -moz-transform: rotate(-70deg);
   -ms-transform: rotate(-70deg);
   -o-transform: rotate(-70deg);
-  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);
+/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+/*  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
 }
+
+.hidden-task-info{
+  display: block;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  white-space: pre;
+}
+
+/*
+.hidden-task-info:hover{
+  opacity: 1;
+}
+*/
 
 .star:hover{
   -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
@@ -78,12 +95,27 @@
 }
 
 
-.star-container{  
+.star-container{
   position: absolute;
 }
 
+/*
 .star-container:hover{
   animation: full-turn 3s;
+}
+*/
+
+.hover-control {
+  position: absolute;
+  width: 200px;
+  height: 20px;
+}
+.hover-control:hover .star-container{
+  animation: full-turn 3s;
+}
+
+.hover-control:hover .hidden-task-info{
+  opacity: 1;
 }
 
 .new-star{
@@ -153,7 +185,7 @@
 }
 
 
-.new-star-container{  
+.new-star-container{
   position: absolute;
   left: 50%;
   top: 50%;
@@ -216,4 +248,4 @@
     -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
     filter: drop-shadow(0px 0px 10px #fc2e5a);
   }
-} 
+}
