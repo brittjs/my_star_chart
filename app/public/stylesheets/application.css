@@ -393,5 +393,25 @@ ul {
   width: 138.063px;
 }
 
+.expandedTaskButtons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1.3em;
+}
 
+#cancel {
+  margin-right: .3em;
+}
+
+#saveEditButton {
+  margin-right: 1em;
+}
+
+#deleteTask {
+  margin-right: 1em;
+}
+
+/*#procrastinate {
+
+}*/
 

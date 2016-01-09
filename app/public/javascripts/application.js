@@ -77,18 +77,14 @@ var tasklistItemHTML2 =
       '       <td class="left-column"><label for="recurring">Recurring:</label></td>' +
       '       <td class="right-column"><input type="checkbox" name="recurring" id="ERecurring"></td>' +
       '     </tr>' +
-      '     <tr>' +
-      '        <td class="left-column">' +
-      '         <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
-      '          <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
-      '       </td>' +
-      '        <td class="right-column">' +
-      '          <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
-      '          <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
-      '        </td>' +
-      '      </tr>' +
-      '    </table>' +
-      ' </form>' +
+      '   </table>' +
+      '   <div class="expandedTaskButtons">' +
+      '     <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
+      '     <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
+      '     <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
+      '     <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
+      '   </div>' +
+      '  </form>' +
      '</div>';
 
 
