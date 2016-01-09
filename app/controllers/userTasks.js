@@ -59,7 +59,7 @@ module.exports = {
                                         }, 
                                         UserId: user.id
                                     }
-                                  });
+                                  });  // gets you all tasks due today
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
