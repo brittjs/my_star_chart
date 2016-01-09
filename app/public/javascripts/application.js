@@ -400,7 +400,7 @@ function reloadTasks(userId, changeTaskInHeader) {
                 $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
-              }, 1000);
+              }, 0);
             })();
 
           setTimeout(function(){
