@@ -6,7 +6,6 @@ $(function() {
 
   var homePage = str.match(/^\/$/);
 
-
   if (usersPage || homePage) {
 
   // ===========================================================
@@ -36,7 +35,7 @@ $(function() {
       });
       friendslist.append(friendsLi);
     });
-    };
+    }
 
   reloadFriends(userId);
 
@@ -51,7 +50,7 @@ $(function() {
     e.preventDefault();
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
-    $('#friend-details').text(friendName).attr({'data-friend-id': friendId})
+    $('#friend-details').text(friendName).attr({'data-friend-id': friendId});
     $('#friendstars').empty();
 
      $.get('users/' + friendId + '/stars', function(stars){
@@ -66,7 +65,7 @@ $(function() {
   // ===========================================================
   //
   //
-  //   Clear modal on closing
+  //   Clear add friend modal on closing
   //
   // ============================================================
   $('#addFriendModal').on('hidden.bs.modal', function (e) {
@@ -109,7 +108,7 @@ $(function() {
           $("#findFriendForm").trigger("reset");
           $('#inviteFriendButton').removeClass('shown');
           $(div).empty();
-        })
+        });
 
       }
 
@@ -126,7 +125,7 @@ $(function() {
           $("#findFriendForm").trigger("reset");
           $('#hiddenErrorMsg').css("display", "none");
           $(div).empty();
-        })
+        });
 
       } else {
         console.log(user.id);
@@ -143,7 +142,7 @@ $(function() {
           $("#findFriendForm").trigger("reset");
           $('#addFriendshipButton').removeClass('shown');
           $(div).empty();
-        })
+        });
 
       }
 
@@ -212,13 +211,6 @@ $(function() {
       }
 
     });
-  // ===========================================================
-  //
-  //
-  //   Close modal on clicking link to generate invite email
-  //
-  // ============================================================
-
   });
 
 

@@ -9,6 +9,52 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function dailyTaskRefresh() {
+
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  console.log("today: "+today);
+
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0,0,0,0);
+  console.log("yesterday: "+yesterday);
+
+  allTasks.forEach(function(task) {
+
+    var dueDate = task.due_date;
+    dueDate.setHours(0,0,0,0);
+
+    if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
+      
+      var myTask = {description: task.description,
+       due_date: today,
+       priority: task.priority,
+       recurring: task.recurring,
+       postponed: false,
+       completed: false,
+       UserId: userId};
+
+      $.post('/users/' + userId + '/tasks', myTask, function(task) {
+        console.log("Create task submit button successful.");
+        console.log("task = ", task);
+      });
+        
+      if (task.completed === false) {
+        $.ajax({
+          url: '/users/' + userId + '/tasks/' + task.id,
+          type: 'DELETE',
+          success: function() {
+            console.log("done with delete");
+          }
+        });
+      } 
+    } 
+    
+  });
+reloadTasks(userId);
+}
+  
 // ===========================================================
 //
 //    Global function
@@ -212,7 +258,7 @@ function reloadTasks(userId, changeTaskInHeader) {
             $(".new-hover-control").addClass("hover-control");
             $(".new-hover-control.hover-control").removeClass("new-hover-control");
 
-            var newHoverControl = $("<div>").addClass("new-hover-control")
+            var newHoverControl = $("<div>").addClass("new-hover-control");
             var newStarContainerDiv = $("<div>").addClass("new-star-container");
             var addOuterDiv = $("#basebox").append(newHoverControl);
             var addDiv = newHoverControl.append(newStarContainerDiv);
@@ -226,7 +272,7 @@ function reloadTasks(userId, changeTaskInHeader) {
                 console.log("Inside setTimeout");
                 // console.log("taskId = " );
                 // console.log(taskId);
-                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
+                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
               }, 1000);
@@ -320,7 +366,7 @@ function reloadTasks(userId, changeTaskInHeader) {
     return $.grep(allTasks, function( n ) {
       return n.id === parseInt(task_id);
     })[0];
-  };
+  }
 
 
 
