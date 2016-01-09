@@ -10,13 +10,13 @@
     <form id="login-form" class="text-center" action="/login" method="post"> 
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-user"></i>
-        <input type="text" placeholder="Username" name="username" required/>
+        <input type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')" />
       </div>
       <br>
 
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-lock"></i>
-        <input type="password" placeholder="Password" name="password" required/>
+        <input type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
       </div>
       <br>
 
@@ -31,7 +31,6 @@
       </a>
     </div>
 
-    <p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
   </div>
   <div class="signup-container">
     <!-- <h1 class="text-center" id="signup-title"> Sign Up </h1> -->
@@ -39,19 +38,19 @@
     <form id="signup-form" class="text-center" action="/signup" method="post">
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-user"></i>
-        <input type="text" placeholder="Username" name="username" required/>
+        <input type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')"/>
       </div>
       <br>
 
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-envelope"></i>
-        <input type="email" placeholder="Email" name="email" required/>
+        <input type="email" placeholder="Email" name="email" required oninvalid="this.setCustomValidity('Email address must be between 6 and 100 characters in length')" oninput="setCustomValidity('')"/>
       </div>
       <br>
 
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-lock"></i>
-        <input type="password" placeholder="Password" name="password" required/>
+        <input type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
       </div>
       <br>
 
@@ -59,8 +58,6 @@
         <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
       </button> 
     </form>
-
-    <p class="text-center">Tip: Your password must be between 8 and 20 characters in length</p>
 
     <div class="text-center">
       <a href ="/auth/github" class="btn social-button">

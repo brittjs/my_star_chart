@@ -10,9 +10,9 @@ h1{
 	color: #337ab7;
 }
 
-p{
+/*p{
 	color: goldenrod;
-}
+}*/
 
 i{
   color: goldenrod;
@@ -50,11 +50,15 @@ input{
 	/*background-color: white;*/
 	width: 500px;
 	height: 250px;
+	/*margin-left: 32%;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .login-header{
 	position: absolute;
-	margin-left: 160px;
+	margin-left: 50px;
 }
 
 .login-container{
@@ -82,3 +86,7 @@ input{
 	color: white;
 }
 */
+
+input{
+	box-shadow: 2px 2px 2px  goldenrod;
+}
