@@ -15,8 +15,8 @@ $(function() {
       // var userId = $('div#userId').data('id');
       // console.log("$('div#userId').data('id')");
       var userId = $('div#userId').attr('data-id');
-      console.log("$('div#userId').attr('data-id')");
-      console.log(userId);
+      // console.log("$('div#userId').attr('data-id')");
+      // console.log(userId);
 
       $.get('users/' + userId + '/stars', function(stars){
         stars.forEach(function(star){
@@ -27,7 +27,7 @@ $(function() {
           var $starContainerDiv;
           var $starDiv;
  
-          console.log(star);
+          // console.log(star);
  
           //  get Task description
           $.get('users/' + userId + '/tasks/' + star.TaskId, function(task){
