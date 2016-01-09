@@ -242,6 +242,7 @@ ul {
 .endColumn{
   display: flex;
   flex-direction: column;
+  margin-left: 0px;
 }
 
 #twitterButton {
@@ -412,7 +413,16 @@ ul {
   margin-right: 1em;
 }
 
-/*#procrastinate {
-
-}*/
+iframe {
+transform: scale(1.5);
+-ms-transform: scale(1.5); 
+-webkit-transform: scale(1.5); 
+-o-transform: scale(1.5); 
+-moz-transform: scale(1.5); 
+transform-origin: top right;
+-ms-transform-origin: top right;
+-webkit-transform-origin: top right;
+-moz-transform-origin: top right;
+-webkit-transform-origin: top right;
+}
 
