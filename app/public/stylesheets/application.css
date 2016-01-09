@@ -296,6 +296,11 @@ ul {
   float: right;
 }
 
+.taskDetailButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .dueDateAndPriority {
   display: flex;
   justify-content: space-between;
