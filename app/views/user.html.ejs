@@ -31,35 +31,39 @@
           <ul class="tasks">
             <!-- tasklist goes here -->
             <li>
-              <a class="taskAnchor" id="999" data-priority="1" href data-toggle="modal" data-target="#myModal">Walk the dog</a>
+              <a class="taskAnchor" id="999" data-priority="1" href>Walk the dog</a>
               <input type="checkbox" class="complete" id="chk999">
+
+              <!-- the new part -- form to edit the task -->
+              <div class="tasklistform">
+                <form id="editTaskForm" action="" method="put">
+
+                    <label for="description">Description:</label>
+                    <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
+                    <br>
+                    <div class="">
+                      <label for="due_date">Due Date:</label>
+                      <input type="date" id="Edue_date" name="due_date">
+                      <label for="priority">Priority:</label>
+                      <select class="" id="Epriority" name="priority">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <label for="recurring">Recurring:</label>
+                      <input type="checkbox" name="recurring" id="ERecurring">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>
+                    <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
+                    <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>
+                    <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>
+
+                </form>
+              <div>
             </li>
-            <!-- the new part -- form to edit the task -->
-            <div class="tasklistform">
-              <form id="editTaskForm" action="" method="put">
-
-                  <label for="description">Description:</label>
-                  <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
-                  <br>
-                  <div class="">
-                    <label for="due_date">Due Date:</label>
-                    <input type="date" id="Edue_date" name="due_date">
-                    <label for="priority">Priority:</label>
-                    <select class="" id="Epriority" name="priority">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                    <label for="recurring">Recurring:</label>
-                    <input type="checkbox" name="recurring" id="ERecurring">
-                  </div>
-                  <br>
-                  <button type="button" class="btn btn-default btn-xs " id="cancel">Cancel</button><input type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
-
-              </form>
-            <div>
           </ul>
         </div>
       </div>
