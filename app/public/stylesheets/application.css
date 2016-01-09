@@ -27,7 +27,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .container{
   display: flex-inline;
   /*max-height: 100vh;*/
-  width: 170vh;
+  width: 150vh;
 }
 
 .skyContainer {
@@ -61,7 +61,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   padding: 8px;
   padding-left: 20px;
   border:5px solid goldenrod;
-  max-width: 75vh;
+  max-width: 65vh;
   font-size: 2.5vh;
   flex: 1;
 }
