@@ -42,7 +42,13 @@ module.exports = {
       //      - postponed
       //      - completed
 
-      var tasks = yield user.getTasks(); // gets you all tasks
+      // var tasks = yield user.getTasks(); // gets you all tasks
+
+      var tasks = yield Task.findAll({
+                                    where: {
+                                      due_date: 2
+                                    }
+                                  });
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];

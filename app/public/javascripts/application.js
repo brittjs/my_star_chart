@@ -9,7 +9,9 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function dailyTaskRefresh() {
+function dailyTaskRefresh(userId) {
+
+  console.log("inside dailyTaskRefresh");
 
   var today = new Date();
   today.setHours(0,0,0,0);
@@ -22,7 +24,7 @@ function dailyTaskRefresh() {
 
   allTasks.forEach(function(task) {
 
-    var dueDate = task.due_date;
+    var dueDate = new Date(task.due_date);
     dueDate.setHours(0,0,0,0);
 
     if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
@@ -49,11 +51,10 @@ function dailyTaskRefresh() {
           }
         });
       } 
-    } 
-    
+    }
   });
-reloadTasks(userId);
-}
+}  // reloadTasks(userId);
+
   
 // ===========================================================
 //
@@ -110,6 +111,7 @@ var allTasks; // This needs to remain in the global scope, please do not move!
 
 function reloadTasks(userId, changeTaskInHeader) {
 
+
   //   ========================================================
         function paintStarsInTheSky() {
           var str = window.location.pathname;
@@ -153,6 +155,7 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
+    dailyTaskRefresh(userId);
 
     // =========================================================
     //  if parameter "change_task_in_header" == true
@@ -272,7 +275,7 @@ function reloadTasks(userId, changeTaskInHeader) {
                 console.log("Inside setTimeout");
                 // console.log("taskId = " );
                 // console.log(taskId);
-                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
               }, 1000);
@@ -366,7 +369,7 @@ function reloadTasks(userId, changeTaskInHeader) {
     return $.grep(allTasks, function( n ) {
       return n.id === parseInt(task_id);
     })[0];
-  }
+  };
 
 
 
