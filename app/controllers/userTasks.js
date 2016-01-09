@@ -42,6 +42,25 @@ module.exports = {
       //      - postponed
       //      - completed
 
+     var tasks1 = yield db.sequelize.models.Task.findAll({
+                                                          where: {
+                                                            $and: [
+                                                              {
+                                                                completed: false
+                                                              },
+                                                              {
+                                                                postponed: false
+                                                              }
+                                                            ]
+                                                          },
+                                                          order: [
+                                                            ['updatedAt', 'DESC']
+                                                          ]
+                                                        });
+
+      console.log('tasks not completed and not postponed sorted in descending update order')
+      console.log(tasks1);
+
       var tasks = yield user.getTasks(); // gets you all tasks
 
       // iterate through tasks extract keyvalue "dataValues"
