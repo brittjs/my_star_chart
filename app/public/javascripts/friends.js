@@ -92,7 +92,6 @@ $(function() {
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
       if (!user.username) {
-
         console.log ("right track");
         $(div).html(user.email +" was not found");
         $('#inviteFriendButton').addClass('shown');
@@ -104,14 +103,47 @@ $(function() {
           $("#addFriendModal").modal('hide');
         });
 
+        // resets form and removes invite button
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#inviteFriendButton').removeClass('shown');
+          $(div).empty();
+        })
+
+      }
+
+      else if (user.id === userId) {
+        // if user searches for themselves, their username, email address, 
+        // and "Cannot add yourself as a friend." will appear in the modal
+        $(div).html("username: " + user.username + "<br>email: " + user.email);
+        $(div).attr({'usernum': user.id});
+        $('#hiddenErrorMsg').css("display", "block");
         
+        // after finding themselves, when the user clicks the input field, 
+        //the form resets, error msg and their info disappears
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#hiddenErrorMsg').css("display", "none");
+          $(div).empty();
+        })
+
       } else {
+        console.log(user.id);
         console.log(user.username);
         console.log(user.email);
         console.log(userId);
         $(div).html("username: " + user.username + "<br>email: " + user.email);
         $(div).attr({'usernum': user.id});
         $('#addFriendshipButton').addClass('shown');
+        
+        // reseting form and removing info on mousedown is necessary so that if 
+        // user enters their email after searching for another user, add friend button will be removed
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#addFriendshipButton').removeClass('shown');
+          $(div).empty();
+        })
+
       }
 
     });
