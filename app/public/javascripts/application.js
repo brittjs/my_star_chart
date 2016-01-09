@@ -327,6 +327,33 @@ function reloadTasks(userId, changeTaskInHeader) {
           star.x_cord = getRandomInt(0, 98);
           star.y_cord = getRandomInt(2, 92);
 
+          //AJAX call to GET star with specific task id
+          //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
+
+            // alert("Check get star with certain id");
+           $(".new-hover-control").addClass("hover-control");
+            $(".new-hover-control.hover-control").removeClass("new-hover-control");
+
+            var newHoverControl = $("<div>").addClass("new-hover-control");
+            var newStarContainerDiv = $("<div>").addClass("new-star-container");
+            var addOuterDiv = $("#basebox").append(newHoverControl);
+            var addDiv = newHoverControl.append(newStarContainerDiv);
+            var newStarDiv = $("<div>").addClass("new-star");
+            var addStar = newStarContainerDiv.append(newStarDiv);
+            var newTextDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
+            var addText = newHoverControl.append(newTextDiv);
+
+            (function(){
+              setTimeout(function(){
+                console.log("Inside setTimeout");
+                // console.log("taskId = " );
+                // console.log(taskId);
+                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+                // $(".new-star-container").addClass("star-container");
+                // $(".new-star-container.star-container").removeClass("new-star-container");
+              }, 1000);
+            })();
+
 
           // alert("Check get star with certain id");
           $(".new-star-container").addClass("star-container");
