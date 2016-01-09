@@ -70,6 +70,15 @@ input{
 	visibility: hidden;
 }
 
-/*#login-box-link{
-	animation-duration: 2s;
-}*/
+.active{
+	color: white;
+}
+
+/*#login-box-link:hover{
+	color: white;
+}
+
+#signup-box-link:hover{
+	color: white;
+}
+*/
