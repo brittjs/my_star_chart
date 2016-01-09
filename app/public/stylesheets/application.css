@@ -3,7 +3,7 @@ body{
 }
 
 h1.greeting {
-  font-size: 6vh; 
+  font-size: 6vh;
 }
 
 #friendstars {
@@ -327,10 +327,67 @@ ul {
   color: #A8A8A8;
 }
 
+
+.tasklistform{
+  background-color: black;
+  /* background-color: grey; */
+  /* color: dark grey; */
+  color: #cccccc;   /* light grey */
+  display: none;
+  font-size: 10px;
+  margin-top: 10px;
+  padding: 10px;
+
+}
+
+.tasklistform input[type="text"]{
+  background-color: #D1D1D1;
+  border: 1px solid black;
+  color:  black;
+}
+
+.tasklistform input[type="date"]{
+  background-color: #D1D1D1;
+  border: 1px solid black;
+  color: black;
+}
+
+.tasklistform input[type="checkbox"]{
+  background-color: #D1D1D1;
+  border: 1px solid black;
+  color: black;
+}
+
+.tasklistform select{
+  background-color: #D1D1D1;
+  border: 1px solid black;
+  color: black;
+}
+
+.tasklistform .btn-default{
+  background-color: #D1D1D1;
+}
+
+#task-list .left-column{
+  color: #cccccc;
+  font-size: 10px;
+  text-align: right;
+  padding: 3px;
+}
+
+#task-list .right-column{
+  font-size: 10px;
+  padding: 3px;
+  padding-left: 6px;
+  margin-left: 6px;
+  text-align: left;
+}
+
 #hiddenErrorMsg {
   display: none;
   margin-top: .5em;
   font-size: 1.5vh;
 }
+
 
 
