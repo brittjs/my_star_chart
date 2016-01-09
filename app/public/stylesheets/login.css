@@ -90,3 +90,12 @@ input{
 input{
 	box-shadow: 2px 2px 2px  goldenrod;
 }
+
+a:hover{
+	text-decoration:none;
+	/*color: white;*/
+}
+
+a:hover.active{
+	color: white;
+}
