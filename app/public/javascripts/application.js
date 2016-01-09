@@ -403,27 +403,6 @@ function reloadTasks(userId, changeTaskInHeader) {
               }, 1000);
             })();
 
-
-          // alert("Check get star with certain id");
-          $(".new-star-container").addClass("star-container");
-          $(".new-star-container.star-container").removeClass("new-star-container");
-
-          var div = $("<div>").addClass("new-star-container");
-          var addDiv = $("#basebox").append(div);
-          var newStar = $("<div>").addClass("new-star");
-          var addStar = div.append(newStar);
-
-          (function(){
-            setTimeout(function(){
-              console.log("Inside setTimeout");
-              // console.log("taskId = " );
-              // console.log(taskId);
-              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-              // $(".new-star-container").addClass("star-container");
-              // $(".new-star-container.star-container").removeClass("new-star-container");
-            }, 1000);
-          })();
-
           setTimeout(function(){
             //location.reload();
             // logic to determine whether changeHeaderTaskFlag = true or not
