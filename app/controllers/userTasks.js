@@ -63,6 +63,23 @@ module.exports = {
 
       var tasks = yield user.getTasks(); // gets you all tasks
 
+      // var today = new Date();
+      // today.setHours(0,0,0,0);
+
+      // var tomorrow = new Date();
+      // tomorrow.setDate(tomorrow.getDate() - 1);
+      // tomorrow.setHours(0,0,0,0);
+      
+      // var tasks = yield db.sequelize.models.Task.findAll({
+      //                               where: {
+      //                                   due_date: {
+      //                                     $lt: today,
+      //                                     $gt: tomorrow
+      //                                   }, 
+      //                                   UserId: user.id
+      //                               }
+      //                             });  // gets you all tasks due today
+
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
 

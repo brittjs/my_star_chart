@@ -103,6 +103,53 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// function dailyTaskRefresh(userId) {
+
+//   console.log("inside dailyTaskRefresh");
+
+//   var today = new Date();
+//   today.setHours(0,0,0,0);
+//   console.log("today: "+today);
+
+//   var yesterday = new Date();
+//   yesterday.setDate(yesterday.getDate() - 1);
+//   yesterday.setHours(0,0,0,0);
+//   console.log("yesterday: "+yesterday);
+
+//   allTasks.forEach(function(task) {
+
+//     var dueDate = new Date(task.due_date);
+//     dueDate.setHours(0,0,0,0);
+
+//     if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
+      
+//       var myTask = {description: task.description,
+//        due_date: today,
+//        priority: task.priority,
+//        recurring: task.recurring,
+//        postponed: false,
+//        completed: false,
+//        UserId: userId};
+
+//       $.post('/users/' + userId + '/tasks', myTask, function(task) {
+//         console.log("Create task submit button successful.");
+//         console.log("task = ", task);
+//       });
+        
+//       if (task.completed === false) {
+//         $.ajax({
+//           url: '/users/' + userId + '/tasks/' + task.id,
+//           type: 'DELETE',
+//           success: function() {
+//             console.log("done with delete");
+//           }
+//         });
+//       } 
+//     }
+//   });
+// }  // reloadTasks(userId);
+
+  
 // ===========================================================
 //
 //    Global function
@@ -158,6 +205,7 @@ var allTasks; // This needs to remain in the global scope, please do not move!
 
 function reloadTasks(userId, changeTaskInHeader) {
 
+
   //   ========================================================
         function paintStarsInTheSky() {
           var str = window.location.pathname;
@@ -201,6 +249,7 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
+    // dailyTaskRefresh(userId);
 
     // =========================================================
     //  if parameter "change_task_in_header" == true
@@ -473,6 +522,7 @@ $(function() {
       var task = findByTaskId(taskId);    // does this include "postponed" ?
       task.description = $tasklistForm.find("#Edescription").val();
       task.due_date    = $tasklistForm.find("#Edue_date").val();
+      task.due_date = task.due_date+" 00:00:00.000 -08:00"
       task.priority    = $tasklistForm.find("#Epriority").val();
       task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
       task.updatedAt   = Date.now();
