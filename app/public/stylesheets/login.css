@@ -1,6 +1,6 @@
-h4{
+/*h4{
 	color: goldenrod;
-}
+}*/
 
 .social-button{
 	color: goldenrod;
@@ -78,19 +78,6 @@ input{
 	color: white;
 }
 
-/*#login-box-link:hover{
-	color: white;
-}
-
-#signup-box-link:hover{
-	color: white;
-}
-*/
-
-/*input{
-	box-shadow: 2px 2px 2px  goldenrod;
-}*/
-
 a:hover{
 	text-decoration:none;
 	/*color: white;*/
@@ -102,6 +89,7 @@ a:hover.active{
 
 .login-formfield{
 	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
 }
 
 /*#login-box-link{
@@ -114,4 +102,16 @@ a:hover.active{
 
 form{
 	margin: 0px;
+}
+
+.btn-primary{
+	border-radius: 7px;
+}
+
+#login-title{
+	color: goldenrod;
+}
+
+#signup-title{
+	color: goldenrod;
 }
