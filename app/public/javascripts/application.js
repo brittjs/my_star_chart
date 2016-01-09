@@ -1,3 +1,97 @@
+ // ===========================================================
+//
+//    Global task list item form
+//
+// ============================================================
+// Fri Jan 8, 2016  --- replace modal with accoridian
+
+// <ul class="tasks">
+// var tasklistItemHTML =
+//   '<!-- tasklist goes here --> ' +
+// '<li> ' +
+
+var tasklistItemHTML =
+  ' <input type="checkbox" id="chk888"> ' +
+  ' <a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a> ' +
+
+  '<!-- the new part -- form to edit the task --> ' +
+  '<div class="tasklistform"> ' +
+  '  <form id="editTaskForm" action="" method="put"> ' +
+  '     <label for="description">Description:</label> ' +
+  '     <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea> ' +
+  '     <br> ' +
+  '      <div class=""> ' +
+  '       <label for="due_date">Due Date:</label> ' +
+  '       <input type="date" id="Edue_date" name="due_date"> ' +
+  '       <label for="priority">Priority:</label> ' +
+  '       <select class="" id="Epriority" name="priority"> ' +
+  '         <option value="1">1</option> ' +
+  '         <option value="2">2</option> ' +
+  '         <option value="3">3</option> ' +
+  '         <option value="4">4</option> ' +
+  '         <option value="5">5</option> ' +
+  '       </select> ' +
+  '       <label for="recurring">Recurring:</label> ' +
+  '       <input type="checkbox" name="recurring" id="ERecurring"> ' +
+  '      </div> ' +
+  '      <br> ' +
+  '       <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button> ' +
+  '       <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton"> ' +
+  '       <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button> ' +
+  '       <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button> ' +
+  '  </form> ' +
+  '</div> ';
+
+
+//'</li>';
+
+// </ul>
+
+var tasklistItemHTML2 =
+      '<input type="checkbox" id="chk888">' +
+      '<a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a>' +
+      '<!-- the new part -- form to edit the task -->' +
+      '<div class="tasklistform">' +
+      '  <form id="editTaskForm" action="" method="put">' +
+      '   <table id="task-list">' +
+      '     <tr>' +
+      '       <td class="left-column"><label for="description">Description:</label></td>' +
+      '       <td class="right-column"><input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></td>' +
+      '     </tr>' +
+      '     <tr>' +
+      '       <td class="left-column"><label for="due_date">Due Date:</label></td>' +
+      '       <td class="right-column"><input type="date" id="Edue_date" name="due_date"></td>' +
+      '     </tr>' +
+      '     <tr>' +
+      '       <td class="left-column"><label for="priority">Priority:</label></td>' +
+      '       <td class="right-column" ><select class="" id="Epriority" name="priority">' +
+      '             <option value="1">1</option>' +
+      '             <option value="2">2</option>' +
+      '             <option value="3">3</option>' +
+      '             <option value="4">4</option>' +
+      '             <option value="5">5</option>' +
+      '           </select>' +
+      '       </td>' +
+      '     </tr>' +
+      '     <tr>' +
+      '       <td class="left-column"><label for="recurring">Recurring:</label></td>' +
+      '       <td class="right-column"><input type="checkbox" name="recurring" id="ERecurring"></td>' +
+      '     </tr>' +
+      '     <tr>' +
+      '        <td class="left-column">' +
+      '         <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
+      '          <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
+      '       </td>' +
+      '        <td class="right-column">' +
+      '          <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
+      '          <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
+      '        </td>' +
+      '      </tr>' +
+      '    </table>' +
+      ' </form>' +
+     '</div>';
+
+
 // ===========================================================
 //
 //    Global function
@@ -185,21 +279,49 @@ function reloadTasks(userId, changeTaskInHeader) {
      // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
 
       if (!task.completed) {
-        $taskAnchor = $('<a class="taskAnchor">').text(task.description)
-                                 .attr({
-                                        'id':   task.id.toString(),
-                                        'data-priority': task.priority,
-                                        'href': '',
-                                        'data-toggle': "modal",
-                                        'data-target': "#myModal"
-                                      });
 
-        $checkBox = $('<input type="checkbox" class="complete">').attr({
-          'id':   'chk' + task.id.toString()
-          }).prop('checked', task.completed);
+        //  string tasklistItemHTML
+
+        $taskLi.html(tasklistItemHTML2);
+
+        $taskUl.append($taskLi);
+
+        //  in tasklistItemHTML replace  id="999"  with actual task.id
+        $taskLi.find('#999').attr('id', task.id);
+
+        //  in tasklistItemHTML replace id="chk&&&" with actual task.id
+
+        //  update checkbox value
+        //    id="chk888"
+        $taskLi.find('#chk888').attr('id', 'chk' + task.id).prop('checked', task.completed);
+
+        //  update these field values in form
+        //    id="Edescription"
+        //    id="Edue_date"
+        //    id="Epriority"
+        //    id="ERecurring"
+        $taskLi.find("#Edescription").val(task.description);
+        $taskLi.find("#Edue_date").val(new Date(task.due_date).toDateInputValue());
+        $taskLi.find("#Epriority").val(task.priority);
+        $taskLi.find("#ERecurring").prop('checked', task.recurring);
+
+        //  update the task description on the anchor tag
+        //  update 'data-priority' value on anchor tag
+        //       'data-priority': task.priority
+        $taskLi.find(".taskAnchor").text(task.description)
+                                   .attr({
+                                          'id':   task.id.toString(),
+                                          'data-priority': task.priority,
+                                        });
+
+        //for color change upon clicking procrastinate button:
+        if (task.postponed){
+          $taskLi.find(".taskAnchor").addClass("postponed");
+        }
+
+        $checkBox = $taskLi.find("#chk" + task.id);
 
         // ===========================================================
-        //
         //
         //   Use checklist to mark task as complete and create star
         //
@@ -258,7 +380,7 @@ function reloadTasks(userId, changeTaskInHeader) {
           //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
 
             // alert("Check get star with certain id");
-            $(".new-hover-control").addClass("hover-control");
+           $(".new-hover-control").addClass("hover-control");
             $(".new-hover-control.hover-control").removeClass("new-hover-control");
 
             var newHoverControl = $("<div>").addClass("new-hover-control");
@@ -275,27 +397,47 @@ function reloadTasks(userId, changeTaskInHeader) {
                 console.log("Inside setTimeout");
                 // console.log("taskId = " );
                 // console.log(taskId);
-                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
+                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
               }, 1000);
             })();
 
+
+          // alert("Check get star with certain id");
+          $(".new-star-container").addClass("star-container");
+          $(".new-star-container.star-container").removeClass("new-star-container");
+
+          var div = $("<div>").addClass("new-star-container");
+          var addDiv = $("#basebox").append(div);
+          var newStar = $("<div>").addClass("new-star");
+          var addStar = div.append(newStar);
+
+          (function(){
             setTimeout(function(){
-              //location.reload();
-              // logic to determine whether changeHeaderTaskFlag = true or not
-              var headerTaskId = $('#header-task').attr('data-header-task-id');
+              console.log("Inside setTimeout");
+              // console.log("taskId = " );
+              // console.log(taskId);
+              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+              // $(".new-star-container").addClass("star-container");
+              // $(".new-star-container.star-container").removeClass("new-star-container");
+            }, 1000);
+          })();
 
-              var changeHeaderTaskFlag = false;
-              if (taskId === headerTaskId) {
-                changeHeaderTaskFlag = true;
-              }
+          setTimeout(function(){
+            //location.reload();
+            // logic to determine whether changeHeaderTaskFlag = true or not
+            var headerTaskId = $('#header-task').attr('data-header-task-id');
 
-              reloadTasks(userId, changeHeaderTaskFlag);
-              // paintStarsInTheSky();
-            },3200);
+            var changeHeaderTaskFlag = false;
+            if (taskId === headerTaskId) {
+              changeHeaderTaskFlag = true;
+            }
 
-          //});
+            reloadTasks(userId, changeHeaderTaskFlag);
+            // paintStarsInTheSky();
+          },3200);
+
 
           // AJAX call to  POST star to server
           $.ajax({
@@ -313,45 +455,36 @@ function reloadTasks(userId, changeTaskInHeader) {
                     console.log(jqXHR.responseText);
                     alert(jqXHR.responseText);
                     }
-
           });
-        });
 
-        } else {
-        $taskAnchor = $('<span class="taskAnchor">').text(task.description)
-                                 .attr({
-                                        'id':   task.id.toString(),
-                                        'priority': task.priority,
-                                      //  'data-toggle': "modal",
-                                      //  'data-target': "#myModal",
-                                      //  'disabled': "disabled"
-                                      });
+        });      // end of   $checkBox.change(function () {
 
-        $taskAnchor.addClass("complete_span_disabled");
 
-        $checkBox = $('<input type="checkbox" class="complete complete_checkbox_disabled" disabled>').attr({
-          'id':   task.id.toString()
-          }).prop('checked', task.completed);
+      } else {
 
+          $taskLi = $('<li>');
+
+          $taskAnchor = $('<span class="taskAnchor">').text(task.description)
+                                   .attr({
+                                          'id':   task.id.toString(),
+                                          'priority': task.priority,
+                                        });
+
+          $taskAnchor.addClass("complete_span_disabled");
+
+          $checkBox = $('<input type="checkbox" class="complete complete_checkbox_disabled" disabled>').attr({
+            'id':   task.id.toString()
+            }).prop('checked', task.completed);
+
+          $taskLi.append($taskAnchor, $checkBox);
+
+          $taskUl.append($taskLi);
 
       }
 
+      // $taskLi.append($taskAnchor, $checkBox);
 
-      //for color change upon clicking procrastinate button:
-      if (task.postponed){
-        $taskAnchor.addClass("postponed");
-      }
-
-
-      // $("#complete").prop('checked', task.completed);
-
-
-
-      $taskLi.append($taskAnchor, $checkBox);
-
-      $taskUl.append($taskLi);
-
-
+      // $taskUl.append($taskLi);
 
     });
 
@@ -367,13 +500,122 @@ function reloadTasks(userId, changeTaskInHeader) {
 
   function findByTaskId(task_id) {
     return $.grep(allTasks, function( n ) {
-      return n.id === parseInt(task_id);
+      return n.id === parseInt(task_id, 10);
     })[0];
-  };
+  }
 
 
 
 $(function() {
+
+
+  // ===========================================================
+  function saveUpdatedTaskToDatabase($target) {
+
+      var $tasklistForm = $target.closest('li').find('.tasklistform');
+
+      var taskId = $target.closest('li').find(".taskAnchor").attr('id');
+
+      // FOR TESTING ONLY   **** REMOVE !!!
+      // taskId = 5;
+
+      var task = findByTaskId(taskId);    // does this include "postponed" ?
+      task.description = $tasklistForm.find("#Edescription").val();
+      task.due_date    = $tasklistForm.find("#Edue_date").val();
+      task.priority    = $tasklistForm.find("#Epriority").val();
+      task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
+
+      if ($target.attr('id') === 'procrastinate') {
+        task.postponed = true;
+      }
+
+      console.log("property values on task object being sent to server");
+      for (var prop in task) {
+        console.log("task." + prop + "= " + task[prop]);
+      }
+
+      var userId = $('div#userId').data('id');
+
+      // AJAX call to  PUT data to server
+      $.ajax({
+          type: "PUT",
+          url:  'users/' + userId + '/tasks/' + task.id,
+          contentType: "application/json",
+          data: JSON.stringify(task),
+          success: function(data) {
+                    console.log("#saveEditButton or procrastinate click ajax PUT was suceessful.");
+                    console.log("data returned ", data);
+
+                    reloadTasks(userId);
+
+                  },
+          error: function (xhr, ajaxOptions, thrownError) {
+
+                    console.log("#saveEditButton  or procrastinate click ajax PUT failed.");
+                    console.log("status = " + xhr.status);
+                    console.log("xhr.responseText = " + xhr.responseText);
+                    alert(xhr.responseText);
+                  }
+      });
+  }
+  // ===========================================================
+
+
+  // ===========================================================
+
+  function deleteTaskFromDatabase($target) {
+
+    var $tasklistForm = $target.closest('li').find('.tasklistform');
+
+    var taskId = $target.closest('li').find(".taskAnchor").attr('id');
+
+    var userId = $('div#userId').data('id');
+
+    console.log("userId");
+    console.log(userId);
+    console.log("trying to delete a task");
+    console.log(taskId);
+
+
+    //  delete Task in the server
+    //  ... also deletes the stars associated with the task
+
+    $.ajax({
+      url: '/users/' + userId + '/tasks/' + taskId,
+      type: 'DELETE',
+      success: function() {
+        console.log("done with delete");
+
+        // if this task was the header task
+        // ... then need to select another header task
+        var headerTaskId = $('#header-task').attr('data-header-task-id');
+
+        var changeHeaderTaskFlag = false;
+        if (taskId === headerTaskId) {
+          changeHeaderTaskFlag = true;
+        }
+        reloadTasks(userId, changeHeaderTaskFlag);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+          console.log("#deleteTask button click ajax DELETE failed.");
+          console.log("status = " + xhr.status);
+          console.log("xhr.responseText = " + xhr.responseText);
+      }
+
+    });
+ }
+  // ===========================================================
+
+
+
+
+
+
+
+
+
+
+
 
   console.log("in applications.js file");
   console.log(window.location.pathname);
@@ -438,23 +680,145 @@ $(function() {
         // Attach a delegated event handler
         $('ul.tasks').on('click', 'a', function(event) {
 
+          // Fri Jan 8, 2016  --- replace modal with accoridian
+          //  ... commented this out.
+
           // load user's task data into modal
 
           event.preventDefault();
-          var thisTask = findByTaskId(this.id);
-          console.log(thisTask);
-          console.log(thisTask.due_date);
-          $('.taskDetails').html(
-            "Task: " + thisTask.description + "<br/>" +
-            "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
-            "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
-            "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
-            "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
-            "Priority: " + thisTask.priority  + "<br/>"
-            );
-          $('div.details').attr({
-            'id': $(this).attr("id")
-          });
+          // var thisTask = findByTaskId(this.id);
+          // console.log(thisTask);
+          // console.log(thisTask.due_date);
+          // $('.taskDetails').html(
+          //   "Task: " + thisTask.description + "<br/>" +
+          //   "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
+          //   "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
+          //   "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
+          //   "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
+          //   "Priority: " + thisTask.priority  + "<br/>"
+          //   );
+          // $('div.details').attr({
+          //   'id': $(this).attr("id")
+          // });
+
+          // Fri Jan 8, 2016  --- replace modal with accoridian
+
+          // <ul class="tasks">
+          //   <!-- tasklist goes here -->
+          //   <li>
+          //     <a class="taskAnchor" id="999" data-priority="1" href>Walk the dog</a>
+          //     <input type="checkbox" class="complete" id="chk999">
+          //
+          //   <!-- the new part -- form to edit the task -->
+          //   <div class="tasklistform">
+          //     <form id="editTaskForm" action="" method="put">
+
+          //         <label for="description">Description:</label>
+          //         <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
+          //         <br>
+          //         <div class="">
+          //           <label for="due_date">Due Date:</label>
+          //           <input type="date" id="Edue_date" name="due_date">
+          //           <label for="priority">Priority:</label>
+          //           <select class="" id="Epriority" name="priority">
+          //             <option value="1">1</option>
+          //             <option value="2">2</option>
+          //             <option value="3">3</option>
+          //             <option value="4">4</option>
+          //             <option value="5">5</option>
+          //           </select>
+          //           <label for="recurring">Recurring:</label>
+          //           <input type="checkbox" name="recurring" id="ERecurring">
+          //         </div>
+          //         <br>
+                    // <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>
+                    // <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
+                    // <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>
+                    // <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>
+
+          //     </form>
+          //   <div>
+          // </ul>
+          // </li>
+
+          // hide any expanded task
+          $('.tasklistform').css('display', 'none');
+
+          // display .tasklistform for clicked task link
+          $(this).closest('li').find('.tasklistform').css('display', 'block');
+
+
+        });
+
+        // ===========================================================
+        //
+        //
+        //   Trap task list item form "Cancel" button click
+        //   ... and hide task list item form
+        //
+        // ============================================================
+        // Attach a delegated event handler
+
+        $('ul.tasks').on('click', 'button', function(event) {
+
+          event.preventDefault();
+
+
+
+          // if "Cancel" button clicked, hide task list item form
+          if ($(this).attr('id') === "cancel") {
+            // display .tasklistform for clicked task link
+            $(this).closest('li').find('.tasklistform').css('display', 'none');
+          }
+
+
+
+          // if "Procrastnate" button clicked, hide task list item form
+          if ($(this).attr('id') === "procrastinate") {
+
+            // save data to database here
+            saveUpdatedTaskToDatabase($(this));
+
+            // display .tasklistform for clicked task link
+            $(this).closest('li').find('.tasklistform').css('display', 'none');
+          }
+
+
+
+          // if "Delete" button clicked, hide task list item form
+          if ($(this).attr('id') === "deleteTask") {
+
+            // delete data from database here
+            deleteTaskFromDatabase($(this));
+
+            // display .tasklistform for clicked task link
+            $(this).closest('li').find('.tasklistform').css('display', 'none');
+          }
+
+
+        });
+
+        // ===========================================================
+        //
+        //
+        //   Trap task list item form "Submit" button click
+        //   ... and hide task list item form
+        //
+        // ============================================================
+
+        // $("#editTaskForm").submit(function(){
+        $('ul.tasks').on('submit', function(event) {
+
+          event.preventDefault();
+
+          // $(this) is the <ul>
+          var editTaskForm = event.target;
+
+          //  save data to database here
+          saveUpdatedTaskToDatabase($(editTaskForm));
+
+          // display .tasklistform for clicked task link
+          $(editTaskForm).css('display', 'none');
 
         });
 
