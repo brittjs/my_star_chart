@@ -190,7 +190,6 @@ $(function() {
               success: function(data) {
                         console.log('Star was inserted successfully');
                         console.log(data);
-                        alert('Star was inserted successfully.');
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
                        console.log(jqXHR.responseText);
@@ -216,7 +215,6 @@ $(function() {
               success: function(data) {
                         console.log('Task was updated successfully');
                         console.log(data);
-                        alert('Task was updated successfully.');
 
                         $("#myModal").modal('hide');
 
