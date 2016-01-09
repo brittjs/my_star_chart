@@ -209,20 +209,24 @@ function reloadTasks(userId, changeTaskInHeader) {
           //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
 
             // alert("Check get star with certain id");
-            $(".new-star-container").addClass("star-container");
-            $(".new-star-container.star-container").removeClass("new-star-container");
+           $(".new-hover-control").addClass("hover-control");
+            $(".new-hover-control.hover-control").removeClass("new-hover-control");
 
-            var div = $("<div>").addClass("new-star-container");
-            var addDiv = $("#basebox").append(div);
-            var newStar = $("<div>").addClass("new-star");
-            var addStar = div.append(newStar);
+            var newHoverControl = $("<div>").addClass("new-hover-control");
+            var newStarContainerDiv = $("<div>").addClass("new-star-container");
+            var addOuterDiv = $("#basebox").append(newHoverControl);
+            var addDiv = newHoverControl.append(newStarContainerDiv);
+            var newStarDiv = $("<div>").addClass("new-star");
+            var addStar = newStarContainerDiv.append(newStarDiv);
+            var newTextDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
+            var addText = newHoverControl.append(newTextDiv);
 
             (function(){
               setTimeout(function(){
                 console.log("Inside setTimeout");
                 // console.log("taskId = " );
                 // console.log(taskId);
-                $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
+                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"})
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
               }, 1000);

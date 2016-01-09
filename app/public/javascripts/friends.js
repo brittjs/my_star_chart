@@ -92,7 +92,6 @@ $(function() {
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
       if (!user.username) {
-
         console.log ("right track");
         $(div).html(user.email +" was not found");
         $('#inviteFriendButton').addClass('shown');
@@ -104,12 +103,47 @@ $(function() {
           $("#addFriendModal").modal('hide');
         });
 
-        
-      } else {
+        // resets form and removes invite button
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#inviteFriendButton').removeClass('shown');
+          $(div).empty();
+        })
 
+      }
+
+      else if (user.id === userId) {
+        // if user searches for themselves, their username, email address, 
+        // and "Cannot add yourself as a friend." will appear in the modal
+        $(div).html("username: " + user.username + "<br>email: " + user.email);
+        $(div).attr({'usernum': user.id});
+        $('#hiddenErrorMsg').css("display", "block");
+        
+        // after finding themselves, when the user clicks the input field, 
+        //the form resets, error msg and their info disappears
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#hiddenErrorMsg').css("display", "none");
+          $(div).empty();
+        })
+
+      } else {
+        console.log(user.id);
+        console.log(user.username);
+        console.log(user.email);
+        console.log(userId);
         $(div).html("username: " + user.username + "<br>email: " + user.email);
         $(div).attr({'usernum': user.id});
         $('#addFriendshipButton').addClass('shown');
+        
+        // reseting form and removing info on mousedown is necessary so that if 
+        // user enters their email after searching for another user, add friend button will be removed
+        $("#findByEmail").mousedown(function () {
+          $("#findFriendForm").trigger("reset");
+          $('#addFriendshipButton').removeClass('shown');
+          $(div).empty();
+        })
+
       }
 
     });
@@ -125,6 +159,12 @@ $(function() {
 
     var newFriendId = $("#show-results").attr('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
+    console.log(newFriendId);
+    console.log(userId);
+
+    if (parseInt(newFriendId) === parseInt(userId)) {
+      alert("Cannot add self as friend");
+    } else {
 
     $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
       console.log("add friend button successful");
@@ -139,6 +179,7 @@ $(function() {
     $("#addFriendModal").modal('hide');
     });
 
+    } 
 
   });
 
@@ -151,7 +192,7 @@ $(function() {
    $('#deleteFriendshipButton').on('click', function (e) {
     e.preventDefault();
    
-    var friendId = $('#friend-details').data('friend-id');
+    var friendId = $('#friend-details').attr('data-friend-id');
     var userId = $('div#userId').data('id'); //does this need to be here?
 
     $.ajax({
