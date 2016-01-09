@@ -321,3 +321,11 @@ ul {
 .complete_span_disabled.postponed{
   color: #A8A8A8;
 }
+
+#hiddenErrorMsg {
+  display: none;
+  margin-top: .5em;
+  font-size: 1.5vh;
+}
+
+
