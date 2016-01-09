@@ -27,7 +27,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .container{
   display: flex-inline;
   /*max-height: 100vh;*/
-  width: 150vh;
+  width: 170vh;
 }
 
 .skyContainer {
@@ -61,7 +61,8 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   padding: 8px;
   padding-left: 20px;
   border:5px solid goldenrod;
-  max-width: 65vh;
+  max-width: 75vh;
+  min-height: min-height: 210px;
   font-size: 2.5vh;
   flex: 1;
 }
@@ -173,7 +174,7 @@ ul {
   font-size: 2.5vh;
   padding: 8px;
   padding-left: 20px;
-  min-height: 120px;
+  /*min-height: 210px;*/
 /*  flex-direction: column;*/
 }
 
@@ -328,7 +329,7 @@ ul {
 }
 
 
-.tasklistform{
+.tasklistform {
   background-color: black;
   /* background-color: grey; */
   /* color: dark grey; */
