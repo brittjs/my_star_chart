@@ -274,9 +274,9 @@ ul {
   margin-left: 20px;
 }
 
-#Erecurring {
+/*#Erecurring {
   margin-left: 20px;
-}
+}*/
 
 #postponed {
   margin-left: 50px;
@@ -370,13 +370,13 @@ ul {
 
 #task-list .left-column{
   color: #cccccc;
-  font-size: 10px;
-  text-align: right;
+  font-size: .8em;
+  /*text-align: right;*/
   padding: 3px;
 }
 
 #task-list .right-column{
-  font-size: 10px;
+  font-size: .75em;
   padding: 3px;
   padding-left: 6px;
   margin-left: 6px;
@@ -387,6 +387,10 @@ ul {
   display: none;
   margin-top: .5em;
   font-size: 1.5vh;
+}
+
+#Edescription {
+  width: 138.063px;
 }
 
 
