@@ -3,6 +3,13 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
 
+  var today = new Date();
+  today.setHours(-8,0,0,0);
+
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(-8,0,0,0);
+
    return [
     queryInterface.bulkInsert('Tasks', [
       { UserId: 1, description: 'A non recurring task', recurring: false, completed: false, postponed: false},
@@ -38,7 +45,7 @@ module.exports = {
       { UserId: 1, description: 'Awesome thing', recurring: false, completed: true, postponed: false},
       { UserId: 1, description: 'Make friends', recurring: true, completed: true, postponed: false},
       { UserId: 1, description: 'Hurray for stars', recurring: true, completed: true, postponed: false},
-      { UserId: 1, description: 'Okay day', recurring: true, completed: true, postponed: false}
+      { UserId: 1, description: 'A postponed task', postponed: true, recurring: false, completed: false, postponed: false},
     ])
   ];
 
