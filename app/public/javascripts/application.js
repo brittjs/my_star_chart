@@ -200,7 +200,7 @@ function dailyTaskRefresh(userId) {
       }
     });
   
-  reloadTasks(userId);
+  // reloadTasks(userId);
   });
 }
 
@@ -259,7 +259,7 @@ var allTasks; // This needs to remain in the global scope, please do not move!
 
 function reloadTasks(userId, changeTaskInHeader) {
 
-
+dailyTaskRefresh(userId);
   //   ========================================================
         function paintStarsInTheSky() {
           var str = window.location.pathname;
@@ -694,9 +694,7 @@ $(function() {
         var changeTaskInHeaderFlag = true;
 
         // (function () {
-            dailyTaskRefresh(userId);
         
-
         reloadTasks(userId, changeTaskInHeaderFlag);
       // })();
         // ===========================================================
