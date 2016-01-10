@@ -466,7 +466,7 @@ dailyTaskRefresh(userId);
                 $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
-              }, 0);
+              }, 10);
             })();
 
           setTimeout(function(){
