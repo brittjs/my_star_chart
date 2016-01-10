@@ -505,6 +505,7 @@ $(function() {
       task.due_date = task.due_date+" 00:00:00.000 -08:00"
       task.priority    = $tasklistForm.find("#Epriority").val();
       task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
+      task.updatedAt   = Date.now();
 
       if ($target.attr('id') === 'procrastinate') {
         task.postponed = true;
