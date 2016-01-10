@@ -131,7 +131,6 @@ app.use(reqlogger);
 
   router
     .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
-    .get('/users/:userId/old/tasks',              userTasksCtrl.getListOfOldTasksForUser)
     .get('/users/:userId/tasks/:taskId',          userTasksCtrl.getTaskforUser)
     .post('/users/:userId/tasks',                 userTasksCtrl.createTask)
     .put('/users/:userId/tasks/:taskId',          userTasksCtrl.updateTask)
