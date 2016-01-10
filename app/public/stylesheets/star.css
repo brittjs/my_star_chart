@@ -87,18 +87,14 @@
 }
 
 .hidden-task-info{
-  /*display: block;*/
   color: white;
   position: absolute;
-  /*z-index: 2;*/
   opacity: 0;
   white-space: pre;
 }
 
 .hover-control {
   position: absolute;
- /* width: 20px;
-  height: 20px;*/
 }
 
 .hover-control:hover .star-container{
@@ -177,9 +173,6 @@
 
 .new-star-container{  
   position: absolute;
-  /*left: 50%;
-  top: 50%;
-  transition: all 2s linear;*/
 }
 
 .new-star-container:hover{
@@ -191,8 +184,6 @@
   left: 0%;
   top: 96%;
   transition: all 0.7s linear;;
- /* width: 20px;
-  height: 20px;*/
 }
 
 .new-hover-control:hover .new-star-container{
