@@ -76,7 +76,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   /*min-height: 120px;*/
 }
 
-.tasks input {
+.tasks input[type="checkbox"] {
   margin-top: 7px;
 }
 
@@ -374,7 +374,7 @@ ul {
   background-color: #D1D1D1;
   border: 1px solid black;
   color: black;
-  width: 130px;
+  width: 150px;
   margin-top: 2px;
 
 }
