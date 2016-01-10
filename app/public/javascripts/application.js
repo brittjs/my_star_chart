@@ -103,52 +103,57 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// function dailyTaskRefresh(userId) {
+function dailyTaskRefresh(userId) {
 
-//   console.log("inside dailyTaskRefresh");
+  console.log("inside dailyTaskRefresh");
 
-//   var today = new Date();
-//   today.setHours(0,0,0,0);
-//   console.log("today: "+today);
+  var today = new Date();
+  today.setHours(-8,0,0,0);
+  console.log("today: "+today);
 
-//   var yesterday = new Date();
-//   yesterday.setDate(yesterday.getDate() - 1);
-//   yesterday.setHours(0,0,0,0);
-//   console.log("yesterday: "+yesterday);
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(-8,0,0,0);
+  console.log("yesterday: "+yesterday);
 
-//   allTasks.forEach(function(task) {
+  $.get('users/' + userId + '/old/tasks', function(tasks){
 
-//     var dueDate = new Date(task.due_date);
-//     dueDate.setHours(0,0,0,0);
+    var oldTasks = tasks;
 
-//     if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
-      
-//       var myTask = {description: task.description,
-//        due_date: today,
-//        priority: task.priority,
-//        recurring: task.recurring,
-//        postponed: false,
-//        completed: false,
-//        UserId: userId};
+    oldTasks.forEach(function(task) {
 
-//       $.post('/users/' + userId + '/tasks', myTask, function(task) {
-//         console.log("Create task submit button successful.");
-//         console.log("task = ", task);
-//       });
-        
-//       if (task.completed === false) {
-//         $.ajax({
-//           url: '/users/' + userId + '/tasks/' + task.id,
-//           type: 'DELETE',
-//           success: function() {
-//             console.log("done with delete");
-//           }
-//         });
-//       } 
-//     }
-//   });
-// }  // reloadTasks(userId);
+      var dueDate = new Date(task.due_date);
+      dueDate.setHours(-8,0,0,0);
 
+      if (task.recurring === true || task.postponed === true)
+    {
+        console.log("found one" + task.id);
+        var myTask = {description: task.description,
+         due_date: today,
+         priority: task.priority,
+         recurring: task.recurring,
+         postponed: false,
+         completed: false,
+         UserId: userId};
+
+        $.post('/users/' + userId + '/tasks', myTask, function(task) {
+          console.log("Create task submit button successful.");
+          console.log("task = ", task);
+        });
+          
+        if (task.completed === false) {
+          $.ajax({
+            url: '/users/' + userId + '/tasks/' + task.id,
+            type: 'DELETE',
+            success: function() {
+              console.log("done with delete");
+            }
+          });
+        } 
+      }
+  });
+});  // reloadTasks(userId);
+}
   
 // ===========================================================
 //
@@ -249,7 +254,7 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
-    // dailyTaskRefresh(userId);
+    dailyTaskRefresh(userId);
 
 
     // =========================================================
@@ -502,7 +507,7 @@ $(function() {
       var task = findByTaskId(taskId);    // does this include "postponed" ?
       task.description = $tasklistForm.find("#Edescription").val();
       task.due_date    = $tasklistForm.find("#Edue_date").val();
-      task.due_date = task.due_date+" 00:00:00.000 -08:00"
+      task.due_date = task.due_date+" 00:00:00.000 -08:00";
       task.priority    = $tasklistForm.find("#Epriority").val();
       task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
       task.updatedAt   = Date.now();
