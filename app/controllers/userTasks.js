@@ -17,7 +17,7 @@ module.exports = {
 
   // -------------------------------------------------------------
   //
-  //     get list of tasks for user
+  //     get list of today's tasks for user
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
@@ -42,24 +42,24 @@ module.exports = {
       //      - postponed
       //      - completed
 
-      // var tasks = yield user.getTasks(); // gets you all tasks
+      var tasks = yield user.getTasks(); // gets you all tasks
 
-      var today = new Date();
-      today.setHours(0,0,0,0);
+      // var today = new Date();
+      // today.setHours(0,0,0,0);
 
-      var tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() - 1);
-      tomorrow.setHours(0,0,0,0);
+      // var tomorrow = new Date();
+      // tomorrow.setDate(tomorrow.getDate() + 1);
+      // tomorrow.setHours(0,0,0,0);
       
-      var tasks = yield db.sequelize.models.Task.findAll({
-                                    where: {
-                                        due_date: {
-                                          $lt: today,
-                                          $gt: tomorrow
-                                        }, 
-                                        UserId: user.id
-                                    }
-                                  });  // gets you all tasks due today
+      // var tasks = yield db.sequelize.models.Task.findAll({
+      //                               where: {
+      //                                   due_date: {
+      //                                     $gt: today,
+      //                                     $lt: tomorrow
+      //                                   }, 
+      //                                   UserId: user.id
+      //                               }
+      //                             });  // gets you all tasks due today
 
       // iterate through tasks extract keyvalue "dataValues"
       var mappedTasks = [];
@@ -75,6 +75,46 @@ module.exports = {
       yield next;
     }
 
+  },
+
+  // -------------------------------------------------------------
+  //
+  //     get list of yesterday's tasks for refresh function
+  //
+  // -------------------------------------------------------------
+getListOfOldTasksForUser: function* getListOfOldTasksForUser(next) {
+
+    if (!this.state.userId) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+
+      var user = this.state.user;
+
+      var today = new Date();
+      today.setHours(0,0,0,0);
+
+      var yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      yesterday.setHours(0,0,0,0);
+      
+      var tasks = yield db.sequelize.models.Task.findAll({
+                                    where: {
+                                        due_date: {
+                                          $lt: today,
+                                          $gt: yesterday
+                                        }, 
+                                        UserId: user.id
+                                    }
+                                  });  // gets you all tasks due yesterday
+      var mappedTasks = [];
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+      });
+
+      this.body = mappedTasks;
+      yield next;
+    }
   },
 
   // -------------------------------------------------------------
