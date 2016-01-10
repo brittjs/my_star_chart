@@ -91,6 +91,41 @@ var tasklistItemHTML2 =
       ' </form>' +
      '</div>';
 
+var tasklistItemHTML3 =
+          '<input type="checkbox" id="chk888">' +
+          '<a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a>' +
+          '<!-- the new part -- form to edit the task -->' +
+          '<div class="tasklistform">' +
+          '  <form id="editTaskForm" action="" method="put">' +
+          '   <table id="task-list">' +
+          '     <tr>' +
+          '       <td colspan="1" class="left-column"><label for="description">Description:</label></td>' +
+          '       <td colspan="5" class="right-column"><input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></td>' +
+          '     </tr>' +
+          '     <tr>' +
+          '       <td class="left-column"><label for="due_date">Due Date:</label></td>' +
+          '       <td class="right-column"><input type="date" id="Edue_date" name="due_date"></td>' +
+          '       <td class="left-column"><label for="priority">Priority:</label></td>' +
+          '       <td class="right-column" ><select class="" id="Epriority" name="priority">' +
+          '             <option value="1">1</option>' +
+          '             <option value="2">2</option>' +
+          '             <option value="3">3</option>' +
+          '             <option value="4">4</option>' +
+          '             <option value="5">5</option>' +
+          '           </select>' +
+          '       </td>' +
+          '       <td class="left-column"><label for="recurring">Recurring:</label></td>' +
+          '       <td class="right-column"><input type="checkbox" name="recurring" id="ERecurring"></td>' +
+          '     </tr>' +
+          '  </table>' +
+          '   <div class="tasklistformbuttons" id=[000]>' +
+          '     <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
+          '     <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
+          '     <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
+          '     <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
+          '   </div>' +
+          '  </form>' +
+         '</div>';
 
 // ===========================================================
 //
@@ -122,7 +157,7 @@ function getRandomInt(min, max) {
 //     dueDate.setHours(0,0,0,0);
 
 //     if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
-      
+
 //       var myTask = {description: task.description,
 //        due_date: today,
 //        priority: task.priority,
@@ -135,7 +170,7 @@ function getRandomInt(min, max) {
 //         console.log("Create task submit button successful.");
 //         console.log("task = ", task);
 //       });
-        
+
 //       if (task.completed === false) {
 //         $.ajax({
 //           url: '/users/' + userId + '/tasks/' + task.id,
@@ -144,12 +179,12 @@ function getRandomInt(min, max) {
 //             console.log("done with delete");
 //           }
 //         });
-//       } 
+//       }
 //     }
 //   });
 // }  // reloadTasks(userId);
 
-  
+
 // ===========================================================
 //
 //    Global function
@@ -282,7 +317,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
         //  string tasklistItemHTML
 
-        var modifyTaskForm = tasklistItemHTML2.replace("id=[000]", "id=D" + task.id);
+        var modifyTaskForm = tasklistItemHTML3.replace("id=[000]", "id=D" + task.id);
 
         $taskLi.html(modifyTaskForm);
 
@@ -512,6 +547,7 @@ $(function() {
       task.due_date = task.due_date+" 00:00:00.000 -08:00"
       task.priority    = $tasklistForm.find("#Epriority").val();
       task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
+      task.updatedAt   = Date.now();
 
       if ($target.attr('id') === 'procrastinate') {
         if (task.postponed === false) {     

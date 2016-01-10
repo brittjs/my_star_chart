@@ -42,33 +42,114 @@ module.exports = {
       //      - postponed
       //      - completed
 
-      var tasks = yield user.getTasks(); // gets you all tasks
+      var today = new Date();
+      today.setHours(-8,0,0,0);
+
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(-8,0,0,0);
+
+       // get tasks not completed and not postponed sorted in descending update order
+
+       var tasks1 = yield db.sequelize.models.Task.findAll({
+                                                            where: {
+                                                                UserId: user.id,
+                                                                completed: false,
+                                                                postponed: false,
+                                                                due_date: {
+                                                                  $lt: tomorrow,
+                                                                  $gt: today
+                                                                }
+                                                            },
+                                                            order: [
+                                                              ['updatedAt', 'DESC']
+                                                            ]
+                                                          });
+
+        // console.log('tasks not completed and not postponed sorted in descending update order')
+
+        var mappedTasks1 = [];
+
+        tasks1.forEach(function (task) {
+          mappedTasks1.push( task["dataValues"]);
+        });
+
+       // get tasks not completed and postponed sorted in descending update order
+
+       var tasks2 = yield db.sequelize.models.Task.findAll({
+                                                            where: {
+                                                                UserId: user.id,
+                                                                completed: false,
+                                                                postponed: true,
+                                                                due_date: {
+                                                                  $lt: tomorrow,
+                                                                  $gt: today
+                                                                }
+                                                            },
+                                                            order: [
+                                                              ['updatedAt', 'DESC']
+                                                            ]
+                                                          });
+
+        // console.log('tasks not completed and postponed sorted in descending update order')
+
+        var mappedTasks2 = [];
+
+        tasks2.forEach(function (task) {
+          mappedTasks2.push( task["dataValues"]);
+        });
+
+
+        // console.log(mappedTasks2);
+
+       // get tasks completed sorted in descending update order
+
+       var tasks3 = yield db.sequelize.models.Task.findAll({
+                                                            where: {
+                                                                UserId: user.id,
+                                                                completed: true,
+                                                                due_date: {
+                                                                  $lt: tomorrow,
+                                                                  $gt: today
+                                                                }
+                                                            },
+                                                            order: [
+                                                              ['updatedAt', 'DESC']
+                                                            ]
+                                                          });
+
+        console.log('tasks completed sorted in descending update order')
+
+        var mappedTasks3 = [];
+
+        tasks3.forEach(function (task) {
+          mappedTasks3.push( task["dataValues"]);
+        });
+
+
+        // console.log(mappedTasks3);
+
+        var mappedTasks = mappedTasks1.concat(mappedTasks2, mappedTasks3);
+
+      // var tasks = yield user.getTasks(); // gets you all tasks
 
       // var today = new Date();
       // today.setHours(0,0,0,0);
 
       // var tomorrow = new Date();
-      // tomorrow.setDate(tomorrow.getDate() - 1);
+      // tomorrow.setDate(tomorrow.getDate() + 1);
       // tomorrow.setHours(0,0,0,0);
-      
+
       // var tasks = yield db.sequelize.models.Task.findAll({
       //                               where: {
       //                                   due_date: {
-      //                                     $lt: today,
-      //                                     $gt: tomorrow
-      //                                   }, 
+      //                                     $lt: tomorrow,
+      //                                     $gt: today
+      //                                   },
       //                                   UserId: user.id
       //                               }
       //                             });  // gets you all tasks due today
 
-      // iterate through tasks extract keyvalue "dataValues"
-      var mappedTasks = [];
-
-      tasks.forEach(function (task) {
-        mappedTasks.push( task["dataValues"]);
-      });
-
-      // console.log(mappedTasks);
 
       this.body = mappedTasks;
 
