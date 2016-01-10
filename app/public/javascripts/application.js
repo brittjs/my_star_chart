@@ -369,12 +369,14 @@ function reloadTasks(userId, changeTaskInHeader) {
                                           'id':   task.id.toString(),
                                           'data-priority': task.priority,
                                         });
+        $taskLi.find(".taskAnchor").addClass("incomplete");                           
 
         //for color change upon clicking procrastinate button:
         var procrastinateButtonSelector = "#D" + task.id + " " + "button#procrastinate";
-        console.log(procrastinateButtonSelector);
+        // console.log(procrastinateButtonSelector);
         if (task.postponed === true){
           $taskLi.find(".taskAnchor").addClass("postponed");
+          $taskLi.find(".taskAnchor").removeClass("incomplete");
           $(procrastinateButtonSelector).html('Undo Procrastinate');
         } else {
           $taskLi.find(".taskAnchor").removeClass("postponed");
@@ -881,10 +883,18 @@ $(function() {
         // ============================================================
 
         $("#sortByPriority").on('click', function() {
-          tinysort('ul.tasks>li', {selector: '.taskAnchor', data: 'priority', order: 'desc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
-        });
 
+          // first... if the task is incomplete, sort by priority descending
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'desc'});
+          // second... if the task is postponed, sort by priority descending
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'desc'});
+          // lastly... if the task is complete, sort by priority descending
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
+          
+          
+          
+
+        }); //end of sort  
 
    } // end of user's Page  !!!
 
