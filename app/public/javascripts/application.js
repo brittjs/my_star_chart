@@ -51,7 +51,7 @@ var tasklistItemHTML2 =
       '<input type="checkbox" id="chk888">' +
       '<a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a>' +
       '<!-- the new part -- form to edit the task -->' +
-      '<div class="tasklistform">' +
+      '<div class="tasklistform" id=[000]>' +
       '  <form id="editTaskForm" action="" method="put">' +
       '   <table id="task-list">' +
       '     <tr>' +
@@ -118,7 +118,7 @@ var tasklistItemHTML3 =
           '       <td class="right-column"><input type="checkbox" name="recurring" id="ERecurring"></td>' +
           '     </tr>' +
           '  </table>' +
-          '   <div class="tasklistformbuttons">' +
+          '   <div class="tasklistformbuttons" id=[000]>' +
           '     <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
           '     <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
           '     <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
@@ -340,7 +340,9 @@ function reloadTasks(userId, changeTaskInHeader) {
 
         //  string tasklistItemHTML
 
-        $taskLi.html(tasklistItemHTML3);
+        var modifyTaskForm = tasklistItemHTML3.replace("id=[000]", "id=D" + task.id);
+
+        $taskLi.html(modifyTaskForm);
 
         $taskUl.append($taskLi);
 
@@ -373,8 +375,14 @@ function reloadTasks(userId, changeTaskInHeader) {
                                         });
 
         //for color change upon clicking procrastinate button:
-        if (task.postponed){
+        var procrastinateButtonSelector = "#D" + task.id + " " + "button#procrastinate";
+        console.log(procrastinateButtonSelector);
+        if (task.postponed === true){
           $taskLi.find(".taskAnchor").addClass("postponed");
+          $(procrastinateButtonSelector).html('Undo Procrastinate');
+        } else {
+          $taskLi.find(".taskAnchor").removeClass("postponed");
+          $(procrastinateButtonSelector).html('Procrastinate');
         }
 
         $checkBox = $taskLi.find("#chk" + task.id);
@@ -565,7 +573,11 @@ $(function() {
       task.updatedAt   = Date.now();
 
       if ($target.attr('id') === 'procrastinate') {
-        task.postponed = true;
+        if (task.postponed === false) {     
+          task.postponed = true;
+        } else {
+          task.postponed = false
+        }  
       }
 
       console.log("property values on task object being sent to server");
