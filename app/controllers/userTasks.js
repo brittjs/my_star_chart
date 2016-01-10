@@ -17,7 +17,7 @@ module.exports = {
 
   // -------------------------------------------------------------
   //
-  //     get list of today's tasks for user
+  //     get list of tasks for user
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
@@ -131,52 +131,31 @@ module.exports = {
 
         var mappedTasks = mappedTasks1.concat(mappedTasks2, mappedTasks3);
 
+      // var tasks = yield user.getTasks(); // gets you all tasks
+
+      // var today = new Date();
+      // today.setHours(0,0,0,0);
+
+      // var tomorrow = new Date();
+      // tomorrow.setDate(tomorrow.getDate() + 1);
+      // tomorrow.setHours(0,0,0,0);
+
+      // var tasks = yield db.sequelize.models.Task.findAll({
+      //                               where: {
+      //                                   due_date: {
+      //                                     $lt: tomorrow,
+      //                                     $gt: today
+      //                                   },
+      //                                   UserId: user.id
+      //                               }
+      //                             });  // gets you all tasks due today
+
+
       this.body = mappedTasks;
 
       yield next;
     }
 
-  },
-
-  // -------------------------------------------------------------
-  //
-  //     get list of yesterday's tasks for refresh function
-  //
-  // -------------------------------------------------------------
-getListOfOldTasksForUser: function* getListOfOldTasksForUser(next) {
-
-    if (!this.state.userId) {
-      console.log("The user with UserId = " + this.state.userId + " does not exist.");
-      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
-    } else {
-
-      var user = this.state.user;
-
-      var today = new Date();
-      today.setHours(-8,0,0,0);
-
-      var yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      yesterday.setHours(-8,0,0,0);
-      
-      var tasks = yield db.sequelize.models.Task.findAll({
-                                    where: {
-                                        due_date: {
-                                          $lt: today,
-                                          $gt: yesterday
-                                        }, 
-                                        UserId: user.id
-                                    }
-                                  });  // gets you all tasks due yesterday
-
-      var mappedTasks = [];
-      tasks.forEach(function (task) {
-        mappedTasks.push( task["dataValues"]);
-      });
-
-      this.body = mappedTasks;
-      yield next;
-    }
   },
 
   // -------------------------------------------------------------
