@@ -12,8 +12,8 @@ const passport = require('koa-passport'),
     GithubStrategy = require('passport-github').Strategy;
 
 passport.use(new GithubStrategy({
-    clientID: 'b4dc1bef40b637ccf7d9',
-    clientSecret: '003a6c2bb6ef141dc2fd9497ba12baf04c818f61',
+    clientID: '678e6fc17736f6a5f50a',
+    clientSecret: '4e123b1248a4a50e26ddbd552db4855cbfb9ff5f',
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function findExistingUserBasedOnOAuthUser(accessToken, refreshToken, profile, done) {
