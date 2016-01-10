@@ -115,3 +115,11 @@ form{
 #signup-title{
 	color: goldenrod;
 }
+
+#login-box-link{
+	font-size: 16px;
+}
+
+#signup-box-link{
+	font-size: 16px;
+}
