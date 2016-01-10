@@ -71,9 +71,13 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .listOfTasks .tasks {
   /*font-size: 2.25vh;*/
   list-style-type:none;
-  /*margin-left: 20px;*/
+  margin-top: 2px;
   padding: 0px;
   /*min-height: 120px;*/
+}
+
+.tasks input {
+  margin-top: 7px;
 }
 
 .taskAnchor {
@@ -110,6 +114,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .friendsHeader{
   display: flex;
   justify-content: space-between;
+  margin-bottom: -10px;
 }
 
 .friendsWrapper {
@@ -247,7 +252,7 @@ ul {
 .endColumn{
   display: flex;
   flex-direction: column;
-  margin-left: 3.25em;
+  margin-left: 3.5em;
 }
 
 #twitterButton {
@@ -281,9 +286,9 @@ ul {
   margin-left: 20px;
 }
 
-/*#Erecurring {
-  margin-left: 20px;
-}*/
+#Erecurring {
+  /*margin-left: 20px;*/
+}
 
 #postponed {
   margin-left: 50px;
@@ -342,40 +347,50 @@ ul {
   color: #cccccc;   /* light grey */
   display: none;
   font-size: 10px;
-  margin-top: 2px;
+  margin-top: -2px;
   padding: 4px;
 
 }
 
 .tasklistformbuttons{
   /* border: 1px solid yellow; */
+  margin-top: 7px;
+}
+
+.tasklistform label{
+  /*background-color: ;*/
   margin-top: 5px;
+  color:  #D1D1D1;
 }
 
 .tasklistform input[type="text"]{
   background-color: #D1D1D1;
   border: 1px solid black;
   color:  black;
-  width: 270px;
+  width: 100%;
 }
 
 .tasklistform input[type="date"]{
   background-color: #D1D1D1;
   border: 1px solid black;
   color: black;
-  width: 102px;
+  width: 130px;
+  margin-top: 2px;
+
 }
 
 .tasklistform input[type="checkbox"]{
   background-color: #D1D1D1;
   border: 1px solid black;
   color: black;
+  margin-top: 2px;
 }
 
 .tasklistform select{
   background-color: #D1D1D1;
   border: 1px solid black;
   color: black;
+  margin-top: 2px;
 }
 
 .tasklistform .btn-default{
@@ -385,14 +400,14 @@ ul {
 #task-list .left-column{
   /* border: 1px solid red; */
   color: #cccccc;
-  font-size: 10px;
+  font-size: 1.75vh;
   text-align: right;
   padding: 1px;
 }
 
 #task-list .right-column{
   /* border: 1px solid green; */
-  font-size: 10px;
+  font-size: 1.5vh;
   padding: 3px;
   padding-left: 6px;
   /* margin-left: 6px; */
@@ -406,7 +421,7 @@ ul {
 }
 
 #Edescription {
-  width: 138.063px;
+  /*width: 355px;*/
 }
 
 .expandedTaskButtons {
@@ -428,11 +443,11 @@ ul {
 }
 
 iframe {
-transform: scale(1.5);
--ms-transform: scale(1.5); 
--webkit-transform: scale(1.5); 
--o-transform: scale(1.5); 
--moz-transform: scale(1.5); 
+transform: scale(1.75);
+-ms-transform: scale(1.75); 
+-webkit-transform: scale(1.75); 
+-o-transform: scale(1.75); 
+-moz-transform: scale(1.75); 
 transform-origin: top right;
 -ms-transform-origin: top right;
 -webkit-transform-origin: top right;
