@@ -125,9 +125,7 @@ function dailyTaskRefresh(userId) {
       var dueDate = new Date(task.due_date);
       dueDate.setHours(-8,0,0,0);
 
-      if (task.recurring === true || task.postponed === true)
-    {
-        console.log("found one" + task.id);
+      if (task.recurring === true || task.postponed === true) {
         var myTask = {description: task.description,
          due_date: today,
          priority: task.priority,
@@ -137,22 +135,22 @@ function dailyTaskRefresh(userId) {
          UserId: userId};
 
         $.post('/users/' + userId + '/tasks', myTask, function(task) {
-          console.log("Create task submit button successful.");
+          console.log("Create recurring/postponed task successful.");
           console.log("task = ", task);
         });
-          
-        if (task.completed === false) {
-          $.ajax({
-            url: '/users/' + userId + '/tasks/' + task.id,
-            type: 'DELETE',
-            success: function() {
-              console.log("done with delete");
-            }
-          });
-        } 
       }
-  });
-});  // reloadTasks(userId);
+      
+      // if (task.completed === false) {
+      //   $.ajax({
+      //     url: '/users/' + userId + '/tasks/' + task.id,
+      //     type: 'DELETE',
+      //     success: function() {
+      //       console.log("done with delete");
+      //     }
+      //   });
+      } 
+    });
+  });  // reloadTasks(userId);
 }
   
 // ===========================================================
