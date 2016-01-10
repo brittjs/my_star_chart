@@ -335,21 +335,28 @@ ul {
   color: #cccccc;   /* light grey */
   display: none;
   font-size: 10px;
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 2px;
+  padding: 4px;
 
+}
+
+.tasklistformbuttons{
+  /* border: 1px solid yellow; */
+  margin-top: 5px;
 }
 
 .tasklistform input[type="text"]{
   background-color: #D1D1D1;
   border: 1px solid black;
   color:  black;
+  width: 270px;
 }
 
 .tasklistform input[type="date"]{
   background-color: #D1D1D1;
   border: 1px solid black;
   color: black;
+  width: 102px;
 }
 
 .tasklistform input[type="checkbox"]{
@@ -369,17 +376,19 @@ ul {
 }
 
 #task-list .left-column{
+  /* border: 1px solid red; */
   color: #cccccc;
   font-size: 10px;
   text-align: right;
-  padding: 3px;
+  padding: 1px;
 }
 
 #task-list .right-column{
+  /* border: 1px solid green; */
   font-size: 10px;
   padding: 3px;
   padding-left: 6px;
-  margin-left: 6px;
+  /* margin-left: 6px; */
   text-align: left;
 }
 
