@@ -369,6 +369,8 @@ dailyTaskRefresh(userId);
                                           'id':   task.id.toString(),
                                           'data-priority': task.priority,
                                         });
+        
+        // .addClass("incomplete") needed to isolate incomplete tasks for sorting
         $taskLi.find(".taskAnchor").addClass("incomplete");                           
 
         //for color change upon clicking procrastinate button:
@@ -881,18 +883,10 @@ $(function() {
         // ============================================================
 
         $("#sortByPriority").on('click', function() {
-
-          // first... if the task is incomplete, sort by priority descending
           tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'desc'});
-          // second... if the task is postponed, sort by priority descending
           tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'desc'});
-          // lastly... if the task is complete, sort by priority descending
           tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
-          
-          
-          
-
-        }); //end of sort  
+        }); 
 
    } // end of user's Page  !!!
 
