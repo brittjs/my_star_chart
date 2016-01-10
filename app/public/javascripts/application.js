@@ -111,10 +111,10 @@ function dailyTaskRefresh(userId) {
   today.setHours(-8,0,0,0);
   console.log("today: "+today);
 
-  var yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  yesterday.setHours(-8,0,0,0);
-  console.log("yesterday: "+yesterday);
+  // var yesterday = new Date();
+  // yesterday.setDate(yesterday.getDate() - 1);
+  // yesterday.setHours(0,0,0,0);
+  // console.log("yesterday: "+yesterday);
 
   $.get('users/' + userId + '/old/tasks', function(tasks){
 
@@ -122,8 +122,8 @@ function dailyTaskRefresh(userId) {
 
     oldTasks.forEach(function(task) {
 
-      var dueDate = new Date(task.due_date);
-      dueDate.setHours(-8,0,0,0);
+      // var dueDate = new Date(task.due_date);
+      // dueDate.setHours(-8,0,0,0);
 
       if (task.recurring === true || task.postponed === true) {
         var myTask = {description: task.description,
@@ -139,7 +139,7 @@ function dailyTaskRefresh(userId) {
           console.log("task = ", task);
         });
       }
-      
+
       // if (task.completed === false) {
       //   $.ajax({
       //     url: '/users/' + userId + '/tasks/' + task.id,
@@ -148,9 +148,9 @@ function dailyTaskRefresh(userId) {
       //       console.log("done with delete");
       //     }
       //   });
-      } 
+      }); 
     });
-  });  // reloadTasks(userId);
+  // });  // reloadTasks(userId);
 }
   
 // ===========================================================
