@@ -3,7 +3,7 @@
 //    Global task list item form
 //
 // ============================================================
-// Fri Jan 8, 2016  --- replace modal with accoridian
+// Fri Jan 8, 2016  --- replace modal with accordion
 
 // <ul class="tasks">
 // var tasklistItemHTML =
@@ -447,7 +447,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
             reloadTasks(userId, changeHeaderTaskFlag);
             // paintStarsInTheSky();
-          },3200);
+          },700);
 
 
           // AJAX call to  POST star to server
