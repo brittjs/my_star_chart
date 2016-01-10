@@ -188,9 +188,9 @@
 
 .new-hover-control {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transition: all 2s linear;;
+  left: 0%;
+  top: 98%;
+  transition: all .7s linear;;
  /* width: 20px;
   height: 20px;*/
 }

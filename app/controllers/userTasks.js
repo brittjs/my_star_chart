@@ -92,11 +92,11 @@ getListOfOldTasksForUser: function* getListOfOldTasksForUser(next) {
       var user = this.state.user;
 
       var today = new Date();
-      today.setHours(0,0,0,0);
+      today.setHours(-8,0,0,0);
 
       var yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      yesterday.setHours(0,0,0,0);
+      yesterday.setHours(-8,0,0,0);
       
       var tasks = yield db.sequelize.models.Task.findAll({
                                     where: {
@@ -107,6 +107,7 @@ getListOfOldTasksForUser: function* getListOfOldTasksForUser(next) {
                                         UserId: user.id
                                     }
                                   });  // gets you all tasks due yesterday
+
       var mappedTasks = [];
       tasks.forEach(function (task) {
         mappedTasks.push( task["dataValues"]);

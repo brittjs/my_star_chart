@@ -103,54 +103,51 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function dailyTaskRefresh(userId) {
+// function dailyTaskRefresh(userId) {
 
-  console.log("inside dailyTaskRefresh");
+//   console.log("inside dailyTaskRefresh");
 
-  var today = new Date();
-  today.setHours(0,0,0,0);
-  console.log("today: "+today);
+//   var today = new Date();
+//   today.setHours(0,0,0,0);
+//   console.log("today: "+today);
 
-  var yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  yesterday.setHours(0,0,0,0);
-  console.log("yesterday: "+yesterday);
-  
-  $.get('users/' + userId + '/old/tasks', function(tasks){
-    oldTasks = tasks;
-    oldTasks.forEach(function(task) {
+//   var yesterday = new Date();
+//   yesterday.setDate(yesterday.getDate() - 1);
+//   yesterday.setHours(0,0,0,0);
+//   console.log("yesterday: "+yesterday);
 
-      var dueDate = new Date(task.due_date);
-      dueDate.setHours(0,0,0,0);
+//   allTasks.forEach(function(task) {
 
-      if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
+//     var dueDate = new Date(task.due_date);
+//     dueDate.setHours(0,0,0,0);
+
+//     if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
+      
+//       var myTask = {description: task.description,
+//        due_date: today,
+//        priority: task.priority,
+//        recurring: task.recurring,
+//        postponed: false,
+//        completed: false,
+//        UserId: userId};
+
+//       $.post('/users/' + userId + '/tasks', myTask, function(task) {
+//         console.log("Create task submit button successful.");
+//         console.log("task = ", task);
+//       });
         
-        var myTask = {description: task.description,
-         due_date: today,
-         priority: task.priority,
-         recurring: task.recurring,
-         postponed: false,
-         completed: false,
-         UserId: userId};
-
-        $.post('/users/' + userId + '/tasks', myTask, function(task) {
-          console.log("Create task submit button successful.");
-          console.log("task = ", task);
-        });
-          
-        if (task.completed === false) {
-          $.ajax({
-            url: '/users/' + userId + '/tasks/' + task.id,
-            type: 'DELETE',
-            success: function() {
-              console.log("done with delete");
-            }
-          });
-        } 
-      }
-    });
-  });
-}  // reloadTasks(userId);
+//       if (task.completed === false) {
+//         $.ajax({
+//           url: '/users/' + userId + '/tasks/' + task.id,
+//           type: 'DELETE',
+//           success: function() {
+//             console.log("done with delete");
+//           }
+//         });
+//       } 
+//     }
+//   });
+// }  // reloadTasks(userId);
 
   
 // ===========================================================
@@ -252,9 +249,8 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
-    
-    dailyTaskRefresh(userId);
-      
+    // dailyTaskRefresh(userId);
+
 
     // =========================================================
     //  if parameter "change_task_in_header" == true
@@ -405,29 +401,8 @@ function reloadTasks(userId, changeTaskInHeader) {
                 $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
                 // $(".new-star-container").addClass("star-container");
                 // $(".new-star-container.star-container").removeClass("new-star-container");
-              }, 1000);
+              }, 0);
             })();
-
-
-          // alert("Check get star with certain id");
-          $(".new-star-container").addClass("star-container");
-          $(".new-star-container.star-container").removeClass("new-star-container");
-
-          var div = $("<div>").addClass("new-star-container");
-          var addDiv = $("#basebox").append(div);
-          var newStar = $("<div>").addClass("new-star");
-          var addStar = div.append(newStar);
-
-          (function(){
-            setTimeout(function(){
-              console.log("Inside setTimeout");
-              // console.log("taskId = " );
-              // console.log(taskId);
-              $(".new-star-container").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-              // $(".new-star-container").addClass("star-container");
-              // $(".new-star-container.star-container").removeClass("new-star-container");
-            }, 1000);
-          })();
 
           setTimeout(function(){
             //location.reload();
@@ -527,6 +502,7 @@ $(function() {
       var task = findByTaskId(taskId);    // does this include "postponed" ?
       task.description = $tasklistForm.find("#Edescription").val();
       task.due_date    = $tasklistForm.find("#Edue_date").val();
+      task.due_date = task.due_date+" 00:00:00.000 -08:00"
       task.priority    = $tasklistForm.find("#Epriority").val();
       task.recurring   = $tasklistForm.find("#ERecurring").is(":checked");
 
