@@ -131,27 +131,6 @@ module.exports = {
 
         var mappedTasks = mappedTasks1.concat(mappedTasks2, mappedTasks3);
 
-      // var tasks = yield user.getTasks(); // gets you all tasks
-
-      // var today = new Date();
-      // today.setHours(0,0,0,0);
-
-      // var tomorrow = new Date();
-      // tomorrow.setDate(tomorrow.getDate() + 1);
-      // tomorrow.setHours(0,0,0,0);
-
-      // var tasks = yield db.sequelize.models.Task.findAll({
-      //                               where: {
-      //                                   due_date: {
-      //                                     $gt: today,
-      //                                     $lt: tomorrow
-      //                                   }, 
-
-      //                                   UserId: user.id
-      //                               }
-      //                             });  // gets you all tasks due today
-
-
       this.body = mappedTasks;
 
       yield next;
