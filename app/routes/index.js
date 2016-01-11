@@ -9,6 +9,8 @@ module.exports = function(app, passport) {
       userStarsCtrl   = require('../controllers/userStars'),
       userTasksStarsCtrl = require('../controllers/userTasksStars');
       userFriendsCtrl   = require('../controllers/userFriends');
+      settingsCtrl    = require('../controllers/settings');
+
 
 // routes
 
@@ -73,6 +75,8 @@ router.get('/custom_auth_callback', function* (next) {
 
   this.redirect('/');
 });
+
+router.get('/settings', settingsCtrl.settings);
 
 router.get('/logout', function* (next) {
   console.log('inside router.get(logout.... )');
