@@ -3,7 +3,7 @@
 }*/
 
 .social-button{
-	color: goldenrod;
+	color: white;
 }
 
 .social-button:hover{
@@ -141,4 +141,9 @@ form{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
+	background-color: #444444;
+}
+
+.button-for-submit{
+	margin-bottom: 7px;
 }
