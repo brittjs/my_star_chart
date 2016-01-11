@@ -66,6 +66,7 @@ input{
 	/*position: absolute;
 	margin-top: 10px;*/
 	visibility: visible;
+	display: block;
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
@@ -75,6 +76,7 @@ input{
 	/*position: absolute;
 	margin-top: 10px;*/
 	visibility: hidden;
+	display:none;
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
@@ -126,6 +128,9 @@ form{
 	/*position: relative;
 	float: right;
 	clear: both;*/
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-around;*/
 }
 
 .social-login-buttons{
@@ -138,8 +143,9 @@ form{
 	border-radius: 7px;
 	height: 40px;
 	width: 100px;
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
 	/*padding-right: 55px;*/
+	margin-left: 10px;
 }
 
 .social-login-buttons.github-login{
@@ -156,4 +162,14 @@ form{
 
 .social-login-buttons.facebook-login{
 	background-color: #3B5998;
+}
+
+.hide-container{
+	display: none;
+	visibility: hidden;
+}
+
+.show-container{
+	display: block;
+	visibility: visible;
 }
