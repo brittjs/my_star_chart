@@ -134,6 +134,29 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function resetUserStars(user_id) {
+  console.log("FIRINGGGG");
+
+  // later include jquery-confirm plugin for nicer confirm box
+  var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
+  if (response == true) {
+    $.get('/users/' + user_id + '/tasks', function(tasks) {   
+      tasks.forEach(function (task) {
+        if (task.completed) {
+          // console.log(task);
+          $.ajax({
+            url: '/users/' + user_id + '/tasks/' + task.id,
+            type: 'DELETE',
+            success: function() {
+              console.log("done with deleting task "+ task.id);
+            }
+          });
+        }  
+      });
+    });   
+  }
+}
+
 
 function dailyTaskRefresh(userId) {
 
@@ -268,7 +291,6 @@ dailyTaskRefresh(userId);
 
           var homePage = str.match(/^\/$/);
 
-
           if (usersPage || homePage) {
 
               //   <div id="userId" data-id="<%= id %>"></div>
@@ -290,6 +312,7 @@ dailyTaskRefresh(userId);
               });
 
            }
+           
         }
 
   //   ========================================================
@@ -888,36 +911,15 @@ $(function() {
           tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
         }); 
 
-        // ===========================================================
-        //
-        //
-        //   Deletes completed tasks and their associated stars
-        //
-        // ============================================================
-
-        $("#resetStars").on("click", function () {
-          // later include jquery-confirm plugin for nicer confirm box
-          var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
-          if (response == true) {
-            $.get('/users/' + userId + '/tasks', function(tasks) {   
-              tasks.forEach(function (task) {
-                if (task.completed) {
-                  // console.log(task);
-                  $.ajax({
-                    url: '/users/' + userId + '/tasks/' + task.id,
-                    type: 'DELETE',
-                    success: function() {
-                      console.log("done with deleting task "+ task.id);
-                    }
-                  });
-                }  
-              });
-            });   
-          }
-        });
-
-
-
    } // end of user's Page  !!!
+
+  var settingsPage = str.match(/^\/settings$/);   
+
+    console.log(str, "HELLO"); 
+    if (settingsPage) {
+      console.log("IN SETTINGS PAGE");
+      var uId = $('div#userId').attr('data-id');
+      $("#resetStars").on("click", resetUserStars.bind(this, uId));
+    }
 
 });
