@@ -1,4 +1,4 @@
-// require('./env.js');
+require('./env.js');
 
 var koa = require('koa'),
     path = require('path'),

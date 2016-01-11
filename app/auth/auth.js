@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var db = require('../models/index.js');
 
@@ -55,13 +55,12 @@ passport.use(new GithubStrategy({
 );
 
 // =============================================================
-//   so that user can register with email and password (local)
+//   so that user can login with username and password (local)
 //   ... without using github or any other website
 // =============================================================
 var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(function(username, email, password, done) {
+passport.use(new LocalStrategy(function(username, password, done) {
   // retrieve user ...
-  if (email === null) {
     var users = db.sequelize.models.User.findAll({
                              where: {
                                       username: username
@@ -91,49 +90,7 @@ passport.use(new LocalStrategy(function(username, email, password, done) {
                             console.log(error);
 
                          });
-    } else {
-    // this is a new user,  insert user and password in database
-    // ==========================================================
-
-      var user1 = {};
-      user1.email = email;
-      user1.pwd = password;
-      user1.username = username;
-
-      var result = db.sequelize.models.User.create(user1)
-            .then(function(return_value) {
-               // console.log('in auth/auth.js Local create user succeeded');
-               // console.log('return_value');
-               // console.log(return_value);
-               // console.log("");
-
-               done(null, return_value.dataValues);
-            })
-            .catch(function(error) {
-                console.log('in auth/auth.js Local create user failed');
-                console.log('error');
-                console.log(error);
-                console.log('password: '+password)
-                console.log('email: '+email)
-                console.log('username: '+username)
-                done(null, false);
-             });
-
-    // ==========================================================
-
-    }
-}));
-
-
-
-
-
-
-
-
-
-
-
+    }));
 
 // =============================================================
 

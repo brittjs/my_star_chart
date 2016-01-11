@@ -92,6 +92,15 @@ module.exports = {
 		yield next;
 	},
 
+  createUser: function *createUser(user) {
+    console.log('in createUser');
+    // var user = this.request.body;
+    var newUser = yield db.sequelize.models.User.create(user);
+    this.body = newUser;
+    console.log('success');
+    // yield next;
+  }
+
 };
 
 

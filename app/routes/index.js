@@ -121,13 +121,10 @@ function *reqlogger(next){
 }
 app.use(reqlogger);
 
-  // a user's task paths
+  router
+    .post('/users/new',                           indexCtrl.createUser);
 
-  // GET    /users/12/tasks   - Retrieves list of tasks for user #12
-  // GET    /users/12/tasks/5 - Retrieves task #5 for user #12
-  // POST   /users/12/tasks   - Creates a new task in user #12
-  // PUT    /users/12/tasks/5 - Updates task #5 for user #12
-  // DELETE /users/12/tasks/5 - Deletes task #5 for user #12
+  // a user's task paths
 
   router
     .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
@@ -218,10 +215,16 @@ app.use(reqlogger);
     {
       yield next;
     }
-    else
+    else if (this.request.url === '/users/new')
     {
-      //console.log('is not authenticated');
-      this.redirect('/login');
+      console.log('time to create a user?');
+      newUser = this.request.body;
+      yield indexCtrl.createUser(newUser);
+    }
+    else 
+    {
+      console.log('is not authenticated, going back to login screen');
+      this.redirect ('/login');
     }
   });
 
