@@ -888,6 +888,36 @@ $(function() {
           tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
         }); 
 
+        // ===========================================================
+        //
+        //
+        //   Deletes completed tasks and their associated stars
+        //
+        // ============================================================
+
+        $("#resetStars").on("click", function () {
+          // later include jquery-confirm plugin for nicer confirm box
+          var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
+          if (response == true) {
+            $.get('/users/' + userId + '/tasks', function(tasks) {   
+              tasks.forEach(function (task) {
+                if (task.completed) {
+                  // console.log(task);
+                  $.ajax({
+                    url: '/users/' + userId + '/tasks/' + task.id,
+                    type: 'DELETE',
+                    success: function() {
+                      console.log("done with deleting task "+ task.id);
+                    }
+                  });
+                }  
+              });
+            });   
+          }
+        });
+
+
+
    } // end of user's Page  !!!
 
 });

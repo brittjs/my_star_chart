@@ -41,6 +41,21 @@ module.exports = {
     // });
 
     yield next;
+  },
+
+  resetStarsForUser: function* resetStarsForUser(next) {
+    var deletedStar = yield db.sequelize.models.Star.destroy({where: {
+                                                                     UserId: this.state.userId
+                                                                   }
+                                                                 });
+
+    console.log(deletedStar);
+
+    this.body = {
+      userId: this.state.userId,
+    };
+
+    yield next;
   }
 
 };
