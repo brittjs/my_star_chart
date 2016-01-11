@@ -147,6 +147,10 @@ form{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
+	height: 40px;
+	width: 100px;
+	margin-bottom: 15px;
+	/*padding-right: 55px;*/
 }
 
 .social-login-buttons.github-login{
