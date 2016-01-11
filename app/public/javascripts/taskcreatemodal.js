@@ -59,7 +59,7 @@ $(function() {
         if (due !== today) {
           $("#createTaskForm").hide();
           var dateDiv = $("#confirmTaskCreated");
-          dateDiv.html("<br>Task successfully created for " + due + "<br><br>");
+          dateDiv.html("Task successfully created for " + due);
           setTimeout(function() {
             $("#addTaskModal").modal('hide');
             $('#createTaskForm').trigger("reset");
