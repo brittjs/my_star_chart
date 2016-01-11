@@ -1,6 +1,6 @@
-/*h4{
+h4{
 	color: goldenrod;
-}*/
+}
 
 .social-button{
 	color: white;
@@ -137,6 +137,12 @@ form{
 	position: relative;
 	float: right;
 	clear: both;
+}
+
+.github-login-container{
+	position: relative;
+	float: right;
+	clear: both;
 	/*margin-top: 30%;*/
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
@@ -146,4 +152,24 @@ form{
 
 .button-for-submit{
 	margin-bottom: 7px;
+}
+
+.twitter-login-container{
+	position: relative;
+	float: right;
+	clear: both;
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+	background-color: #55ACEE;
+}
+
+.facebook-login-container{
+	position: relative;
+	float: right;
+	clear: both;
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+	background-color: #3B5998;
 }
