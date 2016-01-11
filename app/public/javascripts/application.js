@@ -148,11 +148,12 @@ function resetUserStars(user_id) {
             url: '/users/' + user_id + '/tasks/' + task.id,
             type: 'DELETE',
             success: function() {
-              alert("Stars have been removed.");
-            }  
+              console.log("stars deleted");
+            }
           });
         }  
       });
+      alert("Stars have been removed.");  
     });   
   }
 }
