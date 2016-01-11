@@ -134,8 +134,10 @@ form{
 }
 
 .social-login-container{
-	position: absolute;
-	margin-top: 30%;
+	position: relative;
+	float: right;
+	clear: both;
+	/*margin-top: 30%;*/
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
