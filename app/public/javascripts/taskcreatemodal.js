@@ -64,7 +64,7 @@ $(function() {
             $("#addTaskModal").modal('hide');
             $('#createTaskForm').trigger("reset");
             dateDiv.empty()
-            $("#createTaskForm").show();
+            //$("#createTaskForm").show();
           }, 2000);
 
         } else {

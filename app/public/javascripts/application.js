@@ -732,7 +732,8 @@ $(function() {
         // ============================================================
         $('#createTaskButton').on('click', function(event) {
           // populate the date field in the _taskcreatemodal.ejs template
-
+          $("#createTaskForm").show();
+          
           var objToday = new Date();
 
           var curYear = objToday.getFullYear();
