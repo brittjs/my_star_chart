@@ -795,11 +795,14 @@ $(function() {
           // </li>
 
           // hide any expanded task
-          $('.tasklistform').css('display', 'none');
+          // $('.tasklistform').css('display', 'none');
 
           // display .tasklistform for clicked task link
-          $(this).closest('li').find('.tasklistform').css('display', 'block');
+          // $(this).closest('li').find('.tasklistform').css('display', 'block');
 
+          //toggle task panel on click:
+
+          $(this).closest('li').find('.tasklistform').toggle();
 
         });
 
