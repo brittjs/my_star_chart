@@ -335,6 +335,10 @@ ul {
  /* margin-left: 25px;*/
 }
 
+.postponed:hover{
+  color: goldenrod;
+}
+
 .complete_span_disabled.postponed{
   color: #A8A8A8;
 }
