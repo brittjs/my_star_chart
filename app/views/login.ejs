@@ -13,7 +13,7 @@
     <form id="login-form" class="text-center" action="/login" method="post"> 
       <div class="input-in-form left-positioning">
         <i class="glyphicon glyphicon-user"></i>
-        <input class="login-formfield" type="text" placeholder="Username or email" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')" />
+        <input class="login-formfield" type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')" />
       </div>
       <br>
 
@@ -56,6 +56,12 @@
         <input class="login-formfield" type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
       </div>
       <br>
+
+     <!--  <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input class="login-formfield" type="password" placeholder="Confirm Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
+      </div>
+      <br> -->
 
       <button class="btn btn-primary btn-sm" type="submit">
         <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>

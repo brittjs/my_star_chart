@@ -66,16 +66,25 @@ input{
 	margin-top: 10px;
 	visibility: visible;
 /*	animation: fadeOut 2s;*/
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
 }
 
 .signup-container{
 	position: absolute;
 	margin-top: 10px;
 	visibility: hidden;
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
 }
 
 .active{
 	color: white;
+	/*border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;*/
 }
 
 a:hover{
