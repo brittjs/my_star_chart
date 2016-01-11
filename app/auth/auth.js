@@ -17,35 +17,9 @@ passport.use(new GithubStrategy({
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function findExistingUserBasedOnOAuthUser(accessToken, refreshToken, profile, done) {
-    //Based on profile return from Github, find existing user
+    //the code that was here is now in routes/index.js 
+
     let user = profile;
-
-    // console.log('function in auth/auth.ßjs');
-    // console.log('user');
-    // console.log(user);
-
-
-    // see if this user.id is already in the table
-    // ... if not insert row into User table
-
-    // console.log("in findExistingUserBasedOnOAuthUser");
-
-    db.sequelize.models.User
-      .findOrCreate({where: { githubId: user.id } })
-      .then(function(logginginUser) {
-         // console.log('in auth/auth.js findOrCreate user succeeded');
-         // console.log('logginginUser');
-         // console.log(logginginUser);
-
-         //Return user model
-         //return done(null, logginginUser);
-      })
-      .catch(function(error) {
-                            console.log('in auth/auth.js findOrCreate user failed');
-                            console.log('error');
-                            console.log(error);
-
-                         });
 
     user.type = "github";
 
@@ -68,8 +42,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
                             })
         .then(function(user) {
 
-           // if (users.length > 1) {
-
              var user = user.dataValues;
 
              user.type = "local";
@@ -82,7 +54,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
                //  how to return a message to the user ?
                done(null, false);
              }
-           // }
       })
       .catch(function(error) {
                             console.log('in auth/auth.js Local findAll user failed');

@@ -1,5 +1,6 @@
 var db = require('../models/index.js');
 var User = require('../models/user.js');
+var passport = require('../auth/auth.js');
 
 module.exports = {
 
@@ -48,26 +49,17 @@ module.exports = {
   },
 
 	user: function* user(next) {
-    //  must get userId into user.html here somehow !!
 
     console.log('controllers/index.js user()');
     console.log('this.session');
     console.log(this.session);
 
     console.log('this.session.passport.user.id');
-    console.log(this.session.passport.user.id);
-
-    // console.log('this');
-    // console.log(this);
-
-    // console.log('this.state');
-    // console.log(this.state);    //   <=  {}
+    console.log(this.session.passport && this.session.passport.user && this.session.passport.user.id);
 
     this.session.passport.user.provider = this.session.passport.user.provider || 'local';
 
-    //  This will not work if user logs with email and password (local)
-    //  get userId from User table
-    //
+
     if (this.session.passport.user.provider === 'github') {
       var user = yield db.sequelize.models.User.findOne({
                                where: {
@@ -84,24 +76,18 @@ module.exports = {
 
     }
 
-    // console.log("users");
-    // console.log(users);
-
     yield this.render('user.html', user.dataValues);
 
 		yield next;
 	},
 
-  createUser: function *createUser(user) {
-    console.log('in createUser');
-    console.log(user);
-    // var user = this.request.body;
+  createUser: function *createUser(user, next) {
     var newUser = yield db.sequelize.models.User.create(user);
     this.body = newUser;
-    console.log('success');
-    // yield next;
+    //TODO: MAKE THIS WORK 
+    // return passport.authenticate('local');
+    yield next;
   }
-
 };
 
 

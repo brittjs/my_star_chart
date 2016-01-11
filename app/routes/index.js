@@ -81,37 +81,9 @@ router.get('/logout', function* (next) {
   yield next;
 });
 
-
-// ======================================================
-//  code to allow users to register locally on login page
-//
-// ======================================================
-
-// router.post('/custom', function*(next) {
-//   var ctx = this;
-//   yield passport.authenticate('local', function*(err, user, info) {
-//     if (err) throw err;
-//     if (user === false) {
-//       ctx.status = 401;
-//       ctx.body = { success: false };
-//     } else {
-//       yield ctx.login(user);
-//       ctx.body = { success: true };
-//     }
-//   }).call(this, next);
-// });
-
-// POST /login
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/user',
-    failureRedirect: '/login'
-  })
-);
-
 // =======================================================
 	router
-		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
+		.get('/user', indexCtrl.errorHandler, indexCtrl.user);
 
 //Middleware: request logger
 function *reqlogger(next){
@@ -218,7 +190,7 @@ app.use(reqlogger);
     else if (this.request.url === '/users/new')
     {
       var newUser = this.request.body;
-      yield indexCtrl.createUser(newUser);
+      yield indexCtrl.createUser(newUser, indexCtrl.user);
     }
     else 
     {
