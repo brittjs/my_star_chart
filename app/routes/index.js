@@ -142,10 +142,7 @@ app.use(reqlogger);
 
   // GET    /users/12/stars   - Retrieves list of stars for user #12
   router
-    .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser)
-
-  // DELETE /users/12/stars/reset - Deletes stars for user #12  
-    .del('/users/:userId/stars/:starId',          userStarsCtrl.resetStarsForUser);
+    .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
 
   // a user's task's star paths
 
