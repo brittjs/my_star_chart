@@ -134,6 +134,30 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function resetUserStars(user_id) {
+  console.log("FIRINGGGG");
+
+  // later include jquery-confirm plugin for nicer confirm box
+  var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
+  if (response == true) {
+    $.get('/users/' + user_id + '/tasks', function(tasks) {   
+      tasks.forEach(function (task) {
+        if (task.completed) {
+          // console.log(task);
+          $.ajax({
+            url: '/users/' + user_id + '/tasks/' + task.id,
+            type: 'DELETE',
+            success: function() {
+              console.log("stars deleted");
+            }
+          });
+        }  
+      });
+      alert("Stars have been removed.");  
+    });   
+  }
+}
+
 
 function dailyTaskRefresh(userId) {
 
@@ -268,7 +292,6 @@ dailyTaskRefresh(userId);
 
           var homePage = str.match(/^\/$/);
 
-
           if (usersPage || homePage) {
 
               //   <div id="userId" data-id="<%= id %>"></div>
@@ -290,6 +313,7 @@ dailyTaskRefresh(userId);
               });
 
            }
+           
         }
 
   //   ========================================================
@@ -893,4 +917,12 @@ $(function() {
 
    } // end of user's Page  !!!
 
+  var settingsPage = str.match(/^\/settings$/);   
+
+    if (settingsPage) {
+      var uId = $('div#userId').attr('data-id');
+      $("#resetStars").on("click", resetUserStars.bind(this, uId));
+    }
+
 });
+
