@@ -1,108 +1,107 @@
-<div class="login-box">
+<!-- <div class="login-box"> -->
 
-  <div class="login-header">
-    <a class="active" id="login-box-link">Sign In</a>
-    <a id="signup-box-link"> Sign Up </a>
-  </div>
+<div class="login-header">
+  <a class="active" id="login-box-link">Sign In</a>
+  <a id="signup-box-link"> Sign Up </a>
+</div>
 
-  <br>
+<br>
 
-  <div class="login-container">
-    <h4 class="text-center" id="login-title">Sign In</h4>
+<div class="login-container">
+  <h4 class="text-center" id="login-title">Sign In</h4>
 
-    <form id="login-form" class="text-center" action="/login" method="post"> 
-      <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-user"></i>
-        <input class="login-formfield" type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')" />
-      </div>
-      <br>
+  <form id="login-form" class="text-center" action="/login" method="post"> 
+    <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-user"></i>
+      <input class="login-formfield" type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')" />
+    </div>
+    <br>
 
-      <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-lock"></i>
-        <input class="login-formfield" type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
-      </div>
-      <br>
+    <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-lock"></i>
+      <input class="login-formfield" type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
+    </div>
+    <br>
 
-      <button class="btn btn-primary btn-sm button-for-submit" type="submit">
-        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign In </i>
-      </button>
-    </form>
+    <button class="btn btn-primary btn-sm button-for-submit" type="submit">
+      <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign In </i>
+    </button>
+  </form>
 
-   <!--  <div class="text-center">
-      <a href ="/auth/github" class="btn social-button">
-        <span class="fa fa-github fa-lg"></span> Log in with GitHub
-      </a>
-    </div> -->
-
-  </div>
-  <div class="signup-container">
-    <h4 class="text-center" id="signup-title"> Sign Up </h4>
-
-    <form id="signup-form" class="text-center" action="/signup" method="post">
-      <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-user"></i>
-        <input class="login-formfield" type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')"/>
-      </div>
-      <br>
-
-      <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-envelope"></i>
-        <input class="login-formfield" type="email" placeholder="Email" name="email" required oninvalid="this.setCustomValidity('Email address must be between 6 and 100 characters in length')" oninput="setCustomValidity('')"/>
-      </div>
-      <br>
-
-      <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-lock"></i>
-        <input class="login-formfield" type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
-      </div>
-      <br>
-
-     <!--  <div class="input-in-form left-positioning">
-        <i class="glyphicon glyphicon-lock"></i>
-        <input class="login-formfield" type="password" placeholder="Confirm Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
-      </div>
-      <br> -->
-
-      <button class="btn btn-primary btn-sm button-for-submit" type="submit">
-        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
-      </button> 
-    </form>
-
- <!--    <div class="text-center">
-      <a href ="/auth/github" class="btn social-button">
-        <span class="fa fa-github fa-lg"></span> Sign up using GitHub
-      </a>
-    </div>  -->  
-  </div>
-
-  <br>
-
-
-  <div class="social-login-container">
-    <h4>Sign in with</h4>
-
-    <div class="social-login-buttons github-login">
-      <div class="text-center">
-        <a href ="/auth/github" class="btn social-button">
-          <span class="fa fa-github fa-lg"></span> GitHub
-        </a>
-      </div>  
-    </div> 
-
-    <div class="social-login-buttons twitter-login">
-      <div class="text-center">
-        <a href ="#" class="btn social-button">
-          <span class="fa fa-twitter fa-lg"></span> Twitter
-        </a>
-      </div> 
-    </div> 
-
-    <div class="social-login-buttons facebook-login">
-      <div class="text-center">
-        <a href ="#" class="btn social-button">
-          <span class="fa fa-facebook fa-lg"></span> Facebook
-        </a>
-      </div> 
-    </div> 
+ <!--  <div class="text-center">
+    <a href ="/auth/github" class="btn social-button">
+      <span class="fa fa-github fa-lg"></span> Log in with GitHub
+    </a>
+  </div> -->
 
 </div>
+
+<div class="signup-container">
+  <h4 class="text-center" id="signup-title"> Sign Up </h4>
+
+  <form id="signup-form" class="text-center" action="/signup" method="post">
+    <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-user"></i>
+      <input class="login-formfield" type="text" placeholder="Username" name="username" required oninvalid="this.setCustomValidity('Please enter a username')" oninput="setCustomValidity('')"/>
+    </div>
+    <br>
+
+    <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-envelope"></i>
+      <input class="login-formfield" type="email" placeholder="Email" name="email" required oninvalid="this.setCustomValidity('Email address must be between 6 and 100 characters in length')" oninput="setCustomValidity('')"/>
+    </div>
+    <br>
+
+    <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-lock"></i>
+      <input class="login-formfield" type="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
+    </div>
+    <br>
+
+   <!--  <div class="input-in-form left-positioning">
+      <i class="glyphicon glyphicon-lock"></i>
+      <input class="login-formfield" type="password" placeholder="Confirm Password" name="password" required oninvalid="this.setCustomValidity('Password must be between 8 and 20 characters in length')" oninput="setCustomValidity('')"/>
+    </div>
+    <br> -->
+
+    <button class="btn btn-primary btn-sm button-for-submit" type="submit">
+      <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
+    </button> 
+  </form>
+
+<!--    <div class="text-center">
+    <a href ="/auth/github" class="btn social-button">
+      <span class="fa fa-github fa-lg"></span> Sign up using GitHub
+    </a>
+  </div>  -->  
+</div>
+
+<div class="social-login-container">
+  <h4>Sign in with</h4>
+
+  <div class="social-login-buttons github-login">
+    <div class="text-center">
+      <a href ="/auth/github" class="btn social-button">
+        <span class="fa fa-github fa-lg"></span> GitHub
+      </a>
+    </div>  
+  </div> 
+
+  <div class="social-login-buttons twitter-login">
+    <div class="text-center">
+      <a href ="#" class="btn social-button">
+        <span class="fa fa-twitter fa-lg"></span> Twitter
+      </a>
+    </div> 
+  </div> 
+
+  <div class="social-login-buttons facebook-login">
+    <div class="text-center">
+      <a href ="#" class="btn social-button">
+        <span class="fa fa-facebook fa-lg"></span> Facebook
+      </a>
+    </div> 
+  </div> 
+</div>
+
+<!-- </div> -->

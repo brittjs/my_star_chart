@@ -2,6 +2,13 @@ h4{
 	color: goldenrod;
 }
 
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .social-button{
 	color: white;
 }
@@ -10,14 +17,11 @@ h4{
 	color: #337ab7;
 }
 
-/*p{
-	color: goldenrod;
-}*/
-
 i{
   color: goldenrod;
 }
 
+/*to get the icons into the input fields*/
 .input-in-form{
 	display: inline-block;
 	position: relative;
@@ -45,35 +49,31 @@ input{
 	color: white;
 }
 
+/*------*/
+
 .login-box{
-	position: relative;
-	/*background-color: white;*/
-/*	width: 500px;
-	height: 250px;*/
-	margin-left: 40%;
-/*	display: flex;
-	align-items: center;
-	justify-content: center;*/
+/*	position: relative;
+	margin-left: 40%;*/
+	/*flex-direction: column;*/
 }
 
 .login-header{
-	position: absolute;
-	margin-left: 50px;
+	/*position: relative;
+	margin-left: 25px;*/
 }
 
 .login-container{
-	position: absolute;
-	margin-top: 10px;
+	/*position: absolute;
+	margin-top: 10px;*/
 	visibility: visible;
-/*	animation: fadeOut 2s;*/
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
 }
 
 .signup-container{
-	position: absolute;
-	margin-top: 10px;
+	/*position: absolute;
+	margin-top: 10px;*/
 	visibility: hidden;
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
@@ -82,9 +82,6 @@ input{
 
 .active{
 	color: white;
-	/*border: 2px solid goldenrod;
-	box-shadow: 4px 4px 2px goldenrod;
-	border-radius: 7px;*/
 }
 
 a:hover{
@@ -100,14 +97,6 @@ a:hover.active{
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
 }
-
-/*#login-box-link{
-	float: left;
-}
-
-#signup-box-link{
-	float: right;
-}*/
 
 form{
 	margin: 0px;
@@ -134,15 +123,15 @@ form{
 }
 
 .social-login-container{
-	position: relative;
+	/*position: relative;
 	float: right;
-	clear: both;
+	clear: both;*/
 }
 
 .social-login-buttons{
-	position: relative;
+	/*position: relative;
 	float: right;
-	clear: both;
+	clear: both;*/
 	/*margin-top: 30%;*/
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
