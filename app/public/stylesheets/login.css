@@ -139,7 +139,7 @@ form{
 	clear: both;
 }
 
-.github-login-container{
+.social-login-buttons{
 	position: relative;
 	float: right;
 	clear: both;
@@ -147,6 +147,9 @@ form{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
+}
+
+.social-login-buttons.github-login{
 	background-color: #444444;
 }
 
@@ -154,22 +157,10 @@ form{
 	margin-bottom: 7px;
 }
 
-.twitter-login-container{
-	position: relative;
-	float: right;
-	clear: both;
-	border: 2px solid goldenrod;
-	box-shadow: 4px 4px 2px goldenrod;
-	border-radius: 7px;
+.social-login-buttons.twitter-login{
 	background-color: #55ACEE;
 }
 
-.facebook-login-container{
-	position: relative;
-	float: right;
-	clear: both;
-	border: 2px solid goldenrod;
-	box-shadow: 4px 4px 2px goldenrod;
-	border-radius: 7px;
+.social-login-buttons.facebook-login{
 	background-color: #3B5998;
 }
