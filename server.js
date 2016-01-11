@@ -1,3 +1,5 @@
+require('./env.js');
+
 var koa = require('koa'),
     path = require('path'),
     config = require('config'),
