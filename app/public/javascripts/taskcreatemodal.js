@@ -57,11 +57,16 @@ $(function() {
         today = today.toString().substring(0,16);
 
         if (due !== today) {
+          $("#createTaskForm").hide();
           var dateDiv = $("#confirmTaskCreated");
-          dateDiv.html("Task successfully created for " + due);
+          dateDiv.html("<br>Task successfully created for " + due + "<br><br>");
           setTimeout(function() {
             $("#addTaskModal").modal('hide');
-          }, 1500);
+            $('#createTaskForm').trigger("reset");
+            dateDiv.empty()
+            $("#createTaskForm").show();
+          }, 2000);
+
         } else {
           $("#addTaskModal").modal('hide');
           $('#createTaskForm').trigger("reset");
