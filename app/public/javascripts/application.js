@@ -800,6 +800,9 @@ $(function() {
           // display .tasklistform for clicked task link
           // $(this).closest('li').find('.tasklistform').css('display', 'block');
 
+          //slide panel down on click
+          // $(this).closest('li').find('.tasklistform').toggle().addClass("animated slideInDown");
+
           //toggle task panel on click:
 
           $(this).closest('li').find('.tasklistform').toggle();
