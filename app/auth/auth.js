@@ -61,20 +61,20 @@ passport.use(new GithubStrategy({
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(function(username, password, done) {
   // retrieve user ...
-    var users = db.sequelize.models.User.findAll({
+    var user = db.sequelize.models.User.findOne({
                              where: {
                                       username: username
                                     }
                             })
-        .then(function(users) {
+        .then(function(user) {
 
-           if (users.length > 1) {
+           // if (users.length > 1) {
 
-             var user = users[0].dataValues;
+             var user = user.dataValues;
 
              user.type = "local";
 
-             if (username === user.email && password === user.pwd) {
+             if (username === user.username && password === user.pwd) {
                console.log("email and password matched");
                done(null, user);
              } else {
@@ -82,7 +82,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
                //  how to return a message to the user ?
                done(null, false);
              }
-           }
+           // }
       })
       .catch(function(error) {
                             console.log('in auth/auth.js Local findAll user failed');
