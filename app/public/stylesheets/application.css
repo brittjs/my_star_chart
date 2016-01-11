@@ -476,5 +476,10 @@ transform-origin: top right;
   margin-top: .5em;
 }
 
+#confirmTaskCreated {
+  text-align: center;
+  font-weight: bold;
+}
+
 
 
