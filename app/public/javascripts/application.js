@@ -468,29 +468,29 @@ dailyTaskRefresh(userId);
           //AJAX call to GET star with specific task id
           //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
 
-            // alert("Check get star with certain id");
-           $(".new-hover-control").addClass("hover-control");
-            $(".new-hover-control.hover-control").removeClass("new-hover-control");
+          // alert("Check get star with certain id");
+          $(".new-hover-control").addClass("hover-control");
+          $(".new-hover-control.hover-control").removeClass("new-hover-control");
 
-            var newHoverControl = $("<div>").addClass("new-hover-control");
-            var newStarContainerDiv = $("<div>").addClass("new-star-container");
-            var addOuterDiv = $("#basebox").append(newHoverControl);
-            var addDiv = newHoverControl.append(newStarContainerDiv);
-            var newStarDiv = $("<div>").addClass("new-star");
-            var addStar = newStarContainerDiv.append(newStarDiv);
-            var newTextDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
-            var addText = newHoverControl.append(newTextDiv);
+          var newHoverControl = $("<div>").addClass("new-hover-control");
+          var newStarContainerDiv = $("<div>").addClass("new-star-container");
+          var addOuterDiv = $("#basebox").append(newHoverControl);
+          var addDiv = newHoverControl.append(newStarContainerDiv);
+          var newStarDiv = $("<div>").addClass("new-star");
+          var addStar = newStarContainerDiv.append(newStarDiv);
+          var newTextDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
+          var addText = newHoverControl.append(newTextDiv);
 
-            (function(){
-              setTimeout(function(){
-                console.log("Inside setTimeout");
-                // console.log("taskId = " );
-                // console.log(taskId);
-                $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-                // $(".new-star-container").addClass("star-container");
-                // $(".new-star-container.star-container").removeClass("new-star-container");
-              }, 0);
-            })();
+          (function(){
+            setTimeout(function(){
+              console.log("Inside setTimeout");
+              // console.log("taskId = " );
+              // console.log(taskId);
+              $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
+              // $(".new-star-container").addClass("star-container");
+              // $(".new-star-container.star-container").removeClass("new-star-container");
+            }, 10);
+          })();
 
           setTimeout(function(){
             //location.reload();
@@ -504,7 +504,7 @@ dailyTaskRefresh(userId);
 
             reloadTasks(userId, changeHeaderTaskFlag);
             // paintStarsInTheSky();
-          },700);
+          },70);
 
 
           // AJAX call to  POST star to server
@@ -818,11 +818,14 @@ $(function() {
           // </li>
 
           // hide any expanded task
-          $('.tasklistform').css('display', 'none');
+          // $('.tasklistform').css('display', 'none');
 
           // display .tasklistform for clicked task link
-          $(this).closest('li').find('.tasklistform').css('display', 'block');
+          // $(this).closest('li').find('.tasklistform').css('display', 'block');
 
+          //toggle task panel on click:
+
+          $(this).closest('li').find('.tasklistform').toggle();
 
         });
 
@@ -921,3 +924,4 @@ $(function() {
     }
 
 });
+
