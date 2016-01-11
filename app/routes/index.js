@@ -74,6 +74,10 @@ router.get('/custom_auth_callback', function* (next) {
   this.redirect('/');
 });
 
+router.get('/settings', function* getSettings(next){
+  yield this.render('settings.html');
+});
+
 router.get('/logout', function* (next) {
   console.log('inside router.get(logout.... )');
   this.logOut();
