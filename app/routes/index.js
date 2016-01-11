@@ -217,8 +217,7 @@ app.use(reqlogger);
     }
     else if (this.request.url === '/users/new')
     {
-      console.log('time to create a user?');
-      newUser = this.request.body;
+      var newUser = this.request.body;
       yield indexCtrl.createUser(newUser);
     }
     else 
