@@ -148,8 +148,8 @@ function resetUserStars(user_id) {
             url: '/users/' + user_id + '/tasks/' + task.id,
             type: 'DELETE',
             success: function() {
-              console.log("done with deleting task "+ task.id);
-            }
+              alert("Stars have been removed.");
+            }  
           });
         }  
       });
@@ -915,9 +915,7 @@ $(function() {
 
   var settingsPage = str.match(/^\/settings$/);   
 
-    console.log(str, "HELLO"); 
     if (settingsPage) {
-      console.log("IN SETTINGS PAGE");
       var uId = $('div#userId').attr('data-id');
       $("#resetStars").on("click", resetUserStars.bind(this, uId));
     }
