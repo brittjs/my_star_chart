@@ -1,14 +1,10 @@
 $(function() {
 
-  console.log("in taskcreatemodal.js file");
-  console.log(window.location.pathname);
-
   var str = window.location.pathname;
 
   var usersPage = str.match(/^\/view$/);
 
   var homePage = str.match(/^\/$/);
-
 
   if (usersPage || homePage) {
 
