@@ -1,4 +1,6 @@
-require('./env.js');
+//  this needs to be fixed later
+//  commented out for production migration
+//require('./env.js');
 
 var koa = require('koa'),
     path = require('path'),
