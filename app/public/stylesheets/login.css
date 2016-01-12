@@ -6,7 +6,8 @@ h4{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	/*justify-content: space-between;*/
+	align-content: space-between;
 }
 
 .social-button{
@@ -70,6 +71,7 @@ input{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
+	margin-bottom: 50px;
 }
 
 .signup-container{
@@ -80,6 +82,7 @@ input{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
+	margin-bottom: 50px;
 }
 
 .active{
@@ -172,4 +175,9 @@ form{
 .show-container{
 	display: block;
 	visibility: visible;
+}
+
+.login-header{
+	margin-bottom: 25px;
+	margin-top: 120px;
 }
