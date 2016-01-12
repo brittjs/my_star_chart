@@ -1,7 +1,6 @@
-"use strict"
+"use strict";
 
 var db = require('../models/index.js');
-
 
 // =============================================================
 //   so that user can register using their GitHub account
@@ -9,7 +8,32 @@ var db = require('../models/index.js');
 // =============================================================
 
 const passport = require('koa-passport'),
-    GithubStrategy = require('passport-github').Strategy;
+   TwitterStrategy = require('passport-twitter').Strategy;
+
+
+passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://localhost:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    console.log('inside Twitter oauth')
+    console.log(profile)
+    db.sequelize.models.User.findOrCreate({where: 
+        { username: profile.username }, 
+    function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    }
+  });
+  }));
+
+// =============================================================
+//   so that user can register using their GitHub account
+//   ... This is OAuth
+// =============================================================
+
+const   GithubStrategy = require('passport-github').Strategy;
 
 passport.use(new GithubStrategy({
     clientID: process.env.CLIENT_ID,
@@ -17,35 +41,9 @@ passport.use(new GithubStrategy({
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function findExistingUserBasedOnOAuthUser(accessToken, refreshToken, profile, done) {
-    //Based on profile return from Github, find existing user
+    //the code that was here is now in routes/index.js 
+
     let user = profile;
-
-    // console.log('function in auth/auth.ßjs');
-    // console.log('user');
-    // console.log(user);
-
-
-    // see if this user.id is already in the table
-    // ... if not insert row into User table
-
-    // console.log("in findExistingUserBasedOnOAuthUser");
-
-    db.sequelize.models.User
-      .findOrCreate({where: { githubId: user.id } })
-      .then(function(logginginUser) {
-         // console.log('in auth/auth.js findOrCreate user succeeded');
-         // console.log('logginginUser');
-         // console.log(logginginUser);
-
-         //Return user model
-         //return done(null, logginginUser);
-      })
-      .catch(function(error) {
-                            console.log('in auth/auth.js findOrCreate user failed');
-                            console.log('error');
-                            console.log(error);
-
-                         });
 
     user.type = "github";
 
@@ -55,67 +53,24 @@ passport.use(new GithubStrategy({
 );
 
 // =============================================================
-//   so that user can register with email and password (local)
+//   so that user can login with username and password (local)
 //   ... without using github or any other website
 // =============================================================
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(function(username, password, done) {
-
-  // console.log("inside auth/auth.js  passport.use(new LocalStrategy .... ");
-  // console.log("username = " + username);
-  // console.log("password = " + password);
-
   // retrieve user ...
-  var users = db.sequelize.models.User.findAll({
+    var user = db.sequelize.models.User.findOne({
                              where: {
-                                      email: username
+                                      username: username
                                     }
                             })
-        .then(function(users) {
-           // console.log('in auth/auth.js Local findAll user succeeded');
-           // console.log('users');
-           // console.log(users);
-           // console.log("");
+        .then(function(user) {
 
-           if (users.length === 0) {
-            // this is a new user,  insert user and password in database
-
-            // ==========================================================
-
-            var user1 = {};
-            user1.email = username;
-            user1.pwd = password;
-            user1.username = username;
-
-            var result = db.sequelize.models.User.create(user1)
-                  .then(function(return_value) {
-                     // console.log('in auth/auth.js Local create user succeeded');
-                     // console.log('return_value');
-                     // console.log(return_value);
-                     // console.log("");
-
-                     done(null, return_value.dataValues);
-                  })
-                  .catch(function(error) {
-                      console.log('in auth/auth.js Local create user failed');
-                      console.log('error');
-                      console.log(error);
-                      done(null, false);
-                   });
-
-            // ==========================================================
-
-           } else {
-
-             var user = users[0].dataValues;
+             var user = user.dataValues;
 
              user.type = "local";
 
-             // console.log("user");
-             // console.log(user);
-             // console.log("");
-
-             if (username === user.email && password === user.pwd) {
+             if (username === user.username && password === user.pwd) {
                console.log("email and password matched");
                done(null, user);
              } else {
@@ -123,9 +78,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
                //  how to return a message to the user ?
                done(null, false);
              }
-
-           }
-
       })
       .catch(function(error) {
                             console.log('in auth/auth.js Local findAll user failed');
@@ -133,8 +85,8 @@ passport.use(new LocalStrategy(function(username, password, done) {
                             console.log(error);
 
                          });
+    }));
 
-}));
 // =============================================================
 
 passport.serializeUser(function(user, done) {
