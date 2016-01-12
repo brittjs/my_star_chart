@@ -154,7 +154,7 @@ function resetUserStars(user_id) {
         }  
       });
       alert("Stars have been removed.");
-      window.location.href = "http://localhost:3000/";  
+      window.location.href = "/";  
     });   
   }
 }
