@@ -14,10 +14,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "stephaniebeaton",
-    "password": null,
-    "database": "starchart",
-    "host": "127.0.0.1",
+    "url": process.env.DATABASE_URL,
     "dialect": "postgres"
   }
 }
