@@ -1,6 +1,6 @@
-h4{
+/*h4{
 	color: goldenrod;
-}
+}*/
 
 .login-box{
 	display: flex;
@@ -52,15 +52,11 @@ input{
 
 /*------*/
 
-.login-box{
-/*	position: relative;
-	margin-left: 40%;*/
-	/*flex-direction: column;*/
-}
-
 .login-header{
 	/*position: relative;
 	margin-left: 25px;*/
+	display: flex;
+	flex-direction: row;
 }
 
 .login-container{
@@ -72,6 +68,7 @@ input{
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
 	margin-bottom: 50px;
+	padding: 2em;
 }
 
 .signup-container{
@@ -83,6 +80,7 @@ input{
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
 	margin-bottom: 50px;
+	padding: 2em;
 }
 
 .active{
@@ -121,10 +119,18 @@ form{
 
 #login-box-link{
 	font-size: 16px;
+	margin-right: 2em;
+	/*border: 2px solid goldenrod;
+	border-radius: 7px;
+	padding: 4px;*/
 }
 
 #signup-box-link{
 	font-size: 16px;
+	margin-left: 2em;
+/*	border: 2px solid goldenrod;
+	border-radius: 7px;
+	padding: 4px;*/
 }
 
 .social-login-container{
@@ -180,4 +186,13 @@ form{
 .login-header{
 	margin-bottom: 25px;
 	margin-top: 120px;
+}
+
+.sign-in-text{
+	color: goldenrod;
+}
+
+h6{
+	color: goldenrod;
+	font-size: 14px;
 }
