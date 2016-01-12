@@ -53,8 +53,10 @@ input{
 /*------*/
 
 .login-box{
-/*	position: relative;
-	margin-left: 40%;*/
+	/*position: relative;*/
+	/*display: flex;
+	flex-container: column;*/
+	/*margin-left: 40%;*/
 	/*flex-direction: column;*/
 }
 
@@ -64,8 +66,8 @@ input{
 }
 
 .login-container{
-	/*position: absolute;
-	margin-top: 10px;*/
+	/*position: absolute;*/
+	/*margin-top: 10px;*/
 	visibility: visible;
 	display: block;
 	border: 2px solid goldenrod;
@@ -75,14 +77,14 @@ input{
 }
 
 .signup-container{
-	/*position: absolute;
-	margin-top: 10px;*/
+	/*position: absolute;*/
+	/*margin-top: 10px;*/
 	visibility: hidden;
 	display:none;
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 }
 
 .active{
@@ -93,10 +95,10 @@ a:hover{
 	text-decoration:none;
 	/*color: white;*/
 }
-
+/*
 a:hover.active{
 	color: white;
-}
+}*/
 
 .login-formfield{
 	box-shadow: 4px 4px 2px goldenrod;
@@ -128,12 +130,9 @@ form{
 }
 
 .social-login-container{
-	/*position: relative;
-	float: right;
+	/*position: absolute;*/
+	/*float: right;
 	clear: both;*/
-	display: flex;
-	flex-direction: row;
-	/*justify-content: space-around;*/
 }
 
 .social-login-buttons{
@@ -148,7 +147,7 @@ form{
 	width: 100px;
 	/*margin-bottom: 15px;*/
 	/*padding-right: 55px;*/
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 }
 
 .social-login-buttons.github-login{
@@ -178,6 +177,11 @@ form{
 }
 
 .login-header{
-	margin-bottom: 25px;
-	margin-top: 120px;
+	/*position:absolute;*/
+	/*margin-bottom: 125px;*/
+	/*margin-top: 120px;*/
+}
+
+.sign-in-with{
+	color: goldenrod;
 }
