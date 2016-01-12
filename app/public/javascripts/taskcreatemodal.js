@@ -27,7 +27,6 @@ $(function() {
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
 
-
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
         var taskPriority = $("#priority").val();
@@ -52,8 +51,27 @@ $(function() {
             console.log(xhr.responseText);
         });
 
-        $('#createTaskForm').trigger("reset");
-        $("#addTaskModal").modal('hide');
+        var due = new Date(myTask.due_date.substring(0,11));
+        due = due.toString().substring(0,16);
+        var today = new Date();
+        today = today.toString().substring(0,16);
+
+        if (due !== today) {
+          $("#createTaskForm").hide();
+          var dateDiv = $("#confirmTaskCreated");
+          dateDiv.html("<br>Task created for " + due + "<br><br>");
+          setTimeout(function() {
+            $("#addTaskModal").modal('hide');
+            $('#createTaskForm').trigger("reset");
+            dateDiv.empty()
+            //$("#createTaskForm").show();
+          }, 2200);
+
+        } else {
+          $("#addTaskModal").modal('hide');
+          $('#createTaskForm').trigger("reset");
+        }
+
       });
 
 

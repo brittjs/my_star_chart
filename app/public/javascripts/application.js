@@ -153,7 +153,8 @@ function resetUserStars(user_id) {
           });
         }  
       });
-      alert("Stars have been removed.");  
+      alert("Stars have been removed.");
+      window.location.href = "/";  
     });   
   }
 }
@@ -732,6 +733,11 @@ $(function() {
         // ============================================================
         $('#createTaskButton').on('click', function(event) {
           // populate the date field in the _taskcreatemodal.ejs template
+          
+          // keep $("#createTaskForm").show(); below so that form shows when
+          // creating new task (it gets hidden when a task with a future due 
+          // date is created)
+          $("#createTaskForm").show();
 
           var objToday = new Date();
 
