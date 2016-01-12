@@ -11,22 +11,22 @@ const passport = require('koa-passport'),
    TwitterStrategy = require('passport-twitter').Strategy;
 
 
-passport.use(new TwitterStrategy({
-    consumerKey: process.env.TWITTER_CONSUMER_KEY,
-    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: "http://localhost:3000/auth/twitter/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-    console.log('inside Twitter oauth')
-    console.log(profile)
-    db.sequelize.models.User.findOrCreate({where: 
-        { username: profile.username }, 
-    function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
-    }
-  });
-  }));
+// passport.use(new TwitterStrategy({
+//     consumerKey: process.env.TWITTER_CONSUMER_KEY,
+//     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+//     callbackURL: "http://localhost:3000/auth/twitter/callback"
+//  },
+//  function(token, tokenSecret, profile, done) {
+//     console.log('inside Twitter oauth')
+//     console.log(profile)
+//     db.sequelize.models.User.findOrCreate({where: 
+//        { username: profile.username }, 
+//     function(err, user) {
+//       if (err) { return done(err); }
+//       done(null, user);
+//     }
+//  });
+//  }));
 
 // =============================================================
 //   so that user can register using their GitHub account
