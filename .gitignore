@@ -1,6 +1,5 @@
 node_modules
 npm-debug.log
-config/config.json
 auth/auth.json
 app/controllers/index_backup.js
 app/routes/index_backup.js
@@ -27,3 +26,4 @@ temp2.txt
 temp3.html
 test.html
 env.js
+heroku_migration.txt
