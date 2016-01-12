@@ -139,11 +139,10 @@ function resetUserStars(user_id) {
 
   // later include jquery-confirm plugin for nicer confirm box
   var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
-  if (response == true) {
+  if (response === true) {
     $.get('/users/' + user_id + '/tasks', function(tasks) {   
       tasks.forEach(function (task) {
         if (task.completed) {
-          // console.log(task);
           $.ajax({
             url: '/users/' + user_id + '/tasks/' + task.id,
             type: 'DELETE',
@@ -159,74 +158,89 @@ function resetUserStars(user_id) {
 }
 
 
-// function dailyTaskRefresh(userId) {
+function dailyTaskRefresh(userId) {
+  return new Promise(function(resolve, reject){
+    var request = [];
+    console.log("inside dailyTaskRefresh");
 
-//   console.log("inside dailyTaskRefresh");
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    console.log("today: "+today);
 
-//   var today = new Date();
-//   today.setHours(0,0,0,0);
-//   console.log("today: "+today);
+    return new Promise(function(resolve, reject){
+      $.get('users/' + userId + '/old/tasks', function(tasks){
 
-//   $.get('users/' + userId + '/old/tasks', function(tasks){
+      var oldTasks = tasks;
+      var myTask;
 
-//     var oldTasks = tasks;
+      for (var i = 0; i < oldTasks.length; i++) {
+ 
+      var task = oldTasks[i];
+ 
+        if (task.recurring === true || task.postponed === true) {
+          //create duplicate task with today as due date
+          myTask = {description: task.description,
+           due_date: today,
+           priority: task.priority,
+           recurring: task.recurring,
+           postponed: false,
+           completed: false,
+           UserId: userId};
 
-//     oldTasks.forEach(function(task) {
+          var createTask = $.post('/users/' + userId + '/tasks', myTask, function(task) {
+            console.log("Create of task "+task.id+" successful.");
+            console.log("task = ", task);
+          });
+          request.push(createTask);
+        }
 
-//       if (task.recurring === true || task.postponed === true) {
-//         //create duplicate task with today as due date
-//         var myTask = {description: task.description,
-//          due_date: today,
-//          priority: task.priority,
-//          recurring: task.recurring,
-//          postponed: false,
-//          completed: false,
-//          UserId: userId};
+        if (task.completed === false) {
+          //delete incomplete tasks
+          var deleteTask = $.ajax({
+            url: '/users/' + userId + '/tasks/' + task.id,
+            type: 'DELETE',
+            success: function() {
+              console.log("done with delete task "+task.id);
+            }
+          });
+          request.push(deleteTask);
 
-//         $.post('/users/' + userId + '/tasks', myTask, function(task) {
-//           console.log("Create of task "+task.id+" successful.");
-//           console.log("task = ", task);
-//         });
-//       }
+        } else {
+          //change recurring to false.
+          myTask = {id: task.id,
+           description: task.description,
+           due_date: task.due_date,
+           priority: task.priority,
+           recurring: false,
+           postponed: false,
+           completed: task.completed,
+           UserId: userId};
 
-//       if (task.completed === false) {
-//         //delete incomplete tasks
-//         $.ajax({
-//           url: '/users/' + userId + '/tasks/' + task.id,
-//           type: 'DELETE',
-//           success: function() {
-//             console.log("done with delete task "+task.id);
-//           }
-//         });
-//       } else {
-//         //change recurring to false.
-//         var myTask = {id: task.id,
-//          description: task.description,
-//          due_date: task.due_date,
-//          priority: task.priority,
-//          recurring: false,
-//          postponed: false,
-//          completed: task.completed,
-//          UserId: userId};
+          modTask = $.ajax({
+            type: "PUT",
+            url:  'users/' + userId + '/tasks/' + task.id,
+            contentType: "application/json",
+            data: JSON.stringify(myTask),
+            success: function(data) {
+              console.log("removed recurring flag from yesterday's completed task "+task.id);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert(xhr.responseText);
+            }
+          });
+          request.push(modTask);
+        }
+      } // end of loop
 
-//         $.ajax({
-//           type: "PUT",
-//           url:  'users/' + userId + '/tasks/' + task.id,
-//           contentType: "application/json",
-//           data: JSON.stringify(myTask),
-//           success: function(data) {
-//             console.log("removed recurring flag from yesterday's completed task "+task.id)
-//           },
-//           error: function (xhr, ajaxOptions, thrownError) {
-//             alert(xhr.responseText);
-//           }
-//         });
-//       }
-//     });
-  
-//   // reloadTasks(userId);
-//   });
-// }
+      Promise.all(request).then(function(){
+        console.log('finished refresh');
+        resolve();
+      });
+    }); // end of get
+ resolve();
+  });
+});
+}
 
 // ===========================================================
 //
@@ -268,7 +282,18 @@ function changeHeaderTask() {
   }
 
 }
+// ===========================================================
 
+  // is this the updated timestamp?
+
+// ===========================================================
+
+
+Date.prototype.toDateInputValue = (function () {
+  var local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0,10);
+});
 
 // ===========================================================
 //
@@ -283,41 +308,7 @@ var allTasks; // This needs to remain in the global scope, please do not move!
 
 function reloadTasks(userId, changeTaskInHeader) {
 
-// dailyTaskRefresh(userId);
-  //   ========================================================
-        function paintStarsInTheSky() {
-          var str = window.location.pathname;
-
-          var usersPage = str.match(/^\/user$/);
-
-          var homePage = str.match(/^\/$/);
-
-          if (usersPage || homePage) {
-
-              //   <div id="userId" data-id="<%= id %>"></div>
-
-              // var userId = $('div#userId').data('id');
-              // console.log("$('div#userId').data('id')");
-              var userId = $('div#userId').attr('data-id');
-              console.log("$('div#userId').attr('data-id')");
-              console.log(userId);
-
-              $.get('users/' + userId + '/stars', function(stars){
-                stars.forEach(function(star){
-                  var div = $("<div>").addClass("star-container");
-                  $("#basebox").append(div);
-                  $("<div>").addClass("star").appendTo(div);
-                  // var addStar = div.append(newStar);
-                  $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
-                });
-              });
-
-           }
-           
-        }
-
-  //   ========================================================
-
+  console.log('start of reload');
 
   // default changeTaskInHeader to false
   changeTaskInHeader = typeof changeTaskInHeader !== 'undefined' ?  changeTaskInHeader : false;
@@ -327,7 +318,6 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
-
 
     // =========================================================
     //  if parameter "change_task_in_header" == true
@@ -340,25 +330,17 @@ function reloadTasks(userId, changeTaskInHeader) {
 
     // =========================================================
 
-    // find the <ul>
+
     var $taskUl = $('ul.tasks');
-
     var $taskLi;
-
     var $checkBox;
-
     var $taskAnchor;
 
     // iterate thru returned array and load <li>s
     allTasks.forEach(function(task) {
-
       $taskLi = $('<li>');
 
-     // <a href data-toggle="modal" data-target="#myModal">Do laundry</a>
-
       if (!task.completed) {
-
-        //  string tasklistItemHTML
 
         var modifyTaskForm = tasklistItemHTML3.replace("id=[000]", "id=D" + task.id);
 
@@ -418,28 +400,18 @@ function reloadTasks(userId, changeTaskInHeader) {
         // ============================================================
 
         $checkBox.change(function () {
-          // console.log("LOOK HERE.");
           var userId = $('div#userId').attr('data-id');
-          console.log(userId);
           var taskId = ($(this).attr("id")).substring(3);
-          // console.log(taskId);
           var task = findByTaskId(taskId);
-          // console.log(taskId);
           task.completed = true;
 
           // AJAX call to  POST data to server
-
           $.ajax({
               type: "PUT",
               url:  'users/' + userId + '/tasks/' + task.id,
               contentType: "application/json",
               data: JSON.stringify(task),
               success: function(data) {
-                        console.log('Task was updated successfully');
-                        console.log(data);
-
-                        // alert('Task was updated successfully.');
-
                         // if task just completed was the header task
                         // ... then need to change header task.
                         // ...  &&&
@@ -450,26 +422,18 @@ function reloadTasks(userId, changeTaskInHeader) {
 
                       },
               failure: function ( jqXHR, textStatus, errorThrown ) {
-                       console.log(jqXHR.responseText);
                        alert(jqXHR.responseText);
               }
           });
 
-
           var star = {};
           star.TaskId = taskId;
-          console.log(star.TaskId);
-          console.log(taskId);
 
           star.UserId = userId;
 
           star.x_cord = getRandomInt(0, 98);
           star.y_cord = getRandomInt(2, 92);
 
-          //AJAX call to GET star with specific task id
-          //$.get('users/' + userId + '/tasks/' + taskId + '/stars/', function(stars){
-
-          // alert("Check get star with certain id");
           $(".new-hover-control").addClass("hover-control");
           $(".new-hover-control.hover-control").removeClass("new-hover-control");
 
@@ -484,17 +448,11 @@ function reloadTasks(userId, changeTaskInHeader) {
 
           (function(){
             setTimeout(function(){
-              console.log("Inside setTimeout");
-              // console.log("taskId = " );
-              // console.log(taskId);
               $(".new-hover-control").css({"left": star.x_cord + "%", "top": star.y_cord + "%"});
-              // $(".new-star-container").addClass("star-container");
-              // $(".new-star-container.star-container").removeClass("new-star-container");
             }, 10);
           })();
 
           setTimeout(function(){
-            //location.reload();
             // logic to determine whether changeHeaderTaskFlag = true or not
             var headerTaskId = $('#header-task').attr('data-header-task-id');
 
@@ -504,7 +462,6 @@ function reloadTasks(userId, changeTaskInHeader) {
             }
 
             reloadTasks(userId, changeHeaderTaskFlag);
-            // paintStarsInTheSky();
           },70);
 
 
@@ -516,9 +473,6 @@ function reloadTasks(userId, changeTaskInHeader) {
             data: JSON.stringify(star),
             success:function(data) {
                     console.log('Star was inserted successfully');
-                    console.log(data);
-                    // alert('Task was inserted successfully.');
-                    // location.reload();
                     },
             failure:function ( jqXHR, textStatus, errorThrown ) {
                     console.log(jqXHR.responseText);
@@ -528,6 +482,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
         });      // end of   $checkBox.change(function () {
 
+ // ============================================================
 
       } else {
 
@@ -550,33 +505,28 @@ function reloadTasks(userId, changeTaskInHeader) {
           $taskUl.append($taskLi);
 
       }
-
-      // $taskLi.append($taskAnchor, $checkBox);
-
-      // $taskUl.append($taskLi);
-
     });
-
   });
 }
 
-  // ===========================================================
-  //
-  //
-  //   Function to find task by id
-  //
-  // ============================================================
+// end of reload???
 
-  function findByTaskId(task_id) {
-    return $.grep(allTasks, function( n ) {
-      return n.id === parseInt(task_id, 10);
-    })[0];
-  }
+// ===========================================================
+//
+//
+//   Function to find task by id
+//
+// ============================================================
+
+function findByTaskId(task_id) {
+  return $.grep(allTasks, function( n ) {
+    return n.id === parseInt(task_id, 10);
+  })[0];
+}
 
 
 
 $(function() {
-
 
   // ===========================================================
   function saveUpdatedTaskToDatabase($target) {
@@ -584,9 +534,6 @@ $(function() {
       var $tasklistForm = $target.closest('li').find('.tasklistform');
 
       var taskId = $target.closest('li').find(".taskAnchor").attr('id');
-
-      // FOR TESTING ONLY   **** REMOVE !!!
-      // taskId = 5;
 
       var task = findByTaskId(taskId);    // does this include "postponed" ?
       task.description = $tasklistForm.find("#Edescription").val();
@@ -597,21 +544,12 @@ $(function() {
       task.updatedAt   = Date.now();
 
       if ($target.attr('id') === 'procrastinate') {
-        if (task.postponed === false) {     
-          task.postponed = true;
-        } else {
-          task.postponed = false
-        }  
-      }
-
-      console.log("property values on task object being sent to server");
-      for (var prop in task) {
-        console.log("task." + prop + "= " + task[prop]);
+        task.postponed = !task.postponed;
       }
 
       var userId = $('div#userId').data('id');
 
-      // AJAX call to  PUT data to server
+      // AJAX call to PUT task data to server
       $.ajax({
           type: "PUT",
           url:  'users/' + userId + '/tasks/' + task.id,
@@ -633,7 +571,7 @@ $(function() {
                   }
       });
   }
-  // ===========================================================
+
 
 
   // ===========================================================
@@ -646,11 +584,6 @@ $(function() {
 
     var userId = $('div#userId').data('id');
 
-    console.log("userId");
-    console.log(userId);
-    console.log("trying to delete a task");
-    console.log(taskId);
-
 
     //  delete Task in the server
     //  ... also deletes the stars associated with the task
@@ -659,8 +592,6 @@ $(function() {
       url: '/users/' + userId + '/tasks/' + taskId,
       type: 'DELETE',
       success: function() {
-        console.log("done with delete");
-
         // if this task was the header task
         // ... then need to select another header task
         var headerTaskId = $('#header-task').attr('data-header-task-id');
@@ -676,21 +607,11 @@ $(function() {
           console.log("status = " + xhr.status);
           console.log("xhr.responseText = " + xhr.responseText);
       }
-
     });
  }
   // ===========================================================
 
-
-
-
-
-
-
-
-
-
-
+ // THIS IS WHERE EVERYTHING STARTS HAPPENING //
 
   console.log("in applications.js file");
   console.log(window.location.pathname);
@@ -700,7 +621,6 @@ $(function() {
   var usersPage = str.match(/^\/user$/);        //   "/user"
 
   var homePage = str.match(/^\/$/);             //   "/"
-
 
   if (usersPage || homePage) {
 
@@ -713,16 +633,11 @@ $(function() {
         // ============================================================
 
         var userId = $('div#userId').data('id');
-        console.log('inside application.js  line 70');
-        console.log("$('div#userId').attr('data-id')");
-        console.log(userId);
         
         var changeTaskInHeaderFlag = true;
 
-        // (function () {
-        
-        reloadTasks(userId, changeTaskInHeaderFlag);
-      // })();
+        dailyTaskRefresh(userId).then(reloadTasks.call(null, userId, changeTaskInHeaderFlag));
+
         // ===========================================================
         //
         //
@@ -756,78 +671,8 @@ $(function() {
         // ============================================================
         // Attach a delegated event handler
         $('ul.tasks').on('click', 'a', function(event) {
-
-          // Fri Jan 8, 2016  --- replace modal with accoridian
-          //  ... commented this out.
-
-          // load user's task data into modal
-
           event.preventDefault();
-          // var thisTask = findByTaskId(this.id);
-          // console.log(thisTask);
-          // console.log(thisTask.due_date);
-          // $('.taskDetails').html(
-          //   "Task: " + thisTask.description + "<br/>" +
-          //   "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
-          //   "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
-          //   "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
-          //   "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
-          //   "Priority: " + thisTask.priority  + "<br/>"
-          //   );
-          // $('div.details').attr({
-          //   'id': $(this).attr("id")
-          // });
-
-          // Fri Jan 8, 2016  --- replace modal with accoridian
-
-          // <ul class="tasks">
-          //   <!-- tasklist goes here -->
-          //   <li>
-          //     <a class="taskAnchor" id="999" data-priority="1" href>Walk the dog</a>
-          //     <input type="checkbox" class="complete" id="chk999">
-          //
-          //   <!-- the new part -- form to edit the task -->
-          //   <div class="tasklistform">
-          //     <form id="editTaskForm" action="" method="put">
-
-          //         <label for="description">Description:</label>
-          //         <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
-          //         <br>
-          //         <div class="">
-          //           <label for="due_date">Due Date:</label>
-          //           <input type="date" id="Edue_date" name="due_date">
-          //           <label for="priority">Priority:</label>
-          //           <select class="" id="Epriority" name="priority">
-          //             <option value="1">1</option>
-          //             <option value="2">2</option>
-          //             <option value="3">3</option>
-          //             <option value="4">4</option>
-          //             <option value="5">5</option>
-          //           </select>
-          //           <label for="recurring">Recurring:</label>
-          //           <input type="checkbox" name="recurring" id="ERecurring">
-          //         </div>
-          //         <br>
-                    // <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>
-                    // <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
-                    // <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>
-                    // <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>
-
-          //     </form>
-          //   <div>
-          // </ul>
-          // </li>
-
-          // hide any expanded task
-          // $('.tasklistform').css('display', 'none');
-
-          // display .tasklistform for clicked task link
-          // $(this).closest('li').find('.tasklistform').css('display', 'block');
-
-          //toggle task panel on click:
-
           $(this).closest('li').find('.tasklistform').toggle();
-
         });
 
         // ===========================================================
@@ -840,18 +685,13 @@ $(function() {
         // Attach a delegated event handler
 
         $('ul.tasks').on('click', 'button', function(event) {
-
           event.preventDefault();
-
-
 
           // if "Cancel" button clicked, hide task list item form
           if ($(this).attr('id') === "cancel") {
             // display .tasklistform for clicked task link
             $(this).closest('li').find('.tasklistform').css('display', 'none');
           }
-
-
 
           // if "Procrastnate" button clicked, hide task list item form
           if ($(this).attr('id') === "procrastinate") {
@@ -863,8 +703,6 @@ $(function() {
             $(this).closest('li').find('.tasklistform').css('display', 'none');
           }
 
-
-
           // if "Delete" button clicked, hide task list item form
           if ($(this).attr('id') === "deleteTask") {
 
@@ -874,7 +712,6 @@ $(function() {
             // display .tasklistform for clicked task link
             $(this).closest('li').find('.tasklistform').css('display', 'none');
           }
-
 
         });
 
@@ -910,9 +747,9 @@ $(function() {
         // ============================================================
 
         $("#sortByPriority").on('click', function() {
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'desc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'desc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'asc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'asc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'asc'});
         }); 
 
    } // end of user's Page  !!!

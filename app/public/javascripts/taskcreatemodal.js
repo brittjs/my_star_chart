@@ -1,14 +1,10 @@
 $(function() {
 
-  console.log("in taskcreatemodal.js file");
-  console.log(window.location.pathname);
-
   var str = window.location.pathname;
 
   var usersPage = str.match(/^\/view$/);
 
   var homePage = str.match(/^\/$/);
-
 
   if (usersPage || homePage) {
 
@@ -26,7 +22,6 @@ $(function() {
 
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
-
 
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
