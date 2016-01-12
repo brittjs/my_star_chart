@@ -188,6 +188,8 @@ app.use(reqlogger);
     {
       var newUser = this.request.body;
       yield indexCtrl.createUser(newUser);
+      this.state.user = newUser;
+      this.redirect ('/login')
     }
     else 
     {
