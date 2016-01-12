@@ -761,7 +761,7 @@ $(function() {
           //toggle task panel on click and retain colour:
 
           $(this).toggleClass("active");
-          $(this).next().toggle();
+          $(this).next().slideToggle();
 
         });
 

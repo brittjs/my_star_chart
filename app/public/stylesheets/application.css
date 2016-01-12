@@ -336,7 +336,15 @@ ul {
  /* margin-left: 25px;*/
 }
 
+.postponed:visited{
+  color: goldenrod;
+}
+
 .postponed:hover{
+  color: goldenrod;
+}
+
+.postponed.active {
   color: goldenrod;
 }
 
@@ -485,7 +493,4 @@ transform-origin: top right;
   color: inherit;
 }*/
 
-.postponed.active {
-  color: goldenrod;
-}
 
