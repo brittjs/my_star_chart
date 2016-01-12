@@ -59,13 +59,13 @@ $(function() {
         if (due !== today) {
           $("#createTaskForm").hide();
           var dateDiv = $("#confirmTaskCreated");
-          dateDiv.html("Task successfully created for " + due);
+          dateDiv.html("<br>Task created for " + due + "<br><br>");
           setTimeout(function() {
             $("#addTaskModal").modal('hide');
             $('#createTaskForm').trigger("reset");
             dateDiv.empty()
             //$("#createTaskForm").show();
-          }, 2000);
+          }, 2200);
 
         } else {
           $("#addTaskModal").modal('hide');
