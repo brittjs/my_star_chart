@@ -676,9 +676,14 @@ $(function() {
         //
         // ============================================================
         // Attach a delegated event handler
-        $('ul.tasks').on('click', 'a', function(event) {
+
+        $('ul.tasks').on('click', 'li a', function(event) {
+
           event.preventDefault();
-          $(this).closest('li').find('.tasklistform').toggle();
+          //toggle task panel on click and retain colour:
+
+          $(this).toggleClass("active");
+          $(this).next().slideToggle();
         });
 
         // ===========================================================
