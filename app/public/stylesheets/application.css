@@ -82,6 +82,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .taskAnchor {
   margin-left: 25px;
+  color: #337ab7;
 }
 
 .taskWrapper {
@@ -480,5 +481,11 @@ transform-origin: top right;
   margin-top: .5em;
 }
 
+/*a, a:visited, a:hover, a:active {
+  color: inherit;
+}*/
 
+.postponed.active {
+  color: goldenrod;
+}
 

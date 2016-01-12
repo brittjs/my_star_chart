@@ -755,78 +755,13 @@ $(function() {
         //
         // ============================================================
         // Attach a delegated event handler
-        $('ul.tasks').on('click', 'a', function(event) {
-
-          // Fri Jan 8, 2016  --- replace modal with accoridian
-          //  ... commented this out.
-
-          // load user's task data into modal
+        $('ul.tasks').on('click', 'li a', function(event) {
 
           event.preventDefault();
-          // var thisTask = findByTaskId(this.id);
-          // console.log(thisTask);
-          // console.log(thisTask.due_date);
-          // $('.taskDetails').html(
-          //   "Task: " + thisTask.description + "<br/>" +
-          //   "Due date: " + thisTask.due_date.substring(0,10)  + "<br/>" +
-          //   "Recurring: " + (thisTask.recurring ? "Yes" : "No")  + "<br/>" +
-          //   "Completed: " + (thisTask.completed ? "Yes" : "No")  + "<br/>" +
-          //   "Postponed: " + (thisTask.postponed ? "Yes" : "No")  + "<br/>" +
-          //   "Priority: " + thisTask.priority  + "<br/>"
-          //   );
-          // $('div.details').attr({
-          //   'id': $(this).attr("id")
-          // });
+          //toggle task panel on click and retain colour:
 
-          // Fri Jan 8, 2016  --- replace modal with accoridian
-
-          // <ul class="tasks">
-          //   <!-- tasklist goes here -->
-          //   <li>
-          //     <a class="taskAnchor" id="999" data-priority="1" href>Walk the dog</a>
-          //     <input type="checkbox" class="complete" id="chk999">
-          //
-          //   <!-- the new part -- form to edit the task -->
-          //   <div class="tasklistform">
-          //     <form id="editTaskForm" action="" method="put">
-
-          //         <label for="description">Description:</label>
-          //         <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
-          //         <br>
-          //         <div class="">
-          //           <label for="due_date">Due Date:</label>
-          //           <input type="date" id="Edue_date" name="due_date">
-          //           <label for="priority">Priority:</label>
-          //           <select class="" id="Epriority" name="priority">
-          //             <option value="1">1</option>
-          //             <option value="2">2</option>
-          //             <option value="3">3</option>
-          //             <option value="4">4</option>
-          //             <option value="5">5</option>
-          //           </select>
-          //           <label for="recurring">Recurring:</label>
-          //           <input type="checkbox" name="recurring" id="ERecurring">
-          //         </div>
-          //         <br>
-                    // <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>
-                    // <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
-                    // <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>
-                    // <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>
-
-          //     </form>
-          //   <div>
-          // </ul>
-          // </li>
-
-          // hide any expanded task
-          // $('.tasklistform').css('display', 'none');
-
-          // display .tasklistform for clicked task link
-          // $(this).closest('li').find('.tasklistform').css('display', 'block');
-
-          //toggle task panel on click:
-
-          $(this).closest('li').find('.tasklistform').toggle();
+          $(this).toggleClass("active");
+          $(this).next().toggle();
 
         });
 
