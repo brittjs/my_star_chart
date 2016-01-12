@@ -2,14 +2,37 @@
 
 var db = require('../models/index.js');
 
-
 // =============================================================
 //   so that user can register using their GitHub account
 //   ... This is OAuth
 // =============================================================
 
 const passport = require('koa-passport'),
-    GithubStrategy = require('passport-github').Strategy;
+   TwitterStrategy = require('passport-twitter').Strategy;
+
+passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://localhost:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    console.log('inside Twitter oauth')
+    console.log(profile)
+    db.sequelize.models.User.findOrCreate({where: 
+        { username: profile.username }, 
+    function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    }
+  });
+  }));
+
+// =============================================================
+//   so that user can register using their GitHub account
+//   ... This is OAuth
+// =============================================================
+
+const   GithubStrategy = require('passport-github').Strategy;
 
 passport.use(new GithubStrategy({
     clientID: process.env.CLIENT_ID,

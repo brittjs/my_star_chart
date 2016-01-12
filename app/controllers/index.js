@@ -66,6 +66,12 @@ module.exports = {
                                         githubId: this.session.passport.user.id
                                       }
                               });
+    } else if (this.session.passport.user.provider === 'twitter') {
+      var user = yield db.sequelize.models.User.findOne({
+                               where: {
+                                        username: this.session.passport.user.username
+                                      }
+                              });
     } else {
       // local
       var user = yield db.sequelize.models.User.findOne({
@@ -81,12 +87,12 @@ module.exports = {
 		yield next;
 	},
 
-  createUser: function *createUser(user, next) {
-    var newUser = yield db.sequelize.models.User.create(user);
-    this.body = newUser;
-    //TODO: MAKE THIS WORK 
-    // return passport.authenticate('local');
-    yield next;
+  createUser: function *createUser(user) {
+    yield db.sequelize.models.User.create(user)
+      .then(function(logginginUser){
+        //do something
+      });
+    // yield next;
   }
 };
 

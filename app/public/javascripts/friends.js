@@ -29,6 +29,7 @@ $(function() {
       {
         return $('<li>').attr({
           'data-friend-id': friend.id,
+          'data-friend-email': friend.email,
           'data-toggle': "modal",
           'data-target': "#showFriendModal"
         }).append($('<a href="javascript:void(0);">').text(friend.username));
