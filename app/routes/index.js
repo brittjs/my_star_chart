@@ -29,6 +29,14 @@ router.post('/login', passport.authenticate('local',
   failureRedirect: '/login'
 }));
 
+router
+  .get('/auth/twitter', 
+    passport.authenticate('twitter'))
+  .get('/auth/twitter/callback',
+    passport.authenticate('twitter', { successRedirect: '/user',
+                                     failureRedirect: '/login' }));
+
+
 
 //      /auth/github – for authentication process.
 //     /auth/github/callback – for callback after authentication process.
@@ -53,25 +61,19 @@ router.get('/custom_auth_callback', function* (next) {
 
      console.log(this.session.passport.user.id);
 
-     // this is doing nothing because the returned data from database is not saved anywhere
      yield db.sequelize.models.User
       .findOrCreate({where: { username: this.session.passport.user.username, githubId: this.session.passport.user.id } })
       .then(function(logginginUser) {
          console.log('in auth/auth.js findOrCreate user succeeded');
          console.log('logginginUser');
          console.log(logginginUser);
+      })
+      .catch(function(error) {
+                            console.log('in auth/auth.js findOrCreate user failed');
+                            console.log('error');
+                            console.log(error);
 
-         // &&&
-
-         //Return user model
-         //return done(null, logginginUser);
-      });
-      // .catch(function(error) {
-      //                       console.log('in auth/auth.js findOrCreate user failed');
-      //                       console.log('error');
-      //                       console.log(error);
-
-      //                    });
+                         });
 
   this.redirect('/');
 });
@@ -85,37 +87,9 @@ router.get('/logout', function* (next) {
   yield next;
 });
 
-
-// ======================================================
-//  code to allow users to register locally on login page
-//
-// ======================================================
-
-// router.post('/custom', function*(next) {
-//   var ctx = this;
-//   yield passport.authenticate('local', function*(err, user, info) {
-//     if (err) throw err;
-//     if (user === false) {
-//       ctx.status = 401;
-//       ctx.body = { success: false };
-//     } else {
-//       yield ctx.login(user);
-//       ctx.body = { success: true };
-//     }
-//   }).call(this, next);
-// });
-
-// POST /login
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/user',
-    failureRedirect: '/login'
-  })
-);
-
 // =======================================================
 	router
-		.get('/user', indexCtrl.errorHandler, indexCtrl.user)
+		.get('/user', indexCtrl.errorHandler, indexCtrl.user);
 
 //Middleware: request logger
 function *reqlogger(next){
@@ -125,14 +99,10 @@ function *reqlogger(next){
 }
 app.use(reqlogger);
 
+  router
+    .post('/users/new',                           indexCtrl.createUser);
+
   // a user's task paths
-
-  // GET    /users/12/tasks   - Retrieves list of tasks for user #12
-  // GET    /users/12/tasks/5 - Retrieves task #5 for user #12
-  // POST   /users/12/tasks   - Creates a new task in user #12
-  // PUT    /users/12/tasks/5 - Updates task #5 for user #12
-  // DELETE /users/12/tasks/5 - Deletes task #5 for user #12
-
   router
     .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
     .get('/users/:userId/old/tasks',              userTasksCtrl.getListOfOldTasksForUser)
@@ -143,19 +113,12 @@ app.use(reqlogger);
 
 
   // a user's star paths
-
-  // GET    /users/12/stars   - Retrieves list of stars for user #12
   router
     .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
 
   // a user's task's star paths
-
-  // POST    /users/2/tasks/7/stars   - Creates a new star for user #2 and for task #7
   router
-    .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar);
-
-  // GET     /users/2/tasks/7/stars   - Gets one star for user #2 and for task #7
-  router
+    .post('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.createStar)
     .get('/users/:userId/tasks/:taskId/stars',   userTasksStarsCtrl.getOneStar);
 
   // a user's friend(ship) paths
@@ -164,7 +127,6 @@ app.use(reqlogger);
     .get('/users/search/:emailAddress/',          userFriendsCtrl.findUserByEmail)
     .post('/users/:userId/friends',               userFriendsCtrl.createFriendship)
     .del('/users/:userId/friends/:friendId',      userFriendsCtrl.removeFriendship);
-
 
   router
     .param("userId", function*(userId, next)
@@ -213,7 +175,7 @@ app.use(reqlogger);
     console.log('this.request.url');
     console.log(this.request.url);
 
-    if(this.request.url === '/login' || this.request.url.match("^/auth/github"))
+    if(this.request.url === '/login' || this.request.url.match("^/auth/github") || this.request.url.match("^/auth/twitter"))
     {
       return yield next;
     }
@@ -222,10 +184,15 @@ app.use(reqlogger);
     {
       yield next;
     }
-    else
+    else if (this.request.url === '/users/new')
     {
-      //console.log('is not authenticated');
-      this.redirect('/login');
+      var newUser = this.request.body;
+      yield indexCtrl.createUser(newUser);
+    }
+    else 
+    {
+      console.log('is not authenticated, going back to login screen');
+      this.redirect ('/login');
     }
   });
 

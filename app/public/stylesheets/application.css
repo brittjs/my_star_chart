@@ -17,7 +17,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 
 /* Box-sizing border-box */
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+ { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 .dropdown {
   display: flex;
@@ -489,8 +489,15 @@ transform-origin: top right;
   margin-top: .5em;
 }
 
+
 /*a, a:visited, a:hover, a:active {
   color: inherit;
 }*/
+
+#confirmTaskCreated {
+  font-weight: bold;
+}
+
+
 
 
