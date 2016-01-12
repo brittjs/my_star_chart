@@ -2,13 +2,13 @@ h4{
 	color: goldenrod;
 }
 
-.container{
+/*.container{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	/*justify-content: space-between;*/
-	align-content: space-between;
-}
+	/*align-content: space-between;*/
+/*}*/
 
 .social-button{
 	color: white;
