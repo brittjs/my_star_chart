@@ -10,6 +10,7 @@ var db = require('../models/index.js');
 const passport = require('koa-passport'),
    TwitterStrategy = require('passport-twitter').Strategy;
 
+
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,

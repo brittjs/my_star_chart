@@ -455,4 +455,30 @@ transform-origin: top right;
 -webkit-transform-origin: top right;
 }
 
+#settingsHeader {
+  color: white;
+  font-size: 6vh;
+}
+
+.settingsBox {
+  border:5px solid goldenrod;
+  max-width: 72vh;
+  padding: 2em;
+  margin-top: 24px;
+}
+
+#settings {
+  color: white; 
+  margin-top: 0px;
+}
+
+#resetStars {
+  margin-top: .5em;
+}
+
+#confirmTaskCreated {
+  font-weight: bold;
+}
+
+
 
