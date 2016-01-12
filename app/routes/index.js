@@ -187,7 +187,7 @@ app.use(reqlogger);
     else if (this.request.url === '/users/new')
     {
       var newUser = this.request.body;
-      yield indexCtrl.createUser(newUser);
+      yield indexCtrl.createUser(newUser, this.redirect ('/user'));
     }
     else 
     {
