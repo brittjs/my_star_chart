@@ -480,5 +480,9 @@ transform-origin: top right;
   margin-top: .5em;
 }
 
+#confirmTaskCreated {
+  font-weight: bold;
+}
+
 
 
