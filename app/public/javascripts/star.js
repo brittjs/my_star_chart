@@ -1,7 +1,6 @@
+$(function() {
 
- $(function() {
-
-   function paintStarsInTheSky() {
+  function paintStarsInTheSky() {
     var str = window.location.pathname;
 
     var usersPage = str.match(/^\/user$/);
@@ -11,25 +10,41 @@
 
     if (usersPage || homePage) {
 
-        //   <div id="userId" data-id="<%= id %>"></div>
+      var userId = $('div#userId').attr('data-id');
+ 
+      $.get('users/' + userId + '/stars', function(stars){
+        stars.forEach(function(star){
+          var $textDiv;
+          var $innerDiv;
+          var $hoverControl;
+          var $starContainerDiv;
+          var $starDiv;
+  
+          //  get Task description
+          $.get('users/' + userId + '/tasks/' + star.TaskId, function(task){
+ 
+            $hoverControl = $("<div>").addClass("hover-control");
+ 
+            $textDiv = $("<div>").addClass("hidden-task-info").text('      ' + task.description);
+ 
+            $hoverControl.append($textDiv);
+ 
+            $starContainerDiv = $("<div>").addClass("star-container");
+            $starDiv = $("<div>").addClass("star");
+ 
+            $starContainerDiv.append($starDiv);
+            $hoverControl.append($starContainerDiv);
+ 
+            $("#basebox").append($hoverControl);
+ 
+            $hoverControl.css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
 
-        // var userId = $('div#userId').data('id');
-        // console.log("$('div#userId').data('id')");
-        var userId = $('div#userId').attr('data-id');
-        console.log("$('div#userId').attr('data-id')");
-        console.log(userId);
-
-        $.get('users/' + userId + '/stars', function(stars){
-          stars.forEach(function(star){
-            var div = $("<div>").addClass("star-container");
-            $("#basebox").append(div);
-            $("<div>").addClass("star").appendTo(div);
-            // var addStar = div.append(newStar);
-            $(div).css({"left": star.x_cord+"%", "top": star.y_cord+"%"});
           });
+ // 
         });
-
-     }
+      });
+  
+    }
   }
 
   paintStarsInTheSky();

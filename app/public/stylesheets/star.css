@@ -2,19 +2,19 @@
   width: 0;
   height: 0;
   margin: 5px 0;
-  color: #fc2e5a;
+  color: #FC2E5A;
   position: relative;
   display: block;
   border-right: 10px solid transparent;
-  border-bottom: 7px solid #fc2e5a;
+  border-bottom: 7px solid #FC2E5A;
   border-left: 10px solid transparent;
   -moz-transform: rotate(35deg);
   -webkit-transform: rotate(35deg);
   -ms-transform: rotate(35deg);
   -o-transform: rotate(35deg);
-/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+  -webkit-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  -moz-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  filter: drop-shadow(0px 0px 5px #FC2E5A);
 }
 
 .star:before {
@@ -24,7 +24,7 @@
   display: block;
   top: -4.5px;
   left: -6.5px;
-  border-bottom: 8px solid #fc2e5a;
+  border-bottom: 8px solid #FC2E5A;
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
   content: '';
@@ -32,10 +32,10 @@
   -moz-transform: rotate(-35deg);
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
-/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
- /* filter: drop-shadow(0px 0px 5px #fc2e5a);
-*/}
+  -webkit-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  -moz-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  filter: drop-shadow(0px 0px 5px #FC2E5A);
+}
 
 .star:after {
   content: '';
@@ -43,38 +43,38 @@
   height: 0;
   position: absolute;
   display: block;
-  top: .3px;
+  top: 0.3px;
   left: -10.5px;
-  color: #fc2e5a;
+  color: #FC2E5A;
   border-right: 10px solid transparent;
-  border-bottom: 7px solid #fc2e5a;
+  border-bottom: 7px solid #FC2E5A;
   border-left: 10px solid transparent;
   -webkit-transform: rotate(-70deg);
   -moz-transform: rotate(-70deg);
   -ms-transform: rotate(-70deg);
   -o-transform: rotate(-70deg);
-/*  -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);*/
-/*  filter: drop-shadow(0px 0px 5px #fc2e5a);*/
+  -webkit-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  -moz-filter: drop-shadow(0px 0px 5px #FC2E5A);
+  filter: drop-shadow(0px 0px 5px #FC2E5A);
 }
 
 .star:hover{
   -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
-  filter: drop-shadow(0px 0px 2px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  filter: drop-shadow(0px 0px 8px #fc2e5a);
 }
 
 .star:before:hover{
   -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
-  filter: drop-shadow(0px 0px 2px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  filter: drop-shadow(0px 0px 8px #fc2e5a);
 }
 
 
 .star:after:hover{
   -webkit-filter: drop-shadow(0px 0px 8px #fc2e5a);
-  -moz-filter: drop-shadow(0px 0px 2px #fc2e5a);
-  filter: drop-shadow(0px 0px 2px #fc2e5a);
+  -moz-filter: drop-shadow(0px 0px 8px #fc2e5a);
+  filter: drop-shadow(0px 0px 8px #fc2e5a);
 }
 
 
@@ -86,21 +86,40 @@
   animation: full-turn 3s;
 }
 
+.hidden-task-info{
+  color: white;
+  position: absolute;
+  opacity: 0;
+  white-space: pre;
+}
+
+.hover-control {
+  position: absolute;
+}
+
+.hover-control:hover .star-container{
+  animation: full-turn 3s;
+}
+ 
+.hover-control:hover .hidden-task-info{
+  opacity: 1;
+}
+
 .new-star{
   width: 0;
   height: 0;
   margin: 5px 0;
-  color: #fc2e5a;
+  color: #FC2E5A;
   position: relative;
   display: block;
   border-right: 10px solid transparent;
-  border-bottom: 7px solid #fc2e5a;
+  border-bottom: 7px solid #FC2E5A;
   border-left: 10px solid transparent;
   -moz-transform: rotate(35deg);
   -webkit-transform: rotate(35deg);
   -ms-transform: rotate(35deg);
   -o-transform: rotate(35deg);
-  animation: 3s linear 0.1s shooting-star;
+  animation: 0.7s linear 0.1s shooting-star;
   -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
   -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
   filter: drop-shadow(0px 0px 5px #fc2e5a);
@@ -114,7 +133,7 @@
   display: block;
   top: -4.5px;
   left: -6.5px;
-  border-bottom: 8px solid #fc2e5a;
+  border-bottom: 8px solid #FC2E5A;
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
   content: '';
@@ -122,7 +141,7 @@
   -moz-transform: rotate(-35deg);
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
-  animation: 3s linear 0.1s shooting-star;
+  animation: 0.7s linear 0.1s shooting-star;
   -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
   -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
   filter: drop-shadow(0px 0px 5px #fc2e5a);
@@ -135,32 +154,47 @@
   height: 0;
   position: absolute;
   display: block;
-  top: .3px;
+  top: 0.3px;
   left: -10.5px;
-  color: #fc2e5a;
+  color: #FC2E5A;
   border-right: 10px solid transparent;
-  border-bottom: 7px solid #fc2e5a;
+  border-bottom: 7px solid #FC2E5A;
   border-left: 10px solid transparent;
   -webkit-transform: rotate(-70deg);
   -moz-transform: rotate(-70deg);
   -ms-transform: rotate(-70deg);
   -o-transform: rotate(-70deg);
-  animation: 3s linear 0.1s shooting-star;
+  animation: 0.7s linear 0.1s shooting-star;
   -webkit-filter: drop-shadow(0px 0px 5px #fc2e5a);
   -moz-filter: drop-shadow(0px 0px 5px #fc2e5a);
   filter: drop-shadow(0px 0px 5px #fc2e5a);
   /*transition: all 1s linear;*/
 }
 
-
 .new-star-container{  
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transition: all 2s linear;
 }
 
 .new-star-container:hover{
+  animation: full-turn 3s;
+}
+
+.new-hover-control {
+  position: absolute;
+  left: 0%;
+  top: 96%;
+  transition: all 0.7s linear;;
+}
+
+.new-hover-control:hover .new-star-container{
+  animation: full-turn 3s;
+}
+ 
+.new-hover-control:hover .hidden-task-info{
+  opacity: 1;
+}
+
+.hover-control:hover .new-star-container{
   animation: full-turn 3s;
 }
 
@@ -177,9 +211,9 @@
 @keyframes shooting-star{
   0%{
     /*transform: rotate(45deg);*/
-    -webkit-filter: drop-shadow(20px 6px 10px #fc2e5a);
-    -moz-filter: drop-shadow(20px 6px 10px #fc2e5a);
-    filter: drop-shadow(20px 6px 10px #fc2e5a);
+    -webkit-filter: drop-shadow(20px 6px 10px #FC2E5A);
+    -moz-filter: drop-shadow(20px 6px 10px #FC2E5A);
+    filter: drop-shadow(20px 6px 10px #FC2E5A);
   }
 
   /*80%{*/
@@ -212,8 +246,8 @@
 
   100%{
     /*transform: rotate(315deg);*/
-    -webkit-filter: drop-shadow(0px 0px 10px #fc2e5a);
-    -moz-filter: drop-shadow(0px 0px 10px #fc2e5a);
-    filter: drop-shadow(0px 0px 10px #fc2e5a);
+    -webkit-filter: drop-shadow(0px 0px 10px #FC2E5A);
+    -moz-filter: drop-shadow(0px 0px 10px #FC2E5A);
+    filter: drop-shadow(0px 0px 10px #FC2E5A);
   }
 } 

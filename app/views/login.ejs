@@ -4,18 +4,47 @@
 <form action="/login" method="post">
   <p>
     <label>Username:
-      <input type="text" name="username" value="test" />
+      <input type="text" name="username" />
     </label>
   </p>
   <p>
     <label>Password:
-      <input type="password" name="password" value="test" />
+      <input type="password" name="password" />
     </label>
   </p>
   <p>
     <button type="submit">Log In</button>
   </p>
+  </form>
   <p>
     <a href="/auth/github">Sign in with GitHub</a>
+  </p>
+
+  <p>
+    <a href="/auth/twitter">Sign in with Twitter</a>
+  </p>
+
+  <p>
+    <a href="/auth/facebook">Sign in with Faceboook</a>
+  </p>
+
+  <form action="/users/new" method="post">
+    <p>
+    <label>Username:
+      <input type="text" name="username" />
+    </label>
+  </p>
+  <p>
+    <label>Email:
+      <input type="text" name="email" />
+    </label>
+  </p>
+  <p>
+    <label>Password:
+      <input type="password" name="pwd" />
+    </label>
+  </p>
+  <p>
+    <button type="submit">Sign Up</button>
   </p>
 </form>

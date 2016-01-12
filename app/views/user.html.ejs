@@ -1,6 +1,6 @@
 <% include partials/__navbar %>
 <div id="userId" data-id="<%= id %>"></div>
-<h1 class="greeting">Hello, <%= username %>! <span id='header-task' data-header-task-id='header_task'>Today's a good day to walk the dog!</span></h1>
+<h1 class="greeting">Hello, <%= username %>! Today's a good day to <span id='header-task' data-header-task-id='header_task'>walk the dog</span>!</h1>
 <div class="skyContainer skyImg" id="basebox">
   <!--starchart goes here-->
   <!-- <button class="submit">Submit</button> -->
@@ -14,18 +14,56 @@
       <div class="addTask">
         <h1 class="left-title">Today's tasks...</h1>
         <div class="sortByAndAddTaskButtons">
-        <button type="button" class="btn btn-default btn-lg" id="sortByPriority">
-          <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-        </button>
-        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
+        <span title="List tasks by priority">
+          <button type="button" class="btn btn-default btn-lg" id="sortByPriority">
+            <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+          </button>
+        </span>
+        <span title="Add task">
+          <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTaskModal" id="createTaskButton">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+        </span>
         </div>
       </div>
       <div id="taskScroll">
         <div class="scroll">
           <ul class="tasks">
             <!-- tasklist goes here -->
+            <li>
+              <a class="taskAnchor" id="999" data-priority="1" href>Walk the dog</a>
+              <input type="checkbox" class="complete" id="chk999">
+
+              <!-- the new part -- form to edit the task -->
+              <div class="tasklistform">
+                <form id="editTaskForm" action="" method="put">
+
+                    <label for="description">Description:</label>
+                    <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea>
+                    <br>
+                    <div class="">
+                      <label for="due_date">Due Date:</label>
+                      <input type="date" id="Edue_date" name="due_date">
+                      <label for="priority">Priority:</label>
+                      <select class="" id="Epriority" name="priority">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <label for="recurring">Recurring:</label>
+                      <input type="checkbox" name="recurring" id="ERecurring">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>
+                    <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">
+                    <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>
+                    <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>
+
+                </form>
+              <div>
+            </li>
           </ul>
         </div>
       </div>

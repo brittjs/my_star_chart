@@ -1,9 +1,10 @@
 <div class="friendsHeader">
   <h1 class="left-title">Friends</h1> 
-
-  <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addFriendModal" id="addFriendButton">
-  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>
-  </button>
+  <span title="Add friend">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addFriendModal" id="addFriendButton">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></i>
+    </button>
+  </span>
 </div>
 <div id="friendsScroll">
   <div class="scroll">  
@@ -61,7 +62,9 @@
           <fieldset class="form-group">
             <label for="findByEmail">Find friend by email address:</label>
             <input type="text" class="form-control" id="findByEmail" name="findByEmail" />
-            <br>
+            <div id="hiddenErrorMsg">
+              Cannot add yourself as a friend.
+            </div>
           </fieldset>   
 
           

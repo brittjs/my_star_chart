@@ -6,19 +6,13 @@ $(function() {
 
   var homePage = str.match(/^\/$/);
 
-
   if (usersPage || homePage) {
 
   // ===========================================================
-  //
-  //
   //   Load user's friend list when page opens
-  //
   // ============================================================
 
   var userId = $('div#userId').data('id');
-  console.log("$('div#userId').data('id')");
-  console.log(userId);
 
   function reloadFriends(userId) {
     var friendslist = $('ul.listOfFriends');
@@ -31,21 +25,19 @@ $(function() {
         return $('<li>').attr({
           'data-friend-email': friend.email,
           'data-friend-id': friend.id,
+          'data-friend-email': friend.email,
           'data-toggle': "modal",
           'data-target': "#showFriendModal"
         }).append($('<a href="javascript:void(0);">').text(friend.username));
       });
       friendslist.append(friendsLi);
     });
-    };
+    }
 
   reloadFriends(userId);
 
   // ===========================================================
-  //
-  //
   //   Trap friend list item click and open friend detail modal with stars
-  //
   // ============================================================
 
   function md5(str) {
@@ -258,7 +250,7 @@ $(function() {
     var friendEmail = $(this).parents('[data-friend-id]').data('friendEmail');
     var friendId = $(this).parents('[data-friend-id]').data('friendId');
     var friendName = $(this).parents('[data-friend-id]').text();
-    $('#friend-details').text(friendName).attr({'data-friend-id': friendId})
+    $('#friend-details').text(friendName).attr({'data-friend-id': friendId});
     $('#friendstars').empty();
 
      $.get('users/' + friendId + '/stars', function(stars){
@@ -270,25 +262,23 @@ $(function() {
         });
       });
    });
+
   // ===========================================================
-  //
-  //
-  //   Clear modal on closing
-  //
+  //   Clear add friend modal on closing
   // ============================================================
   $('#addFriendModal').on('hidden.bs.modal', function (e) {
+    $("#findFriendForm").trigger("reset");
     $('#inviteFriendButton').removeClass('shown');
     $('#addFriendshipButton').removeClass('shown');
     $("#findByEmail").val("");
     $("#show-results").empty();
+    $('#hiddenErrorMsg').css("display", "none");
   });
 
   // ===========================================================
-  //
-  //
   //   Trap add button click, search users table for that email address, and show results
-  //
   // ============================================================
+
   $('#findFriendForm').on('submit', function(e) {
     e.preventDefault();
 
@@ -299,61 +289,62 @@ $(function() {
 
     $.get('/users/search/'+emailAddress+'/', function(user) {
       if (!user.username) {
-
-        console.log ("right track");
         $(div).html(user.email +" was not found");
         $('#inviteFriendButton').addClass('shown');
 
         $('#inviteFriendButton').on('click', function (e) {
           e.preventDefault();
-          console.log("right button");
           window.open("mailto:"+user.email+"?subject=Let%27s%20Be%20Star%20Chart%20Friends!&body=I%27ve%20found%20this%20great%20motivational%20tool%20that%20I%20think%20you%20would%20like.%0A%0AVisit%20[URL]%20to%20find%20out%20more!", "_blank");
           $("#addFriendModal").modal('hide');
         });
+      }
 
-        
+      else if (user.id === userId) {
+        // if user searches for themselves, their username, email address, 
+        // and "Cannot add yourself as a friend." will appear in the modal
+        $(div).html("username: " + user.username + "<br>email: " + user.email);
+        $(div).attr({'usernum': user.id});
+        $('#hiddenErrorMsg').css("display", "block");
+
       } else {
 
         $(div).html("username: " + user.username + "<br>email: " + user.email);
-        $(div).attr({'data-usernum': user.id});
-        $('#addFriendshipButton').addClass('shown');
+        $(div).attr({'usernum': user.id});
+        $('#addFriendshipButton').addClass('shown');  
       }
-
     });
   });
+
   // ===========================================================
-  //
-  //
   //   Trap add button click, create friendship
-  //
   // ============================================================
+
   $('#addFriendshipButton').on('click', function (e) {
     e.preventDefault();
 
-    var newFriendId = $("#show-results").data('usernum');
+    var newFriendId = $("#show-results").attr('usernum');
     var newFriendship = {Friend1Id: newFriendId, Friend2Id: userId};
 
-    $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
-      reloadFriends(userId);
+    if (parseInt(newFriendId) === parseInt(userId)) {
+      alert("Cannot add self as friend");
 
-    // .fail( function(xhr, textStatus, errorThrown) {
-    //   alert(xhr.responseText);
-    //   console.log(xhr.responseText);
-    // });
-    $("#addFriendModal").modal('hide');
-    });
+    } else {
+
+      $.post('/users/' +userId + '/friends', newFriendship, function(friendship){
+        reloadFriends(userId);  
+        $("#addFriendModal").modal('hide');
+      });
+    } 
   });
 
   // ===========================================================
-  //
-  //
   //   Trap remove button click, delete friendship
-  //
   // ============================================================
+
    $('#deleteFriendshipButton').on('click', function (e) {
     e.preventDefault();
    
-    var friendId = $('#friend-details').data('friend-id');
+    var friendId = $('#friend-details').attr('data-friend-id');
     var userId = $('div#userId').data('id'); //does this need to be here?
 
     $.ajax({
@@ -361,6 +352,7 @@ $(function() {
         type: 'DELETE',
         success: function () {
           console.log('deleted!');
+          console.log('deleted = ', friendId);
           reloadFriends(userId);
           $("#showFriendModal").modal('hide');
         },
@@ -371,13 +363,6 @@ $(function() {
       }
 
     });
-  // ===========================================================
-  //
-  //
-  //   Close modal on clicking link to generate invite email
-  //
-  // ============================================================
-
   });
 
 
