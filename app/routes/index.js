@@ -100,8 +100,7 @@ function *reqlogger(next){
 app.use(reqlogger);
 
   router
-    .post('/users/new',                           indexCtrl.createUser)
-    .get('/users/new',                            indexCtrl.newUser);
+    .post('/users/new',                           indexCtrl.createUser);
 
   // a user's task paths
   router
@@ -111,7 +110,6 @@ app.use(reqlogger);
     .post('/users/:userId/tasks',                 userTasksCtrl.createTask)
     .put('/users/:userId/tasks/:taskId',          userTasksCtrl.updateTask)
     .del('/users/:userId/tasks/:taskId',          userTasksCtrl.removeTask);
-
 
   // a user's star paths
   router
@@ -189,9 +187,8 @@ app.use(reqlogger);
     {
       var newUser = this.request.body;
       yield indexCtrl.createUser(newUser);
-      ctx.user = newUser;
-      yield indexCtrl.custom(ctx);
-
+      // ctx.user = newUser;
+      // yield indexCtrl.custom(ctx);
       // this.state.user = newUser;
       // console.log(this.state.user);
       // this.body = this.state.user;
