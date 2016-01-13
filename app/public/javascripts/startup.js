@@ -1,63 +1,73 @@
-$(function() {
+function dailyTaskRefresh (userId) {
 
-  console.log("inside startup.js");
+  console.log("inside dailyTaskRefresh");
+  
+  var today = new Date();
+  today.setHours(0,0,0,0);
 
-  var str = window.location.pathname;
+  $.get('users/' + userId + '/old/tasks', function(tasks){
 
-  var usersPage = str.match(/^\/user$/);
+    var oldTasks = tasks;
 
-  var homePage = str.match(/^\/$/);
+    oldTasks.forEach(function(task) {
 
-  if (usersPage || homePage) {
+      if (task.recurring === true || task.postponed === true) {
+        //create duplicate task with today as due date
+        var myTask = {description: task.description,
+         due_date: today,
+         priority: task.priority,
+         recurring: task.recurring,
+         postponed: false,
+         completed: false,
+         UserId: userId};
 
-    var userId = $('div#userId').data('id');
+        $.post('/users/' + userId + '/tasks', myTask, function(task) {
+          console.log("Create of task "+task.id+" successful.");
+          console.log("task = ", task);
+        });
+      }
 
-    function dailyTaskRefresh(userId) {
-
-      console.log("inside dailyTaskRefresh");
-
-      var today = new Date();
-      today.setHours(0,0,0,0);
-      console.log("today: "+today);
-
-      var yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      yesterday.setHours(0,0,0,0);
-      console.log("yesterday: "+yesterday);
-
-      allTasks.forEach(function(task) {
-
-        var dueDate = task.due_date;
-        dueDate.setHours(0,0,0,0);
-
-        if (dueDate === yesterday && (task.recurring === true || task.postponed === true)) {
-          
-          var myTask = {description: task.description,
-           due_date: today,
-           priority: task.priority,
-           recurring: task.recurring,
-           postponed: false,
-           completed: false,
-           UserId: userId};
-
-          $.post('/users/' + userId + '/tasks', myTask, function(task) {
-            console.log("Create task submit button successful.");
-            console.log("task = ", task);
-          });
-            
-          if (task.completed === false) {
-            $.ajax({
-              url: '/users/' + userId + '/tasks/' + task.id,
-              type: 'DELETE',
-              success: function() {
-                console.log("done with delete");
-              }
-            });
+      if (task.completed === false) {
+        //delete incomplete tasks
+        $.ajax({
+          url: '/users/' + userId + '/tasks/' + task.id,
+          type: 'DELETE',
+          success: function() {
+            console.log("done with delete task "+task.id);
           }
-        }     
-      });
-      reloadTasks(userId);
-    }
-  }
-  // dailyTaskRefresh(userId);
-});
+        });
+      } else {
+        //change recurring to false.
+        var myTask = {id: task.id,
+         description: task.description,
+         due_date: task.due_date,
+         priority: task.priority,
+         recurring: false,
+         postponed: false,
+         completed: task.completed,
+         UserId: userId};
+
+        $.ajax({
+          type: "PUT",
+          url:  'users/' + userId + '/tasks/' + task.id,
+          contentType: "application/json",
+          data: JSON.stringify(myTask),
+          success: function(data) {
+            console.log("removed recurring flag from yesterday's completed task "+task.id)
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.responseText);
+          }
+        });
+      }
+    });
+  
+  // reloadTasks(userId);
+  });
+yield next;
+}
+
+$(function() {
+  var userId = $('div#userId').attr('data-id');
+  dailyTaskRefresh(userId);
+})
