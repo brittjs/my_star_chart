@@ -84,19 +84,19 @@ input{
 	padding: 2em;
 }
 
-.active{
+/*.active{
 	color: white;
-}
+}*/
 
 a:hover{
 	/*text-decoration:none;*/
 	/*color: white;*/
 }
 
-a:hover.active{
+/*a:hover.active{
 	color: white;
 }
-
+*/
 .login-formfield{
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
