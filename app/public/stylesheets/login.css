@@ -1,11 +1,9 @@
-/*h4{
-	color: goldenrod;
-}*/
-
 .login-box{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	/*justify-content: center;*/
+	/*width: 170vh;*/
 }
 
 .social-button{
@@ -67,6 +65,7 @@ input{
 	border-radius: 7px;
 	margin-bottom: 2em;
 	padding: 2em;
+	max-width: 80vh;
 }
 
 .signup-container{
@@ -81,18 +80,6 @@ input{
 	padding: 2em;
 }
 
-.active{
-	color: white;
-}
-
-a:hover{
-	/*text-decoration:none;*/
-	/*color: white;*/
-}
-
-a:hover.active{
-	color: white;
-}
 
 .login-formfield{
 	box-shadow: 4px 4px 2px goldenrod;
@@ -134,19 +121,14 @@ form{
 }
 
 .social-login-container{
-	/*position: relative;
-	float: right;
-	clear: both;*/
 	display: flex;
 	flex-direction: row;
 	margin-top: 2em;
+	/*max-width: 80vh;*/
 	/*justify-content: space-around;*/
 }
 
 .social-login-buttons{
-	/*position: relative;
-	float: right;
-	clear: both;*/
 	/*margin-top: 30%;*/
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
@@ -185,8 +167,8 @@ form{
 }
 
 .login-header{
-	margin-bottom: 25px;
-	margin-top: 120px;
+	margin-bottom: 2em;
+	margin-top: 3em;
 }
 
 .sign-in-text{
@@ -194,7 +176,19 @@ form{
 	margin-top: 1.5em;
 }
 
-h6{
+#or{
 	color: goldenrod;
-	font-size: 14px;
+	font-size: 2.5vh;
+	margin-top: -1px;
+}
+
+#project-title{
+	font-size: 8vh;
+	margin-top: 1em;
+	color: white;
+}
+
+.coming-soon{
+	color: white;
+	margin-top: 0.5em;
 }
