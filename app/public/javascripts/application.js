@@ -139,7 +139,7 @@ function resetUserStars(user_id) {
   var response = 
     $.confirm({
       title: "Reset Sky",
-      content: "Are you sure you'd like to clear the stars from your sky?<br>This action cannot be undone.",
+      content: "<center>Are you sure you'd like to clear the stars from your sky?<br>This action cannot be undone.<center>",
       columnClass: 'col-md-4 col-md-offset-4',
       confirm: function () {
         $.get('/users/' + user_id + '/tasks', function(tasks) {   
@@ -157,7 +157,7 @@ function resetUserStars(user_id) {
         });
         $.alert({
           title: "Success",
-          content: "Stars have been removed.",
+          content: "<center>Stars have been removed.<center>",
           confirm: function(){
             window.location.href = "/"; 
           }
