@@ -55,7 +55,14 @@ input{
 	width: 40%;
 	margin-right: 30%;
 	margin-left: 30%;
+	margin-bottom: 3%;
+	margin-top: 3%;
 }
+
+/*.login-header{
+	margin-bottom: 2em;
+	margin-top: 3em;
+}*/
 
 .login-container{
 	/*position: absolute;
@@ -182,11 +189,6 @@ form{
 	visibility: visible;
 }
 
-.login-header{
-	margin-bottom: 2em;
-	margin-top: 3em;
-}
-
 .sign-in-text{
 	color: goldenrod;
 	margin-top: 3%;
@@ -200,7 +202,7 @@ form{
 
 #project-title{
 	font-size: 8vh;
-	margin-top: 1em;
+	margin-top: 7%;
 	color: white;
 }
 
