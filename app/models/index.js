@@ -10,7 +10,6 @@ var validator = require('validator');
 var db        = {};
 var sequelize;
 
-console.log('inside models/index.js');
 
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);

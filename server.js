@@ -1,7 +1,6 @@
 //  do not require env.js  in production
 //  environment variables are all set manually in production
 if (process.env.NODE_ENV != "production"){
-  console.log("requiring env.js");
   require('./env.js');
 }
 

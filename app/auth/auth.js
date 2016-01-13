@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
     callbackURL: "http://localhost:3000/auth/twitter/callback"
   };
 }
-console.log('auth/auth.js twitter callback url = ' + twitterObject.callbackURL);
+// console.log('auth/auth.js twitter callback url = ' + twitterObject.callbackURL);
 
 
 const passport = require('koa-passport'),
@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === "production") {
     callbackURL: "http://localhost:3000/auth/github/callback"
   };
 }
-console.log('auth/auth.js github callback url = ' + githubObject.callbackURL);
+// console.log('auth/auth.js github callback url = ' + githubObject.callbackURL);
 
 const   GithubStrategy = require('passport-github').Strategy;
 
