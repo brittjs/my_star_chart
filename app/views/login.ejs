@@ -1,10 +1,9 @@
-<h1>Login Page</h1>
-
-
-<form action="/login" method="post">
+<div class ="well">
+<h1>Signin</h1>
+<form action="/login" method="post" id="logInForm">
   <p>
-    <label>Username:
-      <input type="text" name="username" />
+    <label>Username: 
+     <input type="text" name="username" />
     </label>
   </p>
   <p>
@@ -16,19 +15,22 @@
     <button type="submit">Log In</button>
   </p>
   </form>
+  </div>
+  <div class ="well">
   <p>
     <a href="/auth/github">Sign in with GitHub</a>
   </p>
 
   <p>
-    <a href="/auth/twitter">Sign in with Twitter</a>
+    <a href="/auth/twitter">Sign in with Twitter</a> (coming soon)
   </p>
 
   <p>
-    <a href="/auth/facebook">Sign in with Faceboook</a>
+    <a href="/auth/facebook">Sign in with Faceboook</a> (coming soon)
   </p>
-
-  <form action="/users/new" method="post">
+</div><div class ="well">
+<h1>Signup</h1>
+  <form action="/users/new" method="post" id="signUpForm">
     <p>
     <label>Username:
       <input type="text" name="username" />
@@ -45,6 +47,7 @@
     </label>
   </p>
   <p>
-    <button type="submit">Sign Up</button>
+    <button type="submit" id="signUpButton">Sign Up</button>
   </p>
 </form>
+</div>
