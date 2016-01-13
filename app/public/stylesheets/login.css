@@ -7,6 +7,7 @@
 
 .social-button{
 	color: white;
+	text-align: center;
 }
 
 .social-button:hover{
@@ -167,6 +168,9 @@ form{
 	/*margin-bottom: 15px;*/
 	/*padding-right: 55px;*/
 	margin-left: 7%;
+	display: flex;
+	justify-content: center;
+/*	flex-direction: column;*/
 }
 
 .social-login-buttons.github-login{
