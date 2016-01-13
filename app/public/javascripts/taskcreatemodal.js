@@ -53,6 +53,7 @@ $(function() {
         today = today.toString().substring(0,16);
 
         if (due !== today) {
+          debugger
           $("#createTaskForm").hide();
           var dateDiv = $("#confirmTaskCreated");
           dateDiv.html("<br>Task created for " + due + "<br><br>");

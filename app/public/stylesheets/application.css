@@ -496,5 +496,15 @@ transform-origin: top right;
 
 #confirmTaskCreated {
   font-weight: bold;
+  font-size: 5vh;
+  text-align: center;
+}
+
+.modal-dialog {
+  top: 30vh;
+}
+
+#show-results {
+  margin-top: 2vh;
 }
 

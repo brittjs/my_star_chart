@@ -93,11 +93,8 @@ $(function() {
       }
 
       else if (user.id === userId) {
-        // if user searches for themselves, their username, email address, 
-        // and "Cannot add yourself as a friend." will appear in the modal
-        $(div).html("username: " + user.username + "<br>email: " + user.email);
-        $(div).attr({'usernum': user.id});
-        $('#hiddenErrorMsg').css("display", "block");
+        // if user searches for themselves
+        $(div).html("You're already your own friend! <br>username: " + user.username + "<br>email: " + user.email);
 
       } else {
 
