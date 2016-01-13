@@ -167,8 +167,9 @@ function dailyTaskRefresh(userId) {
     var today = new Date();
     today.setHours(0,0,0,0);
     console.log("today: "+today);
+    var outerResolve = resolve;
 
-    return new Promise(function(resolve, reject){
+    var innerPromise = new Promise(function(resolve, reject){
       $.get('users/' + userId + '/old/tasks', function(tasks){
 
       var oldTasks = tasks;
@@ -238,8 +239,9 @@ function dailyTaskRefresh(userId) {
         resolve();
       });
     }); // end of get
- resolve();
-  });
+  }); // end of innerPromise definition
+  innerPromise.then(outerResolve);
+  return innerPromise;
 });
 }
 
@@ -637,7 +639,7 @@ $(function() {
         
         var changeTaskInHeaderFlag = true;
 
-        dailyTaskRefresh(userId).then(reloadTasks.call(null, userId, changeTaskInHeaderFlag));
+        dailyTaskRefresh(userId).then(function(){reloadTasks(userId, changeTaskInHeaderFlag)});
 
         // ===========================================================
         //
@@ -676,9 +678,14 @@ $(function() {
         //
         // ============================================================
         // Attach a delegated event handler
-        $('ul.tasks').on('click', 'a', function(event) {
+
+        $('ul.tasks').on('click', 'li a', function(event) {
+
           event.preventDefault();
-          $(this).closest('li').find('.tasklistform').toggle();
+          //toggle task panel on click and retain colour:
+
+          $(this).toggleClass("active");
+          $(this).next().slideToggle();
         });
 
         // ===========================================================
@@ -768,4 +775,3 @@ $(function() {
     }
 
 });
-
