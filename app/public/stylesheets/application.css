@@ -449,6 +449,10 @@ transform-origin: top right;
   top: 30vh;
 }
 
+#friend-star-map.modal-dialog {
+  top: 10vh;
+}
+
 #show-results {
   margin-top: 2vh;
 }
