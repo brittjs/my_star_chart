@@ -111,7 +111,6 @@ app.use(reqlogger);
     .put('/users/:userId/tasks/:taskId',          userTasksCtrl.updateTask)
     .del('/users/:userId/tasks/:taskId',          userTasksCtrl.removeTask);
 
-
   // a user's star paths
   router
     .get('/users/:userId/stars',                  userStarsCtrl.getListOfStarsForUser);
@@ -187,7 +186,13 @@ app.use(reqlogger);
     else if (this.request.url === '/users/new')
     {
       var newUser = this.request.body;
-      yield indexCtrl.createUser(newUser, this.redirect ('/user'));
+      yield indexCtrl.createUser(newUser);
+      // ctx.user = newUser;
+      // yield indexCtrl.custom(ctx);
+      // this.state.user = newUser;
+      // console.log(this.state.user);
+      // this.body = this.state.user;
+      this.redirect ('/login')
     }
     else 
     {
