@@ -639,7 +639,7 @@ $(function() {
         
         var changeTaskInHeaderFlag = true;
 
-        dailyTaskRefresh(userId).then(reloadTasks.call(null, userId, changeTaskInHeaderFlag));
+        dailyTaskRefresh(userId).then(function(){reloadTasks(userId, changeTaskInHeaderFlag)});
 
         // ===========================================================
         //
