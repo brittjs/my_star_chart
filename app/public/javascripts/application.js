@@ -349,7 +349,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
   $(".tasks").empty();
 
-  $.get('users/' + userId + '/tasks', function(tasks){
+  $.get('users/' + userId + 'today/tasks', function(tasks){
 
     allTasks = tasks;
 
@@ -670,7 +670,10 @@ $(function() {
         
         var changeTaskInHeaderFlag = true;
 
-        dailyTaskRefresh(userId).then(function(){reloadTasks(userId, changeTaskInHeaderFlag)});
+        // dailyTaskRefresh(userId).then(
+          // function(){
+            reloadTasks(userId, changeTaskInHeaderFlag)
+          // });
 
         // ===========================================================
         //
