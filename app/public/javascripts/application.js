@@ -135,10 +135,37 @@ function getRandomInt(min, max) {
 }
 
 function resetUserStars(user_id) {
-  console.log("FIRINGGGG");
-
   // later include jquery-confirm plugin for nicer confirm box
-  var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
+  var response = 
+    $.confirm({
+      title: "Reset Sky",
+      content: "<center>Are you sure you'd like to clear the stars from your sky?<br>This action cannot be undone.<center>",
+      columnClass: 'col-md-4 col-md-offset-4',
+      confirm: function () {
+        $.get('/users/' + user_id + '/tasks', function(tasks) {   
+          tasks.forEach(function (task) {
+            if (task.completed) {
+              $.ajax({
+                url: '/users/' + user_id + '/tasks/' + task.id,
+                type: 'DELETE',
+                success: function() {
+                  console.log("stars deleted");
+                }
+              });
+            }  
+          });
+        });
+        $.alert({
+          title: "Success",
+          content: "<center>Stars have been removed.<center>",
+          confirm: function(){
+            window.location.href = "/"; 
+          }
+        });        
+      }
+      // window.location.href = "/"; 
+    });
+
   if (response === true) {
     $.get('/users/' + user_id + '/tasks', function(tasks) {   
       tasks.forEach(function (task) {
@@ -152,7 +179,11 @@ function resetUserStars(user_id) {
           });
         }  
       });
-      alert("Stars have been removed.");
+      // $.alert({
+      //   title: 'Stars have been removed.',
+      //   content: 'Simple alert!',
+      // });
+      
       window.location.href = "/";  
     });   
   }
@@ -167,8 +198,9 @@ function dailyTaskRefresh(userId) {
     var today = new Date();
     today.setHours(0,0,0,0);
     console.log("today: "+today);
+    var outerResolve = resolve;
 
-    return new Promise(function(resolve, reject){
+    var innerPromise = new Promise(function(resolve, reject){
       $.get('users/' + userId + '/old/tasks', function(tasks){
 
       var oldTasks = tasks;
@@ -238,8 +270,9 @@ function dailyTaskRefresh(userId) {
         resolve();
       });
     }); // end of get
- resolve();
-  });
+  }); // end of innerPromise definition
+  innerPromise.then(outerResolve);
+  return innerPromise;
 });
 }
 
@@ -637,7 +670,7 @@ $(function() {
         
         var changeTaskInHeaderFlag = true;
 
-        dailyTaskRefresh(userId).then(reloadTasks.call(null, userId, changeTaskInHeaderFlag));
+        dailyTaskRefresh(userId).then(function(){reloadTasks(userId, changeTaskInHeaderFlag)});
 
         // ===========================================================
         //
@@ -652,6 +685,7 @@ $(function() {
           // keep $("#createTaskForm").show(); below so that form shows when
           // creating new task (it gets hidden when a task with a future due 
           // date is created)
+          $('#createTaskForm').trigger("reset");
           $("#createTaskForm").show();
 
           var objToday = new Date();
@@ -676,9 +710,14 @@ $(function() {
         //
         // ============================================================
         // Attach a delegated event handler
-        $('ul.tasks').on('click', 'a', function(event) {
+
+        $('ul.tasks').on('click', 'li a', function(event) {
+
           event.preventDefault();
-          $(this).closest('li').find('.tasklistform').toggle();
+          //toggle task panel on click and retain colour:
+
+          $(this).toggleClass("active");
+          $(this).next().slideToggle();
         });
 
         // ===========================================================
@@ -768,4 +807,3 @@ $(function() {
     }
 
 });
-

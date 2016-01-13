@@ -4,7 +4,33 @@ module.exports = {
 
   // -------------------------------------------------------------
   //
-  //     get list of tasks for user
+  //     get list of ALL tasks for reset stars function
+  //
+  // -------------------------------------------------------------
+getAllTasksForUser: function* getAllTasksForUser(next) {
+
+    if (!this.state.userId) {
+      console.log("The user with UserId = " + this.state.userId + " does not exist.");
+      this.body = "The user with UserId = " + this.state.userId + " does not exist.";
+    } else {
+
+      var user = this.state.user;
+      
+      var tasks = yield user.getTasks(); //gets all of user's tasks
+
+      var mappedTasks = [];
+      tasks.forEach(function (task) {
+        mappedTasks.push( task["dataValues"]);
+      });
+
+      this.body = mappedTasks;
+      yield next;
+    }
+  },
+
+  // -------------------------------------------------------------
+  //
+  //     get list of today's tasks for user
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
@@ -12,7 +38,7 @@ module.exports = {
     console.log("");
     console.log("inside controllers/userTasks getListOfTasksForUser()");
     console.log("");
-    console.log('GET    /users/' + this.state.userId + '/tasks');
+    console.log('GET    /users/' + this.state.userId + '/today/tasks');
 
     console.log('this.state.userId');
     console.log(this.state.userId);
