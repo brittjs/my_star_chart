@@ -3,7 +3,6 @@
 	flex-direction: column;
 	align-items: center;
 	/*justify-content: center;*/
-	/*width: 170vh;*/
 }
 
 .social-button{
@@ -53,6 +52,9 @@ input{
 	margin-left: 25px;*/
 	display: flex;
 	flex-direction: row;
+	width: 40%;
+	margin-right: 30%;
+	margin-left: 30%;
 }
 
 .login-container{
@@ -65,7 +67,10 @@ input{
 	border-radius: 7px;
 	margin-bottom: 2em;
 	padding: 2em;
-	max-width: 80vh;
+	/*max-width: 80vh;*/
+	width: 40%;
+	margin-right: 30%;
+	margin-left: 30%;
 }
 
 .signup-container{
@@ -78,6 +83,9 @@ input{
 	border-radius: 7px;
 	margin-bottom: 2em;
 	padding: 2em;
+	width: 40%;
+	margin-right: 30%;
+	margin-left: 30%;
 }
 
 
@@ -105,16 +113,19 @@ form{
 }
 
 #login-box-link{
-	font-size: 16px;
-	margin-right: 2em;
+	font-size: 3vh;
+	margin-right: 20%;
+	margin-left: 15%;
 	/*border: 2px solid goldenrod;
 	border-radius: 7px;
 	padding: 4px;*/
 }
 
 #signup-box-link{
-	font-size: 16px;
-	margin-left: 2em;
+	font-size: 3vh;
+	/*margin-left: 2em;*/
+	margin-right: 4%;
+	margin-left: 15%;
 /*	border: 2px solid goldenrod;
 	border-radius: 7px;
 	padding: 4px;*/
@@ -123,9 +134,12 @@ form{
 .social-login-container{
 	display: flex;
 	flex-direction: row;
-	margin-top: 2em;
+	margin-top: 3%;
 	/*max-width: 80vh;*/
 	/*justify-content: space-around;*/
+	width: 40%;
+	margin-right: 30%;
+	margin-left: 30%;
 }
 
 .social-login-buttons{
@@ -133,15 +147,17 @@ form{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
-	height: 40px;
-	width: 100px;
+	height: 6%;
+	width: 30%;
 	/*margin-bottom: 15px;*/
 	/*padding-right: 55px;*/
-	margin-left: 10px;
+	margin-left: 7%;
 }
 
 .social-login-buttons.github-login{
 	background-color: #444444;
+	margin-left: 5%;
+	margin-bottom: 5%;
 }
 
 .button-for-submit{
@@ -173,13 +189,13 @@ form{
 
 .sign-in-text{
 	color: goldenrod;
-	margin-top: 1.5em;
+	margin-top: 3%;
 }
 
 #or{
 	color: goldenrod;
-	font-size: 2.5vh;
-	margin-top: -1px;
+	font-size: 3vh;
+	margin-top: 1%;
 }
 
 #project-title{
@@ -190,5 +206,5 @@ form{
 
 .coming-soon{
 	color: white;
-	margin-top: 0.5em;
+	margin-top: 15%;
 }
