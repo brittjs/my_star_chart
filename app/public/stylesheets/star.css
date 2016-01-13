@@ -258,6 +258,11 @@
     border-bottom: 7px solid yellow;
   }
 
+  50%{
+    color: yellow;
+    border-bottom: 7px solid yellow;
+  }
+
   100%{
     color: #FC2E5A;
     border-bottom: 7px solid #FC2E5A;
@@ -270,6 +275,11 @@
     border-bottom: 8px solid yellow;
   }
 
+  50%{
+    color: yellow;
+    border-bottom: 8px solid yellow;
+  }
+
   100%{
     color: #FC2E5A;
     border-bottom: 8px solid #FC2E5A;
@@ -278,6 +288,11 @@
 
 @keyframes star-colour-change-three{
   0%{
+    color: yellow;
+    border-bottom: 7px solid yellow;
+  }
+
+  50%{
     color: yellow;
     border-bottom: 7px solid yellow;
   }
