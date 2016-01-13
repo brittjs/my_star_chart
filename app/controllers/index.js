@@ -87,8 +87,9 @@ module.exports = {
 		yield next;
 	},
 
-  createUser: function *createUser(user) {
+  createUser: function *createUser(user, next) {
     yield db.sequelize.models.User.create(user)
+    next;
   }
 
 };
