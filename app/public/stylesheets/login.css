@@ -8,6 +8,7 @@
 .social-button{
 	color: white;
 	text-align: center;
+	font-size: 3vh;
 }
 
 .social-button:hover{
@@ -114,11 +115,13 @@ form{
 #login-title{
 	color: goldenrod;
 	margin-bottom: 7%;
+	font-size: 4vh;
 }
 
 #signup-title{
 	color: goldenrod;
 	margin-bottom: 7%;
+	font-size: 4vh;
 }
 
 #login-box-link{
@@ -164,8 +167,8 @@ form{
 	border: 2px solid goldenrod;
 	box-shadow: 4px 4px 2px goldenrod;
 	border-radius: 7px;
-	height: 6%;
-	width: 30%;
+	height: 7%;
+	width: 32%;
 	/*margin-bottom: 15px;*/
 	/*padding-right: 55px;*/
 	margin-left: 7%;
@@ -205,6 +208,7 @@ form{
 .sign-in-text{
 	color: goldenrod;
 	margin-top: 3%;
+	font-size: 3vh;
 }
 
 #or{
@@ -222,4 +226,5 @@ form{
 .coming-soon{
 	color: white;
 	margin-top: 15%;
+	font-size: 2vh;
 }
