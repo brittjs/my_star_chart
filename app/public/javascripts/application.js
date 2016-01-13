@@ -349,7 +349,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
   $(".tasks").empty();
 
-  $.get('users/' + userId + '/tasks', function(tasks){
+  $.get('users/' + userId + '/today/tasks', function(tasks){
 
     allTasks = tasks;
 
