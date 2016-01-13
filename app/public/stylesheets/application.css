@@ -331,27 +331,14 @@ ul {
   margin-left: 8px;
 }
 
-.postponed{
+.postponed, .postponed:visited, .postponed:hover, .postponed.active {
   color: goldenrod;
  /* margin-left: 25px;*/
-}
-
-.postponed:visited{
-  color: goldenrod;
-}
-
-.postponed:hover{
-  color: goldenrod;
-}
-
-.postponed.active {
-  color: goldenrod;
 }
 
 .complete_span_disabled.postponed{
   color: #A8A8A8;
 }
-
 
 .tasklistform {
   background-color: black;
