@@ -1,56 +1,98 @@
-<div class ="well">
-<h1>Signin</h1>
-<form action="/login" method="post" id="logInForm">
-  <p>
-    <label>Username: 
-     <input type="text" name="username" />
-    </label>
-  </p>
-  <p>
-    <label>Password:
-      <input type="password" name="password" />
-    </label>
-  </p>
-  <p>
-    <button type="submit">Log In</button>
-  </p>
-  </form>
+<div class="login-box">  
+
+  <div class="login-header">
+    <a class="active" id="login-box-link">Sign In</a>
+    <h6 class="text-center"> OR </h6>
+    <a id="signup-box-link"> Sign Up </a>
   </div>
-  <div class ="well">
-  <p>
-    <a href="/auth/github">Sign in with GitHub</a>
-  </p>
 
-  <p>
-    <a href="/auth/twitter">Sign in with Twitter</a> (coming soon)
-  </p>
+  <br>
 
-  <p>
-    <a href="/auth/facebook">Sign in with Faceboook</a> (coming soon)
-  </p>
-</div><div class ="well">
-<h1>Signup</h1>
-  <form action="/users/new" method="post" id="signUpForm">
-    <p>
-    <label>Username:
-      <input type="text" name="username" />
-    </label>
-  </p>
-  <p>
-    <label>Email:
-      <input type="text" name="email" />
-    </label>
-  </p>
-  <p>
-    <label>Password:
-      <input type="password" name="pwd" id="pwd1"/>
-    </label>
-    <label>Confirm Password:
-      <input type="password" name="pwd2" id="pwd2"/>
-    </label>
-  </p>
-  <p>
-    <button type="submit" id="signUpButton">Sign Up</button>
-  </p>
-</form>
+  <div class="login-container">
+    <h4 class="text-center" id="login-title">Sign In</h4>
+
+    <form id="login-form" class="text-center" action="/login" method="post"> 
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-user"></i>
+        <input class="login-formfield" type="text" placeholder="Username" name="username" required />
+      </div>
+      <br>
+
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input class="login-formfield" type="password" placeholder="Password" name="password" required />
+      </div>
+      <br>
+
+      <button class="btn btn-primary btn-sm button-for-submit" type="submit">
+        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign In </i>
+      </button>
+    </form>
+
+  </div>
+
+  <div class="signup-container">
+    <h4 class="text-center" id="signup-title"> Sign Up </h4>
+
+    <form id="signUpForm" class="text-center" action="/users/new" method="post">
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-user"></i>
+        <input class="login-formfield" type="text" placeholder="Username" name="username" required/>
+      </div>
+      <br>
+
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <input class="login-formfield" type="email" placeholder="Email" name="email" required />
+      </div>
+      <br>
+
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input class="login-formfield" type="password" placeholder="Password" name="pwd" id="pwd1" required/>
+      </div>
+      <br>
+
+      <div class="input-in-form left-positioning">
+        <i class="glyphicon glyphicon-lock"></i>
+        <input class="login-formfield" type="password" placeholder="Confirm Password" name="pwd2" id="pwd2" />
+      </div>
+      <br>
+
+      <button class="btn btn-primary btn-sm button-for-submit" type="submit" id="signUpButton">
+        <i class="fa fa-arrow-circle-o-right fa-lg icon-text-color"> Sign Up </i>
+      </button> 
+    </form> 
+  </div>
+
+  <h4 class="sign-in-text">Sign in with:</h4>
+
+  <div class="social-login-container">
+
+    <div class="social-login-buttons github-login">
+      <div class="text-center">
+        <a href ="/auth/github" class="btn social-button">
+          <span class="fa fa-github fa-lg"></span> GitHub
+        </a>
+      </div>  
+    </div> 
+
+    <div class="social-login-buttons twitter-login">
+      <div class="text-center">
+        <a href ="#" class="btn social-button">
+          <span class="fa fa-twitter fa-lg"></span> Twitter
+        </a> (coming soon)
+      </div> 
+    </div> 
+
+    <div class="social-login-buttons facebook-login">
+      <div class="text-center">
+        <a href ="#" class="btn social-button">
+          <span class="fa fa-facebook fa-lg"></span> Facebook
+        </a> (coming soon)
+      </div> 
+    </div> 
+  </div>
+
 </div>
+

@@ -1,66 +1,200 @@
-html {
-	/* background: url('http://subtlepatterns.com/patterns/wood_pattern.png'); */
-	font-size: 10pt;
-}
-label {
-	display: block;
-	color: #999;
-}
-.cf:before,
-.cf:after {
-    content: "";
-    display: table;
+/*h4{
+	color: goldenrod;
+}*/
+
+.login-box{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.cf:after {
-    clear: both;
+.social-button{
+	color: white;
 }
-.cf {
-    *zoom: 1;
+
+.social-button:hover{
+	color: #337ab7;
 }
-:focus {
-	outline: 0;
+
+i{
+  color: goldenrod;
 }
-.loginform {
-	width: 410px;
-	margin: 50px auto;
-	padding: 25px;
-	background-color: rgba(250,250,250,0.5);
-	border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2),
-    			inset 0px 1px 0px 0px rgba(250, 250, 250, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.3);
+
+/*to get the icons into the input fields*/
+.input-in-form{
+	display: inline-block;
+	position: relative;
 }
-.loginform ul {
-	padding: 0;
-	margin: 0;
+
+.input-in-form .glyphicon{
+	position: absolute;
+	padding-left: 5px;
+	padding-top: 3px;
 }
-.loginform li {
-	display: inline;
-	float: left;
+
+.left-positioning .glyphicon{
+	left: 0px;
 }
-.loginform input:not([type=submit]) {
-	padding: 5px;
-	margin-right: 10px;
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-radius: 3px;
-	box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
-				0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
+
+.left-positioning input{
+	padding-left: 20px;
 }
-.loginform input[type=submit] {
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	background: #64c8ef; /* Old browsers */
-	background: -moz-linear-gradient(top,  #64c8ef 0%, #00a2e2 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#64c8ef), color-stop(100%,#00a2e2)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #64c8ef 0%,#00a2e2 100%); /* W3C */
-	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64c8ef', endColorstr='#00a2e2',GradientType=0 ); */ /* IE6-9 */
-	color: #fff;
-	padding: 5px 15px;
-	margin-right: 0;
-	margin-top: 15px;
-	border-radius: 3px;
-	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+
+input{
+	margin-bottom: 10px;
+}
+
+.icon-text-color{
+	color: white;
+}
+
+/*------*/
+
+.login-header{
+	/*position: relative;
+	margin-left: 25px;*/
+	display: flex;
+	flex-direction: row;
+}
+
+.login-container{
+	/*position: absolute;
+	margin-top: 10px;*/
+	visibility: visible;
+	display: block;
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+	margin-bottom: 2em;
+	padding: 2em;
+}
+
+.signup-container{
+	/*position: absolute;
+	margin-top: 10px;*/
+	visibility: hidden;
+	display:none;
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+	margin-bottom: 2em;
+	padding: 2em;
+}
+
+.active{
+	color: white;
+}
+
+a:hover{
+	/*text-decoration:none;*/
+	/*color: white;*/
+}
+
+a:hover.active{
+	color: white;
+}
+
+.login-formfield{
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+}
+
+form{
+	margin: 0px;
+}
+
+.btn-primary{
+	border-radius: 7px;
+}
+
+#login-title{
+	color: goldenrod;
+	margin-bottom: 25px;
+}
+
+#signup-title{
+	color: goldenrod;
+	margin-bottom: 25px;
+}
+
+#login-box-link{
+	font-size: 16px;
+	margin-right: 2em;
+	/*border: 2px solid goldenrod;
+	border-radius: 7px;
+	padding: 4px;*/
+}
+
+#signup-box-link{
+	font-size: 16px;
+	margin-left: 2em;
+/*	border: 2px solid goldenrod;
+	border-radius: 7px;
+	padding: 4px;*/
+}
+
+.social-login-container{
+	/*position: relative;
+	float: right;
+	clear: both;*/
+	display: flex;
+	flex-direction: row;
+	margin-top: 2em;
+	/*justify-content: space-around;*/
+}
+
+.social-login-buttons{
+	/*position: relative;
+	float: right;
+	clear: both;*/
+	/*margin-top: 30%;*/
+	border: 2px solid goldenrod;
+	box-shadow: 4px 4px 2px goldenrod;
+	border-radius: 7px;
+	height: 40px;
+	width: 100px;
+	/*margin-bottom: 15px;*/
+	/*padding-right: 55px;*/
+	margin-left: 10px;
+}
+
+.social-login-buttons.github-login{
+	background-color: #444444;
+}
+
+.button-for-submit{
+	margin-bottom: 7px;
+}
+
+.social-login-buttons.twitter-login{
+	background-color: #55ACEE;
+}
+
+.social-login-buttons.facebook-login{
+	background-color: #3B5998;
+}
+
+.hide-container{
+	display: none;
+	visibility: hidden;
+}
+
+.show-container{
+	display: block;
+	visibility: visible;
+}
+
+.login-header{
+	margin-bottom: 25px;
+	margin-top: 120px;
+}
+
+.sign-in-text{
+	color: goldenrod;
+	margin-top: 1.5em;
+}
+
+h6{
+	color: goldenrod;
+	font-size: 14px;
 }
