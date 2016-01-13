@@ -104,7 +104,8 @@ app.use(reqlogger);
 
   // a user's task paths
   router
-    .get('/users/:userId/tasks',                  userTasksCtrl.getListOfTasksForUser)
+    .get('/users/:userId/tasks',                  userTasksCtrl.getAllTasksForUser)
+    .get('/users/:userId/today/tasks',            userTasksCtrl.getListOfTasksForUser)
     .get('/users/:userId/old/tasks',              userTasksCtrl.getListOfOldTasksForUser)
     .get('/users/:userId/tasks/:taskId',          userTasksCtrl.getTaskforUser)
     .post('/users/:userId/tasks',                 userTasksCtrl.createTask)
@@ -186,6 +187,7 @@ app.use(reqlogger);
     else if (this.request.url === '/users/new')
     {
       var newUser = this.request.body;
+      console.log(newUser);
       yield indexCtrl.createUser(newUser);
       // ctx.user = newUser;
       // yield indexCtrl.custom(ctx);
