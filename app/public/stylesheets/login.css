@@ -138,6 +138,14 @@ form{
 	padding: 4px;*/
 }
 
+#login-box-link.active{
+	color: white;
+}
+
+#signup-box-link.active{
+	color: white;
+}
+
 .social-login-container{
 	display: flex;
 	flex-direction: row;

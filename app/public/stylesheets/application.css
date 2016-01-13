@@ -26,7 +26,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .container{
   display: flex-inline;
-  /*max-height: 100vh;*/
   width: 170vh;
 }
 
@@ -53,8 +52,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .contentContainer {
   display: flex;
-  /*max-height: 50vh;*/
-  /*justify-content: space-between;*/
 }
 
 .listOfTasks {
@@ -69,11 +66,9 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 .listOfTasks .tasks {
-  /*font-size: 2.25vh;*/
   list-style-type:none;
   margin-top: 2px;
   padding: 0px;
-  /*min-height: 120px;*/
 }
 
 .tasks input[type="checkbox"] {
@@ -154,12 +149,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   width: 50px;
 }
 
-/*.middleColumn {
-  display: flex;
-  flex-direction: column;
-  min-width: 70vh;
-}*/
-
 .addTask {
   display: flex;
   justify-content: space-between;
@@ -175,7 +164,6 @@ ul {
 }
 
 .friends {
-  /*display: flex;*/
   min-width: 65vh;
   border:5px solid goldenrod;
   font-size: 2.5vh;
@@ -183,15 +171,12 @@ ul {
   padding-left: 20px;
   margin-right: 1em;
   min-height: 215px;
-/*  flex-direction: column;*/
 }
 
 .listOfFriends {
   font-size: 2.5vh;
-  /* list-style-type:none; */
   margin-left: 22px;
   padding: 0px;
-  /*min-height: 120px;*/
 }
 
 #sortByPriority {
@@ -201,7 +186,6 @@ ul {
   border-color: goldenrod;
   float: right;
   margin-top: 1.1em;
-  /*flex: 1;*/
 }
 
 #createTaskButton {
@@ -213,14 +197,11 @@ ul {
   margin-top: 1.1em;
   margin-left: .5em;
   margin-right: 1.1em;
-
-  /*flex: 1;*/
 }
 
 #addFriendButton {
   background-color: goldenrod;
   border-color: goldenrod;
-  /*max-width: 20%;*/
   font-size: 2.5vh;
   float: right;
   margin: 1.1em;
@@ -274,7 +255,6 @@ ul {
 }
 
 .complete_span_disabled {
-  /* color: #E8E8EE;*/
   color: #A8A8A8;
 }
 
@@ -285,10 +265,6 @@ ul {
 
 #recurring {
   margin-left: 20px;
-}
-
-#Erecurring {
-  /*margin-left: 20px;*/
 }
 
 #postponed {
@@ -333,7 +309,6 @@ ul {
 
 .postponed, .postponed:visited, .postponed:hover, .postponed.active {
   color: goldenrod;
- /* margin-left: 25px;*/
 }
 
 .complete_span_disabled.postponed{
@@ -342,8 +317,6 @@ ul {
 
 .tasklistform {
   background-color: black;
-  /* background-color: grey; */
-  /* color: dark grey; */
   color: #cccccc;   /* light grey */
   display: none;
   font-size: 10px;
@@ -353,12 +326,10 @@ ul {
 }
 
 .tasklistformbuttons{
-  /* border: 1px solid yellow; */
   margin-top: 7px;
 }
 
 .tasklistform label{
-  /*background-color: ;*/
   margin-top: 5px;
   color:  #D1D1D1;
 }
@@ -376,7 +347,6 @@ ul {
   color: black;
   width: 150px;
   margin-top: 2px;
-
 }
 
 .tasklistform input[type="checkbox"]{
@@ -398,7 +368,6 @@ ul {
 }
 
 #task-list .left-column{
-  /* border: 1px solid red; */
   color: #cccccc;
   font-size: 1.75vh;
   text-align: right;
@@ -406,11 +375,9 @@ ul {
 }
 
 #task-list .right-column{
-  /* border: 1px solid green; */
   font-size: 1.5vh;
   padding: 3px;
   padding-left: 6px;
-  /* margin-left: 6px; */
   text-align: left;
 }
 
@@ -418,10 +385,6 @@ ul {
   display: none;
   margin-top: .5em;
   font-size: 1.5vh;
-}
-
-#Edescription {
-  /*width: 355px;*/
 }
 
 .expandedTaskButtons {
@@ -475,11 +438,6 @@ transform-origin: top right;
 #resetStars {
   margin-top: .5em;
 }
-
-
-/*a, a:visited, a:hover, a:active {
-  color: inherit;
-}*/
 
 #confirmTaskCreated {
   font-weight: bold;
