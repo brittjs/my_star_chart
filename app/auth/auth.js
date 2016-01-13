@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === "production") {
   githubObject = {
     clientID: process.env.DEV_GITHUB_CLIENT_ID,
     clientSecret: process.env.DEV_GITHUB_CLIENT_SECRET,
-    callbackURL: "https://localhost:3000/auth/github/callback"
+    callbackURL: "http://localhost:3000/auth/github/callback"
   };
 }
 console.log('auth/auth.js github callback url = ' + githubObject.callbackURL);
