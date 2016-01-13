@@ -1,4 +1,4 @@
-**As a collaborative project marking the end of the Lighthouse Labs web development bootcamp this app uses koa, a Nodejs framework, and JavaScript to allow users to create a list of tasks, recieve stars for each completed task, and share their achievements with friends. This project is still in progress.**
+**As a collaborative project marking the end of the Lighthouse Labs web development bootcamp this app uses koa, a Nodejs framework, and JavaScript to allow users to create a list of tasks, collect stars for each completed task, and share their achievements with friends. This project is still in progress.**
 
 quick start
 =============
