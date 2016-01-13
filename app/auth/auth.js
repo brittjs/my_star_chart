@@ -2,46 +2,77 @@
 
 var db = require('../models/index.js');
 
+
 // =============================================================
-//   so that user can register using their GitHub account
+//   so that user can register using their Twitter account
 //   ... This is OAuth
 // =============================================================
+
+var twitterObject = {};
+
+if (process.env.NODE_ENV === "production") {
+  twitterObject = {
+    consumerKey: process.env.PROD_TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.PROD_TWITTER_CONSUMER_SECRET,
+    callbackURL: "https://my-star-chart.herokuapp.com/auth/twitter/callback"
+  };
+} else {
+  twitterObject = {
+    consumerKey: process.env.DEV_TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.DEV_TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://localhost:3000/auth/twitter/callback"
+  };
+}
+console.log('auth/auth.js twitter callback url = ' + twitterObject.callbackURL);
+
 
 const passport = require('koa-passport'),
    TwitterStrategy = require('passport-twitter').Strategy;
 
 
-// passport.use(new TwitterStrategy({
-//     consumerKey: process.env.TWITTER_CONSUMER_KEY,
-//     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-//     callbackURL: "http://localhost:3000/auth/twitter/callback"
-//  },
-//  function(token, tokenSecret, profile, done) {
-//     console.log('inside Twitter oauth')
-//     console.log(profile)
-//     db.sequelize.models.User.findOrCreate({where: 
-//        { username: profile.username }, 
-//     function(err, user) {
-//       if (err) { return done(err); }
-//       done(null, user);
-//     }
-//  });
-//  }));
+
+passport.use(new TwitterStrategy(twitterObject,
+  function(token, tokenSecret, profile, done) {
+    console.log('inside Twitter oauth');
+    console.log(profile);
+    db.sequelize.models.User.findOrCreate({where:
+        { username: profile.username },
+    function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    }
+  });
+  }));
 
 // =============================================================
 //   so that user can register using their GitHub account
 //   ... This is OAuth
 // =============================================================
 
+var githubObject = {};
+
+if (process.env.NODE_ENV === "production") {
+  githubObject = {
+    clientID: process.env.PROD_GITHUB_CLIENT_ID,
+    clientSecret: process.env.PROD_GITHUB_CLIENT_SECRET,
+    callbackURL: "https://my-star-chart.herokuapp.com/auth/github/callback"
+  };
+} else {
+  githubObject = {
+    clientID: process.env.DEV_GITHUB_CLIENT_ID,
+    clientSecret: process.env.DEV_GITHUB_CLIENT_SECRET,
+    callbackURL: "https://localhost:3000/auth/github/callback"
+  };
+}
+console.log('auth/auth.js github callback url = ' + githubObject.callbackURL);
+
 const   GithubStrategy = require('passport-github').Strategy;
 
-passport.use(new GithubStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/github/callback"
-  },
+
+
+passport.use(new GithubStrategy(githubObject,
   function findExistingUserBasedOnOAuthUser(accessToken, refreshToken, profile, done) {
-    //the code that was here is now in routes/index.js 
+    //the code that was here is now in routes/index.js
 
     let user = profile;
 
