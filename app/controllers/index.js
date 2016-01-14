@@ -93,7 +93,7 @@ module.exports = {
     yield db.sequelize.models.User.create({username: user.username,
                                                   email: user.email,
                                                   pwd: user.pwd,
-                                                  gravatar: gravatar.url(user.email, {s: '50', r: 'x', d: 'identicon'}, true)});
+                                                  gravatar: gravatar.url(user.email, {s: '50', r: 'x', d: 'wavatar'}, true)});
 
     next;
   }
