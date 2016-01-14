@@ -11,83 +11,6 @@
 // '<li> ' +
 
 var tasklistItemHTML =
-  ' <input type="checkbox" id="chk888"> ' +
-  ' <a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a> ' +
-
-  '<!-- the new part -- form to edit the task --> ' +
-  '<div class="tasklistform"> ' +
-  '  <form id="editTaskForm" action="" method="put"> ' +
-  '     <label for="description">Description:</label> ' +
-  '     <input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></textarea> ' +
-  '     <br> ' +
-  '      <div class=""> ' +
-  '       <label for="due_date">Due Date:</label> ' +
-  '       <input type="date" id="Edue_date" name="due_date"> ' +
-  '       <label for="priority">Priority:</label> ' +
-  '       <select class="" id="Epriority" name="priority"> ' +
-  '         <option value="1">1</option> ' +
-  '         <option value="2">2</option> ' +
-  '         <option value="3">3</option> ' +
-  '         <option value="4">4</option> ' +
-  '         <option value="5">5</option> ' +
-  '       </select> ' +
-  '       <label for="recurring">Recurring:</label> ' +
-  '       <input type="checkbox" name="recurring" id="ERecurring"> ' +
-  '      </div> ' +
-  '      <br> ' +
-  '       <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button> ' +
-  '       <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton"> ' +
-  '       <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button> ' +
-  '       <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button> ' +
-  '  </form> ' +
-  '</div> ';
-
-
-//'</li>';
-
-// </ul>
-
-var tasklistItemHTML2 =
-      '<input type="checkbox" id="chk888">' +
-      '<a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a>' +
-      '<!-- the new part -- form to edit the task -->' +
-      '<div class="tasklistform" id=[000]>' +
-      '  <form id="editTaskForm" action="" method="put">' +
-      '   <table id="task-list">' +
-      '     <tr>' +
-      '       <td class="left-column"><label for="description">Description:</label></td>' +
-      '       <td class="right-column"><input type ="text" minlength="5" maxlength="50"class="" id="Edescription" name="description"></td>' +
-      '     </tr>' +
-      '     <tr>' +
-      '       <td class="left-column"><label for="due_date">Due Date:</label></td>' +
-      '       <td class="right-column"><input type="date" id="Edue_date" name="due_date"></td>' +
-      '     </tr>' +
-      '     <tr>' +
-      '       <td class="left-column"><label for="priority">Priority:</label></td>' +
-      '       <td class="right-column" ><select class="" id="Epriority" name="priority">' +
-      '             <option value="1">1</option>' +
-      '             <option value="2">2</option>' +
-      '             <option value="3">3</option>' +
-      '             <option value="4">4</option>' +
-      '             <option value="5">5</option>' +
-      '           </select>' +
-      '       </td>' +
-      '     </tr>' +
-      '     <tr>' +
-      '       <td class="left-column"><label for="recurring">Recurring:</label></td>' +
-      '       <td class="right-column"><input type="checkbox" name="recurring" id="ERecurring"></td>' +
-      '     </tr>' +
-      '   </table>' +
-      '   <div class="expandedTaskButtons">' +
-      '     <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
-      '     <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
-      '     <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
-      '     <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
-      '   </div>' +
-      '  </form>' +
-     '</div>';
-
-var tasklistItemHTML3 =
           '<input type="checkbox" id="chk888">' +
           '<a class="taskAnchor" id="999" data-priority="1" href="">Walk the dog</a>' +
           '<!-- the new part -- form to edit the task -->' +
@@ -115,7 +38,6 @@ var tasklistItemHTML3 =
           '     </tr>' +
           '  </table>' +
           '   <div class="tasklistformbuttons" id=[000]>' +
-          '     <button type="button" class="btn btn-default btn-xs" id="cancel">Cancel</button>' +
           '     <input  type="submit" class="btn btn-primary btn-xs" id="saveEditButton">' +
           '     <button type="button" class="btn btn-default btn-xs" id="deleteTask">Delete Task</button>' +
           '     <button type="button" class="btn btn-default btn-xs" id="procrastinate">Procrastinate</button>' +
@@ -135,12 +57,39 @@ function getRandomInt(min, max) {
 }
 
 function resetUserStars(user_id) {
-  console.log("FIRINGGGG");
-
   // later include jquery-confirm plugin for nicer confirm box
-  var response = confirm("Are you sure you'd like to clear the stars from your sky?\nThis action cannot be undone.");
+  var response =
+    $.confirm({
+      title: "Reset Sky",
+      content: "<center>Are you sure you'd like to clear the stars from your sky?<br>This action cannot be undone.<center>",
+      columnClass: 'col-md-4 col-md-offset-4',
+      confirm: function () {
+        $.get('/users/' + user_id + '/tasks', function(tasks) {
+          tasks.forEach(function (task) {
+            if (task.completed) {
+              $.ajax({
+                url: '/users/' + user_id + '/tasks/' + task.id,
+                type: 'DELETE',
+                success: function() {
+                  console.log("stars deleted");
+                }
+              });
+            }
+          });
+        });
+        $.alert({
+          title: "Success",
+          content: "<center>Stars have been removed.<center>",
+          confirm: function(){
+            window.location.href = "/";
+          }
+        });
+      }
+      // window.location.href = "/";
+    });
+
   if (response === true) {
-    $.get('/users/' + user_id + '/tasks', function(tasks) {   
+    $.get('/users/' + user_id + '/tasks', function(tasks) {
       tasks.forEach(function (task) {
         if (task.completed) {
           $.ajax({
@@ -150,11 +99,15 @@ function resetUserStars(user_id) {
               console.log("stars deleted");
             }
           });
-        }  
+        }
       });
-      alert("Stars have been removed.");
-      window.location.href = "/";  
-    });   
+      // $.alert({
+      //   title: 'Stars have been removed.',
+      //   content: 'Simple alert!',
+      // });
+
+      window.location.href = "/";
+    });
   }
 }
 
@@ -167,17 +120,18 @@ function dailyTaskRefresh(userId) {
     var today = new Date();
     today.setHours(0,0,0,0);
     console.log("today: "+today);
+    var outerResolve = resolve;
 
-    return new Promise(function(resolve, reject){
+    var innerPromise = new Promise(function(resolve, reject){
       $.get('users/' + userId + '/old/tasks', function(tasks){
 
       var oldTasks = tasks;
       var myTask;
 
       for (var i = 0; i < oldTasks.length; i++) {
- 
+
       var task = oldTasks[i];
- 
+
         if (task.recurring === true || task.postponed === true) {
           //create duplicate task with today as due date
           myTask = {description: task.description,
@@ -238,8 +192,9 @@ function dailyTaskRefresh(userId) {
         resolve();
       });
     }); // end of get
- resolve();
-  });
+  }); // end of innerPromise definition
+  innerPromise.then(outerResolve);
+  return innerPromise;
 });
 }
 
@@ -316,7 +271,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
   $(".tasks").empty();
 
-  $.get('users/' + userId + '/tasks', function(tasks){
+  $.get('users/' + userId + '/today/tasks', function(tasks){
 
     allTasks = tasks;
 
@@ -343,7 +298,7 @@ function reloadTasks(userId, changeTaskInHeader) {
 
       if (!task.completed) {
 
-        var modifyTaskForm = tasklistItemHTML3.replace("id=[000]", "id=D" + task.id);
+        var modifyTaskForm = tasklistItemHTML.replace("id=[000]", "id=D" + task.id);
 
         $taskLi.html(modifyTaskForm);
 
@@ -376,9 +331,9 @@ function reloadTasks(userId, changeTaskInHeader) {
                                           'id':   task.id.toString(),
                                           'data-priority': task.priority,
                                         });
-        
+
         // .addClass("incomplete") needed to isolate incomplete tasks for sorting
-        $taskLi.find(".taskAnchor").addClass("incomplete");                           
+        $taskLi.find(".taskAnchor").addClass("incomplete");
 
         //for color change upon clicking procrastinate button:
         var procrastinateButtonSelector = "#D" + task.id + " " + "button#procrastinate";
@@ -634,10 +589,10 @@ $(function() {
         // ============================================================
 
         var userId = $('div#userId').data('id');
-        
+
         var changeTaskInHeaderFlag = true;
 
-        dailyTaskRefresh(userId).then(reloadTasks.call(null, userId, changeTaskInHeaderFlag));
+        dailyTaskRefresh(userId).then(function(){reloadTasks(userId, changeTaskInHeaderFlag)});
 
         // ===========================================================
         //
@@ -648,10 +603,11 @@ $(function() {
         // ============================================================
         $('#createTaskButton').on('click', function(event) {
           // populate the date field in the _taskcreatemodal.ejs template
-          
+
           // keep $("#createTaskForm").show(); below so that form shows when
-          // creating new task (it gets hidden when a task with a future due 
+          // creating new task (it gets hidden when a task with a future due
           // date is created)
+          $('#createTaskForm').trigger("reset");
           $("#createTaskForm").show();
 
           var objToday = new Date();
@@ -676,9 +632,14 @@ $(function() {
         //
         // ============================================================
         // Attach a delegated event handler
-        $('ul.tasks').on('click', 'a', function(event) {
+
+        $('ul.tasks').on('click', 'li a', function(event) {
+
           event.preventDefault();
-          $(this).closest('li').find('.tasklistform').toggle();
+          //toggle task panel on click and retain colour:
+
+          $(this).toggleClass("active");
+          $(this).next().slideToggle();
         });
 
         // ===========================================================
@@ -693,11 +654,14 @@ $(function() {
         $('ul.tasks').on('click', 'button', function(event) {
           event.preventDefault();
 
+
+          // Steph removed the Cancel button Tue Jan 12, 2016
+
           // if "Cancel" button clicked, hide task list item form
-          if ($(this).attr('id') === "cancel") {
-            // display .tasklistform for clicked task link
-            $(this).closest('li').find('.tasklistform').css('display', 'none');
-          }
+          // if ($(this).attr('id') === "cancel") {
+          //   // display .tasklistform for clicked task link
+          //   $(this).closest('li').find('.tasklistform').css('display', 'none');
+          // }
 
           // if "Procrastnate" button clicked, hide task list item form
           if ($(this).attr('id') === "procrastinate") {
@@ -756,11 +720,11 @@ $(function() {
           tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'asc'});
           tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'asc'});
           tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'asc'});
-        }); 
+        });
 
    } // end of user's Page  !!!
 
-  var settingsPage = str.match(/^\/settings$/);   
+  var settingsPage = str.match(/^\/settings$/);
 
     if (settingsPage) {
       var uId = $('div#userId').attr('data-id');
@@ -768,4 +732,3 @@ $(function() {
     }
 
 });
-

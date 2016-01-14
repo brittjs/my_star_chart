@@ -1,4 +1,8 @@
-require('./env.js');
+//  do not require env.js  in production
+//  environment variables are all set manually in production
+if (process.env.NODE_ENV != "production"){
+  require('./env.js');
+}
 
 var koa = require('koa'),
     path = require('path'),
@@ -38,4 +42,7 @@ render(app, {
   debug: true
 });
 
-if (!module.parent) app.listen(3000);
+
+var port       = process.env.PORT || 3000;
+
+if (!module.parent) app.listen(port);
