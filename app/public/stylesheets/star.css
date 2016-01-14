@@ -254,13 +254,23 @@
 
 @keyframes star-colour-change-one{
   0%{
-    color: yellow;
-    border-bottom: 7px solid yellow;
+    color: #FC2E5A;
+    border-bottom: 7px solid #FC2E5A;
+  }
+
+  25%{
+    color: orange;
+    border-bottom: 7px solid orange;
   }
 
   50%{
     color: yellow;
     border-bottom: 7px solid yellow;
+  }
+
+  75%{
+    color: orange;
+    border-bottom: 7px solid orange;
   }
 
   100%{
@@ -271,13 +281,23 @@
 
 @keyframes star-colour-change-two{
   0%{
-    color: yellow;
-    border-bottom: 8px solid yellow;
+    color: #FC2E5A;
+    border-bottom: 8px solid #FC2E5A;
+  }
+
+  25%{
+    color: orange;
+    border-bottom: 8px solid orange;
   }
 
   50%{
     color: yellow;
     border-bottom: 8px solid yellow;
+  }
+
+  75%{
+    color: orange;
+    border-bottom: 8px solid orange;
   }
 
   100%{
@@ -288,13 +308,23 @@
 
 @keyframes star-colour-change-three{
   0%{
-    color: yellow;
-    border-bottom: 7px solid yellow;
+    color: #FC2E5A;
+    border-bottom: 7px solid #FC2E5A;
+  }
+
+  25%{
+    color: orange;
+    border-bottom: 7px solid orange;
   }
 
   50%{
     color: yellow;
     border-bottom: 7px solid yellow;
+  }
+
+  75%{
+    color: orange;
+    border-bottom: 7px solid orange;
   }
 
   100%{
