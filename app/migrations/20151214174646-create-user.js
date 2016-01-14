@@ -24,6 +24,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING
       },
+      gravatar: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       createdAt: {
         defaultValue: Sequelize.fn('NOW'),
         allowNull: false,

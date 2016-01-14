@@ -41,6 +41,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       unique: true
     },
+    gravatar: {
+      type: Sequelize.STRING,
+      field: 'gravatar',
+      allowNull: true,
+      unique: true
+    },
 
   }, {
     classMethods: {

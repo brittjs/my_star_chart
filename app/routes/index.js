@@ -189,11 +189,6 @@ app.use(reqlogger);
       var newUser = this.request.body;
       console.log(newUser);
       yield indexCtrl.createUser(newUser);
-      // ctx.user = newUser;
-      // yield indexCtrl.custom(ctx);
-      // this.state.user = newUser;
-      // console.log(this.state.user);
-      // this.body = this.state.user;
       this.redirect ('/login')
     }
     else 

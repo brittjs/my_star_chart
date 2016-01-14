@@ -22,8 +22,7 @@ $(function() {
 
     $.get('/users/' + userId + '/friends').then(function(friends) {
         var friendsLi = friends.map(function (friend) { 
-          var hash = CryptoJS.MD5(friend.email);
-          var gravatar = $('<img>').attr({src: + "http://www.gravatar.com/avatar/" + hash});
+          var gravatar = $("<img src =" + friend.gravatar+" class='gravatar'>");
           return $('<li>').attr({
             'data-friend-id': friend.id,
             'data-toggle': "modal",
