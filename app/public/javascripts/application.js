@@ -144,8 +144,8 @@ function dailyTaskRefresh(userId) {
   console.log("inside dailyTaskRefresh");
 
   var today = new Date();
-  today.setHours(-8,0,0,0);
-  // console.log("today: "+today);
+  today.setHours(0,0,0,0);
+  console.log("today: "+today);
 
   $.get('users/' + userId + '/old/tasks', function(tasks){
 
