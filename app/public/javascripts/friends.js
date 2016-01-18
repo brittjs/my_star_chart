@@ -18,20 +18,18 @@ $(function() {
     var friendslist = $('ul.listOfFriends');
     friendslist.empty();
 
-    $.get('/users/' + userId + '/friends').then(function(friends)
-    {
-      var friendsLi = friends.map(function (friend)
-      {
-        return $('<li>').attr({
-          'data-friend-id': friend.id,
-          'data-friend-email': friend.email,
-          'data-toggle': "modal",
-          'data-target': "#showFriendModal"
-        }).append($('<a href="javascript:void(0);">').text(friend.username));
-      });
+    $.get('/users/' + userId + '/friends').then(function(friends) {
+        var friendsLi = friends.map(function (friend) { 
+          var gravatar = $("<img src =" + friend.gravatar+" class='gravatar'>");
+          return $('<li>').attr({
+            'data-friend-id': friend.id,
+            'data-toggle': "modal",
+            'data-target': "#showFriendModal"
+          }).append(gravatar).append($('<a href="javascript:void(0);">').text(friend.username));
+        });
       friendslist.append(friendsLi);
     });
-    }
+  }
 
   reloadFriends(userId);
 

@@ -1,6 +1,7 @@
 var db = require('../models/index.js');
 var User = require('../models/user.js');
 var passport = require('../auth/auth.js');
+var gravatar = require('gravatar');
 
 module.exports = {
 
@@ -88,7 +89,12 @@ module.exports = {
 	},
 
   createUser: function *createUser(user, next) {
-    yield db.sequelize.models.User.create(user)
+    // yield db.sequelize.models.User.create(user)
+    yield db.sequelize.models.User.create({username: user.username,
+                                                  email: user.email,
+                                                  pwd: user.pwd,
+                                                  gravatar: gravatar.url(user.email, {s: '50', r: 'x', d: 'wavatar'}, true)});
+
     next;
   }
 
