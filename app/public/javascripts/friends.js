@@ -1,5 +1,3 @@
-// var crypto = require('[crypto]');
-
 $(function() {
 
   var str = window.location.pathname;
