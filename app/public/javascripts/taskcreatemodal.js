@@ -27,6 +27,7 @@ $(function() {
       $("#createTaskForm").on('submit', function(e) {
         e.preventDefault();
 
+
         var taskDescription = $("#description").val();
         var dueDate = $("#due_date").val();
         var taskPriority = $("#priority").val();
@@ -44,16 +45,17 @@ $(function() {
           console.log("Create task submit button successful.");
           console.log("task = ", task);
           reloadTasks(userId);
-        })
 
+        })
         .fail( function(xhr, textStatus, errorThrown) {
-          alert(xhr.responseText);
-          console.log(xhr.responseText);
+            alert(xhr.responseText);
+            console.log(xhr.responseText);
         });
 
         $('#createTaskForm').trigger("reset");
         $("#addTaskModal").modal('hide');
       });
+
 
   }
 

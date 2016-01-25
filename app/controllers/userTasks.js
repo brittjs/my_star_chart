@@ -17,7 +17,7 @@ module.exports = {
 
   // -------------------------------------------------------------
   //
-  //     get list of today's tasks for user
+  //     get list of tasks for user
   //
   // -------------------------------------------------------------
   getListOfTasksForUser: function* getListOfTasksForUser(next) {
@@ -130,6 +130,7 @@ module.exports = {
         // console.log(mappedTasks3);
 
         var mappedTasks = mappedTasks1.concat(mappedTasks2, mappedTasks3);
+
 
       this.body = mappedTasks;
 

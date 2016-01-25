@@ -154,6 +154,7 @@ function dailyTaskRefresh(userId) {
     oldTasks.forEach(function(task) {
 
       if (task.recurring === true || task.postponed === true) {
+        //create duplicate task with today as due date
         var myTask = {description: task.description,
          due_date: today,
          priority: task.priority,
@@ -169,6 +170,7 @@ function dailyTaskRefresh(userId) {
       }
 
       if (task.completed === false) {
+        //delete incomplete tasks
         $.ajax({
           url: '/users/' + userId + '/tasks/' + task.id,
           type: 'DELETE',
@@ -176,9 +178,33 @@ function dailyTaskRefresh(userId) {
             console.log("done with delete");
           }
         });
+      } else {
+        //change recurring to false.
+        var myTask = {id: task.id,
+         description: task.description,
+         due_date: task.due_date,
+         priority: task.priority,
+         recurring: false,
+         postponed: false,
+         completed: false,
+         UserId: userId};
+
+        $.ajax({
+          type: "PUT",
+          url:  'users/' + userId + '/tasks/' + task.id,
+          contentType: "application/json",
+          data: JSON.stringify(myTask),
+          success: function(data) {
+            console.log("removed recurring flag from yesterday's completed task"+task.id)
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.responseText);
+          }
+        });
       }
     });
   });
+  reloadTasks(userId);
 }
 
 // ===========================================================
@@ -280,7 +306,6 @@ function reloadTasks(userId, changeTaskInHeader) {
   $.get('users/' + userId + '/tasks', function(tasks){
 
     allTasks = tasks;
-    dailyTaskRefresh(userId);
 
 
     // =========================================================
@@ -655,6 +680,8 @@ $(function() {
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
 
+        dailyTaskRefresh(userId);
+        
         var changeTaskInHeaderFlag = true;
 
         reloadTasks(userId, changeTaskInHeaderFlag);
