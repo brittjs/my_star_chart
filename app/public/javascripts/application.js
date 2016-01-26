@@ -717,9 +717,9 @@ $(function() {
         // ============================================================
 
         $("#sortByPriority").on('click', function() {
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'asc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'asc'});
-          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'asc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.incomplete', data: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.postponed', data: 'priority', order: 'desc'});
+          tinysort('ul.tasks>li', {selector: '.taskAnchor.complete_span_disabled', attr: 'priority', order: 'desc'});
         });
 
    } // end of user's Page  !!!
