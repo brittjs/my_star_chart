@@ -164,7 +164,7 @@ function dailyTaskRefresh(userId) {
          UserId: userId};
 
         $.post('/users/' + userId + '/tasks', myTask, function(task) {
-          console.log("Create recurring/postponed task successful.");
+          console.log("Create of task "+task.id+" successful.");
           console.log("task = ", task);
         });
       }
@@ -175,7 +175,7 @@ function dailyTaskRefresh(userId) {
           url: '/users/' + userId + '/tasks/' + task.id,
           type: 'DELETE',
           success: function() {
-            console.log("done with delete");
+            console.log("done with delete task "+task.id);
           }
         });
       } else {
@@ -186,7 +186,7 @@ function dailyTaskRefresh(userId) {
          priority: task.priority,
          recurring: false,
          postponed: false,
-         completed: false,
+         completed: task.completed,
          UserId: userId};
 
         $.ajax({
@@ -195,7 +195,7 @@ function dailyTaskRefresh(userId) {
           contentType: "application/json",
           data: JSON.stringify(myTask),
           success: function(data) {
-            console.log("removed recurring flag from yesterday's completed task"+task.id)
+            console.log("removed recurring flag from yesterday's completed task "+task.id)
           },
           error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.responseText);
@@ -204,7 +204,7 @@ function dailyTaskRefresh(userId) {
       }
     });
   });
-  reloadTasks(userId);
+  // reloadTasks(userId);
 }
 
 // ===========================================================
