@@ -203,8 +203,9 @@ function dailyTaskRefresh(userId) {
         });
       }
     });
+  
+  reloadTasks(userId);
   });
-  // reloadTasks(userId);
 }
 
 // ===========================================================
@@ -679,13 +680,15 @@ $(function() {
         console.log('inside application.js  line 70');
         console.log("$('div#userId').attr('data-id')");
         console.log(userId);
-
-        dailyTaskRefresh(userId);
         
         var changeTaskInHeaderFlag = true;
 
-        reloadTasks(userId, changeTaskInHeaderFlag);
+        // (function () {
+            dailyTaskRefresh(userId);
+        
 
+        reloadTasks(userId, changeTaskInHeaderFlag);
+      // })();
         // ===========================================================
         //
         //
